@@ -1,8 +1,0 @@
-package com.cisco.apas.entity;
-
-public interface Token {
-	
-	public String getTokenValue();
-	public void setTokenValue(String tokenValue);
-	
-}

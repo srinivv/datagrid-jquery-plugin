@@ -1,4 +1,0 @@
-package com.cisco.apas.entity;
-
-public interface ParenthesisToken extends Token {
-}

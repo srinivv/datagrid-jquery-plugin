@@ -1,7 +1,0 @@
-package com.cisco.apas.entity;
-
-public enum SiteUse {
-	B,
-	I,
-	A
-}

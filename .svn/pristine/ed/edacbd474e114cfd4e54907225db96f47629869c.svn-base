@@ -1,7 +1,0 @@
-package com.cisco.apas.entity;
-
-public interface OperandToken extends Token {
-
-	public String getTokenValue();
-	
-}

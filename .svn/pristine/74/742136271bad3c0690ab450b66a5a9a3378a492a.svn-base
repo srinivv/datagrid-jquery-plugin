@@ -1,4 +1,0 @@
-package com.cisco.apas.entity;
-
-public interface OperatorToken extends Token {
-}

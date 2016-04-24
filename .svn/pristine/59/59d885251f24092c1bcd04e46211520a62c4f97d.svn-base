@@ -1,9 +1,0 @@
-package com.cisco.apas.entity;
-
-import java.util.List;
-
-public interface ExpressionValidator {
-
-	public boolean validate(List<Token> tokens);
-	
-}
