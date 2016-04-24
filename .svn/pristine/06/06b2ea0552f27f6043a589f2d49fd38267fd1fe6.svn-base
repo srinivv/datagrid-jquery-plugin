@@ -1,0 +1,33 @@
+<project>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cisco</groupId>
+  <artifactId>APASJavaScript</artifactId>
+  <version>1.0</version>
+  <name>APAS::JavaScript</name>
+  <packaging>pom</packaging>
+
+
+ <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
+<properties>
+   <sonar.language>js</sonar.language>
+   <sonar.dynamicAnalysis>false</sonar.dynamicAnalysis>
+</properties>
+
+ <build>
+    <sourceDirectory>
+       WebRoot
+    </sourceDirectory> 
+ </build>
+ 
+
+</project>
+

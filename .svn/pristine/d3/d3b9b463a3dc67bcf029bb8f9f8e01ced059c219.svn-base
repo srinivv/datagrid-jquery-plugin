@@ -1,0 +1,80 @@
+package com.cisco.apas.interceptor;
+
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+
+import org.hibernate.CallbackException;
+import org.hibernate.EmptyInterceptor;
+import org.hibernate.type.Type;
+
+import com.cisco.apas.util.SessionUtils;
+
+public class AuditInterceptor extends EmptyInterceptor {
+
+	private static final long serialVersionUID = 1L;
+
+	/* (non-Javadoc)
+	 * @see net.sf.hibernate.Interceptor#onFlushDirty(java.lang.Object, java.io.Serializable, java.lang.Object[], java.lang.Object[], java.lang.String[], net.sf.hibernate.type.Type[])
+	 */
+	public boolean onFlushDirty(Object entity, Serializable id, Object[] currentState,
+			Object[] previousState, String[] propertyNames, Type[] types) throws CallbackException {
+		boolean updated = false;
+		
+		String user = (SessionUtils.getUser() == null) ? null : SessionUtils.getUser().getEmail();
+		
+		if(user == null) {
+			user = "pppTest";
+		}
+			for (int i=0; i < propertyNames.length; i++) {
+				if ("updatedBy".equals(propertyNames[i])) {
+					currentState[i] = user;
+					updated = true;
+				} else if ("updatedOn".equals(propertyNames[i])) {
+					currentState[i] = AuditInterceptor.getCurrentDate();
+					updated = true;
+				}
+			}
+
+
+		return updated;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.hibernate.Interceptor#onSave(java.lang.Object, java.io.Serializable, java.lang.Object[], java.lang.String[], net.sf.hibernate.type.Type[])
+	 */
+	/* (non-Javadoc)
+	 * @see org.hibernate.EmptyInterceptor#onSave(java.lang.Object, java.io.Serializable, java.lang.Object[], java.lang.String[], org.hibernate.type.Type[])
+	 */
+	public boolean onSave(Object entity, Serializable id, Object[] currentState,
+			String[] propertyNames, Type[] types) throws CallbackException {
+		boolean updated = false;
+		
+		String user = (SessionUtils.getUser() == null) ? null : SessionUtils.getUser().getEmail();
+		
+		if(user == null) {
+			user = "pppTest";
+		}
+			for (int i=0; i < propertyNames.length; i++) {
+				if ("createdBy".equals(propertyNames[i])) {
+					currentState[i] = user;
+					updated = true;
+				} else if ("createdOn".equals(propertyNames[i])) {
+					currentState[i] = AuditInterceptor.getCurrentDate();
+					updated = true;
+				}else if ("updatedBy".equals(propertyNames[i])) {
+					currentState[i] = user;
+					updated = true;
+				} else if ("updatedOn".equals(propertyNames[i])) {
+					currentState[i] = AuditInterceptor.getCurrentDate();
+					updated = true;
+				}
+			}
+		return updated;
+	}
+	
+    public static Date getCurrentDate() {
+        Calendar c1 = Calendar.getInstance();
+        return c1.getTime();
+    }	
+}

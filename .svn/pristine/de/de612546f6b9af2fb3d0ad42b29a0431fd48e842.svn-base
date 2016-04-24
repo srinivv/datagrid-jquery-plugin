@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app id="WebApp_9" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Authorized Product Admin System (APAS)</display-name>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>tilesDefinitions</param-name>
+		<param-value>/WEB-INF/tiles.xml</param-value>
+	</context-param>
+
+	<!--filter> <filter-name>hibernateFilter</filter-name> <filter-class>com.cisco.sd.actions.SDSOpenSessionInViewFilter</filter-class> 
+		</filter -->
+
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>com.cisco.apas.AuthenticationFilter
+		</filter-class>
+	</filter>
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+		</filter-class>
+	</filter>
+<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+
+	<!--filter-mapping> <filter-name>hibernateFilter</filter-name> <servlet-name>action</servlet-name> 
+		</filter-mapping -->
+
+	<listener>
+		<listener-class>org.apache.struts2.tiles.StrutsTilesListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<!-- servlet> <servlet-name>AxisServlet</servlet-name> <display-name>Apache-Axis 
+		Servlet</display-name> <servlet-class>com.cisco.framework.axis2.http.FrameworkServlet</servlet-class> 
+		<load-on-startup>1</load-on-startup> </servlet> <servlet> <servlet-name>PingServlet</servlet-name> 
+		<display-name>SDF Ping Servlet</display-name> <servlet-class>com.cisco.framework.PingServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>AxisServlet</servlet-name> <url-pattern>/services/*</url-pattern> 
+		</servlet-mapping> <servlet-mapping> <servlet-name>PingServlet</servlet-name> 
+		<url-pattern>/ping/*</url-pattern> </servlet-mapping -->
+
+
+	<!-- The Usual Welcome File List -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/tags/pagination</taglib-uri>
+			<taglib-location>/WEB-INF/pagination.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>PDR Protected Area</web-resource-name>
+			<url-pattern>/jsp/*</url-pattern>
+			<url-pattern>/servlet/*</url-pattern>
+			<url-pattern>*.do</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+	  	  	<role-name>AllAuthenticatedUsers</role-name>
+	  	  	<role-name>user</role-name>
+	  	</auth-constraint>
+		
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>CEC</web-resource-name>
+			<url-pattern>/public/probe.jsp</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+
+
+	<!-- Define the Login Configuration for this Application -->
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>CCO</realm-name>
+	</login-config>
+
+</web-app>

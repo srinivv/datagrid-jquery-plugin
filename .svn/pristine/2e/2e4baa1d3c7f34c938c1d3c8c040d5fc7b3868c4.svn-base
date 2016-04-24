@@ -1,0 +1,669 @@
+// Global variables
+var selectedInitial = 'A';
+var selectedCategory;
+var selectedProgram;
+
+var globalNodeLevel = ""; //  Service_Category | Service_Program | Service_Level | Service_SKU // Product_Family | Product_SKU
+var globalNodeType = ""; // PRODUCT | SERVICE
+
+var productChildren;
+var serviceChildren;
+
+var hierarchyDetails = [];
+
+$(document).ready(function() {
+
+	// Add new node - click event
+	$("#addNodeArea").live("click", function(){
+		//addNewNode();
+	});
+	
+	// Load master hierarchy data from application context
+	$.getJSON("node_master_hierarchy_data.do", function(json) {
+		hierarchyDetails = json;
+	});
+
+	// Click event for "Search Node" on "Add New Node" landing page.
+	$(".searchNode").live("click", function(){
+		$('.secondstepmain').slideUp();							  
+		$('.searchBox').slideDown();							  
+		$('.searchSearchMain').show();
+		$('.searchNodeSmall').addClass('select');
+		$('.cancelNodebtn').hide();
+		
+	});
+	
+	// Click event for "Select Node" on "Add New Node" landing page.
+	$(".selectNode").live("click", function(){
+		$('.secondstepmain').slideUp();							  
+		$('.searchBox').slideDown();	
+		$('.selectSearchMain').show();
+		$('.searchFilterOption').show();
+		$('.selectNodeSmall').addClass('select');  
+		$('.cancelNodebtn').hide();
+		loadProductServiceFamilies();
+	});
+	
+	// Click event for "Search Node" tab.
+	$(".searchnodeLink").live("click", function(){
+		$('.selectSearchMain').hide();
+		$('.searchSearchMain ').show();
+		$('.selectNodeSmall').removeClass('select');
+		$('.searchNodeSmall').addClass('select');
+	});
+
+	// Click event for "Select Node" tab.
+	$(".selectnodeLink").live("click", function(){
+		$('.selectSearchMain').show();
+		$('.searchSearchMain ').hide();
+		$('.searchFilterOption').show();
+		$('.selectNodeSmall').addClass('select');
+		$('.searchNodeSmall').removeClass('select');
+		loadProductServiceFamilies();
+	});
+
+	// Click event for "Product Families" tab.
+	$("#productTab").click(function(){ 
+		$('#firstLetter').addClass('select').siblings().removeClass('select');
+		$(this).addClass('selectedState');
+		$('#serviceTab').removeClass('selectedState');
+		$('#searchFamiliesInput').val('Search Product Families');
+		loadProductServiceFamilies();
+		$('#programsLayer').hide();
+		$('#levelsLayer').hide();
+		$('#skusLayer').hide();
+		
+		// Carousel display for Product/Services family 
+		$('.filterResultMain').cycle({
+			fx: 'fade',
+			timeout: 0,
+			prev:   '#prev', 
+			next:   '#next'
+		});
+
+	});
+
+	// Click event for "Service Families" tab.
+	$("#serviceTab").click(function(){ 
+		$('#firstLetter').addClass('select').siblings().removeClass('select');
+		$(this).addClass('selectedState');
+		$('#productTab').removeClass('selectedState');
+		$('#searchFamiliesInput').val('Search Service Families');
+		loadProductServiceFamilies();
+		$('#programsLayer').hide();
+		$('#levelsLayer').hide();
+		$('#skusLayer').hide();
+	});
+	
+	// Load the products or service for the selected tab
+	loadProductServiceFamilies();
+
+	// Click event for "Alphabets" in Product & Service Families tab.
+	$('.fliterTabArea li a').live("click", function() {
+		//$(this).parent().toggleClass('select');
+		$(this).parent().addClass('select').siblings().removeClass('select');
+		var ind = $('.fliterTabArea li a').index(this);
+		selectedInitial = $(this).attr('value');
+
+		$('#programsLayer').hide();
+		$('#levelsLayer').hide();
+		$('#skusLayer').hide();
+
+		$('.filterResultInfo:not('+ind+')').hide();
+		$('.filterResultInfo:eq('+ind+')').slideDown('slow', function(){
+			$(this).css("opacity", "1");
+		});
+	});
+
+	// Click event to remove a sku from the selection
+	$(".removeRow").live("click", function(){
+		$(this).parents("tr").fadeOut(1000, function () {
+			$(this).parents("tr").remove();
+		});
+	});
+	
+	// Attach slim scroll bar for search results
+	$('.searchScroll').slimScroll({
+		alwaysVisible: true,
+  		height: '240px'
+	});
+
+	
+	$('.selectedItemsScroll').slimScroll({
+		alwaysVisible: false,
+  		height: '260px',
+  		width: '730px'
+	});
+
+	// Click event for check boxes in product/service families list  
+	$(".skuListScroll input , .filterInfo input").live("click", function() {	
+		$('.createOuter').css('height', 'auto');
+		$(".createOuter .skuTable").slideDown();
+		$(".notaddedtext").hide();
+		var index;
+		if ($(this).parents().hasClass('skuListScroll'))
+			index = $(".skuListScroll input").index(this);
+		else if ($(this).parents().hasClass('filterInfo'))
+			index = $(".filterInfo input").index(this);
+
+		if ($(this).is(':checked')) {
+			
+			if ($(this).parent().data("category")) {
+				globalNodeType = "SERVICE";
+				globalNodeLevel = "Service_Category";
+				
+			} else if ($(this).parent().data("program")) {
+				globalNodeType = "SERVICE";
+				globalNodeLevel = "Service_Program";
+				
+			} else if ($(this).parent().data("level")) {
+				globalNodeType = "SERVICE";
+				globalNodeLevel = "Service_Level";
+
+			} else if ($(this).parent().data("family")) {
+				globalNodeType = "PRODUCT";
+				globalNodeLevel = "Product_Family";
+
+			} else if ($(this).data("sku")) {
+				globalNodeType = "Service";
+				globalNodeLevel = "Service_SKU";
+
+			} else if ($(this).data("product")) {
+				globalNodeType = "PRODUCT";
+				globalNodeLevel = "Product_SKU";
+
+			} else {
+				globalNodeType = $(this).data("type");
+				if (globalNodeType == "PRODUCT")
+					globalNodeLevel = "Product_SKU";
+				else 
+					globalNodeLevel = "Service_SKU";
+			}
+			disableCheckboxes();
+			
+			var selectedItem = '';
+			if ($(this).parents().hasClass('skuListScroll'))
+				selectedItem = $(this).data('value');
+			else if ($(this).parents().hasClass('filterInfo'))
+				selectedItem = $(".filterInfo span:eq(" + index + ")").html();
+			
+
+			$(".createOuter .addedNodeScroll table").prepend(_.template($('#create-node-skus-template').html(), {
+				ind : index,
+				data : selectedItem,
+				nodeType : globalNodeType,
+				nodeLevel : globalNodeLevel
+			}));
+		} else {
+			$('.createOuter .addedNodeScroll table tr[ind='+index+']').remove();
+		}
+		
+	});
+	
+	// Create Node - Search Selector Box
+	$("#createNodeSelect").selectbox();
+
+	// Auto complete event for SKU search in "Add New Node" page
+    $( "#searchSKUs" ).autocomplete({
+        minLength: 3,
+        search: function(event, ui) { 
+        	$('.loader').hide();
+            $(this).addClass('loading');
+        },
+        open: function(event, ui) {
+        	$('.loader').hide();
+            $(this).removeClass('loading');
+        },
+        source: function (request, response) {
+            $.getJSON("node_skus.do", { term: $( "#searchSKUs" ).val(), searchType: $("#createNodeSelect option:selected").val() }, response);
+        }, 
+        select: function( event, ui ) {
+        	 $( "#searchSKUs" ).val(ui.item.value);
+            return false;
+        }
+    });
+    
+    // Click event for SKU search button in "Add New Node" page
+    $(".searchSKUInput").live("click", function(){
+    	$.getJSON("node_skuDetails.do", { searchType: $("#createNodeSelect option:selected").val(), sku: $( "#searchSKUs" ).val()  }, function(json) {
+     		$("#createNode-skuSearchResults").html(
+     				_.template($('#create-node-search-skus-template').html(), {  
+     					data: json,
+     					nodeType: globalNodeType,
+     					nodeLevel: globalNodeLevel
+     				}
+     		));
+				
+			$('#createNode-skuSearchResults').slimScroll({
+				alwaysVisible: false,
+		  		height: '280px'
+			});
+     		
+     		disableCheckboxes();
+    	});
+    	
+    	$('.skuSearchResult').slideDown();
+    	
+    });
+    
+	$(".cancelNode , .cancelNodeEdit").live("click", function(){
+		$('#addNodeArea').removeClass('selected');
+		$('.nodesHeading').text('Nodes');
+		window.location.href = "node.do?show=mine";
+		$('.SearchAddNodeOutter').slideDown();
+		$('.existingRulesArea').slideDown();
+		$('.addnodestepArea').slideUp();
+		$('#addRuleItem').slideUp();
+	});
+
+	// Click event for arrow elements in the Product/Service families list area - hierarchy
+	$('.classArrow').live("click",function() {
+		$('.fliterResultArea').css('background' ,'#fff');
+		$('.filterSearchResult').slideUp();
+		$('.rightChildContent').slideDown();
+		
+		var serviceCategories;
+		var servicePrograms;
+		
+		if ($(this).data("category")) {
+			selectedCategory = $(this).data("category");
+			var serviceCategories = extractJSON(serviceChildren, "categories", selectedInitial.trim());
+			var servicePrograms = extractJSON(serviceCategories, "programs", selectedCategory);
+			
+			$(".rightChildContent").html(
+					_.template($('#node-service-programs-template').html(), {
+						data: servicePrograms
+					}
+			));
+
+			$('#programsLayer').show();
+			disableCheckboxes();
+			
+		} else if ($(this).data("program")) {
+			selectedProgram = $(this).data("program");
+			var serviceCategories = extractJSON(serviceChildren, "categories", selectedInitial.trim());
+			var servicePrograms = extractJSON(serviceCategories, "programs", selectedCategory);
+			var serviceLevels = extractJSON(servicePrograms, "levels", selectedProgram);
+			
+			$('#levelsLayer').remove();
+			$('#skusLayer').remove();
+			$(".rightChildContent").append(
+					_.template($('#node-service-levels-template').html(), {
+						data: serviceLevels
+					}
+			));
+
+			$('#levelsLayer').show();
+			disableCheckboxes();
+			
+		}
+		
+		$('.childScroll').slimScroll({
+	  		width: '185px',
+			height: '280px'
+		});
+		
+		$(this).addClass('selectedChild').siblings().removeClass('selectedChild');
+		
+	});
+
+	// Click event for product in the Product/Service families list area - hierarchy
+	$('.productLeaf').live("click", function() {
+		
+		var productFamily = $(this).data("family");
+		
+		$.getJSON("node_hierarchy.do", { searchType: "Product", searchKey: productFamily  }, function(json) {
+			$('#productsLayer').remove();
+			$(".rightChildContent").append(
+					_.template($('#node-product-skus-template').html(), {
+						data: json.rows
+					}
+			));
+			$('#productsLayer').show();
+			disableCheckboxes();
+			$('.childScroll').slimScroll({
+		  		width: '185px',
+				height: '280px'
+			});
+
+		});
+		
+	});
+
+	// Click event for service level in the Product/Service families list area - hierarchy
+	$('.serviceLeaf').live("click", function() {
+		
+		var serviceLevel = $(this).data("level");
+
+		$.getJSON("node_hierarchy.do", { searchType: "Service", searchKey: serviceLevel  }, function(json) {
+		
+			$('#skusLayer').remove();
+			$(".rightChildContent").append(
+					_.template($('#node-service-skus-template').html(), {
+						data: json.rows
+					}
+			));
+			$('#skusLayer').show();
+			disableCheckboxes();
+			$('.childScroll').slimScroll({
+		  		width: '185px',
+				height: '280px'
+			});
+
+		});
+	});
+
+	$('.skuLevel').live("click", function() {
+		disableCheckboxes();
+	});
+	
+	$(".AddtoNode").click(function() {
+		var skusToAddNode = new Array();
+		$('#skuTable tr').each(function(){
+			var sku =  new Object();
+			var item = $(this).find('td').eq(0).html();
+			if (item) {
+				sku.item = item.trim();
+				skusToAddNode.push(sku);
+			}
+		});
+		var inputNodeName = $("#createNodeInputName").val();
+
+		if (!(inputNodeName.length > 0)) {
+			$(".nameError").show();
+			$("#nodeErrorMsg").focus();
+			$(".noItemsError").hide();
+			return;
+		}
+		if (!(skusToAddNode.length > 0)) {
+			$(".noItemsError").show();
+			$("#nodeErrorMsg").focus();
+			$(".nameError").hide();
+			return;
+		}
+		
+		var returnData = new Object();
+		returnData.details = skusToAddNode;
+		returnData.level = globalNodeLevel;
+		returnData.type = globalNodeType;
+		//console.log("skusToAddNode: " + skusToAddNode);
+		
+		$.ajax({
+			type: "POST",
+			url: "node_create.do",
+			data: { nodeName: inputNodeName.trim(), skus: JSON.stringify(returnData) },
+			async: true,
+			dataType: 'json',
+			success: function(response){
+				if (response.status === "success") {
+
+					$(".selectSearchMain").slideUp();
+					$(".addnodestepArea").slideUp();
+					$('.nodesHeading').text('Add New Node');
+					$('#addRuleItem').hide();
+					$('.searchRulesArea').hide();
+					$(".partnersuccesArea").show(); // show the buttons layer
+					$("body").removeClass("noscroll");
+
+				} else {
+					$(".unknowError").show();
+					$("#nodeErrorMsg").focus();
+				}
+			}
+
+		});
+		
+	});
+	
+	$(".savenode, .removeExistingSku").live("click", function() {
+		if ($(this).hasClass("removeExistingSku")) {
+			$(this).parents("tr").remove();
+		}
+		
+		var skusToUpdateNode = new Array();
+		
+		$('#existingSkuTable tr').each(function(){
+			var sku =  new Object();
+			var item = $(this).find('td').eq(1).html();
+			if (item) {
+				sku.item = item.trim();
+				skusToUpdateNode.push(sku);
+			}
+		});
+		$('#skuTable tr').each(function(){
+			var sku =  new Object();
+			var item = $(this).find('td').eq(0).html();
+			if (item) {
+				sku.item = item.trim();
+				skusToUpdateNode.push(sku);
+			}
+		});
+		var inputNodeName = $("#editNodeInputName").val();
+
+		if (!(inputNodeName.length > 0)) {
+			$(".nameError").show();
+			$("#nodeErrorMsg").focus();
+			$(".noItemsError").hide();
+			return;
+		}
+		if (!(skusToUpdateNode.length > 0)) {
+			$(".noItemsError").show();
+			$("#nodeErrorMsg").focus();
+			$(".nameError").hide();
+			return;
+		}
+		
+		if (!globalNodeLevel) {
+			globalNodeLevel = $("#editNodeLevel").val();
+		}
+		
+		if (!globalNodeType) {
+			globalNodeType = $("#editNodeType").val();
+		}
+		var returnData = new Object();
+		returnData.id = $("#editNodeId").val();
+		returnData.name = inputNodeName.trim();
+		returnData.level = globalNodeLevel;
+		returnData.type = globalNodeType;
+		returnData.details = skusToUpdateNode;
+		//console.log("skusToUpdateNode: " + skusToUpdateNode);
+		
+		$.ajax({
+			type: "POST",
+			url: "node_update.do",
+			data: { node: JSON.stringify(returnData) },
+			async: true,
+			dataType: 'json',
+			success: function(response){
+				if (response.status === "success") {
+					$('.nodesHeading').text('Edit Node');
+					$("#createNodeInputName").val('');
+					$(".enterNodeName").slideUp();
+					$(".createOuter").slideUp();
+					$('#addRuleItem').hide();
+					$(".stepheading").hide();
+					$(".secondstepmain").slideUp();
+					$(".selectSearchMain").slideUp();
+					$(".searchBox").slideUp();
+					$(".partnersuccesArea").show(); // show the buttons layer
+					$("body").removeClass("noscroll");
+				} else {
+					$(".unknowError").show();
+					$("#nodeErrorMsg").focus();
+				}
+			}
+
+		});
+		
+	});
+	
+});
+
+
+function addNewNode() {
+	$('.searchPro').addClass('searchAddNode');
+	$("#addNodeArea").addClass('selected');
+	$('#addMyNode').removeClass('selectedState');
+	$('#myNodeArea').removeClass('selectedState');
+	$('.nodesIcon').removeClass('selected');
+	//$('.nodesHeading').text('Add New Node');
+	$('.searchRulesArea').slideUp();
+	$('.cancelNode').show();	
+	$('.existingRulesArea').slideUp();
+	$('.myNodeRuleArea').slideUp();
+	$('.addnodestepArea').slideDown();
+	$('.SearchAddNodeOutter').hide();
+	$('#addRuleItem').slideDown();
+	$('.selectAddNodeArea').slideDown();
+	$('.secondstepmain').slideDown();
+	$('.cancelNodebtn').show();
+	$('.searchBox').slideUp();
+	
+	$('.nodesIcon').addClass('selected');
+	
+	globalNodeLevel = "";
+	globalNodeType = "";
+
+	// Load the products or service for the selected tab
+	loadProductServiceFamilies();
+
+	disableCheckboxes();
+
+	$(".nameError").hide();
+	$(".noItemsError").hide();
+	$(".messageSuccess").hide();
+	$(".unknowError").hide();
+}
+
+function loadProductServiceFamilies() {
+
+	if ($("#productTab").hasClass("selectedState")) {
+		
+ 		// Load Product Families
+ 		productChildren = extractJSON(hierarchyDetails, "children", 1);
+ 		$(".filterResultMain").html(
+ 				_.template($('#node-product-families-template').html(), {  
+ 					data: productChildren
+ 				}
+ 		));
+ 		disableCheckboxes();
+
+ 	} else {
+
+ 		// Load Service Categories
+ 		serviceChildren = extractJSON(hierarchyDetails, "children", 2);
+ 		$(".filterResultMain").html(
+ 				_.template($('#node-service-categories-template').html(), {
+ 					data: serviceChildren
+				}
+ 		));
+ 		disableCheckboxes();
+ 	}
+	
+	$('.filterScroll').slimScroll({
+		alwaysVisible: true,
+  		width: '190px',
+		height: '230px'
+	});
+
+}
+
+/* Toggle check box states */
+function disableCheckboxes() {
+
+	var editMode = false;
+	if ($("#editNodeLevel").val()) {
+		globalNodeLevel = $("#editNodeLevel").val();
+		globalNodeType = $("#editNodeType").val();
+		editMode = true;
+	}
+	
+	if (globalNodeLevel == "Service_Category") {
+
+		$(":checkbox[data-category]").removeAttr("disabled");
+		$(":checkbox[data-program]").attr("disabled", true);
+		$(":checkbox[data-level]").attr("disabled", true);
+		$(":checkbox[data-sku]").attr("disabled", true);
+		$(":checkbox[data-family]").attr("disabled", true);
+		
+	} else if (globalNodeLevel == "Service_Program") {
+
+		$(":checkbox[data-category]").attr("disabled", true);
+		$(":checkbox[data-program]").removeAttr("disabled");
+		$(":checkbox[data-level]").attr("disabled", true);
+		$(":checkbox[data-sku]").attr("disabled", true);
+		$(":checkbox[data-family]").attr("disabled", true);
+		
+	} else if (globalNodeLevel == "Service_Level") {
+
+		$(":checkbox[data-category]").attr("disabled", true);
+		$(":checkbox[data-program]").attr("disabled", true);
+		$(":checkbox[data-level]").removeAttr("disabled");
+		$(":checkbox[data-sku]").attr("disabled", true);
+		$(":checkbox[data-family]").attr("disabled", true);
+
+	} else if (globalNodeLevel == "Product_Family") {
+
+		$(":checkbox[data-family]").removeAttr("disabled");
+		$(":checkbox[data-category]").attr("disabled", true);
+		$(":checkbox[data-program]").attr("disabled", true);
+		$(":checkbox[data-level]").attr("disabled", true);
+		$(":checkbox[data-sku]").attr("disabled", true);
+		
+	} else if (globalNodeLevel == "Product_SKU") {
+
+		$(":checkbox[data-family]").attr("disabled", true);
+		$(":checkbox[data-category]").attr("disabled", true);
+		$(":checkbox[data-program]").attr("disabled", true);
+		$(":checkbox[data-level]").attr("disabled", true);
+		$(":checkbox[data-sku]").attr("disabled", true);
+		$(":checkbox[data-product]").removeAttr("disabled");
+		
+	} else if (globalNodeLevel == "Service_SKU") {
+
+		$(":checkbox[data-family]").attr("disabled", true);
+		$(":checkbox[data-category]").attr("disabled", true);
+		$(":checkbox[data-program]").attr("disabled", true);
+		$(":checkbox[data-level]").attr("disabled", true);
+		$(":checkbox[data-product]").attr("disabled", true);
+		$(":checkbox[data-sku]").removeAttr("disabled");
+
+	} else {
+		$(":checkbox[data-family]").removeAttr("disabled");
+		$(":checkbox[data-category]").removeAttr("disabled");
+		$(":checkbox[data-program]").removeAttr("disabled");
+		$(":checkbox[data-level]").removeAttr("disabled");
+		$(":checkbox[data-sku]").removeAttr("disabled");
+		$(":checkbox[data-product]").removeAttr("disabled");
+		globalNodeLevel = '';
+		globalNodeType = '';
+	}
+	
+	if (!editMode && $('input[type="checkbox"]:checked').length <= 0) {
+		$(":checkbox[data-family]").removeAttr("disabled");
+		$(":checkbox[data-category]").removeAttr("disabled");
+		$(":checkbox[data-program]").removeAttr("disabled");
+		$(":checkbox[data-level]").removeAttr("disabled");
+		$(":checkbox[data-sku]").removeAttr("disabled");
+		$(":checkbox[data-product]").removeAttr("disabled");
+		globalNodeLevel = '';
+		globalNodeType = '';
+	}
+
+}
+
+/*
+ * Custom Extractor function for the given json object by search key.
+ */
+function extractJSON(jsonData, searchKey, searchBy) {
+	if (jsonData) {
+		for(var i=0;i<jsonData.length;i++){
+	        var obj = jsonData[i];
+	        for(var key in obj) {
+	        	if (obj["id"] == searchBy) {
+	        		return obj[searchKey];
+	        	}
+	        }
+	    }
+	}
+}

@@ -1,0 +1,84 @@
+package com.cisco.apas.entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.mapping.Array;
+
+public class AbstractRuleEntity extends AuditableEntity {
+	private static final long serialVersionUID = 1L;
+	private String ruleName;
+	private String ruleType;
+	private String ruleStatus;
+	private String expression;
+	
+	private List<Token> tokenExpressions = new ArrayList<Token>();
+
+	public String getRuleName() {
+		return ruleName;
+	}
+
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
+	}
+
+	public String getRuleType() {
+		return ruleType;
+	}
+
+	public void setRuleType(String ruleType) {
+		this.ruleType = ruleType;
+	}
+
+	public String getRuleStatus() {
+		return ruleStatus;
+	}
+
+	public void setRuleStatus(String ruleStatus) {
+		this.ruleStatus = ruleStatus;
+	}
+
+	public String getExpression() {
+		return expression;
+	}
+
+	public void setExpression(String strExpression) {
+		this.expression = strExpression;
+	}
+
+	public List<Token> getTokenExpressions() {
+		return tokenExpressions;
+	}
+
+	public void setTokenExpressions(List<Token> tokenExpressions) {
+		this.tokenExpressions = tokenExpressions;
+	}
+	
+	protected List<String> tokenizeExpression(String expr, boolean removeSingleQuotes) {
+		String[] operators = {"\\|\\|","\\&\\&","\\(","\\)"};
+		String[] rVals = {",OR,",",AND,",",START_YELLOW,",",END_YELLOW,"};
+		String iPut = expr;
+		for(int i = 0; i < operators.length; i++) {
+			iPut = iPut.replaceAll(operators[i], rVals[i]);
+		}
+		String[] arrayHolder = iPut.split(",");
+		List<String> tokens = new ArrayList<String>();
+		for(int i = 0; i < arrayHolder.length; i++) {
+			String token = arrayHolder[i].trim();
+			if(token.length() == 0) {
+				continue;
+			}else if("OR".equals(token)) {
+				tokens.add("||");
+			} else if ("AND".equals(token)) {
+				tokens.add("&&");
+			} else if ("START_YELLOW".equals(token)) {
+				tokens.add("(");
+			} else if ("END_YELLOW".equals(token)) {
+				tokens.add(")");
+			} else {
+				tokens.add(removeSingleQuotes?token.replaceAll("'", ""):token);
+			}
+		}
+		return tokens;
+	}
+}

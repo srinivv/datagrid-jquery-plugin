@@ -1,0 +1,117 @@
+
+$(function() {
+	$('.tooltip').tipsy({
+		html : true,
+		gravity : 's'
+	});
+});
+
+// Trim prototype function for String object
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g, '');
+};
+
+$("document").ready(function() {
+
+	// for using 'Mustache.js' style templating
+	_.templateSettings = {
+		interpolate : /\<\@\=(.+?)\@\>/gim,
+		evaluate : /\<\@(.+?)\@\>/gim
+	};
+
+	$('.filterResultMain').cycle({
+		fx : 'fade',
+		timeout : 0,
+		prev : '#prev',
+		next : '#next'
+	});
+
+	jQuery.ajaxSetup({
+		beforeSend: function() {
+			$('#loader').show();
+		},
+		complete: function(){
+			$('#loader').hide();
+		},
+		success: function() {}
+	});
+	
+	
+	$('.label_check').live("click", function(){
+		$('input[type="checkbox"]').each(function(){
+			if($(this).is(':checked')) {
+				$(this).parent().addClass("c_on");
+				$(this).parent().removeClass("c_off");
+				$(this).attr('checked', 'checked');
+			} else {
+				$(this).parent().removeClass("c_on");
+				$(this).parent().addClass("c_off");
+				$(this).removeAttr('checked');
+			}
+		});
+	});
+	
+	
+});
+
+function fancyConfirm(msg, callback) {
+    var status;
+    jQuery.fancybox({
+        modal : true,
+        content : _.template($('#delete-confirm-template').html(), {
+        	message: msg
+        }),
+        onComplete : function() {
+            jQuery("#fbCancel").click(function() {
+            	status = false; 
+                jQuery.fancybox.close();
+            });
+            jQuery("#fbOK").click(function() {
+            	status = true; 
+                jQuery.fancybox.close();
+            });
+        },
+        onClosed : function() {
+            callback.call(this, status);
+        }
+    });
+}
+
+function toggleLeftNavigationMenus(menu) {
+	
+	switch(menu){
+		case 'node':
+			$('.nodesIcon').addClass('selected');
+			$('.ruleIcon').removeClass('selected');
+			$('.partnerExcepIcon').removeClass('selected');
+			$('.dealDirectIcon').removeClass('selected');
+			$('#subNodes').show();
+			break;
+		case 'rule':
+			$('.nodesIcon').removeClass('selected');
+			$('.ruleIcon').addClass('selected');
+			$('.partnerExcepIcon').removeClass('selected');
+			$('.dealDirectIcon').removeClass('selected');
+			$('#subRules').show();
+			break;
+		case 'partnerexception':
+			$('.nodesIcon').removeClass('selected');
+			$('.ruleIcon').removeClass('selected');
+			$('.partnerExcepIcon').addClass('selected');
+			$('.dealDirectIcon').removeClass('selected');
+			break;
+		case 'dealexception':
+			$('.nodesIcon').removeClass('selected');
+			$('.ruleIcon').removeClass('selected');
+			$('.partnerExcepIcon').removeClass('selected');
+			$('.dealDirectIcon').addClass('selected');
+			break;
+		case 'addnode':
+			$('.nodesIcon').addClass('selected');
+			$('.ruleIcon').removeClass('selected');
+			$('.partnerExcepIcon').removeClass('selected');
+			$('.dealDirectIcon').removeClass('selected');
+			break;
+	}		
+
+}

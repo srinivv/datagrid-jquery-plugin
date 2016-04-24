@@ -1,0 +1,551 @@
+package com.cisco.apas.actions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.InitializingBean;
+
+import com.cisco.apas.APASApplicationContext;
+import com.cisco.apas.dao.NodeDao;
+import com.cisco.apas.entity.Node;
+import com.cisco.apas.entity.NodeCreation;
+import com.cisco.apas.entity.NodeItem;
+import com.cisco.apas.entity.ProductHierarchyVO;
+import com.cisco.apas.entity.Rule;
+import com.cisco.apas.entity.SKU;
+import com.cisco.apas.entity.ServiceHierarchyVO;
+import com.cisco.apas.service.APASService;
+import com.cisco.apas.util.StringUtils;
+
+public class NodeAction extends BaseAction implements InitializingBean {
+
+	private static final long serialVersionUID = 1L;
+
+	private static final Logger logger = Logger.getLogger(NodeAction.class);
+
+	private APASService apasService;
+	
+	private Node editNode;
+	
+	public String execute() {
+		
+		String redirectTo = request.getParameter("redirect");
+		
+		request.setAttribute("nodeId", request.getParameter("nodeId"));
+		request.setAttribute("totalSKUs", request.getParameter("skuCount"));
+		request.setAttribute("totalRules", request.getParameter("ruleCount"));
+
+		if ("newnode".equalsIgnoreCase(redirectTo)) {
+			// Redirect to new node page
+			return "newnode";
+		} else if ("skus".equalsIgnoreCase(redirectTo)) {
+			// Redirect to view skus page
+			return "skus";
+		} else if ("rules".equalsIgnoreCase(redirectTo)) {
+			// Redirect to view rules page
+			return "rules";
+		} else {
+			// Call home page 
+			return "success";
+		}
+	}
+	
+	public String load() {
+
+		try {
+
+			String show = request.getParameter("show");
+			int start = Integer.parseInt(request.getParameter("start"));
+			int end = Integer.parseInt(request.getParameter("end"));
+			int totalRecords = 0;
+
+			List<Node> nodes = null;
+			if ("all".equalsIgnoreCase(show)) {
+
+				nodes = getApasService().getAllNodes(start, end, null);
+				totalRecords = NodeDao.allnodesCount;
+
+			} else {
+				String userId = request.getRemoteUser();
+
+				nodes = getApasService().getAllNodes(start, end, userId);
+				totalRecords = NodeDao.mynodesCount;
+			}
+
+			JSONObject jsonResponse = new JSONObject();
+			jsonResponse.put("totalRows", totalRecords);
+
+			JSONArray jsonRowsArray = new JSONArray();
+			JSONObject jsonRow = null;
+
+			for (Node node : nodes) {
+				jsonRow = new JSONObject();
+				jsonRow.put("id", node.getId());
+				jsonRow.put("name", node.getName());
+				jsonRow.put("ruleCount", node.getRuleCount());
+				jsonRow.put("skuCount", node.getSkuCount());
+				jsonRow.put("status", node.getStatus());
+				updateAuditableFields(jsonRow, node);
+				jsonRowsArray.put(jsonRow);
+			}
+			
+			jsonResponse.put("rows", jsonRowsArray);
+			sendJSONObject(jsonResponse);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	public String viewskus() {
+
+		try {
+			int start = Integer.parseInt(request.getParameter("start"));
+			int end = Integer.parseInt(request.getParameter("end"));
+			int nodeId = Integer.parseInt(request.getParameter("nodeId"));
+			int totalRecords = Integer.parseInt(request.getParameter("totalSKUs"));
+
+			List<SKU> skus = getApasService().getSkusForNode(nodeId, start, end);
+			JSONObject jsonResponse = new JSONObject();
+			jsonResponse.put("totalRows", totalRecords);
+
+			JSONArray jsonRowsArray = new JSONArray();
+			JSONObject jsonRow = null;
+			for (SKU sku : skus) {
+				jsonRow = new JSONObject();
+				jsonRow.put("partNo", sku.getPartNo());
+				jsonRow.put("description", sku.getDescription());
+				jsonRowsArray.put(jsonRow);
+			}
+			jsonResponse.put("rows", jsonRowsArray);
+			sendJSONObject(jsonResponse);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String viewrules() {
+		try {
+			int start = Integer.parseInt(request.getParameter("start"));
+			int end = Integer.parseInt(request.getParameter("end"));
+			int nodeId = Integer.parseInt(request.getParameter("nodeId"));
+			int totalRecords = Integer.parseInt(request.getParameter("totalRules"));
+
+			List<Rule> rules = getApasService().getRulesForNode(nodeId, start, end);
+			JSONObject jsonResponse = new JSONObject();
+			jsonResponse.put("totalRows", totalRecords);
+
+			JSONArray jsonRowsArray = new JSONArray();
+			JSONObject jsonRow = null;
+			for (Rule rule : rules) {
+				jsonRow = new JSONObject();
+				jsonRow.put("id", rule.getId());
+				jsonRow.put("name", rule.getRuleName());
+				jsonRow.put("status", rule.getRuleStatus());
+				updateAuditableFields(jsonRow, rule);
+				jsonRowsArray.put(jsonRow);
+			}
+			jsonResponse.put("rows", jsonRowsArray);
+			sendJSONObject(jsonResponse);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public String searchresult() {
+
+		try {
+
+			int start = Integer.parseInt(request.getParameter("start"));
+			int end = Integer.parseInt(request.getParameter("end"));
+
+			String searchItem = request.getParameter("searchString");
+			String searchType = request.getParameter("searchType");
+
+			String type = null;
+			if ("productSKU".equalsIgnoreCase(searchType)) {
+				type = "PRODUCT";
+			} else {
+				type = "SERVICE";
+			}
+
+			List<Node> nodes = getApasService().getNodesForSKU(searchItem, type, start, end);
+			int totalRecords = NodeDao.searchCount;
+			System.out.println("Total records in search:"+NodeDao.searchCount);
+			JSONObject jsonResponse = new JSONObject();
+			jsonResponse.put("totalRows", totalRecords);
+
+			JSONArray jsonRowsArray = new JSONArray();
+			JSONObject jsonRow = null;
+			if(NodeDao.searchCount!=0){
+				for (Node node : nodes) {
+					jsonRow = new JSONObject();
+					jsonRow.put("id", node.getId());
+					jsonRow.put("name", node.getName());
+					jsonRow.put("ruleCount", node.getRuleCount());
+					jsonRow.put("skuCount", node.getSkuCount());
+					updateAuditableFields(jsonRow, node);
+	
+					jsonRowsArray.put(jsonRow);
+				}
+			}
+			jsonResponse.put("rows", jsonRowsArray);
+			sendJSONObject(jsonResponse);
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}	
+	
+	
+	public String hierarchy() {
+		try {			
+			String searchKey = request.getParameter("searchKey");
+			String searchType = request.getParameter("searchType");
+			NodeCreation nC = null;
+
+			String inputServiceCategory = null; 
+			String inputServiceProgram = null; 
+
+			List<SKU> listOfSkus = new ArrayList<SKU>();
+			List<String> inputList = new ArrayList<String>();
+			if (searchKey != null) {
+				inputList = Arrays.asList(searchKey.split(","));
+			}
+			
+			Iterator<String> it = inputList.iterator();
+			while (it.hasNext()) {
+				String key = it.next();
+				if (searchType != null && searchType.equals("Product")) {
+					nC = getApasService().getProductDetails(null, key, null);
+				} else {
+					nC = getApasService().getServiceHierarchy(inputServiceCategory, inputServiceProgram, key, null);
+				}
+				listOfSkus.addAll(nC.getSkus());
+			}
+			
+			JSONObject jsonResponse = new JSONObject();
+			jsonResponse.put("total", listOfSkus.size());
+
+			JSONArray jsonSKUsArray = new JSONArray();
+			JSONObject jsonSKU = null;
+			int serialNo = 1;					
+			for (Iterator<SKU> iterator = listOfSkus.iterator(); iterator.hasNext(); serialNo++) {
+				SKU sku = iterator.next();
+				jsonSKU = new JSONObject();
+				jsonSKU.put("id", serialNo);
+				jsonSKU.put("sku", sku.getPartNo());
+				jsonSKU.put("description", sku.getDescription());
+				jsonSKUsArray.put(jsonSKU);
+			}
+			jsonResponse.put("rows", jsonSKUsArray);
+			
+			sendJSONObject(jsonResponse);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return null;
+	}
+
+	public String skus() {
+		String searchString = request.getParameter("term");
+		String productFamily = request.getParameter("productFamily");
+		String serviceLvl = request.getParameter("serviceLevel");
+		String searchType = request.getParameter("searchType");
+		JSONArray jsonSKUsArray = new JSONArray();
+		
+		try {
+			if ("productSKU".equalsIgnoreCase(searchType)) {
+				List<ProductHierarchyVO> listOfSkus = getApasService().getListOfSkusForProduct(productFamily,searchString);
+				// Remove duplicates
+				listOfSkus = new ArrayList<ProductHierarchyVO>(new LinkedHashSet<ProductHierarchyVO>(listOfSkus));
+				for (Iterator<ProductHierarchyVO> iterator = listOfSkus.iterator(); iterator.hasNext();) {
+					ProductHierarchyVO sku = iterator.next();
+					jsonSKUsArray.put(sku.getSkuNo());
+				}
+			} else {
+				List<ServiceHierarchyVO> listOfSkus = getApasService().getListOfSkusForService(serviceLvl,searchString);
+				// Remove duplicates
+				listOfSkus = new ArrayList<ServiceHierarchyVO>(new LinkedHashSet<ServiceHierarchyVO>(listOfSkus));
+				for (Iterator<ServiceHierarchyVO> iterator = listOfSkus.iterator(); iterator.hasNext();) {
+					ServiceHierarchyVO sku = iterator.next();
+					jsonSKUsArray.put(sku.getSkuNo());
+				}
+			}
+			
+			if (jsonSKUsArray.length() == 0) {
+				jsonSKUsArray.put("No matching result found.");
+			}
+			
+			sendJSONObject(jsonSKUsArray);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public String skuDetails() {
+		try {			
+			String searchKey = request.getParameter("sku");
+			String searchType = request.getParameter("searchType");
+
+			List<String> inputList = new ArrayList<String>();
+			if (searchKey != null) {
+				inputList = Arrays.asList(searchKey.split(","));
+			}
+			
+			JSONArray jsonSKUsArray = new JSONArray();
+			Iterator<String> it = inputList.iterator();
+			while (it.hasNext()) {
+				String key = it.next();
+				if (searchType != null && searchType.startsWith("product")) {
+					List<ProductHierarchyVO> listOfSkus = getApasService().getListOfSkusForProduct(null,key);
+					// Remove duplicates
+					// listOfSkus = new ArrayList<ProductHierarchyVO>(new LinkedHashSet<ProductHierarchyVO>(listOfSkus));
+					JSONObject jsonSKU = null;
+					for (Iterator<ProductHierarchyVO> iterator = listOfSkus.iterator(); iterator.hasNext();) {
+						jsonSKU = new JSONObject();
+						ProductHierarchyVO sku = iterator.next();
+						jsonSKU.put("name", sku.getSkuNo());
+						jsonSKU.put("description", sku.getDescription());
+						jsonSKU.put("type", "PRODUCT");
+						jsonSKU.put("hierarchy", sku.getProductFamily());
+						jsonSKUsArray.put(jsonSKU);
+					}
+				} else {
+					List<ServiceHierarchyVO> listOfSkus = getApasService().getListOfSkusForService(null,key);
+					// Remove duplicates
+					// listOfSkus = new ArrayList<ServiceHierarchyVO>(new LinkedHashSet<ServiceHierarchyVO>(listOfSkus));
+					JSONObject jsonSKU = null;
+					for (Iterator<ServiceHierarchyVO> iterator = listOfSkus.iterator(); iterator.hasNext();) {
+						jsonSKU = new JSONObject();
+						ServiceHierarchyVO sku = iterator.next();
+						jsonSKU.put("name", sku.getSkuNo());
+						jsonSKU.put("description", sku.getDescription());
+						jsonSKU.put("type", "SERVICE");
+						jsonSKU.put("hierarchy", formatServiceHierarchy(sku));
+						jsonSKUsArray.put(jsonSKU);
+					}
+				}
+			}
+			
+			sendJSONObject(jsonSKUsArray);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return null;
+	}
+
+	public String master_hierarchy_data() {
+		try {			
+			String respString = APASApplicationContext.getMasterHierarchyData();
+			
+			if (logger.isInfoEnabled()) {
+				logger.info("Master Hierarchy Data: " + respString);
+			}
+			
+			sendText(respString);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return null;
+	}
+
+	public String edit() {
+		String nodeId = request.getParameter("nodeId");
+		
+		if (nodeId != null && !"".equals(nodeId)) {
+			editNode = getApasService().getNode(Integer.parseInt(nodeId));
+		}
+		return "edit";
+	}
+
+	public String update() {
+		
+		Node nodeToUpdate = null;
+		JSONObject jsonObject = null;
+		try {
+			String nodeDetails = request.getParameter("node");
+			jsonObject = new JSONObject(nodeDetails);
+			nodeToUpdate = new Node();
+
+			nodeToUpdate.setId(jsonObject.getLong("id"));
+			nodeToUpdate.setName(jsonObject.getString("name"));
+			nodeToUpdate.setType(jsonObject.getString("type"));
+			nodeToUpdate.setLevel(jsonObject.getString("level"));
+			nodeToUpdate.setUpdatedBy(request.getRemoteUser());
+			
+			JSONArray jsonArray = jsonObject.getJSONArray("details");
+			List<NodeItem> items = new ArrayList<NodeItem>();
+			NodeItem item = null;
+			for(int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonItem = (JSONObject)jsonArray.get(i);
+				if (!jsonItem.isNull("item")) {
+				    item = new NodeItem();
+				    String sku = jsonItem.getString("item");
+				    sku = (sku != null) ? sku.trim() : null;
+				    if(nodeToUpdate.getType().equals("PRODUCT")){
+				    	item.setItemProduct(sku);
+				    }else{
+				    	item.setItemService(sku);
+				    }
+				    items.add(item);
+				}
+			}
+			
+			//Remove duplicates
+			items = new ArrayList<NodeItem>(new LinkedHashSet<NodeItem>(items));
+			nodeToUpdate.setItems(items);
+			
+			JSONObject jsonResponse = new JSONObject();
+			String msg = getApasService().updateNode(nodeToUpdate);
+			if (msg != null && msg.equalsIgnoreCase("success")) {
+				jsonResponse.put("status", "success");
+			} else {
+				jsonResponse.put("status", "failure");
+			}
+			
+			sendJSONObject(jsonResponse);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String delete() {
+		try {
+			JSONArray jsonArray = new JSONArray(request.getParameter("nodeId"));
+			Integer[] idsToDelete = new Integer[jsonArray.length()];
+			for(int i = 0; i < jsonArray.length(); i++) {
+				idsToDelete[i] = Integer.parseInt(String.valueOf(jsonArray.get(i)));
+			}
+
+			JSONObject jsonResponse = new JSONObject();
+			boolean success = getApasService().deleteNode(idsToDelete);
+			if (success) {
+				jsonResponse.put("status", "success");
+			} else {
+				jsonResponse.put("status", "failure");
+			}
+
+			sendJSONObject(jsonResponse);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public String create() {
+		
+		Node nodeToCreate = null;
+		JSONObject jsonObject = null;
+		try {
+			
+			String nodeDetails =  request.getParameter("skus");
+			jsonObject = new JSONObject(nodeDetails);
+			nodeToCreate = new Node();
+
+			nodeToCreate.setName(request.getParameter("nodeName"));
+			nodeToCreate.setType(jsonObject.getString("type"));
+			nodeToCreate.setLevel(jsonObject.getString("level"));
+			nodeToCreate.setCreatedBy(request.getRemoteUser());
+			
+			JSONArray jsonArray = jsonObject.getJSONArray("details");
+			List<NodeItem> items = new ArrayList<NodeItem>();
+			NodeItem item = null;
+			for(int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonItem = (JSONObject)jsonArray.get(i);
+				if (!jsonItem.isNull("item")) {
+				    item = new NodeItem();
+				    if(nodeToCreate.getType().equalsIgnoreCase("PRODUCT")){
+				    	item.setItemProduct(jsonItem.getString("item"));
+				    }else{
+				    	item.setItemService(jsonItem.getString("item"));
+				    }
+				    items.add(item);
+				}
+			}
+			
+			//Remove duplicates
+			items = new ArrayList<NodeItem>(new LinkedHashSet<NodeItem>(items));
+			nodeToCreate.setItems(items);
+			
+			JSONObject jsonResponse = new JSONObject();
+			String msg = getApasService().createNode(nodeToCreate);
+			if (msg != null && msg.equalsIgnoreCase("success")) {
+				jsonResponse.put("status", "success");
+			} else {
+				jsonResponse.put("status", "failure");
+			}
+			
+			sendJSONObject(jsonResponse);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+		}
+		return null;
+	}
+	
+	private String formatServiceHierarchy(ServiceHierarchyVO sku) {
+		StringBuffer buffer = new StringBuffer();
+		String category = sku.getServiceCategory();
+		String program = sku.getServiceProgram();
+		String level = sku.getServiceLevel();
+		
+		if (!StringUtils.isEmpty(category)) {
+			buffer.append(category + " > ");
+		}
+		if (!StringUtils.isEmpty(program)) {
+			buffer.append(program + " > ");
+		}
+		if (!StringUtils.isEmpty(level)) {
+			buffer.append(level);
+		}
+		return buffer.toString();
+	}
+	
+	public void afterPropertiesSet() throws Exception {
+	}
+	
+	public Node getEditNode() {
+		return editNode;
+	}
+
+	public void setEditNode(Node editNode) {
+		this.editNode = editNode;
+	}
+
+	public APASService getApasService() {
+		return apasService;
+	}
+
+	public void setApasService(APASService apasService) {
+		this.apasService = apasService;
+	}
+}

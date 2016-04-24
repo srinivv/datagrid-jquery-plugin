@@ -1,0 +1,24 @@
+package com.cisco.apas.entity;
+
+public class NotCondition implements ConditionalToken {
+
+	public String getTokenValue() {
+		return "NOT";
+	}
+
+	public String getConditionType() {
+		return "AND";
+	}
+
+	public void setTokenValue(String tokenValue) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*@Override
+	public void setTokenValue(String tokenValue) {
+		// TODO Auto-generated method stub
+		
+	}*/
+
+}

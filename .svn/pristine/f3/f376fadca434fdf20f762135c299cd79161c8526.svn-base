@@ -1,0 +1,87 @@
+<%@page import="com.cisco.apas.util.DateUtils"%>
+<%@page import="com.cisco.apas.entity.Node"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/jquery-ui-apas.css" />
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/node.js"></script>
+
+<%@ include file="common/node-templates.jsp" %>
+
+<div class="subHeading">
+	<h1 class="nodesHeading">Nodes</h1>
+</div>
+
+<div class="contentContainer">
+
+	<div id="nodeErrorMsg">
+		<div class="messageSuccess" style="display:none;">You have successfully deleted node(s). </div>
+		<div class="messageError unknowError" style="display:none;">An error occurred. Please see the log for more details</div>
+	</div>
+	<div class="SearchAddNodeOutter">
+		<h3 class="head1">Search Product/Service Number (SKU)</h3>
+		<form name="searchForm" action="node_searchresult.do" method="POST" >
+            <div id="SearchAddNode">
+				<div class="select-prod">
+					<select class="moreCategoriesSelect" id="selectSKU">
+						<option value="serviceSKU">Service SKU</option>
+						<option value="productSKU">Product SKU </option>
+					</select>
+				</div>
+				<div class="bigSearch">
+					<input type="text" name="searchProd" id="searchProd" class="ac_input" style="background-color:#fff" 
+							onblur="if(this.value==''){this.value='Enter SKU'};"
+							onfocus="if(this.value=='Enter SKU'){this.value=''};"  value="Enter SKU">
+				</div>
+				<input type="text" class="searchSubmit searchPro" id="searchbutton">
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>  
+	
+	<div class="searchRulesArea" style="display:none;">
+		<h3 class="head1">Search Results</h3>
+        <div id="nodesearch"></div>        
+
+		<div class="clear"></div>
+	</div>
+             
+	<div class="existingRulesArea" style="display:none;">
+		<h4>All Nodes</h4>
+		
+		<div id="allnodes"></div>
+		
+		<div class="clear"></div>
+	</div>
+              
+	<div class="clear"></div>
+    
+	<div class="myNodeRuleArea" style="display:none;">
+		<h3 class="head1">My Nodes</h3>
+		
+        <div id="mynodes"></div>
+        
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<form id="dealException" name="dealException" method="POST"></form>
+
+<script>
+<%
+	if ("all".equals(request.getParameter("show"))) {
+%>
+	all_node_area();
+<%
+	} else {
+
+%>
+	my_node_area();	
+<%
+	}
+%>
+toggleLeftNavigationMenus('node');
+</script>

@@ -1,0 +1,89 @@
+#Tab Names
+label.tabs.rules=Rules
+label.tabs.partnerException=Partner Exception
+label.tabs.notifications=Notifications
+label.tabs.serviceUI=Test Service
+label.tabs.serviceXMLUI=Test Service XML
+label.tabs.dealsexceptions=Deal Exception
+success.partner.message = Exception for the Partner ID "{0}" is created successfully
+success.deal.message = Exception for the Deal ID "{0}" is created successfully
+error.wrongURLORSession = Please re-login. Either your session is timed-out or you have entered a wrong URL.
+error.rule.syntax=Invalid rule Syntax
+error.rule.existingrule={0} 
+error.rulenode.mandatory=A required field , PHV Restricted Node , is not selected
+error.rulename.mandatory=A required field , Rule Name , is blank
+error.ruleEquation.mandatory=A required field , Rule Equation , is blank
+error.ruleEquationDisti.mandatory=A required field , Rule Equation for Distributor, is blank
+error.rule.equationInvalid=A required field, Rule Equation , is invalid
+error.rule.equationInvalidDisti=A required field, Rule Equation for Distributor, is invalid
+error.intdUsenode.mandatory=A required field , Intended Use , is not selected
+error.endCustCntrynode.mandatory=A required field , End Customer Country , is not selected
+error.ruleEffDt.mandatory=A required field , Effective Date , is blank
+error.ruleEffDt.invalid=A required field , Effective Date , is invalid
+error.ruleEffDt.before.currentDate= A required field , Effective Date , is before current date
+error.ruleEndDt.invalid=A required field , End Date , is invalid
+error.ruleEndDt.before.effDate= A required field , End Date , is before effective date
+error.ruleEndDt.before.currentDate= A required field , End Date , is before current date
+error.rule.conflict= Rule name "{0}" exist for selected PHV node , intended use "{1}", and country "{2}"
+error.admin.error= Internal error occured please contact your admin.
+error.exceptionPartnerId.mandatory=A required field , Partner Id , is blank.
+error.exceptionDealId.mandatory=A required field, Deal Id , is blank.
+error.exceptionPartnerId.invalid=A required field , Partner Id , is invalid.
+error.exceptionPartnerId.mandatory =Partner PGTMVBEID is mandatory.
+error.db.exception= {0}
+error.nosuchmehtod.exception =No Such Exist Please Check Method.
+error.dao.get.lov=Error While Getting LOV values.
+error.insert.db=Error while inserting request response in DataBase;
+error.unmarshal.request.xml = Error occured While Unmarshalling request xml.
+error.exceptionNode.mandatory=A required field, Node, is not selected
+#Response Messages
+status.message.notorderable=Product is not Oderable
+status.message.orderable =Orderable
+status.message.pgtmvbeid=partnerPGTMVBeId is null
+status.message.partner.except=Partner Exception Applied
+status.message.noproduct.supp =No products supplied.
+error.insert.db =
+
+#Service errors
+exception.service.ata.partnerprofile= Couldn't get partner Profile from ATA.
+error.sdsmapper.inbound.xml.exception =Error while marshalling the input message.
+error.sdsmapper.inbound.exception=Error while parsing inbound request object.
+
+# messsge fro JSP 
+service.xmlinput.label=Please paste or modify XML below to send as Request to APS service. <br> Clear below text-area if you want system to generate XML based on paramters selected above.
+service.product.label=Format - SKU1,SKU2,SKU3 etc..
+unauthorized.user=You are not authorized to access this tool. Please contact GSTS to request access.
+
+
+label.header.confmd.conversion=Conversion Confirmed
+label.header.skip.to.content=Skip to Content
+label.header.skip.to.srch=Skip to Search
+label.header.skip.to.footer=Skip to Footer
+label.confmd.conversion.worldwide=Worldwide
+label.confmd.conversion.change=change
+label.confmd.conversion.welcome=Welcome
+label.confmd.conversion.profile=Profile
+label.confmd.conversion.aboutcisco=About Cisco
+label.confmd.conversion.guest=Guest
+label.confmd.conversion.solutions=Solutions
+label.confmd.conversion.pdtsandsols=Products &amp; Services
+label.confmd.conversion.support=Support
+label.confmd.conversion.trainingandevents=Training &amp; Events
+label.confmd.conversion.partnrcentral=Partner Central
+label.confmd.conversion.ordering=Ordering
+label.confmd.conversion.dealandquote=Deal & Quote
+label.confmd.conversion.commercewrkspacehome=Commerce Workspace Home
+label.banner.log.out=Log Out
+label.header.home=Home
+label.header.help=Training
+label.header.feedback=Support
+Label.btn.search=Search
+label.enrollment.search=Search
+label.home.enrollment.go=Go
+label.layout.page.title=Authorized Product Admin System (APAS)
+
+label.logout.title = Authorized Product Admin System (APAS)
+label.logout.click.here = You have been successfully logged out of the Application. Please click
+label.logout.click.here.msg1 = here
+label.logout.click.here.msg2 = to login again
+label.logout.status = Logout Status

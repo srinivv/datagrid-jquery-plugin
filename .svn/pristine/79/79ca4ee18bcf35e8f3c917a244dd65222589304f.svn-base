@@ -1,0 +1,7 @@
+package com.cisco.apas.entity;
+
+public interface ConditionalToken extends Token {
+	
+	public String getConditionType();
+	
+}

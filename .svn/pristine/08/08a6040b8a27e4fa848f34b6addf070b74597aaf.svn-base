@@ -1,0 +1,12 @@
+package com.cisco.apas.entity;
+
+import java.util.List;
+
+public class ScenarioExpressionValidator implements ExpressionValidator {
+
+	public boolean validate(List<Token> tokens) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

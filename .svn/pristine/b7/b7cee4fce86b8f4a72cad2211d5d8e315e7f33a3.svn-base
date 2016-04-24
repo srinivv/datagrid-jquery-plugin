@@ -1,0 +1,32 @@
+package com.cisco.apas.util;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.cisco.apas.APASConstants;
+import com.cisco.apas.entity.APASUser;
+
+public class SessionUtils {
+	
+	public static APASUser getUser() {
+        return (APASUser) userContext.get();
+    }
+
+    public static void setUser(APASUser user) {
+        userContext.set(user);
+    }
+
+    private static final ThreadLocal<APASUser> userContext = new ThreadLocal<APASUser>();
+    
+	public static void setUserInSession(APASUser userObj, HttpServletRequest request) {
+		request.getSession().setAttribute(APASConstants.USERBEAN, userObj);
+	}
+
+	public static APASUser getUserFromSession(HttpServletRequest request) {
+		return (APASUser) request.getSession().getAttribute(APASConstants.USERBEAN);
+	}
+
+	public static void resetSession(HttpServletRequest request) {
+		request.getSession().removeAttribute(APASConstants.USERBEAN);
+	}
+
+}

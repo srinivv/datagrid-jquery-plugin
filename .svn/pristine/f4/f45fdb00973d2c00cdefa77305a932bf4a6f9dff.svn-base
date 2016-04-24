@@ -1,0 +1,195 @@
+package com.cisco.apas.service;
+
+import java.util.Date;
+import java.util.List;
+
+import com.cisco.apas.dao.APASDao;
+import com.cisco.apas.dao.DealExceptionDao;
+import com.cisco.apas.dao.NodeDao;
+import com.cisco.apas.dao.PartnerExceptionDao;
+import com.cisco.apas.dao.RuleDao;
+import com.cisco.apas.entity.Deal;
+import com.cisco.apas.entity.DealException;
+import com.cisco.apas.entity.Node;
+import com.cisco.apas.entity.NodeCreation;
+import com.cisco.apas.entity.Partner;
+import com.cisco.apas.entity.PartnerException;
+import com.cisco.apas.entity.ProductHierarchyVO;
+import com.cisco.apas.entity.Rule;
+import com.cisco.apas.entity.SKU;
+import com.cisco.apas.entity.ServiceHierarchyVO;
+
+public class APASServiceImpl implements APASService {
+
+	private APASDao apasDao;
+	private NodeDao nodeDao;
+	private RuleDao ruleDao;
+	private PartnerExceptionDao partnerExceptionDao;
+	private DealExceptionDao dealExceptionDao;
+	
+	public Node getNode(Integer nodeId) {
+		return nodeDao.getNode(nodeId);
+	}
+	
+	public List<Node> getNodesForSKU(String searchString, String type, int start, int end) {
+		return nodeDao.getNodesForSKU(searchString, type, start, end);
+	}
+	
+	public List<Node> getAllNodes(int start,int end,String userId) {
+		return nodeDao.getAllNodes(start,end,userId);
+	}
+	
+	public List<Rule> getRulesForNode(Integer nodeId, Integer start, Integer end) {
+		return nodeDao.getRulesForNode(nodeId, start, end);
+	}
+	
+	public NodeCreation getProductDetails(String inputProductIntial, String inputProductFamily, String inputPageNo) {
+		return nodeDao.getProductDetails(inputProductIntial, inputProductFamily, inputPageNo);
+	}
+	
+	public NodeCreation getServiceHierarchy(String inputServiceCategory, String inputServiceProgram, String inputServiceLevel, String inputPageNo) {
+		return nodeDao.getServiceHierarchy(inputServiceCategory, inputServiceProgram, inputServiceLevel, inputPageNo);
+	}
+	
+	public List<ProductHierarchyVO> getListOfSkusForProduct(String productFamily, String searchString) {
+		return nodeDao.getListOfSkusForProduct(productFamily, searchString);
+	}
+	
+	public List<ServiceHierarchyVO> getListOfSkusForService(String serviceLvl, String searchString) {
+		return nodeDao.getListOfSkusForService(serviceLvl, searchString);
+	}
+	
+	public String createNode(Node node) {
+		return nodeDao.createNode(node);
+	}
+	
+	public String updateNode(Node node) {
+		return nodeDao.updateNode(node);
+	}
+	
+	public boolean deleteNode(Integer[] nodeIds) {
+		return nodeDao.deleteNode(nodeIds);
+	}
+	
+	public int getRulesCount() {
+		return ruleDao.getRulesCount();
+	}
+	
+	public List<Rule> getAllRules(int start, int end, int pageSize) {
+		return ruleDao.getAllRules(start, end, pageSize);
+	}
+	
+	public boolean deleteRule(Integer[] ruleIds) {
+		return ruleDao.deleteRule(ruleIds);
+	}
+	
+	public String getQualification(String qualCode) {
+		return ruleDao.getQualification(qualCode);
+	}
+	
+	public Rule getRule(long ruleId) {
+		return ruleDao.getRule(ruleId);
+	}
+	
+	
+	public void saveRule(String userID, final Rule rule, final Long nodeID) {
+		ruleDao.saveRule(userID, rule, nodeID);
+	}
+	
+	public int getPartnerExceptionCount() {
+		return partnerExceptionDao.getPartnerExceptionCount();
+	}
+	
+	public List<PartnerException> getAllPExceptions(int start, int end, int pageSize) {
+		return partnerExceptionDao.getAllPExceptions(start, end, pageSize);
+	}
+	
+	public int getDealExceptionCount() {
+		return dealExceptionDao.getDealExceptionCount();
+	}
+	
+	public List<DealException> getAllDExceptions(int start, int end, int pageSize) {
+		return dealExceptionDao.getAllDExceptions(start, end, pageSize);
+	}
+
+	public String savePartnerException(String userId,String partnerId,String exceptionDesc,String status,Date effDate,Date endDate,String[] nodeList) {
+		return partnerExceptionDao.savePartnerException(userId, partnerId, exceptionDesc, status, effDate, endDate, nodeList);
+	}
+	
+	public boolean deletePartnerException(String[] nodeList,String[] pdbList) {
+		return partnerExceptionDao.deletePartnerException(nodeList, pdbList);
+	}
+	
+	public PartnerException getPartnerException(long pdbBeId, long nodeId){
+		return partnerExceptionDao.getPartnerException(pdbBeId, nodeId);
+	}
+	
+	public int updatePartnerException(PartnerException partnerException){
+		return partnerExceptionDao.updatePartnerException(partnerException);
+	}
+	
+	public List<Partner> getPartners(String searchTerm) {
+		return partnerExceptionDao.getPartners(searchTerm);
+	}
+	
+	public boolean deleteDealException(String[] nodeList,String[] dealList) {
+		return dealExceptionDao.deleteDealException(nodeList, dealList);
+	}
+	
+	public DealException getDealException(long dealId, long nodeId){
+		return dealExceptionDao.getDealException(dealId, nodeId);
+	}
+
+	public int updateDealException(DealException dealException){
+		return dealExceptionDao.updateDealException(dealException);
+	}
+	
+	public List<Deal> getDeals(String searchTerm) {
+		return dealExceptionDao.getDeals(searchTerm);
+	}
+	
+	public APASDao getApasDao() {
+		return apasDao;
+	}
+	public void setApasDao(APASDao apasDao) {
+		this.apasDao = apasDao;
+	}
+	public NodeDao getNodeDao() {
+		return nodeDao;
+	}
+	public void setNodeDao(NodeDao nodeDao) {
+		this.nodeDao = nodeDao;
+	}
+	public RuleDao getRuleDao() {
+		return ruleDao;
+	}
+	public void setRuleDao(RuleDao ruleDao) {
+		this.ruleDao = ruleDao;
+	}
+	public PartnerExceptionDao getPartnerExceptionDao() {
+		return partnerExceptionDao;
+	}
+	public void setPartnerExceptionDao(PartnerExceptionDao partnerExceptionDao) {
+		this.partnerExceptionDao = partnerExceptionDao;
+	}
+	public DealExceptionDao getDealExceptionDao() {
+		return dealExceptionDao;
+	}
+	public void setDealExceptionDao(DealExceptionDao dealExceptionDao) {
+		this.dealExceptionDao = dealExceptionDao;
+	}
+
+	
+	public String saveDealException(String userId, String dealId,
+			String exceptionDesc, String status, Date effDate, Date endDate,
+			String[] nodeList) {
+		
+		return dealExceptionDao.saveDealException(userId, dealId, exceptionDesc, status, effDate, endDate, nodeList);
+	}
+
+	
+	public List<SKU> getSkusForNode(Integer nodeId,Integer start, Integer end){
+		return nodeDao.getSkusForNode(nodeId, start, end);
+	}
+		
+}

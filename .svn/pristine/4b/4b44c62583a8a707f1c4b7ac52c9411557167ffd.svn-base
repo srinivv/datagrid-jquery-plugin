@@ -1,0 +1,316 @@
+<script type="text/template" id="nodes-template">
+	<@ if(total > 0){ @>
+	
+		<@ if(show == 'all'){ @>
+			<p class="head1text">View all created nodes</p>
+		<@ } else { @>
+			<p class="head1text">View all nodes created by me</p>
+		<@ } @>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="countryListing">
+		<tr>
+			<th width="30"><label class="label_check"><input type="checkbox" class="checkall" /></label></th>
+			<th width="250">Node Name</th>
+			<th width="140"> Created Date</th>
+			<th width="120"> Updated Date</th>
+			<th width="170" class="relative">Actions</th>
+		</tr>
+	</table>
+	<div class="tableList">
+		<form name="partnerException" action="" method="POST">
+		<ul id="allNodesList">
+			<@ _.each(data, function(node) { @>
+				<li>   
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="countryListing">     
+						<tr class="deleteTR">
+							<td  width="30">
+								<label class="label_check">
+									<input name="nodeSelector" type="checkbox" class="nodeSelector" value="<@= node.id @>" data-name="<@= node.name @>" />
+								</label>
+							</td>
+							<td width="250">
+								<strong class="nodeName"><@= node.name @></strong><br clear="left"/>
+								<@ switch(node.status)  {
+									case "A": @>
+										<span class="activeStatus">active</span>
+									<@  break; @>
+									<@ case "I": @>
+										<span class="inactive">inactive</span>
+									<@  break; @>
+								<@ } @>
+								<br clear="left"/>
+							</td>
+							<td width="140"><@= node.createdOn @> <br /> <span class="createdBy">by <@= node.createdBy @></span></td>
+							<td width="120"><@= node.updatedOn @> <br /> <span class="createdBy">by <@= node.updatedBy @></span></td>
+							<td width="170">
+								<div  class="listActions">
+									<@ if(node.ruleCount > 0){ @>
+										<a href="node.do?redirect=rules&nodeId=<@= node.id @>&ruleCount=<@= node.ruleCount @>" class="viewRule tooltip" title="View Rule" ><@= node.ruleCount @></a>
+									<@ } else { @>
+										<a class="viewRule tooltip" title="View Rule" ><@= node.ruleCount @></a>
+									<@ } @>	
+									<@ if(node.skuCount > 0){ @>
+										<a href="node.do?redirect=skus&nodeId=<@= node.id @>&skuCount=<@= node.skuCount @>" class="viewSKU tooltip"  title="View SKU"><@= node.skuCount @></a>
+									<@ } else { @>
+										<a class="viewSKU tooltip"  title="View SKU"><@= node.skuCount @></a>
+									<@ } @>	
+									<a href="rule_create.do?nodeId=<@= node.id @>&nodeName=<@= node.name @>" class="view createRule">Create Rule</a>
+								</div>
+								<div class="posRel">
+									<div class="delRow"> 
+										<a title="Edit" href="node_edit.do?nodeId=<@= node.id @>" > <img class="paddingL3" src="images/edit-icon.png"> </a>&nbsp;
+										<a title="Delete" href="javascript:deleteNode(<@= node.id @>)" class="delicon"> <img align="delete" src="images/delRow.png"> </a> 
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<div class="iconList">
+						<a href="javascript:addNodeToPartnerException('<@= node.id @>','<@= node.name @>')" class="tooltip partnerExIcon" title="Partner Exception">Partner Exception</a>
+						<a href="javascript:addNodeToDealException('<@= node.id @>','<@= node.name @>')" class="tooltip dealIcon" title="Deal Exception">Deal Exception</a>
+					</div>
+				</li>
+			<@ }); @>
+		</ul>
+		<s:hidden id="allNodeIds" name="allNodeIds" value="" />
+		<s:hidden id="allNodeNames" name="allNodeNames" value="" />
+		</form>
+	</div>
+                
+	<div class="optionsArea">
+		<a id="deleteAllNodes" class="tooltip disableButton" title="Delete All"><img src="images/dleteAll.jpg" /></a>
+		<a id="allNodePartnerException" class="tooltip disableButton" title="Partner Exception"><img src="images/pertnerAll.jpg" /></a>
+		<a id="allNodeDealException" class="tooltip disableButton" title="Deal Exception"><img src="images/dealAll.jpg" /></a>
+	</div>
+	<@ } else { @>
+		<p class="head1text">No nodes to display</p>
+	<@ } @>	
+
+</script>
+
+<script type="text/template" id="node-product-families-template">
+	<@ _.each(data, function(root) { @>
+		<div class="filterResultInfo"
+				<@ if(root.id != 'A'){ @> 
+					style="display:none;"
+				<@ } @>  
+			>
+			<h1><@= root.id @></h1>
+			<div class="filterScroll">
+				<@ _.each(root.families, function(family) { @> 
+    				<span class="filterInfo classArrow productLeaf" data-family="<@= family.id @>">
+						<label class="label_check" data-family="<@= family.id @>">
+							<input type="checkbox" data-family="<@= family.id @>" />
+						</label>
+						<span><@= family.id @></span>
+					</span>
+				<@ }); @>
+			</div>
+		</div>	
+	<@ }); @>
+</script>
+
+<script type="text/template" id="node-product-skus-template">
+	<div id="productsLayer" class="childArea" style="display:none;">
+		<div class="childScroll"> 
+		<@ _.each(data, function(skus) { @>
+	  		<span class="filterInfo skuLevel">
+				<label class="label_check">
+					<input type="checkbox" data-product="sku" />
+				</label>
+				<span><@= skus.sku @></span>
+			</span>
+		<@ }); @>
+		</div>
+	</div>
+</script>
+
+<script type="text/template" id="node-service-categories-template">
+	<@ _.each(data, function(root) { @>
+		<div class="filterResultInfo"
+				<@ if(root.id != 'A'){ @> 
+					style="display:none;"
+				<@ } @>  
+			>
+			<h1><@= root.id @></h1>
+			<div class="filterScroll">
+				<@ _.each(root.categories, function(category) { @>
+    				<span class="filterInfo classArrow" data-category="<@= category.id @>">
+						<label class="label_check" data-category="<@= category.id @>">
+							<input type="checkbox" data-category="<@= category.id @>" />
+						</label>
+						<span><@= category.id @></span>
+					</span>
+				<@ }); @>
+			</div>
+		</div>	
+	<@ }); @>
+</script>
+
+<script type="text/template" id="node-service-programs-template">
+	<div id="programsLayer" class="childArea" style="display:none;">
+		<div class="childScroll"> 
+		<@ _.each(data, function(program) { @>
+ 				<span class="filterInfo classArrow" data-program="<@= program.text @>">
+					<label class="label_check" data-program="<@= program.text @>">
+						<input type="checkbox" data-program="<@= program.text @>" />
+					</label>
+					<span><@= program.text @></span>
+				</span>
+		<@ }); @>
+		</div>
+	</div>
+</script>
+
+<script type="text/template" id="node-service-levels-template">
+	<div id="levelsLayer" class="childArea" style="display:none;">
+		<div class="childScroll"> 
+		<@ _.each(data, function(level) { @>
+	  		<span class="filterInfo serviceLeaf" data-level="<@= level.text @>">
+				<label class="label_check" data-level="<@= level.text @>">
+					<input type="checkbox" data-level="<@= level.text @>" />
+				</label>
+				<span><@= level.text @></span>
+			</span>
+		<@ }); @>
+		</div>
+	</div>
+</script>
+
+<script type="text/template" id="node-service-skus-template">
+	<div id="skusLayer" class="childArea" style="display:none;">
+		<div class="childScroll"> 
+		<@ _.each(data, function(skus) { @>
+	  		<span class="filterInfo skuLevel">
+				<label class="label_check">
+					<input type="checkbox" data-sku="sku" />
+				</label>
+				<span><@= skus.sku @></span>
+			</span>
+		<@ }); @>
+		</div>
+	</div>
+</script>
+
+<script type="text/template" id="create-node-skus-template">
+	<tr ind="<@= ind @>">
+		<td width="220"><@= data @></td>
+		<td width="675"><@= nodeLevel @></td>
+		<td width="20">
+			<div class="posRel">
+				<div class="delRow">
+					<a title="Delete" href="javascript://" class="delicon removeRow"> 
+						<img align="delete" src="images/delRow.png"> 
+					</a> 
+				</div>
+			</div>
+		</td>
+	</tr>
+</script>
+
+<script type="text/template" id="create-node-search-skus-template">
+<table border="0" cellspacing="0" cellpadding="0"  width="100%" class="countryListing">
+	<@ _.each(data, function(sku) { @>
+	<tr>
+		<td width="20">
+			<label class="label_check">
+				<input type="checkbox" data-type="<@= sku.type @>" data-value="<@= sku.name @>"
+				<@ if(nodeType != '' && (nodeType != sku.type || nodeLevel.toUpperCase() != (nodeType.toUpperCase()+'_SKU')) ){ @>	
+					disabled = "disabled"
+				<@ } @>		
+				/>
+			</label>
+		</td>
+		<td width="140"><@= sku.name @></td>
+		<td width="300"><span><@= sku.description @></span></td>
+		<td width="300"><@= sku.hierarchy @></td>
+	</tr>
+	<@ }); @>
+</table>
+</script>
+
+<script type="text/template" id="create-node-search-families-template">
+<h3>Select to add product and service families to your node</h3>
+<div class="searchScroll">
+	<@ _.each(data, function(sku) { @>
+	<div class="searchResultLoop">
+		<h6><label class="label_check"><input type="checkbox" /></label> <@= sku.sku @> </h6>
+		<p><@= sku.description @></p>
+	</div>
+	<@ }); @>
+</div>
+</script>
+
+<script type="text/template" id="node-search-results-template">
+<p class="head1text">
+<@ if(total == 0){ @>				
+	There is no result to match your criteria
+<@ } else if (total == 1) { @>
+	There is one result to match your criteria
+<@ } else { @>
+	There are <@=total @> results to match your criteria
+<@ } @>							 	 
+</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="countryListing">
+		<tr>
+			<th width="30"><label class="label_check"><input type="checkbox" class="selectall" /></label></th>
+			<th width="250">Node Name</th>
+			<th width="140">Created Date</th>
+			<th width="120">Updated Date</th>
+			<th width="170" class="relative">Actions</th>
+		</tr>
+</table>
+        
+<div id="searchresult" class="tableList" >
+	<ul>
+		<@ _.each(data, function(node) { @>
+			<li>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="countryListing">   
+					<tr class="deleteTR">
+						<td width="30"><label class="label_check"><input type="checkbox" class="nodeSelector" /></label></td>
+						<td width="250"><strong class="nodeName"><@= node.name @></strong><br clear="left"/>
+							<@ switch(node.status)  {
+								case "A": @>
+									<span class="activeStatus">active</span>
+								<@  break; @>
+								<@ case "I": @>
+									<span class="inactive">inactive</span>
+								<@  break; @>
+							<@ } @>
+							<br clear="left"/>
+						</td>
+		        		<td width="140"><@= node.createdOn @> <br/> <span class="createdBy"><@= node.createdBy @></span></td>
+						<td width="120"><@= node.updatedOn @> <br/> <span class="createdBy"><@= node.updatedBy @></span></td>
+						<td width="170">
+							<div  class="listActions">
+								<@ if(node.ruleCount > 0){ @>
+									<a href="node.do?redirect=rules&nodeId=<@= node.id @>&ruleCount=<@= node.ruleCount @>" class="viewRule tooltip" title="View Rule" ><@= node.ruleCount @></a>
+								<@ } else { @>
+									<a class="viewRule tooltip" title="View Rule" ><@= node.ruleCount @></a>
+								<@ } @>	
+								<@ if(node.skuCount > 0){ @>
+									<a href="node.do?redirect=skus&nodeId=<@= node.id @>&skuCount=<@= node.skuCount @>" class="viewSKU tooltip"  title="View SKU"><@= node.skuCount @></a>
+								<@ } else { @>
+									<a class="viewSKU tooltip"  title="View SKU"><@= node.skuCount @></a>
+								<@ } @>	
+								<a href="rule_create.do?nodeId=<@= node.id @>&nodeName=<@= node.name @>" class="view createRule">Create Rule</a>
+							</div>
+							<div class="posRel">
+								<div class="delRow"> 
+									<a title="Edit" href="node_edit.do?nodeId=<@= node.id @>" > <img class="paddingL3" src="images/edit-icon.png"> </a>&nbsp;
+									<a title="Delete" href="javascript:deleteNode(<@= node.id @>)" class="delicon"> <img align="delete" src="images/delRow.png"> </a> 
+								</div>
+							</div>
+						</td> 
+					</tr> 
+				</table>
+			</li>
+		<@ }); @>
+	</ul>
+</div>
+<div class="optionsArea">
+	<a id="deleteAllNodes" class="tooltip disableButton" title="Delete All"><img src="images/dleteAll.jpg" /></a>
+	<a id="allNodePartnerException" class="tooltip disableButton" title="Partner Exception"><img src="images/pertnerAll.jpg" /></a>
+	<a id="allNodeDealException" class="tooltip disableButton" title="Deal Exception"><img src="images/dealAll.jpg" /></a>
+</div>
+</script>

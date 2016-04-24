@@ -1,0 +1,6 @@
+package com.cisco.apas.entity;
+
+public interface BooleanToken extends Token {
+
+	
+}

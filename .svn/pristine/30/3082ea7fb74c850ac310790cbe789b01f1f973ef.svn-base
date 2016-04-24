@@ -1,0 +1,18 @@
+package com.cisco.apas.entity;
+
+public class AndCondition implements ConditionalToken {
+
+	public String getTokenValue() {
+		return "&&";
+	}
+
+	public String getConditionType() {
+		return "AND";
+	}
+
+	public void setTokenValue(String tokenValue) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

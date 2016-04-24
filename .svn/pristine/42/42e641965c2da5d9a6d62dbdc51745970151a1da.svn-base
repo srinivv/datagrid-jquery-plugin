@@ -1,0 +1,57 @@
+package com.cisco.apas.entity;
+
+public class NodeItem extends AuditableEntity {
+	
+	private static final long serialVersionUID = 1L;
+	private String itemProduct;
+	private String itemService;
+	private String status;
+	private Node node;
+	
+	
+	public String getItemProduct() {
+		return itemProduct;
+	}
+	public void setItemProduct(String itemProduct) {
+		this.itemProduct = itemProduct;
+	}
+	public String getItemService() {
+		return itemService;
+	}
+	public void setItemService(String itemService) {
+		this.itemService = itemService;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Node getNode() {
+		return node;
+	}
+	public void setNode(Node node) {
+		this.node = node;
+	}
+	
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((itemProduct == null) ? 0 : itemProduct.hashCode());
+		result = prime * result + ((itemService == null) ? 0 : itemService.hashCode());
+
+		return result;
+	}
+
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (!(obj instanceof NodeItem))
+			return false;
+		NodeItem nodeItem = (NodeItem) obj;
+		if (getItemProduct() == nodeItem.getItemProduct() || getItemService() == nodeItem.getItemService())
+			return true;
+		else
+			return false;
+	}
+}

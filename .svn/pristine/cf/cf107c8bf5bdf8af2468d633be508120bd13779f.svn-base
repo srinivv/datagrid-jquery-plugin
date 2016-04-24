@@ -1,0 +1,260 @@
+package com.cisco.apas;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import ognl.OgnlRuntime;
+
+import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.cisco.apas.dao.NodeDao;
+import com.cisco.apas.entity.Authorization;
+import com.cisco.apas.entity.Country;
+import com.cisco.apas.entity.NodeCreation;
+import com.cisco.apas.entity.Qualification;
+import com.cisco.apas.entity.Specialization;
+import com.tibco.security.impl.c;
+
+public class APASApplicationContext implements APASConstants {
+	private static final Logger logger = Logger.getLogger(APASApplicationContext.class);
+	private static String hierarchyData = null;
+	private NodeDao nodeDao;
+	private Map<String, Qualification> qualifications;
+	private JSONArray qualificationJSON;
+	private List<Country> countries;
+	private JSONArray countryJSON;
+	
+	public static String getMasterHierarchyData() {
+		return hierarchyData;
+	}
+
+	public String getClassification(Class class1) {
+		if(Authorization.class == class1) {
+			return "Authorization";
+		} else if(Specialization.class == class1) {
+			return "Specialization";
+		} else {
+			return "Certification";
+		} 
+	}
+	
+	public JSONObject getQualificationJSON(Qualification qualification, int i) {
+		JSONObject jo = new JSONObject();
+		try {
+			jo.put("value", qualification.getCode());
+			jo.put("label", qualification.getDesc() + " ("+qualification.getCode()+")");
+			jo.put("classification", getClassification(qualification.getClass()));
+			jo.put("id", i);
+		}catch(JSONException e) {
+			e.printStackTrace();
+		}
+		return jo;
+	}
+	
+	private JSONArray getCountriesJSONArray(List<Country> countries) {
+		JSONArray jA = new JSONArray();
+		try {
+			Map<String, List<Country>> theaterCountryMap = new HashMap<String, List<Country>>();
+			List<Country> countries2;
+			for (Country country : countries) {
+				countries2 = theaterCountryMap.get(country.getTheater());
+				if (countries2 != null) {
+					countries2.add(country);
+					theaterCountryMap.put(country.getTheater(), countries2);
+				} else {
+					countries2 = new ArrayList<Country>();
+					countries2.add(country);
+					theaterCountryMap.put(country.getTheater(), countries2);
+				}
+			}
+			for (Entry<String, List<Country>> entry : theaterCountryMap.entrySet()) {
+				JSONObject theaterJSON = new JSONObject();
+				theaterJSON.put("name", entry.getKey());
+				JSONArray theaterCountriesJA = new JSONArray();
+				for (Country country : entry.getValue()) {
+					JSONObject countryJO = new JSONObject();
+					countryJO.put("name", country.getDescription());
+					countryJO.put("code", country.getIsoCountryCode());
+					theaterCountriesJA.put(countryJO);
+				}
+				theaterJSON.put("countries", theaterCountriesJA);
+				jA.put(theaterJSON);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jA;
+	}
+	
+	public void loadApplicationContext() {
+		OgnlRuntime.setSecurityManager(null);
+		logger.info("### Started : Application Context Loading ### ");
+		qualifications = nodeDao.getQualifications();
+		countries = nodeDao.getCountries();
+		List<Qualification> list = new ArrayList<Qualification>();
+		for (Entry<String, Qualification> qualification : qualifications.entrySet()) {
+			list.add(qualification.getValue());
+		}
+		Collections.sort(list, new Comparator<Qualification>() {
+			public int compare(Qualification o1, Qualification o2) {
+				if (o1.getClass() == o2.getClass()) {
+					return o1.getDesc().compareTo(o2.getDesc());
+				} else {
+					return o1.getClass().toString().compareTo(o2.getClass().toString());
+				}
+			}
+		});
+		JSONArray array = new JSONArray();
+		for(int i = 0; i < list.size(); i++) {
+			Qualification qualification = list.get(i);
+			array.put(getQualificationJSON(qualification, i));
+		}
+		qualificationJSON = array;
+		countryJSON = getCountriesJSONArray(countries);
+		long time = System.currentTimeMillis() ;
+		logger.info("Started loading the Hierarchy");
+		new LoadHierarchy().run();
+		Date startTimeForScheduler = new Date();
+		startTimeForScheduler.setTime(new Date().getTime() + 60 * 60000L);
+		new Timer().scheduleAtFixedRate(new LoadHierarchy(), startTimeForScheduler , 60 * 60000L);
+		
+		logger.info("Finished loading the Hierarchy.");
+		logger.info("### Finished : Application Context Loading ### ");
+		logger.info("Time Taken to complete Context loading : " + (System.currentTimeMillis()-time ) + " milliseconds");
+	}
+
+	private final static String initials[] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+			"Y", "Z" };
+
+	private class LoadHierarchy extends TimerTask {
+		public void run() {
+			try {
+				JSONArray jsonMasterArray = new JSONArray();
+				JSONObject jsonProduct = new JSONObject();
+				jsonProduct.put("id", 1);
+				jsonProduct.put("text", "Product");
+				JSONArray jsonProductArray = new JSONArray();
+				JSONObject jsonProductInitial = null;
+				NodeCreation nC = null;
+				for (int index = 0; index < initials.length; index++) {
+					String productInitial = initials[index];
+					jsonProductInitial = new JSONObject();
+					jsonProductInitial.put("text", initials[index]);
+					jsonProductInitial.put("id", initials[index]);
+					nC = nodeDao.getProductDetails(productInitial, null, null);
+					JSONArray jsonProductFamilyArray = new JSONArray();
+					JSONObject jsonProductFamily = null;
+					for (Iterator<String> iterator = nC.getProductFamilies().iterator(); iterator.hasNext();) {
+						String productFamily = iterator.next();
+						jsonProductFamily = new JSONObject();
+						jsonProductFamily.put("id", productFamily);
+						jsonProductFamily.put("text", productFamily);
+						jsonProductFamilyArray.put(jsonProductFamily);
+					}
+					jsonProductInitial.put("families", jsonProductFamilyArray);
+					jsonProductArray.put(jsonProductInitial);
+				}
+				jsonProduct.put("children", jsonProductArray);
+				JSONObject jsonService = new JSONObject();
+				jsonService.put("id", 2);
+				jsonService.put("text", "Service");
+				JSONArray jsonServiceCategoryArray = new JSONArray();
+				JSONObject jsonServiceCategory = null;
+				nC = nodeDao.getServiceHierarchy(null, null, null, null);
+				for (Iterator<String> iterator = nC.getServiceCategory().iterator(); iterator.hasNext();) {
+					String serviceCategory = iterator.next();
+					jsonServiceCategory = new JSONObject();
+					jsonServiceCategory.put("text", serviceCategory);
+					jsonServiceCategory.put("id", serviceCategory);
+					nC = nodeDao.getServiceHierarchy(serviceCategory, null, null, null);
+					JSONArray jsonServiceProgramArray = new JSONArray();
+					JSONObject jsonServiceProgram = null;
+					for (Iterator<String> iterator2 = nC.getServiceProgram().iterator(); iterator2.hasNext();) {
+						String serviceProgram = iterator2.next();
+						jsonServiceProgram = new JSONObject();
+						jsonServiceProgram.put("id", serviceProgram);
+						jsonServiceProgram.put("text", serviceProgram);
+						jsonServiceProgramArray.put(jsonServiceProgram);
+						nC = nodeDao.getServiceHierarchy(null, serviceProgram, null, null);
+						JSONArray jsonServiceLevelArray = new JSONArray();
+						JSONObject jsonServiceLevel = null;
+						for (Iterator<String> iterator3 = nC.getServiceLevel().iterator(); iterator3.hasNext();) {
+							String serviceLevel = iterator3.next();
+							jsonServiceLevel = new JSONObject();
+							jsonServiceLevel.put("id", serviceLevel);
+							jsonServiceLevel.put("text", serviceLevel);
+							jsonServiceLevelArray.put(jsonServiceLevel);
+						}
+						jsonServiceProgram.put("levels", jsonServiceLevelArray);
+					}
+					jsonServiceCategory.put("programs", jsonServiceProgramArray);
+					jsonServiceCategoryArray.put(jsonServiceCategory);
+				}
+				// Split the categories by alphabet -- TODO
+				JSONArray jsonServiceArray = new JSONArray();
+				JSONObject jsonServiceInitial = null;
+				for (int index = 0; index < initials.length; index++) {
+					String serviceInitial = initials[index];
+					jsonServiceInitial = new JSONObject();
+					jsonServiceInitial.put("text", initials[index]);
+					jsonServiceInitial.put("id", initials[index]);
+					JSONArray jsonServiceCategoriesArray = new JSONArray();
+					for (int i = 0; i < jsonServiceCategoryArray.length(); i++) {
+						JSONObject serviceCategory = (JSONObject) jsonServiceCategoryArray.get(i);
+						if (serviceCategory.getString("text").startsWith(serviceInitial)) {
+							jsonServiceCategoriesArray.put(serviceCategory);
+						}
+					}
+					jsonServiceInitial.put("categories", jsonServiceCategoriesArray);
+					jsonServiceArray.put(jsonServiceInitial);
+				}
+				// jsonService.put("categories", jsonServiceCategoryArray);
+				jsonService.put("children", jsonServiceArray);
+				logger.info("Finished constructing the master Hierarchy");
+				jsonMasterArray.put(jsonProduct);
+				jsonMasterArray.put(jsonService);
+				// Set the value to context
+				hierarchyData = jsonMasterArray.toString();
+				System.out.println("Hierarchy Data : " + hierarchyData);
+			} catch (Exception e) {
+				System.out.println("Exception caught::" + e.getMessage());
+			}
+		}
+	}
+
+	public NodeDao getNodeDao() {
+		return nodeDao;
+	}
+
+	public void setNodeDao(NodeDao nodeDao) {
+		this.nodeDao = nodeDao;
+	}
+
+	public Map<String, Qualification> getQualifications() {
+		return qualifications;
+	}
+
+	public JSONArray getQualificationJSON() {
+		return qualificationJSON;
+	}
+
+	public JSONArray getCountryJSON() {
+		return countryJSON;
+	}
+
+	public List<Country> getCountries() {
+		return countries;
+	}
+}

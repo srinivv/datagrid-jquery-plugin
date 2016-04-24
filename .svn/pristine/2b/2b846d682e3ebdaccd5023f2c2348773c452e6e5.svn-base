@@ -1,0 +1,1193 @@
+
+<script type="text/template" id="tierplusSignAddOperator">
+	<span class="bracket lastbracket tierBorderadd" style="position: absolute; left: <@=left @>; top: <@=top @>; background-position: <@= background-pos @>;"></span>
+</script>
+
+<script type="text/template" id="tierplusSignAddOperator">
+	<span class="bracket lastbracket tierBorderadd" style="position: absolute; left: <@=left @>; top: <@=top @>; background-position: <@= background-pos @>;"></span>
+</script>
+
+<script type="text/template" id="operator_start_yellow">
+	<span class="bracket openYellowBracket"></span>
+</script>
+
+<script type="text/template" id="operator_close_yellow">
+	<span class="bracket closeYellowBracket lastbracket"></span>
+</script>
+
+<script type="text/template" id="operator_text_OR">
+	<span class="sadd11 addOpp11 tooltip" original-title="Add operators" style="background-position: 0px -97px;"></span>
+</script>
+
+<script type="text/template" id="operator_text_AND">
+	<span class="sadd15 addOpp15 tooltip" original-title="Add operators" style="background-position: 0px -148px;"></span>
+</script>
+
+<script type="text/template" id="operator_text_NOT">
+	<span class="sadd11 addOpp11 tooltip" original-title="Add operators" style="background-position: 0px -130px;"></span>
+</script>
+
+<script type="text/template" id="operator_text_NOT">
+	<span class="sadd11 addOpp11 tooltip" original-title="Add operators" style="background-position: 0px -113px;"></span>
+</script>
+
+<script type="text/template" id="operator_start_blue">
+	<span class="bracket openBlueBracket addOpp15"></span>			
+</script>
+<script type="text/template" id="operator_close_blue">
+	<span class="sadd15 addOpp15 tooltip" original-title="Add operators" style="background-position: 5px -16px;"></span>
+</script>
+
+<script type="text/template" id="operator_start_square">
+	<span class="sadd11 addOpp11 tooltip" original-title="Add operators" style="background-position: 5px -64px;"></span>
+</script>
+
+<script type="text/template" id="operator_end_square">
+	<span class="sadd11 addOpp11 tooltip" original-title="Add operators" style="background-position: 5px -82px;"></span>
+</script>
+
+    
+<!--  All Templates START -->
+<script type="text/template" id="node-partnerType-row-template">
+		<div class="nodelayer actual">
+				<@ 	if(preCondition){	
+						var splitValue = preCondition.split(',') 
+					  _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket operandValue" data-alais="START_BLUE" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="START_YELLOW" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px" ></span>	
+							<@  break; @>
+							<@ case "OR": @>
+								 <span class="bracket operandValue" data-alais="OR" style="background-position:0px -97px" ></span>	
+								 
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="bracket operandValue"  data-alais="AND" style="background-position:0px -148px" ></span>	 
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>
+			
+			<span class="bracket applus" style="background-position:0px -165px;"></span>
+			<span class="text" data-value="<@=value @>" data-id="<@=id@>" data-text="<@=valuetext@>"><@= valuetext @></span>
+				<select style="height: 30px;display:none" class="select" data-id="<@=id@>" data-name="<@=valuetext @>" data-value="<@=value @>">>
+			 		<@ _.each(dropdownData, function(i) { @>
+						<@ if(i.value == valuetext){ @>				
+						 		<option value="<@= i.id @>" name="<@= i.label @>" selected = "selected"><@= i.label @></option>
+						<@ }else{ @>
+								<option value="<@= i.id @>" name="<@= i.label @>" ><@= i.label @></option>
+						<@ } @>							 	 
+					<@ }); @>
+				</select>	
+				<span class="bracket applus" style="background-position:0px -165px;"></span>
+				<@ 	if(postCondition){	
+						var splitValue = postCondition.split(',')			
+					 _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket operandValue" data-alais="START_BLUE" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="START_YELLOW" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px" ></span>	
+							<@  break; @>
+							<@ case "OR": @>
+								 <span class="bracket operandValue" data-alais="OR" style="background-position:0px -97px" ></span>	
+								 
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="bracket operandValue"  data-alais="AND" style="background-position:0px -148px" ></span>	 
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>	
+		</div>				
+</script>
+
+<script type="text/template" id="node-qualifications-row-template">
+		<div class="nodelayer actual">	
+
+				
+				<@ 	if(preCondition){	
+						var splitValue = preCondition.split(',') 
+					  _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket operandValue" data-alais="START_BLUE" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="START_YELLOW" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px" ></span>	
+							<@  break; @>
+							<@ case "OR": @>
+								 <span class="bracket operandValue" data-alais="OR" style="background-position:0px -97px" ></span>	
+								 
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="bracket operandValue"  data-alais="AND" style="background-position:0px -148px" ></span>	 
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>
+			<span class="bracket applus" style="background-position:0px -165px;"></span>
+			<span class="nodeEditBoxLineDelete"></span>
+			<span class="text" data-index="<@=index @>" data-value="<@=value @>" data-id="<@=id@>" data-text="<@=valuetext@>"><@= valuetext @></span>
+				<select style="height: 30px;display:none" class="select" data-id="<@=id@>" data-name="<@=valuetext @>" data-value="<@=value @>">>
+			 		<@ _.each(dropdownData, function(i) { 
+						 if(i.value == value){ @>
+						 		<option value="<@= i.value @>" name="<@= i.label @>" selected = "selected"><@= i.label @></option>
+						<@ }else{ @>
+								<option value="<@= i.value @>" name="<@= i.label @>" ><@= i.label @></option>
+						<@ } @>							 	 
+					<@ }); @>
+				</select>	
+				<span class="bracket applus" style="background-position:0px -165px;"></span>
+				<@ 	if(postCondition){	
+						var splitValue = postCondition.split(',')			
+					 _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket operandValue" data-alais="START_BLUE" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="START_YELLOW" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px" ></span>	
+							<@  break; @>
+							<@ case "OR": @>
+								 <span class="bracket operandValue" data-alais="OR" style="background-position:0px -97px" ></span>	
+								 
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="bracket operandValue"  data-alais="AND" style="background-position:0px -148px" ></span>	 
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>	
+			
+		</div>				
+</script>
+
+<script type="text/template" id="node-extraValidations-row-template">
+		<div class="nodelayer actual">				
+				<@ 	if(preCondition){	
+						var splitValue = preCondition.split(',') 
+					  _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket operandValue" data-alais="START_BLUE" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="START_YELLOW" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px" ></span>	
+							<@  break; @>
+							<@ case "OR": @>
+								 <span class="bracket operandValue" data-alais="OR" style="background-position:0px -97px" ></span>	
+								 
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="bracket operandValue"  data-alais="AND" style="background-position:0px -148px" ></span>	 
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>
+					
+					Customer Type = <@=value @>
+				
+				<@ 	if(postCondition){	
+						var splitValue = postCondition.split(',')			
+					 _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket operandValue" data-alais="START_BLUE" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="START_YELLOW" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px" ></span>	
+							<@  break; @>
+							<@ case "OR": @>
+								 <span class="bracket operandValue" data-alais="OR" style="background-position:0px -97px" ></span>	
+								 
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="bracket operandValue"  data-alais="AND" style="background-position:0px -148px" ></span>	 
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>	
+			
+		</div>				
+</script>
+
+<script type="text/template" id="node-countrytype-row-template">
+		<div class="nodelayer actual">	
+				<@ 	if(preCondition){	
+						var splitValue = preCondition.split(',') 
+					  _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket operandValue" data-alais="START_BLUE" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="START_YELLOW" style="background-position:5px -32px" ></span>	
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="bracket operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px" ></span>	
+							<@  break; @>
+							<@ case "OR": @>
+								 <span class="bracket operandValue" data-alais="OR" style="background-position:0px -97px" ></span>	
+								 
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="bracket operandValue"  data-alais="AND" style="background-position:0px -148px" ></span>	 
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>
+			
+			<span class="bracket applus" style="background-position:0px -165px;"></span>
+			<span class="text" data-value="<@=value @>" data-id="<@=id@>" data-text="<@=valuetext@>"><@= valuetext @></span>
+				<select style="height: 30px;display:none" class="select">
+			 		<@ _.each(dropdownData, function(i) { @>
+						<@ if(i.label == valuetext){ @>				
+						 		<option value="<@= i.id @>" selected = "selected"><@= i.label @></option>
+						<@ }else{ @>
+								<option value="<@= i.id @>" ><@= i.label @></option>
+						<@ } @>							 	 
+					<@ }); @>
+				</select>	
+				<span class="bracket applus" style="background-position:0px -165px;"></span>
+				<@ 	if(postCondition){	
+						var splitValue = postCondition.split(',')			
+					 _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket openBlueBracket addOpp15 operandAdded" data-alais="START_BLUE" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="bracket openYellowBracket operandAdded" data-alais="START_YELLOW"></span>
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="bracket closeYellowBracket lastbracket operandAdded" data-alais="CLOSE_YELLOW"></span>
+							<@  break; @>
+							<@ case "OR": @>
+								 <span class="bracket or operandAdded" data-alais="OR"></span>
+								 <span class="bracket blankLeft "></span>
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="bracket andOper operandAdded"  data-alais="AND"></span>
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>	
+		</div>				
+</script>
+
+<!--  All Templates START -->
+<script type="text/template" id="dropdown-template">
+		 <span class="sadd0 addOpp2" style="top:<@=top @>"></span>
+</script>
+
+<script type="text/template" id="node-scenario-template">
+   		<@=tierArea @>
+	<div class="nodesenario1<@=cssName @>" style="top:<@=top @>"  >
+								
+                                        <div class="node nodeblue position1" style="display: block;">
+                           <a href="javascript://" class="addNewNode tooltip" original-title="Add Node"></a>
+                                           		<span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                                <span class="nodeEditBoxSave savebox1"></span>
+												<span class="nodeEditBoxDelete editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                            <span class="nodeconector nodeconectorBlue"></span>
+                                            <h6 class="nodeTitle">Partner Type<sup class="tooltip" original-title="Mandatory">*</sup> <a href="javascript://" class="collaspe"></a></h6>
+                                            <div class="nodelayer nda1">                                    </div>
+                              
+                                        </div>
+                                        <!--node-->
+                                        <!--node-->
+                                        <div class="node nodeyellow position2" style="display: block;">
+                                           <span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                                <span class="nodeEditBoxSave savebox1"></span>
+												<span class="nodeEditBoxDelete editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                            <span class="nodeconectorAndFixed"></span>
+                                            <h6 class="nodeTitle">Qualifications<a href="javascript://" class="collaspe"></a></h6>
+                                            <h6 class="nodeSubTitle"><!--Certification--> <a href="javascript://" class="collaspe none "></a></h6>
+                                            <div class="subpnode certif1">
+                                            </div>    
+                                            <h6 class="nodeSubTitle"><!--Specialization--> <a href="javascript://" class="collaspe none"></a></h6>
+                                            <div class="subpnode special1"></div>
+                                            
+                                            <h6 class="nodeSubTitle"><!--Authorization--> <a href="javascript://" class="collaspe none"></a></h6>
+                                            <div class="subpnode auth1"></div>
+                                        </div>
+                                        <!--node-->
+                                        <!--node-->
+                                        <div class="node nodeblue position3" style="display: block;">
+											<span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                             <span class="nodeEditBoxSave savebox1"></span>
+											<span class="nodeEditBoxDelete editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                            <span class="nodeconectorInFixed"></span>
+                                            <h6 class="nodeTitle">Country Type<sup class="tooltip" original-title="Mandatory">*</sup><a href="javascript://" class="collaspe "></a></h6>
+                                            <div class="nodelayer country1">
+                                            <!--
+                                               <div  class="none bdp1"> 
+                                                    <span class="bracket openBlueBracket"></span>
+                                                    <span class="bracket openYellowBracket"></span>
+                                                        Billing
+                                                    <span class="bracket closeYellowBracket b1"></span>
+                                               </div>
+                                               <div  class="none bdp2"> 
+                                                    <span class="bracket openBlueBracket"></span>
+                                                    <span class="bracket openYellowBracket"></span>
+                                                        Install
+                                                    <span class="bracket closeYellowBracket b1"></span>
+                                               </div> 
+                                               -->
+                                            </div>
+                                        </div>
+                                        <!--node-->                                        
+                                      <div class="node nodeblue position9" style="display: block;">
+                                            <span class="nodeconectorAnd"></span>
+     
+                                            <h6 class="nodeTitle">Partner<sup>*</sup> <a href="javascript://" class="collaspe"></a></h6>
+                                            <div class="nodelayer nda4">                                    </div>
+                                        </div>                                        
+									<!-- span class="sadd11 addOperator plusSign"  original-title="Add operators"></span-->
+                                        <span class="leafEndExpression applus tooltip" original-title="Add operators"></span>
+										
+                                  </div>
+
+				
+								
+
+  </script>
+  
+  
+  
+  
+  <script type="text/template" id="node-scenario-template-customer-profile">
+   		<@=tierArea @>
+	<div class="nodesenario1<@=cssName @>" style="top:<@=top @>"  >
+								
+                     	<div class="nodesenario3  <@=cssName @>" style="top:<@=top @>" >					
+                                        <div class="node nodegreen position1" style="display: block;">
+                           			<a href="javascript://" class="addNewNode tooltip" original-title="Add Node"></a>
+                                            <span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                                <span class="nodeEditBoxSave savebox1"></span>
+                                            <span class="nodeconector nodeconectorBlue"></span>
+                                            <h6 class="nodeTitle">Customer Profile<sup class="tooltip" original-title="Mandatory">*</sup> <a href="javascript://" class="collaspe"></a></h6>
+                                            <div class="nodelayer nda1">Customer Profile</div>
+                              
+                               </div>	
+							</div>			                
+                                       
+	</div>
+				
+								
+
+  </script>
+  
+  
+  
+
+<script type="text/template" id="tier-border-scenario">	
+  <div class="tierBorder tierBorderScenario" style="display:block; height:<@=height @>;">
+		<div class="tierBorderWrapper" style="padding-top:50px">
+			 <!--span class="bracket tierBorderadddef movingPlusSign" style="left: 9px; top: -5px; display: none;"></span -->
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            <span class="sadd1 operandValue" data-alais="AND"></span>
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            <div class="tierHBorder"><span class="sadd1 applus leafStartExpression" style="background-position:0px -165px"></span></span> </div>  
+		</div>                  	
+     </div>
+  </script>
+  
+  
+  <script type="text/template" id="tier-border-scenario-edit">
+			<div class="tierBorderWrapper" style="padding-top:50px">
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+			<@ 	if(condition){	
+						var splitValue = condition.split(',') 
+					  _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket openBlueBracket addOpp15 operandAdded" data-alais="START_BLUE" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="sadd1 operandValue" data-alais="START_YELLOW" style="background-position:5px -32px"></span>
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="sadd1 operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px"></span>
+							<@  break; @>
+							<@ case "OR": @>
+								<span class="sadd1 operandValue" data-alais="OR" style="background-position: 0px -97px;"></span>
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="sadd1 operandValue" data-alais="AND" style="background-position:0px -148px"></span>
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>		
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            <div class="tierHBorder"><span class="sadd1 addOpp15 preOperand tierBorderadd" style="background-position:0px -165px"></span></span> </div>  
+		</div>
+  </script>
+  
+    <script type="text/template" id="tier-border-leaf-edit">
+			<div class="tierBorderWrapper" style="padding-top:50px">
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+			<@ 	if(condition){	
+						var splitValue = condition.split(',') 
+					  _.each(splitValue, function(i) { 		
+						switch(i)  {
+							case "START_BLUE":  @>
+							  <span class="bracket openBlueBracket addOpp15 operandAdded" data-alais="START_BLUE" ></span>	
+							<@  break; @>
+							<@ case "START_YELLOW": @>
+								 <span class="sadd1 operandValue" data-alais="START_YELLOW" style="background-position:5px -32px"></span>
+							<@  break; @>
+							<@ case "CLOSE_YELLOW": @>
+								 <span class="sadd1 operandValue" data-alais="CLOSE_YELLOW" style="background-position:5px -48px"></span>
+							<@  break; @>
+							<@ case "OR": @>
+								<span class="sadd1 operandValue" data-alais="OR" style="background-position: 0px -97px;"></span>
+							<@  break; @>
+							<@ case "AND": @>
+								<span class="sadd1 operandValue" data-alais="AND" style="background-position:0px -148px"></span>
+							<@  break; @>
+							<@ case "NULL": @>
+								 
+							<@  break; @>
+						<@ }@>				
+						
+					<@ }); }@>		
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            
+		</div>
+  </script>
+  
+
+<script type="text/template" id="tier-border-leaf">	
+  <div class="tierBorder node" style="display: none; height: <@=height @>;">
+  <span class="bracket tierBorderadddef" style="left: 9px; top: -5px; display: none;"></span>
+             <span class="sadd1 addOpp1"></span>
+                                         
+             <div class="tierHBorder">
+			
+			</div>     
+			             	
+     </div>
+  </script>
+
+<script type="text/template" id="node-scenario-validation-leaf-template">	
+							<div class="tierBorderLeaf" style="display:block;">
+		<div class="tierBorderWrapper" style="padding-top:50px">
+			 <!--span class="bracket tierBorderadddef movingPlusSign" style="left: 9px; top: -5px; display: none;"></span -->
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            <span class="sadd1 operandValue" data-alais="AND"></span>
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            <div class="tierHBorder"></div>  
+		</div>                  	
+     </div>
+ 		
+							<div class="nodesenario3  <@=cssName @>" style="top:<@=top @>" >					
+                                        <div class="node nodegreen position1" style="display: block;">
+                           			<a href="javascript://" class="addNewNode tooltip" original-title="Add Node"></a>
+                                            <span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                                <span class="nodeEditBoxSave savebox1"></span>
+                                            <span class="nodeconector nodeconectorBlue"></span>
+                                            <h6 class="nodeTitle">Extra Validations<sup class="tooltip" original-title="Mandatory">*</sup> <a href="javascript://" class="collaspe"></a></h6>
+                                            <div class="nodelayer nda1">  Customer Type=G3100</div>
+                              
+                               </div>	
+							</div>				 
+  </script>
+  
+  <script type="text/template" id="node-scenario-validation-customerprofile-leaf-template">	
+							<div class="tierBorderLeaf" style="display:block;">
+		<div class="tierBorderWrapper" style="padding-top:50px">
+			 <!--span class="bracket tierBorderadddef movingPlusSign" style="left: 9px; top: -5px; display: none;"></span -->
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            <span class="sadd1 operandValue" data-alais="AND"></span>
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            <div class="tierHBorder"></div>  
+		</div>                  	
+     </div>
+ 		
+							<div class="nodesenario3  <@=cssName @>" style="top:<@=top @>" >					
+                                        <div class="node nodegreen position1" style="display: block;">
+                           			<a href="javascript://" class="addNewNode tooltip" original-title="Add Node"></a>
+                                            <span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                                <span class="nodeEditBoxSave savebox1"></span>
+                                            <span class="nodeconector nodeconectorBlue"></span>
+                                            <h6 class="nodeTitle">Extra Validations<sup class="tooltip" original-title="Mandatory">*</sup> <a href="javascript://" class="collaspe"></a></h6>
+                                            <div class="nodelayer nda1">  Customer Profile</div>
+                              
+                               </div>	
+							</div>				 
+  </script>
+
+
+
+<script type="text/template" id="node-scenario-another-leaf-template">	
+				
+				<!--span class="sadd0 addOpp2 addOperator" style="display: inline;top:<@=top @>""></span-->
+<div class="tierBorderLeaf" style="display:block;">
+		<div class="tierBorderWrapper" style="padding-top:50px">
+			 <!--span class="bracket tierBorderadddef movingPlusSign" style="left: 9px; top: -5px; display: none;"></span -->
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>           
+			 <span class="sadd1 operandValue" data-alais="AND"></span>
+			<span class="sadd1 addOperand" style="background-position:0px -165px"></span>
+            <div class="tierHBorder">
+			 
+			</div>  
+		</div>                  	
+     </div>
+				
+				 
+				<div class="nodesenario3 <@=cssName @>" style="top:<@=top @>"" data-top="<@=dataTop @>" >					
+                                        <div class="node nodeblue position1" style="display: block;">
+                           <a href="javascript://" class="addNewNode tooltip" original-title="Add Node"></a>
+                                            <span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                                <span class="nodeEditBoxSave savebox1"></span>
+												<span class="nodeEditBoxDelete editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                            <span class="nodeconector nodeconectorBlue"></span>
+                                            <h6 class="nodeTitle">Partner Type<sup class="tooltip" original-title="Mandatory">*</sup> <a href="javascript://" class="collaspe"></a></h6>
+                                            <div class="nodelayer nda1">                                    </div>
+                              
+                                        </div>
+                                        <!--node-->
+                                        <!--node-->
+                                        <div class="node nodeyellow position2" style="display: block;">
+                                           <span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                                <span class="nodeEditBoxSave savebox1"></span>
+											<span class="nodeEditBoxDelete editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                            <span class="nodeconectorAndFixed"></span>
+                                            <h6 class="nodeTitle">Qualifications<a href="javascript://" class="collaspe"></a></h6>
+                                            <h6 class="nodeSubTitle"><!--Certification--> <a href="javascript://" class="collaspe none "></a></h6>
+                                            <div class="subpnode certif1">
+                                            </div>    
+                                            <h6 class="nodeSubTitle"><!--Specialization--> <a href="javascript://" class="collaspe none"></a></h6>
+                                            <div class="subpnode special1"></div>
+                                            
+                                            <h6 class="nodeSubTitle"><!--Authorization--> <a href="javascript://" class="collaspe none"></a></h6>
+                                            <div class="subpnode auth1"></div>
+                                        </div>
+                                        <!--node-->
+                                        <!--node-->
+                                        <div class="node nodeblue position3" style="display: block;">
+											<span class="nodeEditBoxEdit editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                                <span class="nodeEditBoxSave savebox1"></span>
+											<span class="nodeEditBoxDelete editbox1 tooltip" original-title="Edit" style="display: none;"></span>
+                                            <span class="nodeconectorInFixed"></span>
+                                            <h6 class="nodeTitle">Country Type<sup class="tooltip" original-title="Mandatory">*</sup><a href="javascript://" class="collaspe "></a></h6>
+                                            <div class="nodelayer country1">
+                                            <!--
+                                               <div  class="none bdp1"> 
+                                                    <span class="bracket openBlueBracket"></span>
+                                                    <span class="bracket openYellowBracket"></span>
+                                                        Billing
+                                                    <span class="bracket closeYellowBracket b1"></span>
+                                               </div>
+                                               <div  class="none bdp2"> 
+                                                    <span class="bracket openBlueBracket"></span>
+                                                    <span class="bracket openYellowBracket"></span>
+                                                        Install
+                                                    <span class="bracket closeYellowBracket b1"></span>
+                                               </div> 
+                                               -->
+                                            </div>
+                                        </div>
+                                        <!--node-->
+                                        <!--node-->
+                                        <div class="node nodegreen position4">
+                                            
+                                            <span class="nodeEditBox"></span>
+                                            <span class="nodeconectorNot"></span>
+                                            <h6 class="nodeTitle">Extra Validations</h6>
+                                            <div class="nodelayer">
+                                                 <div class="none exp1"> 
+                                                    <span class="bracket openBlueBracket"></span>
+                                                    <span class="bracket openYellowBracket"></span>
+                                                        Customer Type = G3100
+                                                        <span class="bracket closeYellowBracket"></span>    
+                                                 </div>       
+                                            </div>
+                                   
+                                        </div>
+                                        
+                                      <div class="node nodeblue position9" style="display: block;">
+                                            <span class="nodeconectorAnd"></span>
+     
+                                            <h6 class="nodeTitle">Partner<sup>*</sup> <a href="javascript://" class="collaspe"></a></h6>
+                                            <div class="nodelayer nda4">                                    </div>
+                                        </div>
+</div>		
+
+  </script>
+  
+  
+ <script type="text/template" id="rule-tab-template">	
+	
+	<div id="<@=id @>">		
+			<!--topTab-->
+			<div class="summaryTab">
+
+				<div class="alignright">
+					<div class="tabbox savoption">
+						<a href="javascript://" class="saveRule" data-tabid="<@=id @>">Save</a> <a href="javascript://" class="validateRule">Validate</a>
+						<a href="javascript://" class="disabletxt" data-tabid="<@=id @>">Clear</a>
+					</div>
+
+					<div class="tabbox zoomoption">
+						<span class="zoomValue">100%</span> <a href="javascript://"
+							class="zoomin tooltip" original-title="Zoom in"></a> <a
+							href="javascript://" class="zoomout tooltip"
+							original-title="Zoom out"></a>
+
+					</div>
+					<div class="tabbox zoomoption">
+						<a href="javascript://" class="fullscreen tooltip"
+							original-title="Full screen"></a> <a
+							href="javascript://" class="smallscreen tooltip"
+							original-title="Small screen"></a>
+					</div>
+				</div>
+				<!--summaryRightArea-->
+			</div>
+			<!--summaryTab-->
+			<div class="createTreeArea">
+				<div class="tipboxMsg">Click to add new scenario.</div>
+				<div class="tooglebutton">
+					<a href="javascript://"
+						class="designViewTab tooltip designViewselect"
+						original-title="Design View">Design View</a> <a
+						href="javascript://" class="codeViewTab tooltip"
+						original-title="Code View">Code View</a> <a href="javascript://"
+						class="splitViewTab tooltip" original-title="Split View">Split
+						View</a>
+				</div>
+				<div class="onlyBG">
+					<div class="designViewArea visibleArea ui-draggable">
+						
+						
+
+
+
+
+
+
+
+						<div class="nodesenario4" style="display: none;">
+
+							<span class="nodeconector nodeconectorBlue"
+								style="left: 88px; top: 428px;"></span>
+
+							<div class="node nodeblue position21">
+
+								<span class="nodeEditBoxEdit editbox21 tooltip"
+									original-title="Edit"></span> <span
+									class="nodeEditBoxSave savebox21"></span> <span
+									class="nodeconectorAndFixed connectedop"></span>
+								<h6 class="nodeTitle">
+									Partner Type<sup class="tooltip" original-title="Mandatory">*</sup>
+									<a href="javascript://" class="collaspe"></a>
+								</h6>
+								<div class="nodelayer nda21"></div>
+							</div>
+							<!--node-->
+							<!--node-->
+							<div class="node nodeyellow position22">
+								<span class="nodeEditBox"></span> <span
+									class="nodeconectorAndFixed connectedop"></span>
+								<h6 class="nodeTitle">
+									Qualifications<a href="javascript://" class="collaspe"></a>
+								</h6>
+								<h6 class="nodeSubTitle">
+									<!--Certification-->
+									<a href="javascript://" class="collaspe none "></a>
+								</h6>
+								<div class="subpnode certif3"></div>
+								<h6 class="nodeSubTitle">
+									<!--Specialization-->
+									<a href="javascript://" class="collaspe none"></a>
+								</h6>
+								<div class="subpnode special1"></div>
+
+								<h6 class="nodeSubTitle">
+									<!--Authorization-->
+									<a href="javascript://" class="collaspe none"></a>
+								</h6>
+								<div class="subpnode auth21"></div>
+							</div>
+							<!--node-->
+							<!--node-->
+							<div class="node nodeblue position23">
+								<span class="nodeEditBoxEdit tooltip" original-title="Edit"></span>
+								<span class="nodeconectorInFixed connectedop"></span>
+								<h6 class="nodeTitle">
+									Country Type<sup class="tooltip" original-title="Mandatory">*</sup><a
+										href="javascript://" class="collaspe "></a>
+								</h6>
+								<div class="nodelayer country21"></div>
+							</div>
+							<!--node-->
+							<!--node-->
+							<div class="node nodegreen position24">
+								<a href="javascript://" class="addNewNode tooltip second"
+									original-title="Add Node"></a> <span class="nodeEditBox"></span>
+								<span class="nodeconectorAndFixed connectedop"></span>
+								<h6 class="nodeTitle">Extra Validations</h6>
+								<div class="nodelayer">
+									<span class="none exp3"> <span
+										class="bracket openBlueBracket"></span> <span
+										class="bracket openYellowBracket"></span> Customer Type =
+										G3100 <span class="bracket closeYellowBracket"></span>
+									</span>
+
+								</div>
+
+							</div>
+
+							<div class="node nodeblue position25">
+								<span class="nodeconectorAnd connectedop"></span>
+								<!--                                    <span class="nodeconectorBlueRight"></span>  -->
+								<h6 class="nodeTitle">
+									Partner<sup>*</sup> <a href="javascript://" class="collaspe"></a>
+								</h6>
+								<div class="nodelayer nda25"></div>
+							</div>
+
+
+						</div>
+
+
+
+						<div class="tierBorder4 node">
+							<span class="bracket tierBorderadddef3"></span>
+						</div>
+						<span class="sadd11 addOpp11 applus scenarioStartExpression" original-title="Add operators" data-alais="NULL"></span>						
+						<span class="sadd15 addOpp15  applus leafStartExpression" original-title="Add operators" data-alais="NULL"></span>
+
+						<div class="tierArea">
+							<a href="javascript://" class="addnewsenario tooltip"
+								original-title="Add Scenario"></a>
+						</div>
+
+						<div class="nodeOutterArea">
+							<h6 class="conditionsHead">Tier 1 Conditions</h6>
+							<div class="nodeMainArea">
+								<!--node-->
+
+								<!--node-->
+
+								<div class="clear"></div>
+							</div>
+							<!--nodeMainArea-->
+						</div>
+						<!--nodeOutterarea-->
+					</div>
+					<!--designViewArea-->
+				</div>
+				<div class="codeViewArea">
+					</ol>
+					</ol>
+				</div>
+				<!--codeViewArea-->
+				<div class="splitViewArea">
+					<h6 class="dehead">Design view</h6>
+					<div class="slimScrollDiv"
+						style="position: relative; overflow: hidden; width: auto; height: 300px;">
+						<div class="splitViewScroll1"
+							style="overflow: hidden; width: auto; height: 300px;">
+							<div class="splitdesignView ui-draggable"
+								style="position: relative;">
+								
+							</div>
+						</div>
+						<div class="slimScrollBar ui-draggable"
+							style="background-color: rgb(157, 157, 157); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; z-index: 99; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						<div class="slimScrollRail"
+							style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-color: rgb(51, 51, 51); opacity: 1; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+					</div>
+					<div class="mrg20"></div>
+					<div
+						style="border-bottom: 1px solid #ccc; padding: 3px; background-color: #f1f1f1; margin: 20px 0;">
+
+					</div>
+					<h6 class="dehead">Code view</h6>
+					<div class="slimScrollDiv"
+						style="position: relative; overflow: hidden; width: auto; height: 150px;">
+						<div class="splitViewScroll2"
+							style="overflow: hidden; width: auto; height: 150px;">
+							<ol class="linenums">
+								
+							</ol>
+						</div>
+						<div class="slimScrollBar ui-draggable"
+							style="background-color: rgb(157, 157, 157); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; z-index: 99; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						<div class="slimScrollRail"
+							style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-color: rgb(51, 51, 51); opacity: 1; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+					</div>
+				</div>
+				<!--splitViewArea-->
+			</div>
+		</div>
+</script>
+
+<script type="text/template" id="ruleTopBlock">
+<div class="preNodeArea">
+		<div class="preNodebox1">
+			<label>Node Name</label> <input type="text" name="nodeName" value="<%= request.getParameter("nodeName") %>">
+		</div>
+		<div class="preNodebox2">
+			<label>Rule Name <span class="required tooltip" original-title="Mandatory">*</span></label> <input type="text" name="ruleName"  >
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+
+<div class="preCondition">
+		<h6>Pre Conditions</h6>
+		<div class="preConditionBox1">
+			<big>Intended Use <span class="required tooltip" original-title="Mandatory">*</span></big> 
+				<span class="checkboxoption"><input name="intendedUse[]" value="Resale"    type="checkbox">Resale</span>
+				<span class="checkboxoption"><input name="intendedUse[]" value="Internal Business Use"    type="checkbox">Internal Business Use</span>
+				<span class="checkboxoption"><input name="intendedUse[]" value="Lab"    type="checkbox">Lab</span>
+				<span class="checkboxoption"><input name="intendedUse[]" value="Service Provision Use"    type="checkbox">Service Provision Use</span>
+				<span class="checkboxoption"><input name="intendedUse[]" value="Managed Service"    type="checkbox">Managed Service</span>
+				<span class="checkboxoption"><input name="intendedUse[]" value="Stocking"    type="checkbox">Stocking</span>
+				<span class="checkboxoption"><input name="intendedUse[]" value="Donations"    type="checkbox">Donations</span>
+		</div>
+		<div class="preConditionBox2">
+			<big>Select Countries <span class="required tooltip" original-title="Mandatory">*</span></big>
+				 <a href="#applicablePop"	class="appCountries">Applicable Countries</a>	
+				<a href="#billingPop"	class="billingCountries">Billing Countries</a>				 
+				<a href="#installPop"	class="installCountries">Install Countries</a>	
+				<a href="#errorPop"	class="errorPop" style="display:none"></a>	
+				<a href="#genericMessage"	class="genericMessage" style="display:none"></a>			
+		</div>
+		<div class="preConditionBox1" style="padding-left:10px">
+			<big>Apply Rule for <span class="required tooltip" original-title="Mandatory">*</span></big>  
+				<span class="checkboxoption"><input type="radio"	name="applyRuleFor[]" value="P"> 1T Partner buying from Cisco </span>
+				<span class="checkboxoption"><input type="radio" name="applyRuleFor[]" value="PD"> 1T/ 2T Partner buying from distributor</span>
+				<span class="checkboxoption"><input type="radio" name="applyRuleFor[]" value="D">Distributor buying for himself from Cisco</span>
+				<span class="checkboxoption"><input type="radio" name="applyRuleFor[]" value="DC"> Direct end customer buying from Cisco</span>				
+		</div>
+		<div class="preConditionBox4">
+			<big>Effective Date <span class="required tooltip" original-title="Mandatory">*</span></big>[MM/DD/YYYY]
+					<input type="text" class="input apasDatePick" name="startDate" id="startDate" value=""> 
+					<input type="text" class="input apasDatePick" name="endDate"  id="endDate" value="">
+		</div>
+		<div class="clear"></div>
+	</div>
+</script>
+<script type="text/template" id="errorHandlerRules">
+<div class="ruleErrorPopup">
+	<ul>
+		<h4 style="color:red"><strong>Fix the errors to proceed further.</strong> </h4>
+		<br/>
+		<@ _.each(data, function(error) { @>
+			<li><@=error@></li>
+		<@ });@>
+	</ul>
+</div>
+</script>
+
+<script type="text/template" id="genericMessageTemplate">
+<div class="genericMessageContent">
+	<ul>
+		<h4><strong><@=message @></strong> </h4>
+	</ul>
+</div>
+</script>
+
+
+<script type="text/template" id="applicableCountries">
+	<div class="popupTitle">Select Country for Applicable</div>
+		
+	<div class="SelectALL">
+		<input type="radio" value="P" name="applyFilterForApplicable[]" data-parentclass="applicablePop" data-value="EEA"> EEA
+ 		<input type="radio" value="P" name="applyFilterForApplicable[]" data-parentclass="applicablePop" data-value="NON_EEA"> NON EEA    
+		<input type="radio" value="P" name="applyFilterForApplicable[]" data-parentclass="applicablePop" data-value="ALL">Select All
+	</div>  
+	<div class="clear"></div>
+	<div>
+		<@ _.each(countryData, function(countryRow) { 	@>	
+			<div class="single-column">
+			<h6 class="country_title"><@=countryRow.name@>
+			<div class="SelectALL"><input type="checkbox" class="selectContLevel" data-parentclass="applicablePop">Select All</div>
+			</h6>
+			<div class="description_box">
+				<div class="ckeckArea">
+					<ul>
+					<@ _.each(countryRow.countries, function(country) { @>
+						<li><input type="checkbox" name="applicableCountries[]" value="<@= country.code @>"><@= country.name @></li>
+					<@ });@>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<@ }); @>	
+		<input type="button" class="fancyOK formButton" data-type="applicable" value="OK">
+	</div>
+</script>
+
+<script type="text/template" id="billingCountries">
+	<div class="popupTitle">Select Country for Billing</div>
+	<div class="SelectALL">
+		<input type="radio" value="P" name="applyFilterForBilling[]" data-parentclass="billingPop" data-value="EEA"> EEA
+ 		<input type="radio" value="P" name="applyFilterForBilling[]" data-parentclass="billingPop" data-value="NON_EEA"> NON EEA    
+		<input type="radio" value="P" name="applyFilterForBilling[]" data-parentclass="billingPop" data-value="ALL">Select All
+	</div>  
+	<div class="clear"></div>
+	<div>				
+
+		<@ _.each(countryData, function(countryRow) { 	@>	
+			<div class="single-column">
+			<h6 class="country_title"><@=countryRow.name@>
+			<div class="SelectALL"><input type="checkbox" class="selectContLevel" data-parentclass="applicablePop">Select All</div>
+			</h6>
+			<div class="description_box">
+				<div class="ckeckArea">
+					<ul>
+					<@ _.each(countryRow.countries, function(country) { @>
+						<li><input type="checkbox" name="billingCountries[]" value="<@= country.code @>"><@= country.name @></li>
+					<@ });@>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<@ }); @>	
+		<input type="button" class="fancyOK formButton" data-type="applicable" value="OK">
+	</div>
+</script>
+   
+   
+
+<script type="text/template" id="installCountries">
+	<div class="popupTitle">Select Country for Install</div>
+	<div class="SelectALL">
+		<input type="radio" value="P" name="applyFilterForInstall[]" data-parentclass="installPop" data-value="EEA"> EEA
+ 		<input type="radio" value="P" name="applyFilterForInstall[]" data-parentclass="installPop" data-value="NON_EEA"> NON EEA    
+		<input type="radio" value="P" name="applyFilterForInstall[]" data-parentclass="installPop" data-value="ALL">Select All
+	</div>  
+	<div class="clear"></div>
+	<div>		
+		<@ _.each(countryData, function(countryRow) { 	@>	
+			<div class="single-column">
+			<h6 class="country_title"><@=countryRow.name@>
+			<div class="SelectALL"><input type="checkbox" class="selectContLevel" data-parentclass="applicablePop">Select All</div>
+			</h6>
+			<div class="description_box">
+				<div class="ckeckArea">
+					<ul>
+					<@ _.each(countryRow.countries, function(country) { @>
+						<li><input type="checkbox" name="installCountries[]" value="<@= country.code @>"><@= country.name @></li>
+					<@ });@>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<@ }); @>	
+		<input type="button" class="fancyOK formButton" data-type="applicable" value="OK">
+	</div>
+</script>
+   
+<script type="text/template" id="get-rules-template">
+<@ _.each(data, function(rule) { @>
+	<li>
+		<table width=100% border=0 cellspacing=0 cellpadding=0 class=countryListing>
+			<tr class=deleteTR>
+				<td width=30><input type=checkbox class=mycheckbox /></td>
+                <td width=370><strong class=nodeName><@= rule.name @></strong> <span class=activeStatus>active</span><br clear=left/></td>
+                <td width=150><@= rule.createdOn @><br/> <span class=createdBy><@= rule.createdOn @></span></td> 
+                <td width=150><@= rule.updatedOn @><br/> <span class=createdBy><@= rule.updatedBy @></span></td>
+                <td width=40>
+    				<div class=posRel>
+    					<div class=delRow>
+    						<a title=Edit href=createViewRule.html>
+    							<img class=paddingL3 src=images/edit-icon.png> </a>&nbsp;<a title=Delete href=#delicon class=delicon>
+    							<img src=images/delRow.png align=delete>
+							</a>
+						</div>
+					</div>
+				</td>
+			 </tr>
+		</table>
+	</li>
+ 
+<@ }); @>
+</script>
+
+<script type="text/template" id="partnerType_accordion_template">
+<ul>
+<@ _.each(data, function(data) { @>
+	<li><a href="javascript://" class="partner_li" data-name="<@=data.label @>" data-id="<@=data.id @>" data-value="<@=data.value @>" data-classification="<@=data.classification @>">
+		<@=data.label @></a></li> 
+<@ }); @>
+</ul>
+</script>
+
+<script type="text/template" id="qualifications_accordion_template">
+						<div class="subChild">
+							<span class="subchildTitle certifIcon certifIconselect">Certification</span>
+							<div class="listValues certivalue" style="display: block;">
+								<ul>
+									<@ _.each(data, function(data) {
+										var classification = data.classification;
+										switch(classification)  {
+											case "Certification":  @>		
+													<li><a href="javascript://" class="c1 certif_li cert" data-name="<@=data.label @>" data-id="<@=data.id @>" data-value="<@=data.value @>" 
+														data-classification="<@=data.classification @>">
+													<@=data.label @></a></li> 
+ 										<@ }@>	
+									<@ }); @>									
+								</ul>
+							</div>
+						</div>
+
+						<div class="subChild">
+							<span class="subchildTitle specIcon">Specialization</span>
+							<div class="listValues specialvalues">
+								<ul class="leftSubMenuScroll">
+									<@ _.each(data, function(data) {
+										var classification = data.classification;
+										switch(classification)  {
+											case "Specialization":  @>		
+													<li><a href="javascript://" class="certif_li spec" data-name="<@=data.label @>" data-id="<@=data.id @>" data-value="<@=data.value @>" 
+														data-classification="<@=data.classification @>">
+													<@=data.label @></a></li> 
+ 										<@ }@>	
+									<@ }); @>									
+								</ul>
+							</div>
+						</div>
+
+					<div class="subChild">
+							<span class="subchildTitle authrIcon">Authorization</span>
+							<div class="listValues authvalue">
+								<ul class="leftSubMenuScroll">
+									<@ _.each(data, function(data) {
+										var classification = data.classification;
+										switch(classification)  {
+											case "Authorization":  @>		
+													<li><a href="javascript://" class="certif_li auth" data-name="<@=data.label @>" data-id="<@=data.id @>" data-value="<@=data.value @>" 
+														data-classification="<@=data.classification @>">
+													<@=data.label @></a></li> 
+ 										<@ }@>	
+									<@ }); @>									
+								</ul>
+							</div>
+						</div>
+</script>
+
+
+<script type="text/template" id="extraValidations_accordion_template">
+			
+						<div class="extraValidationForm">
+							<label>Name</label> <select class="moreCategoriesSelect"
+								sb="4778497" style="display: none;">
+								<option>Customer Type</option>
+							</select>
+							<div id="sbHolder_4778497" class="sbHolder">
+								<a id="sbToggle_4778497" href="#" class="sbToggle"></a><a
+									id="sbSelector_4778497" href="#" class="sbSelector">Customer
+									Type</a>
+								<ul id="sbOptions_4778497" class="sbOptions"
+									style="display: none;">
+									<li class="last"><a href="#Customer Type"
+										rel="Customer Type">Customer Type</a></li>
+								</ul>
+							</div>
+							<label>Operator</label> <select class="moreCategoriesSelect"
+								sb="81598545" style="display: none;">
+								<option>Equals</option>
+							</select>
+							<div id="sbHolder_81598545" class="sbHolder">
+								<a id="sbToggle_81598545" href="#" class="sbToggle"></a><a
+									id="sbSelector_81598545" href="#" class="sbSelector">Equals</a>
+								<ul id="sbOptions_81598545" class="sbOptions"
+									style="display: none;">
+									<li class="last"><a href="#Equals" rel="Equals">Equals</a></li>
+								</ul>
+							</div>
+							<label>Value</label> <input type="text" value="G3100"
+								readonly="readonly"> <label>Variable Type</label> <select
+								class="moreCategoriesSelect" sb="43858075"
+								style="display: none;">
+								<option>Attribute Variable</option>
+							</select>
+							<div id="sbHolder_43858075" class="sbHolder">
+								<a id="sbToggle_43858075" href="#" class="sbToggle"></a><a
+									id="sbSelector_43858075" href="#" class="sbSelector">Attribute
+									Variable</a>
+								<ul id="sbOptions_43858075" class="sbOptions"
+									style="display: none;">
+									<li class="last"><a href="#Attribute Variable"
+										rel="Attribute Variable">Attribute Variable</a></li>
+								</ul>
+							</div>
+							<div class="buttonsArea">
+								<input type="button" value="Add" class="button addvalidation" data-name="customer-type" data-id="3100" data-value="G3100" data-classification="Arithmetic">
+								<input type="button" value="Reset" class="button">
+							</div>
+						</div>
+
+					
+</script>
+
+<script type="text/template" id="codeView_template">
+
+<div class="refreshCodeView">
+	<ol class="linenums">
+		<li class="L0"> <span class="cal">[</span></li>
+		<li class="L1"> <span class="cal">{</span></li>
+	</ol>
+</div>
+
+</script>

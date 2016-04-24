@@ -1,0 +1,50 @@
+package com.cisco.apas.entity;
+
+import java.util.List;
+
+public class NodeCreation {
+	
+	List<String> serviceCategory;
+	List<String> serviceProgram;
+	List<String> serviceLevel;
+	List<String> productFamilies;
+	Double noOfSkus;
+	List<SKU> skus;
+	
+	public List<String> getServiceCategory() {
+		return serviceCategory;
+	}
+	public void setServiceCategory(List<String> serviceCategory) {
+		this.serviceCategory = serviceCategory;
+	}
+	public List<String> getServiceProgram() {
+		return serviceProgram;
+	}
+	public void setServiceProgram(List<String> serviceProgram) {
+		this.serviceProgram = serviceProgram;
+	}
+	public List<String> getServiceLevel() {
+		return serviceLevel;
+	}
+	public void setServiceLevel(List<String> serviceLevel) {
+		this.serviceLevel = serviceLevel;
+	}
+	public Double getNoOfSkus() {
+		return noOfSkus;
+	}
+	public void setNoOfSkus(Double noOfSkus) {
+		this.noOfSkus = noOfSkus;
+	}
+	public List<String> getProductFamilies() {
+		return productFamilies;
+	}
+	public void setProductFamilies(List<String> productFamilies) {
+		this.productFamilies = productFamilies;
+	}
+	public List<SKU> getSkus() {
+		return skus;
+	}
+	public void setSkus(List<SKU> skus) {
+		this.skus = skus;
+	}		
+}

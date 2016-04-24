@@ -1,0 +1,219 @@
+
+
+
+
+<div id="">
+	<div class="topShadow"></div>
+	<div class="bottomShadow"></div>
+	<div class="subHeading">
+		<h1>Rules</h1>
+	</div>
+
+	
+
+	<div class="ruleTopBar"></div>
+	
+	
+	<!--preCondition-->
+	<div class="mainContainer" id="mainContainer">
+		
+		<input type="text" value="<%= request.getParameter("nodeId") %>" name="nodeId" style="display:none">
+
+		<div class="sidebarOutter">
+			<a href="javascript://" class="expandButton expandClose"></a>
+			<div class="siedbarLeft">
+				<h6 class="selectConditions">
+					<span>Select Conditions
+					</span>
+				</h6>
+				<!--single box-->
+				<div class="singleBox">
+					<h6>
+						<a href="javascript://" class="partnerIcon">Partner Type <span
+							class="required tooltip" original-title="Mandatory">*</span></a> <a
+							href="javascript://" class="closearrow "></a>
+					</h6>
+					<div class="subItems">
+						<div class="subValues partnervalues">
+						</div>
+					</div>
+				</div>
+				<!--single box-->
+
+
+				<div class="singleBox">
+					<h6>
+						<a href="javascript://" class="qualifIcon">Qualifications</a> <a
+							href="javascript://" class="closearrow "></a>
+					</h6>
+					<div class="subItems qualificationsAccordion">					
+						
+					</div>
+				</div>
+				<div class="singleBox">
+					<h6>
+						<a href="javascript://" class="countryIcon">Country Type <span
+							class="required tooltip" original-title="Mandatory">*</span></a> <a
+							href="javascript://" class="closearrow "></a>
+					</h6>
+					<div class="subItems">
+						<span class="radioBtn country_li" val="Billing" data-value="B"
+							data-name="Billing" data-id="31"> <input name="country"
+							type="radio"> &nbsp; Billing
+						</span> <span class="radioBtn country_li" val="Install"
+							data-name="Install" data-value="I" data-id="32"> <input name="country"
+							type="radio"> &nbsp; Install
+						</span>
+					</div>
+				</div>
+				<!--single box-->
+				<div class="singleBox">
+					<h6>
+						<a href="javascript://" class="extraIcon">Extra Validations</a> <a
+							href="javascript://" class="closearrow "></a>
+					</h6>
+					<div class="subItems extraValidationAccordion"></div>
+						
+				</div>
+				<!--single box-->
+
+			</div>
+			<!--siedbarLeft-->
+		</div>
+		<!--creatrRuleArea-->
+		<div class="creatrRuleArea">
+			<div id="tabs" class="topTab">
+				<ul>
+
+				</ul>
+
+				<!-- 
+				<a href="javascript://" id="addMoretab"></a>   
+ 				-->
+				<!--creatrRuleArea-->
+
+			</div>    
+
+			<!--  Country,billingand applicable countries block START  -->
+			
+			
+			<div style="display: none;">
+				<div id="billingPop" class="billingPop" style="width: 720px;">
+				</div>
+			</div>	
+			
+			<div style="display: none;">
+				<div id="applicablePop" class="applicablePop" style="width: 720px;">
+				</div>
+			</div>	
+			
+			<div style="display: none;">
+				<div id="installPop" class="installPop" style="width: 720px;">
+				</div>
+			</div>	
+			
+			<div style="display: none;">
+				<div id="errorPop" class="errorPop" style="width: 720px;">
+					<div class="ruleErrorPopup"></div>
+				</div>
+			</div>
+			<div style="display: none;">
+				<div id="genericMessage" class="genericMessage" style="width: 720px;">
+					<div class="genericMessageContent"></div>
+				</div>
+			</div>
+			
+			<!--  Country,billingand applicable countries block  END-->
+			
+			
+		</div>
+		<div class="oparaterNode operatorNodeGeneric">
+			<div class="addOparaterNode">
+				<a href="javascript://" class="opClose tooltip"
+					original-title="Close">x</a>
+				<h6>Operators</h6>
+				<span class="oparaterOptions"> 
+				<a class="bt_and tooltip" original-title="AND" data-background="0px -148px" data-alias="AND">And</a> 
+				<a href="javascript://"	class="bt_or tooltip" data-background="0px -97px" data-alias="OR" original-title="OR">OR</a>				
+				<a href="javascript://" class="orange bt_left_rnd tooltip"	data-background="5px -32px" data-alias="START_YELLOW"	original-title="Start Bracket">(</a> 
+				<a href="javascript://"	class="orange bt_right_rnd tooltip" data-background="5px -48px"	data-alias="CLOSE_YELLOW" original-title="End Bracket">)</a>
+				<a href="javascript://" class="gray deleteICon tooltip"	data-background="0px -165px" data-alias=""	original-title="Delete Operator">
+				
+				<!-- a href="javascript://" class="green bt_left_sq tooltip" data-background="5px -64px" data-alias="START_SQUARE" original-title="Start Square Bracket">[</a> 
+				<a href="javascript://"	class="green bt_right_sq tooltip"	data-background="5px -82px" data-alias="END_SQUARE" original-title="End Square Bracket">]</a> <br clear="left">
+				<a	href="javascript://" class="bt_not tooltip" data-background="0px -130px" data-alias="NOT" original-title="NOT">Not</a>
+				<a href="javascript://" class="bt_in tooltip" data-background="0px -113px" data-alias="IN" original-title="IN">In</a>
+				<a href="javascript://" class="blue bt_left tooltip" data-background="5px 0px" data-alias="START_BLUE" original-title="Start Curly Bracket">{</a> 
+				<a href="javascript://" class="blue bt_right tooltip" data-background="5px -16px"	data-alias="CLOSE_BLUE" original-title="End Curly Bracket">}</a> -->
+				
+				<img src="images/deleteICon.png" alt=""></a></span> 
+				<span class="oparaterArrow"></span>
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<div class="oparaterNode operatorNodePlusSign" >
+			<div class="addOparaterNode">
+				<a href="javascript://" class="opClose tooltip"
+					original-title="Close">x</a>
+				<h6>Operators</h6>
+				<span class="oparaterOptions"> 
+				<a class="bt_and tooltip" original-title="AND" data-background="0px -148px" data-alias="AND">And</a> 
+				<a href="javascript://"	class="bt_or tooltip" data-background="0px -97px" data-alias="OR" original-title="OR">OR</a>				
+				<a href="javascript://" class="orange bt_left_rnd tooltip"	data-background="5px -32px" data-alias="START_YELLOW"	original-title="Start Bracket">(</a> 
+				<a href="javascript://"	class="orange bt_right_rnd tooltip" data-background="5px -48px"	data-alias="CLOSE_YELLOW" original-title="End Bracket">)</a>
+				<a href="javascript://" class="gray deleteICon tooltip"	data-background="0px -165px" data-alias=""	original-title="Delete Operator">
+				
+				<!-- a href="javascript://" class="green bt_left_sq tooltip" data-background="5px -64px" data-alias="START_SQUARE" original-title="Start Square Bracket">[</a> 
+				<a href="javascript://"	class="green bt_right_sq tooltip"	data-background="5px -82px" data-alias="END_SQUARE" original-title="End Square Bracket">]</a> <br clear="left">
+				<a	href="javascript://" class="bt_not tooltip" data-background="0px -130px" data-alias="NOT" original-title="NOT">Not</a>
+				<a href="javascript://" class="bt_in tooltip" data-background="0px -113px" data-alias="IN" original-title="IN">In</a>
+				<a href="javascript://" class="blue bt_left tooltip" data-background="5px 0px" data-alias="START_BLUE" original-title="Start Curly Bracket">{</a> 
+				<a href="javascript://" class="blue bt_right tooltip" data-background="5px -16px"	data-alias="CLOSE_BLUE" original-title="End Curly Bracket">}</a> -->
+				
+				<img src="images/deleteICon.png" alt=""></a></span> 
+				<span class="oparaterArrow"></span>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<!--oparaterNode-->
+		<div class="twooparaterNode1">
+							<div class="addOparaterNode addExpressionNode">
+								<a href="javascript://" class="opClose tooltip"
+									original-title="Close">x</a>
+								<h6>Expression type</h6>
+								<ul class="exArea">
+									<li class="ex1"><a href="javascript://" style="padding:10px" class="two_op_exp bt_ptype" txt="Partner Type">Partner
+						Type, Qualifications, Country Type</a></li>
+				<li class="ex4"><a href="javascript://" style="padding:10px" class="two_op_exp bt_valid" txt="Extra validations">Extra
+							validations</a></li>
+				</ul>
+		
+				<span class="oparaterArrow oparaterArrowUp"></span>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+
+		<%@ include file="common/rule-templates.jsp"%>   
+
+
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/apas_override.css" />
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/rulePrototype.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/apasJavaScript.js"></script>
+		<script>
+		// JavaScript Document
+		qualificationAccordionType = <%= request.getAttribute("qualifications") %>;	
+		theaterList = <%= request.getAttribute("countries") %>;
+		eeaCountryList = <%= request.getAttribute("eeaCountryList") %>;		
+		$(document).ready(function() {			 
+			 $("body").ruleNamespace().initializePageData();
+			 $("body").ruleNamespace().events();   
+			 $("body").ruleNamespace().initTabsRule();
+			 $("body").ruleNamespace().miscellaneousEvents();			 
+		});
+		toggleLeftNavigationMenus('rule');
+		</script>
+
+	</div>
+</div>

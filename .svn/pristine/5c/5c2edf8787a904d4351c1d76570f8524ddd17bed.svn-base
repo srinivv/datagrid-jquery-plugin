@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tabContainer>
+	<tabs>
+		<tab id="rules" labelKey="label.tabs.rules" forward="fwdRules" url="rule.do?actionType=redirectToView"/>
+		<tab id="partner" labelKey="label.tabs.partnerException" forward="fwdPartnerException" url="exception.do?actionType=create"/>
+		<tab id="notifications" labelKey="label.tabs.notifications" forward="fwdNotifications" url="notification.do?actionType=show"/>
+		<tab id="serviceXML" labelKey="label.tabs.serviceXMLUI" forward="fwdServiceXMLUI" url="service.do?actionType=view"/>
+		<tab id="deals" labelKey="label.tabs.dealsexceptions" forward="fwdDealsException" url="deals.do?actionType=viewDeal"/>    
+	</tabs>
+	<tabLists>
+		<tabList id="manager">
+			<tab id="rules"/>
+			<tab id="partner"/>
+			<tab id="deals"/>
+			<tab id="notifications"/>
+			<tab id="serviceXML"/>
+		</tabList>
+		<tabList id="support">
+			<tab id="rules"/>
+			<tab id="serviceXML"/>
+		</tabList>
+		<tabList id="internal">
+			<tab id="rules"/>
+			<tab id="partner"/>
+			<tab id="deals"/>
+			<tab id="notifications"/>
+
+		</tabList>
+	</tabLists>	
+</tabContainer>
+

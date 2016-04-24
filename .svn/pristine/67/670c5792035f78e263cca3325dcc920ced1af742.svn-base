@@ -1,0 +1,150 @@
+/* Override APAS style CSS and Jquery UI css */
+
+.ui-widget{
+	font-family : Arial, Helvetica, sans-serif;
+}
+
+/**
+Removed from style.css for Create Rule page
+.topTab a:hover, .topTab a.selectTab {
+	height:28px;
+	padding:0px 25px 0px 14px;
+	line-height:25px;
+	background:#f6f6f6;
+	-moz-border-radius:5px 5px 0px 0px;
+	border-radius:5px 5px 0px 0px;
+	-webkit-border-radius:5px 5px 0px 0px;
+	border:1px solid #dadada;
+	border-bottom:none;
+	color:#000;
+	text-decoration:none;
+}
+**/
+
+/**Create Rule header override **/
+.ui-widget-header{
+	background:#ececec;
+	border:none;
+}
+.ui-tabs .ui-tabs-panel{
+	padding:0px;
+}
+
+/*
+.ui-widget-content{
+	border:none;
+	background:none;
+}
+*/
+.ui-tabs{
+	padding: 0px;
+}
+.selectConditions span{
+	padding : 10px 0px 6px 40px;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+	border : 1px solid #dadada;
+	background:none;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+	border : 1px solid #dadada;
+	background:none;
+}
+.topTab a{
+	padding:0px;
+}
+.topTab{
+	border:none;
+}
+.node .bracket{
+	width:25px;
+}
+.bracket.applus{
+	width:20px;
+}
+.extraValidationForm input[type="text"]{
+	width:140px;
+	
+}
+/*
+.ui-widget-content a{
+	color:#999;
+}
+*/
+.exArea a {
+	line-height:15px;
+	width:100%;
+}
+.nodeyellow select.select{
+	width:300px;
+}
+
+.nodeyellow{
+	width:350px;
+}
+
+.nodeblue.position3{
+	left:640px;
+}
+.nodeblue.position9{
+	left:875px;
+	}
+
+.ui-icon-close{
+	background-image: none !important;
+}
+
+.tierBorderLeaf {
+	position:relative;
+	background:url(../images/tierimageborder.png) repeat-y center 0px;
+	width:3px;
+	height:200px;
+	top:45px;
+	left:-40px;
+	width:40px;
+	display:none;
+	cursor:pointer;
+	border-top:none;
+}
+
+.leafEndExpression {
+	background:url(../images/bracketimage.png) no-repeat 0px -165px;
+	width:28px;
+	height:14px;
+	display:block;
+	position:relative;
+	left:55px;
+	top:104px;
+	display:block;
+	cursor:pointer;
+}
+.nodeEditBoxDelete {
+	width:39px;
+	height:36px;
+	float:right;
+	position:absolute;
+	background:url(../images/editBoxedit.png) no-repeat 0px 0px;
+	bottom:-28px;
+	cursor:pointer;
+	display:none;
+}
+
+
+.nodeEditBoxLineDelete{
+	width:39px;
+	height:36px;
+	float:right;
+	position:relative;
+	
+	cursor:pointer;
+	display:block;
+}
+.nodeEditBoxLineDelete:hover{
+ 	background:url(../images/deleteICon.png) no-repeat 0px 0px;
+ 	text-decoration:none;
+	color:#333333;
+}
+
+

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ServiceRegistry
+	xmlns="http://www.cisco.com/serviceframework/serviceregistry"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cisco.com/serviceframework/serviceregistry/serviceregistry.xsd">
+	
+	
+	<!-- Q2 Policies for ICW4.0 -->
+	
+	
+	<ServiceMeta serviceName="APServiceProxyPROD"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx.cisco.com:443/icw/sdsws/services/APServiceExt"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	<ServiceMeta serviceName="APServiceProxyPRODi"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi.cisco.com:443/icw/sdsws/services/APService"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxyPRODii"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="http://webapa-prod04.cisco.com:8080/ICW/SDS/services/APService"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	<ServiceMeta serviceName="APServiceProxyQ2FPRExt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-test1.cisco.com:443/icw/sdsws-30/services/APServiceExt"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	
+	
+	<ServiceMeta serviceName="APServiceProxyQ2FPRExt1"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-test1.cisco.com:443/icw/sdsws-30/services/APServiceExt"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR11.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxyQ2FPRInt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi-test1.cisco.com:443/icw/sdsws-30/services/APService"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxy40StgExt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-stage-ermo.cisco.com:443/icw/sdsws-40stg/services/APServiceExt"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	<ServiceMeta serviceName="APServiceProxy40StgInt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi-stage-ermo.cisco.com:443/icw/sdsws-40stg/services/APService"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxy40DevExt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-stage-ermo.cisco.com:443/icw/sdsws-40dev/services/APServiceExt"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxy40DevInt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi-stage-ermo.cisco.com/icw/sdsws-40dev/services/APService"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		
+		
+	</ServiceMeta>
+	
+	
+	<!--ServiceMeta serviceName="CartDealExtProxyI"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+	    <ClassName>com.cisco.icw.cart.manager.dealrenewal.IDealRenewal</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-stage-ermo.cisco.com:443/icw/ordercart-30/services/updateDealCartsOnRenewal" /> 
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<Parameter name="doclitBare" value="true" />
+	   </ServiceMeta-->
+	   
+	   <ServiceMeta serviceName="CartDealExtProxyI"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+	    <!--ClassName>com.cisco.icw.cart.manager.dealrenewal.IDealRenewal</ClassName-->
+		<Parameter name="endpointUrl" value="https://wsgx-stage.cisco.com:443/icw/ordercart-30/services/updateDealCartsOnRenewal" /> 
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<Parameter name="doclitBare" value="true" />
+	   </ServiceMeta>
+	
+	
+	
+		
+	
+	<!-- Q1 ENVIRONMENT RCDN -->
+	
+	<!--ServiceMeta serviceName="APServiceProxyFPRExt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-prod1.cisco.com:443/icw/sdsws/services/APServiceExt"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /--> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	<!--/ServiceMeta-->
+	
+	
+	
+	
+	<!--ServiceMeta serviceName="APServiceProxyIntFPR"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName-->
+		<!--Parameter name="endpointUrl" value="https://wsgx-stage.cisco.com:443/icw/sdsws/services/APServiceExt"/-->
+		<!--Parameter name="endpointUrl" value="http://webapa-prod03.cisco.com:8080/ICW/SDS/services/APService"/ -->
+		<!--Parameter name="endpointUrl" value="http://webapa-prod03.cisco.com:8080/ICW/SDS/services/APService"/ -->
+		<!--Parameter name="endpointUrl" value="https://wsgx-prod1.cisco.com:443/icw/sdsws/services/APServiceExt"/-->
+		<!--Parameter name="endpointUrl" value="https://wsgi-prod1.cisco.com:443/icw/sdsws/services/APService"/-->>
+		<!--Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /--> 
+		<!--Parameter name="SET_KEY_STORE" value="true" /-->
+		
+	<!--/ServiceMeta-->
+	
+	
+	<ServiceMeta serviceName="APServiceProxyLocalXYZ"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="http://bwaldiya-wxp01/RCDN_SDS/services/APService"/>
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxyStg01"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="http://webapa-stg.cisco.com/ICW/SDS/services/APService"/>
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxyDev01LB"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="http://webapa-dev.cisco.com/ICW/SDS/services/APService"/>
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxyStg01LB"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="http://webapa-stg.cisco.com/ICW/SDS/services/APService"/>
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		
+	</ServiceMeta>
+	
+	
+	<!--  this entry is for accessing the service via wsgi currently not in use -->
+	
+	<ServiceMeta serviceName="APServiceProxyInt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi-dev.cisco.com/icw/sdsws/services/APService"/>
+		<Parameter name="doclitBare" value="true" />
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_ISTORE_ORDER.gen" />
+		<Parameter name="password" value="cisco123" /> 
+	</ServiceMeta>
+	
+	<!-- Q2 ENVIRONMENT -->
+	<ServiceMeta serviceName="APServiceProxyErmoExt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-stage-ermo.cisco.com:443/icw/sdsws-30/services/APServiceExt"/>
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_ISTORE_ORDER.gen" />
+		<Parameter name="password" value="ZSaw3q@" /> 
+		
+	</ServiceMeta>
+	
+	<ServiceMeta serviceName="APServiceProxyErmoInt"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi-stage-ermo.cisco.com/icw/sdsws-30/services/APService"/>
+		<Parameter name="doclitBare" value="true" />
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_ISTORE_ORDER.gen" />
+		<Parameter name="password" value="ZSaw3q@" /> 
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxyErmoExt001"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-stage-ermo.cisco.com:443/icw/sdsws-30/services/APServiceExt"/>
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		
+	</ServiceMeta>
+	
+	<ServiceMeta serviceName="APServiceProxyErmoExt002"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="http://bwaldiya-wxp01/ICW/SDS/services/APService"/>
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		
+	</ServiceMeta>
+	
+	
+	 <!-- LT ENVIRONMENT -->
+	 
+	<ServiceMeta serviceName="APServiceProxyLTwgx"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-lt.cisco.com:443/icw/sdsws-30/services/APServiceExt" /> 
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<Parameter name="doclitBare" value="true" />
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxyLTwgi"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi-lt.cisco.com:443/icw/sdsws-30/services/APService" /> 
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<Parameter name="doclitBare" value="true" />
+	</ServiceMeta>
+	
+	<ServiceMeta serviceName="APServiceProxyLB"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-dev.cisco.com:443/icw/sdsws/services/APServiceExt" /> 
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<Parameter name="doclitBare" value="true" />
+	</ServiceMeta>
+	
+	
+	<ServiceMeta serviceName="APServiceProxyLBI"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi-dev.cisco.com/icw/sdsws/services/APService" /> 
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<Parameter name="doclitBare" value="true" />
+	</ServiceMeta>
+	
+	
+	  
+	<ServiceMeta serviceName="CartDealExtProxy"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-stage.cisco.com:443/icw/ordercart-30/services/UpdateDealCartsOnRenewal" /> 
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<Parameter name="doclitBare" value="true" />
+	</ServiceMeta>
+	
+	
+
+	
+	<!-- SDS Client OVER ACE ATA:-->
+	
+	<!--ServiceMeta serviceName="AtAServiceProxy" domainName="RemoteWSService" type="wsProxy">
+		<Parameter name="endpointUrl" value="https://wsgx-stage.cisco.com/eiam/ataws-30/AtAService"/>
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="30000" />
+        <Parameter name="HTTP_SO_TIMEOUT" value="30000" />
+	</ServiceMeta-->
+	
+		<!-- SDS Client OVER ACE ATA:-->
+	<ServiceMeta serviceName="AtAServiceProxy" domainName="RemoteWSService" type="wsProxy">
+		<Parameter name="endpointUrl" value="https://wsgx-stage-ermo.cisco.com/eiam/ataws-ys2/AtAService"/>
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="100000" />
+        <Parameter name="HTTP_SO_TIMEOUT" value="100000" />
+	</ServiceMeta>
+	
+	
+	<ResourceDef name="FWK_PROPERTIES_RES">
+	    	<Parameter name="SET_KEY_STORE" value="true"></Parameter>
+	</ResourceDef>
+
+	
+
+	
+</ServiceRegistry>

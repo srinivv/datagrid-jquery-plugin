@@ -1,0 +1,233 @@
+<%@page import="com.cisco.apas.util.DateUtils"%>
+<%@page import="com.cisco.apas.entity.Node"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<%@ include file="common/node-templates.jsp" %>
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/node.css" />
+
+<!-- 
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jdata.js"></script>
+ -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/create-node.js"></script>
+
+<div class="subHeading">
+	<h1 class="nodesHeading">Edit Node</h1>
+</div>
+        
+<div class="contentContainer">
+	<div id="nodeErrorMsg">
+		<div class="messageError nameError" style="display:none;">Please enter the node name.</div>
+		<div class="messageError noItemsError" style="display:none;">No items selected. Please add some items to create/update a node.</div>
+		<div class="messageError unknowError" style="display:none;">An error occurred. Please see the log for more details</div>
+	</div>  
+	<div class="enterNodeName">
+		<div class="editNodeName alignleft">
+			<h3 class="stepheading">1. Node name </h3>
+			<input id="editNodeInputName" type="text" value="<s:property value="editNode.name" /> " >
+			<input id="editNodeId" type="hidden" value="<s:property value="editNode.id" /> " >
+		</div>
+	</div> 
+              
+	<div class="createOuter" style="display:block;">
+		<div class="skuContentArea">
+			<div class="skuTable">
+				<h5 class="head1 mrgin12">2. You have added the following items to create a new Node</h5>
+				<div class="selectedItemsScroll">
+					<div class="selectedItems">
+						<table id="existingSkuTable" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<th width="30">#</th>
+								<th width="220">SKUS</th>
+								<th width="675">Description</th>
+								<th>&nbsp;</th>
+							</tr>
+							<%
+								int i = 0;
+							%>
+							<s:iterator value="editNode.items" var="item">
+								<s:if test="(#item.status).equalsIgnoreCase('A')">
+								<tr ind="1">
+									<td width="30">
+										<%= ++i %>
+									</td>
+									<td width="220">
+										<s:if test="%{editNode.type=='PRODUCT'}">
+											<s:property value="#item.itemProduct" />
+										</s:if>
+										<s:else>
+											<s:property value="#item.itemService" />
+										</s:else>
+									</td>
+									<td width="675">
+										<s:property value="editNode.level" />
+										<input type="hidden" id="editNodeType" value="<s:property value="editNode.type" />"/>
+										<input type="hidden" id="editNodeLevel" value="<s:property value="editNode.level" />"/>
+									</td>
+									<td width="20"><div class="posRel">
+										<div class="delRow">
+											<a class="delicon removeExistingSku" href="javascript://" title="Delete"> <img align="delete" src="images/delRow.png"> </a> 
+											</div>
+										</div>
+									</td>
+								</tr>
+								</s:if>
+							</s:iterator>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div><!--skuContentArea--> 
+	</div>
+	<h3 class="stepheading">3. Add more items to my Node</h3>
+	<div class="secondstepmain">
+		<div class="selectAddNodeArea">
+			<a href="javascript://" class="searchNode" id="searchNode">Search for Product/Service Number (SKU)</a>
+			<a href="javascript://" class="selectNode" id="selectNode">Select Product and/or Service Families</a>       
+		</div>
+	</div>
+	<div class="searchBox" style="display:none;">
+		<div class="nodeheadingarea">
+			<ul>
+				<li><a href="javascript://" class="searchNodeSmall  searchnodeLink">Search for Product/Service Number (SKU)</a></li>
+				<li><a href="javascript://" class="selectNodeSmall  selectnodeLink">Select Product and/or Service Families</a></li>
+			</ul>  
+               <div class="clear"></div>  
+		</div>    
+		<div class="searchSearchMain" style="display:none;">
+			<div id="SearchAddNode">
+				<div class="select-prod">
+					<select id="createNodeSelect" class="moreCategoriesSelect">
+						<option value="serviceSKU">Service SKU</option>
+						<option value="productSKU">Product SKU </option>
+					</select>
+				</div>
+				<div class="bigSearch">
+					<input type="text" autocomplete="off" id="searchSKUs" class="ac_input" style="background-color:#fff"  onblur="if(this.value==''){this.value='Enter SKU'};" onfocus="if(this.value=='Enter SKU'){this.value=''};"  value="Enter SKU">
+				</div>
+                   <input type="text" class="searchSubmit searchSKUInput">
+                   <div class="clear"></div>
+			</div>
+			<div class="skuSearchResult" style="display:none;">
+				<table  border="0" cellspacing="0" cellpadding="0"  width="100%" class="countryListing">
+					<tr>
+						<th width="20"><label class="label_check"><input type="checkbox" class="selectall" style="display:none"/></label></th>
+						<th width="140">SKUS</th>
+						<th width="300">Description</th>
+						<th width="300">Hierarchy</th>
+					</tr>
+				</table>
+				<div id="createNode-skuSearchResults" class="skuListScroll"></div>
+			</div> 
+		</div>
+		<div class="selectSearchMain" style="display: none;">
+			<div class="searchFilterOption">
+				<div id="pageTab">
+					<a href="javascript://" id="productTab" class="borderRadiusL">Product Families</a> 
+					<a href="javascript://" id="serviceTab" class="borderRadiusR selectedState">Service Families</a>
+					<div class="clear"></div>
+				</div>
+				<div class="fliterTabMainArea">
+					<ul class="fliterTabArea">
+						<li id="firstLetter" class="select"><a href="#" value="A ">A<span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="B ">B <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="C ">C <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="D ">D <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="E ">E <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="F ">F <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="G ">G <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="H ">H <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="I ">I <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="J ">J <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="K ">K <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="L ">L <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="M ">M <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="N ">N <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="O ">O <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="P ">P <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="Q ">Q <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="R ">R <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="S ">S <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="T ">T <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="U ">U <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="V ">V <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="W ">W <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="X ">X <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="Y ">Y <span class="checkedArrow"></span></a></li>
+						<li><a href="#" value="Z ">Z <span class="checkedArrow"></span></a></li>
+						<div class="filterSearch" style="display: none;">
+							<input type="text" class="inputtxt" id="searchFamiliesInput" value="Search Product families"> 
+							<input type="submit" value="Submit" class="inputSeacrhIcon">
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</ul>
+				</div>
+								
+				<!--fliterResultArea-->
+				<div class="fliterResultArea">
+
+					<div class="filterLeftArea">
+						<div class="flitersearchNav">
+							<a href="#" id="prev">Prev</a> <a href="#" id="next">Next</a>
+						</div>
+						<div class="filterResultMain"></div>
+					</div>
+					
+					<!--filterLeftArea-->
+					<div class="filterRightArea">
+						<div class="filterSearchResult" style="display: none;"></div>
+						<div class="rightChildContent"></div>
+					</div>
+					
+					<!--filterRightArea-->
+					<div class="clear"></div>
+				</div>
+				
+				<!--fliterResultArea-->
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="createOuter" id="addRuleItem">
+			<div class="skuContentArea">
+				<h5 class="head1">Added Items</h5>
+				<p class="notaddedtext">You have not added any item(s) to your Node</p>
+                                       
+				<div class="skuTable" style="display:none;">
+					<p class="addedtext">You have added the following item(s) to your Node</p>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<th width="235">SKUS</th>
+							<th width="675">Description</th>
+							<th width="20">&nbsp;</th>
+						</tr>
+					</table>
+					<div class="addedNodeScroll">
+						<table  id="skuTable" border="0" cellspacing="0" cellpadding="0" width="100%" ></table>
+					</div> 
+					<div class="buttonsArea">
+						<a href="javascript://" class="savenode">Update and Save</a>
+						<a href="javascript://" class="cancelNodeEdit disableBTN">Cancel</a>      					
+					</div>    
+				</div>
+				<div class="clear"></div>
+			</div><!--skuContentArea--> 
+		</div><!--hierarchyLinks end-->
+	</div>
+	
+	<div class="partnersuccesArea" style="display:none">
+		<p>You have successfully updated the Node</p>
+		<a href='node_edit.do?nodeId=<s:property value="editNode.id" />' >Edit the same Node</a> 
+		<a class="morepartner" href="node.do?redirect=newnode">Add more Nodes</a>
+	</div>
+</div>		              	      
+<script>
+	toggleLeftNavigationMenus('addnode');
+	globalNodeLevel = '<s:property value="editNode.level" />';
+	globalNodeType = '<s:property value="editNode.type" />';
+	disableCheckboxes();
+</script>

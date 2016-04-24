@@ -1,0 +1,11 @@
+package com.cisco.apas.entity;
+
+public class Certification extends Qualification implements BooleanToken {
+	public String getTokenValue() {
+		return code;
+	}
+
+	public void setTokenValue(String tokenValue) {
+		// TODO Auto-generated method stub
+	}
+}

@@ -1,0 +1,33 @@
+package com.cisco.apas.entity;
+
+import java.util.List;
+
+public class Expression{
+	
+	private List<Token> tokens;
+	private ExpressionType expressionType;
+	private ExpressionValidator validator;
+	
+	public List<Token> getTokens() {
+		return tokens;
+	}
+
+	public void setTokens(List<Token> tokens) {
+		this.tokens = tokens;
+	}
+
+	public boolean isValid() {
+		return validator.validate(tokens);
+	}
+
+	public ExpressionType getExpressionType() {
+		return expressionType;
+	}
+
+	public void setExpressionType(ExpressionType expressionType) {
+		this.expressionType = expressionType;
+	}
+
+	//to do @Override toString()
+	
+}

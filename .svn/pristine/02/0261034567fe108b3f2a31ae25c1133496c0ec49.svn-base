@@ -1,0 +1,323 @@
+package com.cisco.apas.dao;
+
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import oracle.jdbc.driver.OracleTypes;
+import oracle.sql.ARRAY;
+import oracle.sql.ArrayDescriptor;
+
+import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.jdbc.core.support.AbstractSqlTypeValue;
+import org.springframework.jdbc.object.StoredProcedure;
+
+import com.cisco.apas.entity.Partner;
+import com.cisco.apas.entity.PartnerException;
+import com.cisco.apas.entity.partnerExceptionId;
+
+public class PartnerExceptionDao extends BaseDao implements DataAccessQueries {
+
+	private static final Logger logger = Logger.getLogger(PartnerExceptionDao.class);
+	
+	public int getPartnerExceptionCount(){
+		try {
+			final org.hibernate.Criteria criteria = this.getSession(false).createCriteria(PartnerException.class).add(Restrictions.ne("status", "DELETED"));
+			criteria.setProjection(Projections.rowCount());
+			return (Integer) criteria.uniqueResult();
+		} catch (org.hibernate.HibernateException ex) {
+			throw super.convertHibernateAccessException(ex);
+		}
+	}
+	
+	public List<PartnerException> getAllPExceptions(int start, int end, int pageSize){
+		try {
+			
+			Criteria criteria = this.getSession(false).createCriteria(PartnerException.class).addOrder(Order.desc("updatedOn")).add(Restrictions.ne("status", "DELETED"));
+	
+			criteria.setFirstResult(start-1);
+			criteria.setMaxResults(pageSize);
+			List<PartnerException> results = criteria.list();
+			return results;
+			
+		} catch (org.hibernate.HibernateException ex) {
+			throw super.convertHibernateAccessException(ex);
+		}
+	}
+
+	
+	public String savePartnerException(String userId, String partnerId,String exceptionDesc, String status, Date effDate, Date endDate, String[] nodeList) {
+		try {
+
+			ExceptionCreationStatus exceptionCreationStatus = new ExceptionCreationStatus(apasJdbcTemplate);
+			Map inputParams = new HashMap();
+			inputParams.put(ExceptionCreationStatus.I_USER_ID, userId);
+			inputParams.put(ExceptionCreationStatus.I_PDB_GEO_ID, Integer.parseInt(partnerId));
+			inputParams.put(ExceptionCreationStatus.I_STATUS, status);
+			inputParams.put(ExceptionCreationStatus.I_START_DATE, effDate);
+			inputParams.put(ExceptionCreationStatus.I_END_DATE, endDate);
+			inputParams.put(ExceptionCreationStatus.I_DESCRIPTION,exceptionDesc);
+			inputParams.put(ExceptionCreationStatus.I_NODE_LIST, new JavaToOracleNodeListConverter(nodeList));
+			long time = System.currentTimeMillis();
+			Map outputParams = exceptionCreationStatus.execute(inputParams);
+			logger.info("Time taken checkPartnerException : PSE_BUSINESS_RULE_PKG.SAVE_PARTNER_EXCEPTION :"
+							+ (System.currentTimeMillis() - time)+ " with Input Params: " + inputParams);
+			String errorName = (String) outputParams.get(ExceptionCreationStatus.O_ERROR_MSG);
+			BigDecimal errorCode = (BigDecimal) outputParams.get(ExceptionCreationStatus.O_ERROR_CODE);
+			String statusMsg = "success";
+			if (errorCode.intValue() == -1) {
+				statusMsg = errorName ;
+			}
+			return statusMsg;
+		} catch (Exception e) {
+		
+			if (e instanceof DAOException) {
+				logger.error("Encountered DAOException :: " + e
+						+ " in Add Exception");
+				e.printStackTrace();
+				throw (DAOException) e;
+			} else {
+				logger.error("Encountered exception: " + e
+						+ " in Add Exception.");
+				e.printStackTrace();
+				throw new DAOSystemException(ERROR_ADMIN, e);
+			}
+		}
+	}
+	
+	private class ExceptionCreationStatus extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.SAVE_PARTNER_EXCEPTION";
+
+		public static final String I_USER_ID = "I_USER_ID";
+
+		public static final String I_PDB_GEO_ID = "I_PDB_GEO_ID";
+		
+		public static final String I_STATUS = "I_STATUS";
+		
+		public static final String I_START_DATE = "I_START_DATE";
+
+		public static final String I_END_DATE = "I_END_DATE";
+		
+		public static final String I_DESCRIPTION = "I_DESCRIPTION";
+		
+		public static final String I_NODE_LIST = "I_NODE_TBL";
+
+		public static final String O_ERROR_CODE = "O_ERROR_CODE";
+
+		public static final String O_ERROR_MSG = "O_ERROR_MSG";
+
+		public ExceptionCreationStatus(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+
+			declareParameter(new SqlParameter(I_USER_ID, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_PDB_GEO_ID, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(I_STATUS, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_START_DATE, OracleTypes.DATE));
+			declareParameter(new SqlParameter(I_END_DATE, OracleTypes.DATE));
+			declareParameter(new SqlParameter(I_DESCRIPTION, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_NODE_LIST, OracleTypes.ARRAY));
+			declareParameter(new SqlOutParameter(O_ERROR_CODE, OracleTypes.NUMERIC));
+			declareParameter(new SqlOutParameter(O_ERROR_MSG,OracleTypes.VARCHAR));
+			compile();
+		}
+	}
+	
+	private class JavaToOracleNodeListConverter extends AbstractSqlTypeValue {
+		String[] nodeList = null;
+		
+		public JavaToOracleNodeListConverter(String[] nodeList){
+			this.nodeList = nodeList;
+		}
+		
+		public Object createTypeValue(Connection underlyingConn, int type, String typeName) throws SQLException {
+			ARRAY dbArray = null;
+  			try	{
+  				Connection ocon =  getApasJdbcTemplate().getNativeJdbcExtractor().getNativeConnection(underlyingConn);
+  				ArrayDescriptor arrayDesc = ArrayDescriptor.createDescriptor("SD_NODE_TYPE", ocon);
+  				
+  				int[] nodeArr = new int[nodeList.length];
+  				for (int i = 0; i < nodeList.length; i++){
+  					nodeArr[i] =Integer.parseInt(nodeList[i]);
+  				}
+  				
+  				dbArray = new ARRAY(arrayDesc, ocon, nodeArr);
+  				
+  			} catch (Exception e) {
+  				e.printStackTrace();
+  			}
+  			return dbArray;
+		}
+		
+	}
+	
+	private class JavaToOraclePdbListConverter extends AbstractSqlTypeValue {
+		String[] pdbList = null;
+		
+		public JavaToOraclePdbListConverter(String[] pdbList){
+			this.pdbList = pdbList;
+		}
+		
+		public Object createTypeValue(Connection underlyingConn, int type, String typeName) throws SQLException {
+			ARRAY dbArray = null;
+  			try	{
+  				Connection ocon =  getApasJdbcTemplate().getNativeJdbcExtractor().getNativeConnection(underlyingConn);
+  				ArrayDescriptor arrayDesc = ArrayDescriptor.createDescriptor("PSE_PDB_GEO_ID_TYPE", ocon);
+  				
+  				int[] nodeArr = new int[pdbList.length];
+  				for (int i = 0; i < pdbList.length; i++){
+  					nodeArr[i] =Integer.parseInt(pdbList[i]);
+  				}
+  				
+  				dbArray = new ARRAY(arrayDesc, ocon, nodeArr);
+  				
+  			} catch (Exception e) {
+  				e.printStackTrace();
+  			}
+  			return dbArray;
+		}
+		
+	}
+	
+	public boolean deletePartnerException(String[] nodeList,String[] pdbList) {
+		try {
+
+			DeletePartnerException deletePartnerException = new DeletePartnerException(apasJdbcTemplate);
+			Map inputParams = new HashMap();
+			
+			inputParams.put(DeletePartnerException.I_NODE_LIST, new JavaToOracleNodeListConverter(nodeList));
+			inputParams.put(DeletePartnerException.I_PDB_LIST, new JavaToOraclePdbListConverter(pdbList));
+
+			Map outputParams = deletePartnerException.execute(inputParams);
+			String errorMsg = (String) outputParams.get(DeletePartnerException.O_ERROR_MSG);
+			BigDecimal errorCode = (BigDecimal) outputParams.get(DeletePartnerException.O_ERROR_CODE);
+			if (errorCode.intValue() == -1) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+
+			if (e instanceof DAOException) {
+				logger.error("Encountered DAOException :: " + e + " in Delete Partner Exception");
+				e.printStackTrace();
+				throw (DAOException) e;
+			} else {
+				logger.error("Encountered exception: " + e + " in Delete Partner Exception.");
+				e.printStackTrace();
+				throw new DAOSystemException(ERROR_ADMIN, e);
+			}
+		}
+	}
+	
+	public class DeletePartnerException extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.delete_patner_pr";
+		public static final String I_NODE_LIST = "i_node_tbl";
+		public static final String I_PDB_LIST = "i_pdb_geo_id_tbl";
+		
+       	public static final String O_ERROR_CODE = "O_ERROR_CODE";
+       	public static final String O_ERROR_MSG = "O_ERROR_MSG";      	
+
+		public DeletePartnerException(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+
+			declareParameter(new SqlParameter(I_PDB_LIST, OracleTypes.ARRAY));
+			declareParameter(new SqlParameter(I_NODE_LIST, OracleTypes.ARRAY));
+			declareParameter(new SqlOutParameter(O_ERROR_CODE, OracleTypes.NUMERIC));
+			declareParameter(new SqlOutParameter(O_ERROR_MSG, OracleTypes.VARCHAR));
+			compile();
+		}
+		
+		
+	}
+
+	
+	public PartnerException getPartnerException(long pdbBeId, long nodeId) {
+
+		PartnerException pExcep = null;
+		try {
+
+			partnerExceptionId pId = new partnerExceptionId();
+			pId.setPdbGeoId( new Long(pdbBeId) );
+			pId.setNodeId( new Long(nodeId) );
+			
+			pExcep = (PartnerException)(this.getSession(false).get(PartnerException.class, pId));
+
+			System.out.println("==== getPartnerException PdbGeoId : " + pExcep.getId().getPdbGeoId() + ", NodeId : " + pExcep.getId().getNodeId() + ", Name : " + pExcep.getPartnerName());
+			
+		} catch (Exception e) {
+			System.out.println("Error while get the PartnerException");
+			e.printStackTrace();
+		}
+		return pExcep;
+	}
+
+	
+	public int updatePartnerException(PartnerException partnerException){
+		
+		try {
+			partnerExceptionId pId = new partnerExceptionId();
+			pId.setPdbGeoId( partnerException.getId().getPdbGeoId() );
+			pId.setNodeId( partnerException.getId().getNodeId() );
+			
+			PartnerException pExcep = (PartnerException)(this.getSession(false).get(PartnerException.class, pId));
+			if(pExcep!=null){
+				
+				System.out.println("==== getPartnerException PdbGeoId : " + pExcep.getId().getPdbGeoId() + ", NodeId : " + pExcep.getId().getNodeId() + ", Name : " + pExcep.getPartnerName());
+				
+				pExcep.setPartnerName(partnerException.getPartnerName());
+				pExcep.setStartDate(partnerException.getStartDate());
+				pExcep.setEndDate(partnerException.getEndDate());
+				pExcep.setPartnerDescription(partnerException.getPartnerDescription());
+				pExcep.setUpdatedBy(partnerException.getUpdatedBy());
+				
+				
+				return 1;
+				
+			}else{
+				// No record found
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error while get the PartnerException");
+			e.printStackTrace();
+		}		
+		return 0;
+	}
+	
+	public List<Partner> getPartners(String searchTerm) {
+
+		StringBuffer sql = new StringBuffer("select be_id, be_name from be ");
+		sql.append("where (upper(be_name) like ");
+		sql.append("upper('" + searchTerm + "%')");
+		sql.append(" OR ");
+		sql.append("be_id like ");
+		sql.append("'" + searchTerm + "%')");
+		sql.append(" and rownum <= 100 ");
+		
+		List<Partner> partners = getApasJdbcTemplate().query(sql.toString(), new RowMapper<Partner>() {
+			public Partner mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Partner partner = new Partner();
+				partner.setId(rs.getLong("be_id"));
+				partner.setName(rs.getString("be_name"));
+				return partner;
+			}
+		});
+		
+		return partners;
+	}
+	
+}

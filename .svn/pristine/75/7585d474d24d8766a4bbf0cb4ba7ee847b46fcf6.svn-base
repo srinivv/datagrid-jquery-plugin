@@ -1,0 +1,68 @@
+package com.cisco.apas.entity;
+
+public class ServiceHierarchyVO {
+	
+	String serviceCategory;
+	String serviceProgram;
+	String serviceLevel;
+	String includeAllSKUS;
+	String skuNo;
+	String description;
+	
+	public String getServiceCategory() {
+		return serviceCategory;
+	}
+	public void setServiceCategory(String serviceCategory) {
+		this.serviceCategory = serviceCategory;
+	}
+	public String getServiceProgram() {
+		return serviceProgram;
+	}
+	public void setServiceProgram(String serviceProgram) {
+		this.serviceProgram = serviceProgram;
+	}
+	public String getServiceLevel() {
+		return serviceLevel;
+	}
+	public void setServiceLevel(String serviceLevel) {
+		this.serviceLevel = serviceLevel;
+	}
+	public String getIncludeAllSKUS() {
+		return includeAllSKUS;
+	}
+	public void setIncludeAllSKUS(String includeAllSKUS) {
+		this.includeAllSKUS = includeAllSKUS;
+	}
+	public String getSkuNo() {
+		return skuNo;
+	}
+	public void setSkuNo(String skuNo) {
+		this.skuNo = skuNo;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((skuNo == null) ? 0 : skuNo.hashCode());
+
+		return result;
+	}
+
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (!(obj instanceof NodeItem))
+			return false;
+		ServiceHierarchyVO vo = (ServiceHierarchyVO) obj;
+		if (skuNo == vo.getSkuNo())
+			return true;
+		else
+			return false;
+	}
+}

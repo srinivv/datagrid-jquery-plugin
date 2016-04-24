@@ -1,0 +1,110 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ include file="common/exception-templates.jsp" %>
+<%@page import="com.cisco.apas.entity.Node"%>
+
+	<div class="partnerMainArea">
+		<div class="subHeading">
+			<h1>Edit Deal Exception</h1>
+		</div>
+		<div id="dealErrorMsg">
+			<div class="messageError dealError" style="display:none;">Please enter deal ID/Name.</div>
+			<div class="messageError dateError" style="display:none;">Please select the start/end date.</div>
+			<div class="messageError unknowError" style="display:none;">An error occurred. Please see the log for more details</div>
+		</div>  
+
+			
+
+		<div class="partnerformarea">
+		
+		<form name="dealPartnerForm" action="dealException_update.do" method="POST">
+		
+			<input type="hidden" id="dealId" name="dealId" value="<s:property value="#request.DealException.Id.dealId" />">
+			<input type="hidden" id="nodeId" name="nodeId" value="<s:property value="#request.DealException.Id.nodeId" />">
+		
+			<div id="ManualAddNode">
+				<div class="box dealBox">
+					<p>
+						<label> Deal: <span class="error">*</span></label> 
+						
+						<input class="input" type="text" id="dealName" name="dealName" disabled="disabled" value="<s:property value="#request.DealException.dealName" /> (<s:property value="#request.DealException.Id.dealId" />)">
+					
+						
+						 <br clear="left">
+						<small>(Enter Deal ID/Name)</small>
+					</p>
+					<p>
+						<span class="boxWidthSmall alignleft"> <label>
+								Start Date: <span class="error">*</span>
+						</label> <input id="startDate" name="startDate"
+							class="apasDatePick" type="text" disabled="disabled" value="<s:property value="#request.DealException.startDateStr" />">
+						</span> <span class="boxWidthSmall alignright"> <label>
+								End Date: <span class="error">*</span>
+						</label> <input id="endDate" name="endDate"
+							class="apasDatePick" type="text" readonly="readonly" value="<s:property value="#request.DealException.endDateStr" />">
+						</span>
+					</p>
+					<div class="clear"></div>
+				</div>
+				<div class="box dealBox1">
+					<p>
+						<label>Exception Description:</label>
+						<textarea id ="description" name="description" class="textarea" type="text"><s:property value="#request.DealException.exceptionDescription" /></textarea>
+					</p>
+					<div class="clear"></div>
+					<div class="formButtonArea">
+						<input class="formButton addException" type="button" id="updateDealException"
+							value="Update Exception"> <a class="cancelExp disableBTN"
+							href="dealException.do">Cancel</a>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="clear"></div>
+		
+		</form>
+		</div>
+		<div class="partnersuccesArea">
+			<p>You have successfully updated Deal Exception</p>
+			<a href="dealException.do">View Deal Exception</a>
+			<a class="editDeal" href="javascript://">Edit Deal Exception</a>
+		</div>
+	</div>
+
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/jquery-ui-apas.css" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/exception.js"></script>
+<script>
+	toggleLeftNavigationMenus('dealexception');
+	$(document).ready(function() {
+		// Deal search by id / name
+	    $( "#dealName" ).autocomplete({
+	        minLength: 4,
+	        search: function(event, ui) { 
+	        	$('.loader').hide();
+	            $(this).addClass('spinner');
+	        },
+	        open: function(event, ui) {
+	        	$('.loader').hide();
+	            $(this).removeClass('spinner');
+	        },
+	        source:   function (request, response) {
+	            $.getJSON("dealException_searchDealName.do", { term: $( "#dealName" ).val() }, response);
+	        },
+	        select: function( event, ui ) {
+	        	var selectedValue = ui.item.value;
+				$( "#dealName" ).val(selectedValue);
+	        	
+	        	if (selectedValue.lastIndexOf("(")) {
+	        		selectedValue = selectedValue.substring(selectedValue.lastIndexOf("(")+1, selectedValue.lastIndexOf(")"));
+	        	} else {
+	        		selectedValue = '';
+	        	}
+	        	
+				$( "#dealId" ).val(selectedValue);
+	            return false;
+	        }
+	    });
+	});
+	
+</script>

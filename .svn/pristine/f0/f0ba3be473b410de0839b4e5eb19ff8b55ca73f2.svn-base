@@ -1,0 +1,23 @@
+package com.cisco.apas.entity;
+
+import java.io.Serializable;
+
+public class dealExceptionId implements Serializable{
+
+	private Long nodeId;
+	private Long dealId;
+	
+	public Long getNodeId() {
+		return nodeId;
+	}
+	public void setNodeId(Long nodeId) {
+		this.nodeId = nodeId;
+	}
+	public Long getDealId() {
+		return dealId;
+	}
+	public void setDealId(Long dealId) {
+		this.dealId = dealId;
+	}
+	
+}

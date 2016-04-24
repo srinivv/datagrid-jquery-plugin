@@ -1,0 +1,132 @@
+
+grant codebase "file:${application}" {
+
+ 
+	 permission java.net.SocketPermission "wsgi.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgi.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgi.cisco.com:443", "connect,resolve";
+  	 
+  	 permission java.net.SocketPermission "wsgx.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx.cisco.com:443", "connect,resolve";
+	
+	 permission java.net.SocketPermission "wsgi-dev.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgi-dev.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgi-dev.cisco.com:443", "connect,resolve";
+  	 
+  	 permission java.net.SocketPermission "wsgi-stage.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgi-stage.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgi-stage.cisco.com:443", "connect,resolve";
+  	 
+  	 permission java.net.SocketPermission "wsgi-lt.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgi-lt.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgi-lt.cisco.com:443", "connect,resolve";
+  	 
+  	 permission java.net.SocketPermission "wsgx-dev.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx-dev.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx-dev.cisco.com:443", "connect,resolve";
+  	 
+  	 permission java.net.SocketPermission "wsgx-stage.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx-stage.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx-stage.cisco.com:443", "connect,resolve";
+  	 
+  	 permission java.net.SocketPermission "wsgx-lt.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx-lt.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx-lt.cisco.com:443", "connect,resolve";
+  	 
+  	 
+  	 permission java.net.SocketPermission "wwwin-tools-dev.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-dev.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-dev.cisco.com:443", "connect,resolve";
+  
+  	 permission java.net.SocketPermission "wwwin-tools-stage.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-stage.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-stage.cisco.com:443", "connect,resolve";
+  	 
+  	 permission java.net.SocketPermission "wwwin-tools-lt.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-lt.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-lt.cisco.com:443", "connect,resolve";
+
+	 permission java.net.SocketPermission "wwwin-tools-stage3.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-stage3.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-stage3.cisco.com:443", "connect,resolve";
+  	 
+	 permission java.net.SocketPermission "wwwin-tools-dev3.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-dev3.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wwwin-tools-dev3.cisco.com:443", "connect,resolve";
+  	 
+  	 
+  	 permission java.net.SocketPermission "wsgx-test1.cisco.com", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx-test1.cisco.com:80", "connect,resolve";
+  	 permission java.net.SocketPermission "wsgx-test1.cisco.com:443", "connect,resolve";
+  	 
+  	 
+  	 permission java.net.SocketPermission "wwwin-tools-dev.cisco.com", "resolve";
+  	 
+  	 permission java.net.SocketPermission "mmx-dev-1:7222","connect,resolve";
+	 permission java.net.SocketPermission "mmxsrv-stage-1:7222","connect,resolve";
+   
+     	 
+	 permission java.util.PropertyPermission "javax.net.ssl.trustStore","read,write";
+	 permission java.net.SocketPermission "localhost", "resolve,connect";
+	 permission java.io.FilePermission "${was.install.root}/java/bin/../jre/lib/xerces.properties", "read,write,delete";
+	 permission java.io.FilePermission "${was.install.root}/-", "read"; 
+	 permission java.security.SecurityPermission "putProviderProperty.IBMJCE";
+	 permission java.security.SecurityPermission "insertProvider.IBMJCE";
+	 permission java.security.SecurityPermission "putProviderProperty.IBMJSSE";
+	 permission java.security.SecurityPermission "insertProvider.IBMJSSE";
+	 permission java.security.SecurityPermission "putProviderProperty.JSSE";
+	 permission java.security.SecurityPermission "insertProvider.JSSE";
+	 permission com.ibm.websphere.security.WebSphereRuntimePermission "ContextManager.getServerCredential";
+
+	 permission java.lang.RuntimePermission "accessClassInPackage.sun.io";
+	 permission java.lang.RuntimePermission "accessClassInPackage.sun.misc";
+	 permission java.lang.RuntimePermission "accessClassInPackage.sun.reflect";
+	 permission java.lang.RuntimePermission "getClassLoader";
+	 permission java.lang.RuntimePermission "shutdownHooks";
+	 permission java.io.FilePermission "${was.install.root}/-", "read";
+	 permission java.io.FilePermission "/opt/netegrity/siteminder/taiagent/TAI-1.0/-", "read";
+ 	 permission java.io.FilePermission "${cisco.logdir}/-", "read,write";
+	  
+	    permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+    
+	    permission java.lang.RuntimePermission  "getClassLoader";
+	    permission java.lang.RuntimePermission  "setFactory";
+	    permission java.lang.RuntimePermission  "accessDeclaredMembers";
+	    permission java.lang.RuntimePermission  "accessClassInPackage.sun.util.logging.resources";
+
+	    permission com.ibm.websphere.security.WebSphereRuntimePermission "accessRuntimeClasses";
+
+	    permission java.lang.RuntimePermission "accessClassInPackage.sun.security.validator" ;
+
+	   
+	    
+	    permission java.lang.RuntimePermission "accessClassInPackage.sun.security.util";
+	    
+	    permission java.net.SocketPermission    "javamail.cisco.com",     "resolve,connect";
+	    permission java.net.SocketPermission    "mailman.cisco.com",      "resolve,connect";
+	    permission java.net.SocketPermission    "ind-mira-01.cisco.com",  "resolve,connect";
+	    permission java.net.SocketPermission    "test.cisco.com",         "resolve,connect";
+	     permission java.net.SocketPermission   "161.44.11.118",         "resolve,connect";
+	    permission java.net.SocketPermission    "161.44.11.118:1521",     "resolve,connect";
+	    permission java.net.SocketPermission    "triton",                 "resolve,connect";
+	    permission java.net.SocketPermission    "one.cisco.com",          "resolve,connect";
+	    permission java.net.SocketPermission    "two.cisco.com",          "resolve,connect";
+	    permission java.net.SocketPermission    "tools-dev",              "resolve,connect";
+	    permission java.net.SocketPermission    "tools-stage",            "resolve,connect";
+	    permission java.net.SocketPermission    "tools-lt",               "resolve,connect";
+	    permission java.net.SocketPermission    "tools",                  "resolve,connect";
+	    permission java.net.SocketPermission    "wwwin-tools.cisco.com",  "resolve,connect";
+	    permission java.net.SocketPermission    "entro",		          "resolve,connect";
+	    
+	  };
+
+	grant codebase "file:${connectorComponent}" {
+	  // starting showing up after the Siterminder account was created
+	  permission com.ibm.websphere.security.WebSphereRuntimePermission "ContextManager.getServerCredential";
+	};
+
+	grant codeBase "file:${jars}" {
+	  permission java.net.SocketPermission "ldap.cisco.com", "connect";
+	  
+};

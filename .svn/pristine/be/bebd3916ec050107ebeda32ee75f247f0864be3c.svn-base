@@ -1,0 +1,79 @@
+package com.cisco.apas.entity;
+
+public class Country {
+	private static final long serialVersionUID = -8583509557795884718L;
+	// code_desc, theater_cd, iso_country_cd, eea_flag
+	String description;
+	String theater;
+	String isoCountryCode;
+	boolean eeaFlag;
+	public CountryId id = new CountryId();
+
+	public String getCountry() {
+		return id.getCountry();
+	}
+
+	public void setCountry(String country) {
+		id.setCountry(country);
+	}
+
+	public SiteUse getUsageType() {
+		return id.getUsageType();
+	}
+
+	public void setUsageType(SiteUse siteuse) {
+		this.id.setUsageType(siteuse);
+	}
+
+	public Long getRuleID() {
+		return id.getRuleID();
+	}
+
+	public void setRuleID(Long ruleID) {
+		this.id.setRuleID(ruleID);
+	}
+
+	public CountryId getId() {
+		return id;
+	}
+
+	public void setId(CountryId id) {
+		this.id = id;
+	}
+
+	public String toString() {
+		return this.getRuleID() + " : " + this.getCountry();
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getTheater() {
+		return theater;
+	}
+
+	public void setTheater(String theater) {
+		this.theater = theater;
+	}
+
+	public String getIsoCountryCode() {
+		return isoCountryCode;
+	}
+
+	public void setIsoCountryCode(String isoCountryCode) {
+		this.isoCountryCode = isoCountryCode;
+	}
+
+	public boolean isEeaFlag() {
+		return eeaFlag;
+	}
+
+	public void setEeaFlag(boolean eeaFlag) {
+		this.eeaFlag = eeaFlag;
+	}
+}

@@ -1,0 +1,100 @@
+
+$(document).ready(function() {
+	
+	var rulesGrid;
+	// Check all boxes
+	$('.selectAllRules').live("click", function () {
+		$("input[type='checkbox']").attr('checked', $('.selectAllRules').is(':checked')); 
+		toggleRuleLinks();
+	});
+	
+	$('.ruleSelector').live("click",function(){
+		if($(this).attr('checked')){
+				$(this).parent().addClass("c_on");
+				$(this).parent().removeClass("c_off");
+			}else{
+				$(this).parent().removeClass("c_on");
+				$(this).parent().addClass("c_off");
+			}
+	});
+	
+	// Enable delete all button, on select of any one check boxe in view rules 
+	$('.ruleSelector').live("change", function () {
+		toggleRuleLinks();
+	});
+	
+});
+
+function toggleRuleLinks() {
+	if ($('input[type="checkbox"]:checked').length > 0) {
+		$("#deleteAllRules").attr('href', 'javascript:deleteAllRules();').removeClass('disableButton'); 
+	} else {
+		$("#deleteAllRules").removeAttr('href').addClass('disableButton'); 
+	}
+}
+
+function deleteRule(id) {
+	var ruleIds = new Array();
+	ruleIds.push(id);
+	
+	fancyConfirm("Are you sure you want to delete the Rule(s)?", function(confirmed) {
+		
+		if (confirmed) {
+			$.getJSON("rule_delete.do", { ruleId: JSON.stringify(ruleIds)  }, function(response) {
+				if (response.status === "success") {
+					$(".messageSuccess").show();
+					$(".messageSuccess").fadeOut(2000);
+					$("#ruleErrorMsg").focus();
+				} else {
+					$(".unknowError").show();
+					$(".unknowError").fadeOut(2000);
+					$("#ruleErrorMsg").focus();
+				}
+				
+				//Reload data grid
+				reloadRuleGrids();
+			});
+		}
+		
+	});
+	
+}
+
+function deleteAllRules() {
+	var ruleIds = new Array();
+
+    $.each($("input[name='ruleSelector']:checked"), function() {  
+    	
+    	ruleIds.push($(this).val());
+    	
+    });       
+	
+	fancyConfirm("Are you sure you want to delete the selected Rule(s)?", function(confirmed) {
+		
+		if (confirmed) {
+			$.getJSON("rule_delete.do", { ruleId: JSON.stringify(ruleIds)  }, function(response) {
+				if (response.status === "success") {
+					$(".messageSuccess").show();
+					$(".messageSuccess").fadeOut(2000);
+					$("#ruleErrorMsg").focus();
+				} else {
+					$(".unknowError").show();
+					$(".unknowError").fadeOut(2000);
+					$("#ruleErrorMsg").focus();
+				}
+				
+				//Reload data grid
+				reloadRuleGrids();
+			});
+		}
+		
+	});
+	
+}
+
+function reloadRuleGrids() {
+	if (typeof(rulesGrid) != "undefined") {
+		rulesGrid.datagrid('reload');
+	}
+
+}

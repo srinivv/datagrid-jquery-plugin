@@ -1,0 +1,131 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ include file="common/node-templates.jsp" %>
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/node.css" />
+
+<script type="text/template" id="view-rules-template">
+<div class="tableList" id="ruleresult">
+	<ul>
+		<@ _.each(data, function(rule) { @>
+		<li>   
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="countryListing">     
+				<tr class="deleteTR">
+					<td  width="30"><label class="label_check"><input class="ruleSelector" value="<@= rule.id @>" name="ruleSelector" type="checkbox"/></label></td>
+					<td width="370">
+						<strong class="nodeName"><@= rule.name @></strong> <br  clear="left"/>
+						<span class="activeStatus"><@= rule.status @></span><br  clear="left"/>
+					</td>
+					<td width="150"><span class="createdBy"><@= rule.createdBy @></span></td>
+					<td width="150"><@= rule.createdOn @></td>
+					<td width="40">
+						<div class="posRel">
+							<div class="delRow"> 
+								<a title="Edit" href="rule_edit.do?ruleID=<@= rule.id @>" > 
+									<img class="paddingL3" src="images/edit-icon.png"> 
+								</a>&nbsp;
+								<a title="Delete" href="#delicon" class="delicon"> 
+									<img align="delete" src="images/delRow.png"> 
+								</a> 
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</li>
+		<@ }); @>
+	</ul>
+</div>  
+<div class="optionsArea">
+	<a id="deleteAllRules" class="tooltip disableButton" title="Delete All"><img src="images/dleteAll.jpg" /></a>
+</div>
+</script>
+
+<script type="text/javascript">
+var viewRulesGrid;
+$(document).ready(function() {
+	
+	
+	viewRulesGrid = $("#viewrules").datagrid({
+		source : 'node_viewrules.do',
+		template : 'view-rules-template',
+		pagination : true,
+		params : { totalRules: '<%=request.getAttribute("totalRules")%>', nodeId: '<%=request.getAttribute("nodeId")%>' }
+	});
+	
+	
+	$('.selectAllRules').live("click", function () {
+		$("input[type='checkbox']").attr('checked', $('.selectAllRules').is(':checked')); 
+		toggleRuleLinks();
+	});
+	
+	// Enable delete all button, on select of any one check boxe in view rules 
+	$('.ruleSelector').live("change", function () {
+		toggleRuleLinks();
+	});
+});
+
+function deleteAllRules(){
+	var ruleIds = new Array();
+
+    $.each($("input[name='ruleSelector']:checked"), function() {  
+    	
+    	ruleIds.push($(this).val());
+    	
+    });       
+	
+	fancyConfirm("Are you sure you want to delete the selected Rule(s)?", function(confirmed) {
+		
+		if (confirmed) {
+			$.getJSON("rule_delete.do", { ruleId: JSON.stringify(ruleIds)  }, function(response) {
+				if (response.status === "success") {
+					$(".messageSuccess").show();
+					$(".messageSuccess").fadeOut(2000);
+					$("#ruleErrorMsg").focus();
+				} else {
+					$(".unknowError").show();
+					$(".unknowError").fadeOut(2000);
+					$("#ruleErrorMsg").focus();
+				}
+				
+				//Reload data grid
+				reloadRuleGrids();
+			});
+		}
+		
+	});
+	
+}
+function reloadRuleGrids() {
+	if (typeof(viewRulesGrid) != "undefined") {
+		viewRulesGrid.datagrid('reload');
+	}
+
+}
+function toggleRuleLinks() {
+	if ($('input[type="checkbox"]:checked').length > 0) {
+		$("#deleteAllRules").attr('href', 'javascript:deleteAllRules();').removeClass('disableButton'); 
+	} else {
+		$("#deleteAllRules").removeAttr('href').addClass('disableButton'); 
+	}
+}
+toggleLeftNavigationMenus('node');
+</script>
+
+<div class="subHeading">
+	<h1>Rules</h1>
+</div>
+<div id="ruleErrorMsg">
+		<div class="messageSuccess" style="display:none;">You have successfully deleted rule(s). </div>
+		<div class="messageError unknowError" style="display:none;">An error occurred. Please see the log for more details</div>
+	</div>
+<h4 class="head1">View all Rules for AS-F CPSC 2T</h4>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="countryListing" id="ruletable">
+	<tr>
+		<th width="30"><label class="label_check"><input class="selectAllRules" type="checkbox"/></label></th>
+		<th width="370">Rule Name</th>
+		<th width="150"> Created By</th>
+		<th width="150"> Created Date</th>
+		<th width="40" class="relative"></th>
+	</tr>
+</table>
+<div id="viewrules"></div>

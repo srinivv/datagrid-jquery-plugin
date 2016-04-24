@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cisco.apas.entity.PartnerException" table="PSE_PARTNER_EXCEPTION">
+		<composite-id name="id" class="com.cisco.apas.entity.partnerExceptionId">
+            <key-property name="nodeId" type="long">
+                <column name="NODE_ID"/>
+            </key-property>
+            <key-property name="pdbGeoId" type="long">
+                <column name="PDB_GEO_ID"/>
+            </key-property>
+        </composite-id>
+
+		<property name="partnerName" type="string" column="PARTNER_NAME" />
+		<property name="partnerAddress" type="string" column="PARTNER_ADDRESS" />
+		<property name="startDate" type="timestamp" column="START_DATE" />
+		<property name="endDate" type="timestamp" column="END_DATE" />
+		<property name="status" type="string" column="STATUS" />
+		<property name="partnerDescription" type="string" column="PARTNER_DESCRIPTION" />
+		<property name="pgtmvBeId" type="long" column="PGTMV_BE_ID" />
+		
+		<property name="createdOn" type="timestamp" column="CREATED_ON" />
+		<property name="createdBy" type="string" column="CREATED_BY" />
+		<property name="updatedOn" type="timestamp" column="UPDATED_ON" />
+		<property name="updatedBy" type="string" column="UPDATED_BY" />
+		
+		<property name="nodeName" type="string">
+			<formula>(SELECT node.NODE_NAME FROM PSE_NODE_LOOKUP node WHERE node.NODE_ID = NODE_ID)</formula>
+		</property>
+
+	</class>
+	</hibernate-mapping>

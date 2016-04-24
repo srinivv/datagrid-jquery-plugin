@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC '-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN' 'http://java.sun.com/dtd/application_1_3.dtd'>
+<application id="apa" >
+  <display-name>apa</display-name>
+  <description>Selective Distribution Services</description>
+  <module id="WebModule_apa">
+    <web>
+      <web-uri>apa.war</web-uri>
+      <context-root>/ICW/APA/</context-root>
+    </web>
+  </module>
+	<!--required change for the security-->
+	<security-role id="AllAuthenticatedUsers">
+		<role-name>AllAuthenticatedUsers</role-name>
+	</security-role>
+</application>

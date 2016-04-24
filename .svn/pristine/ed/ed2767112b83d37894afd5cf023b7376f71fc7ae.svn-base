@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:resources.j2c="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.j2c.xmi" xmlns:resources.jdbc="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.jdbc.xmi" xmlns:resources.jms="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.jms.xmi" xmlns:resources.mail="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.mail.xmi" xmlns:resources.url="http://www.ibm.com/websphere/appserver/schemas/5.0/resources.url.xmi">
+  <resources.j2c:J2CResourceAdapter xmi:id="builtin_rra" name="WebSphere Relational Resource Adapter" description="Built-in Relational Resource Adapter for WebSphere Persistence" archivePath="${WAS_LIBS_DIR}/rsadapter.rar">
+    <classpath>${WAS_LIBS_DIR}/rsadapter.rar</classpath>
+    <propertySet xmi:id="J2EEResourcePropertySet_8"/>
+    <deploymentDescriptor xmi:id="Connector_1054132487569" displayName="WS_RdbResourceAdapter" vendorName="IBM" specVersion="1.5" eisType="RRA" version="6.0">
+      <descriptions xmi:id="Description_1054132487569" value="IBM Relational ResourceAdapter"/>
+      <license xmi:id="License_1054132487569" required="false">
+        <descriptions xmi:id="Description_1054132487570" value="IBM Relational ResourceAdapter"/>
+      </license>
+      <resourceAdapter xmi:id="ResourceAdapter_1054132487569" transactionSupport="NoTransaction" reauthenticationSupport="false" resourceAdapterClass="com.ibm.ws.rsadapter.spi.WSResourceAdapterImpl">
+        <outboundResourceAdapter xmi:id="OutboundResourceAdapter_1054132487569" reauthenticationSupport="false" transactionSupport="XATransaction">
+          <connectionDefinitions xmi:id="ConnectionDefinition_1054132487569" managedConnectionFactoryClass="com.ibm.ws.rsadapter.spi.WSManagedConnectionFactoryImpl" connectionFactoryInterface="javax.resource.cci.ConnectionFactory" connectionFactoryImplClass="com.ibm.ws.rsadapter.cci.WSRdbConnectionFactoryImpl" connectionInterface="javax.resource.cci.Connection" connectionImplClass="com.ibm.ws.rsadapter.cci.WSRdbConnectionImpl">
+            <configProperties xmi:id="ConfigProperty_1054132487569" name="ConnectionFactoryType" type="java.lang.Integer" value="2">
+              <descriptions xmi:id="Description_1054132487571" value="A constant indicating the type of connection factory: WSJdbcDataSource (1) or WSRdbConnectionFactory (2)"/>
+            </configProperties>
+          </connectionDefinitions>
+          <authenticationMechanisms xmi:id="AuthenticationMechanism_1054132487589" authenticationMechanismType="BasicPassword" credentialInterface="javax.resource.spi.security.PasswordCredential">
+            <descriptions xmi:id="Description_1054132487590" value="BasicPassword authentication"/>
+          </authenticationMechanisms>
+          <authenticationMechanisms xmi:id="AuthenticationMechanism_1054132487590" authenticationMechanismType="Kerbv5" credentialInterface="javax.resource.spi.security.GenericCredential">
+            <descriptions xmi:id="Description_1054132487591" value="Kerbv5 Authentication"/>
+          </authenticationMechanisms>
+        </outboundResourceAdapter>
+      </resourceAdapter>
+    </deploymentDescriptor>
+    <connectionDefTemplateProps xmi:id="ConnectionDefTemplateProps_1054132487589" ConnectionDefinition="ConnectionDefinition_1054132487569"/>
+  </resources.j2c:J2CResourceAdapter>
+  <resources.jdbc:JDBCProvider xmi:id="JDBCProvider_1233124847316" name="Oracle JDBC Driver1" description="Oracle JDBC Driver" providerType="Oracle JDBC Driver" implementationClassName="oracle.jdbc.pool.OracleConnectionPoolDataSource" xa="false">
+    <classpath>/opt/oracle/product/current/jdbc/lib/ojdbc14.jar</classpath>
+    <nativepath></nativepath>
+    
+    <!--  APAS DEV Database configuration -->
+    
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_DEV" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/TS2DMP-XXCQO_APAS_U-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="TS2DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="TS2DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1601" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_DEV" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@TS2DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+	
+    <!--  APAS STAGE Database configuration -->
+
+	<factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_STAGE" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/TS4DMP-XXCQO_APAS_U-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="TS4DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="TS4DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1601" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_STAGE" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@TS4DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+
+ 	<!-- 
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_DEV" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/TS1DMP-SDSADMIN12-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="TS1DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="TS1DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1601" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_DEV" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@TS1DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+	 -->
+	  
+	<!--TS3DMP
+	  <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_DEV" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/TS3DMP-SDS_ADMIN1-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="TS3DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="TS3DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_DEV" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@TS3DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+	  -->
+	  <!--  factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_DEV" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/TS4DMP-SDSADMIN1-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="TS4DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="TS4DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_STAGE" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@TS4DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories-->
+    
+    <!-- TS4DMP 
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_STAGE" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/TS4DMP-SDSADMIN-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="TS4DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="TS4DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_STAGE" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@TS4DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+		-->
+	  <!--TS3DMP 
+	 <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_STAGE" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/TS3DMP-SDSADMIN-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="TS3DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="TS3DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_STAGE" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@TS3DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+      -->
+    <!-- 
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" 
+    		jndiName="jdbc/APA_STAGE" description="New JDBC Datasource" providerType="Oracle JDBC Driver" 
+    		authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/DV3DMP-SDS_ADMIN-APA"
+    		manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false"
+    		relationalResourceAdapter="builtin_rra" statementCacheSize="10" 
+    		datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="DV3DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="DV3DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_STAGE" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@DV3DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+    -->
+  <!-- 
+    <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" 
+    jndiName="jdbc/APA_LT" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/LT1DMP-SDSADMIN-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="LT1DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="LT1DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_STAGE" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@LT1DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>  -->
+    
+  <!--TSLTDMP
+    
+     <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_LT" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="ccixdmgr-nprd1-01-nodeMgr/TS44DMP-SDSADMIN-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="TS4DMP" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="TS4DMP" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_LT" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@TS4DMP" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+	-->  
+	  
+	<!--   the following code is for PROD db-alias  that will be uncommented on 29-AUG-2009 for PROD DEPLOYEMNT -->
+
+	 <factories xmi:type="resources.jdbc:DataSource" xmi:id="DataSource_1233129165895" name="Oracle JDBC Driver DataSource" jndiName="jdbc/APA_PROD" description="New JDBC Datasource" providerType="Oracle JDBC Driver" authMechanismPreference="BASIC_PASSWORD" authDataAlias="DMPROD-SDS_ADMIN-APA" manageCachedHandles="false" logMissingTransactionContext="true" diagnoseConnectionUsage="false" relationalResourceAdapter="builtin_rra" statementCacheSize="10" datasourceHelperClassname="com.ibm.websphere.rsadapter.Oracle10gDataStoreHelper">
+      <propertySet xmi:id="J2EEResourcePropertySet_1233129165915">
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165915" name="driverType" type="java.lang.String" value="oci8" description="The type of the driver. The possible values are: thin, oci8." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165923" name="TNSEntryName" type="java.lang.String" value="DMPROD" description="The entry name which is used for the Oracle OCI driver." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165925" name="databaseName" type="java.lang.String" value="DMPROD" description="The database name. For example, enter sample to make your Data Source point to sample, used with thin driver" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165927" name="portNumber" type="java.lang.Integer" value="1521" description="The TCP/IP port number where the jdbc driver resides. used with thin driver setup" required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165928" name="dataSourceName" type="java.lang.String" value="APA_PROD" description="The name of the Data Source." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165929" name="URL" type="java.lang.String" value="jdbc:oracle:oci8:@DMPROD" description="This is a required property. The URL indicating the database from which the Data Source will obtain connections, such as 'jdbc:oracle:thin:@localhost:1521:sample' for thin driver and 'jdbc:oracle:oci8:@sample' for thick driver." required="true"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165930" name="loginTimeout" type="java.lang.Integer" value="500" description="The maximum time to attempt to connect a database. If this value is non-zero, attempt to connect to the database will timeout when this specified value is reached." required="false"/>
+        <resourceProperties xmi:id="J2EEResourceProperty_1233129165931" name="description" type="java.lang.String" value="" description="The description of this datasource." required="false"/>
+      </propertySet>
+      <connectionPool xmi:id="ConnectionPool_1233129165918" connectionTimeout="180" maxConnections="10" minConnections="1" reapTime="180" unusedTimeout="1800" agedTimeout="0" purgePolicy="EntirePool" numberOfSharedPoolPartitions="0" numberOfUnsharedPoolPartitions="0" numberOfFreePoolPartitions="0" freePoolDistributionTableSize="0" surgeThreshold="-1" surgeCreationInterval="0" testConnection="false" testConnectionInterval="0" stuckTimerTime="0" stuckTime="0" stuckThreshold="0"/>
+    </factories>
+
+  
+  </resources.jdbc:JDBCProvider>
+</xmi:XMI>

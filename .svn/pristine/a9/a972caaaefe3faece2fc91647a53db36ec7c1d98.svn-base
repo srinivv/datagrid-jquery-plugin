@@ -1,0 +1,24 @@
+package com.cisco.apas.dao;
+
+import org.apache.log4j.Logger;
+import org.springframework.jdbc.support.lob.OracleLobHandler;
+
+public class APASDao extends BaseDao implements DataAccessQueries {
+
+	private OracleLobHandler oracleLobHandler;
+
+	private static final Logger logger = Logger.getLogger(APASDao.class);
+
+	public OracleLobHandler getOracleLobHandler() {
+		return oracleLobHandler;
+	}
+
+	public void setOracleLobHandler(OracleLobHandler oracleLobHandler) {
+		this.oracleLobHandler = oracleLobHandler;
+	}
+
+	public boolean isUserAuthorized(String userID) {
+		int count = getApasJdbcTemplate().queryForInt("select count(1) from iam_pub_usr_role_tool where user_email = ? and tool_id = 1929 and status = 'A'", userID);
+		return (count > 0);
+	}
+}

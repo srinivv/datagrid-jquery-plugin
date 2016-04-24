@@ -1,0 +1,405 @@
+package com.cisco.apas.actions;
+
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.InitializingBean;
+
+import com.cisco.apas.APASConstants;
+import com.cisco.apas.entity.Node;
+import com.cisco.apas.entity.Partner;
+import com.cisco.apas.entity.PartnerException;
+import com.cisco.apas.entity.partnerExceptionId;
+import com.cisco.apas.service.APASService;
+import com.cisco.apas.util.DateUtils;
+import com.cisco.apas.util.StringUtils;
+
+public class PartnerExceptionAction extends BaseAction implements InitializingBean {
+	
+	private static final long serialVersionUID = 1L;
+
+	private static final Logger logger = Logger.getLogger(PartnerExceptionAction.class);
+
+	private APASService apasService;
+	
+	private List<PartnerException> allPExceptions;
+	
+	private String allNodeIds;
+	
+	private String allNodeNames;
+	
+	private String nodeName;
+	
+	private Node[] nodeList;
+	
+	private int countPException;
+	
+	public String execute() {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("Calling PartnerExceptionAction execute...");
+		}
+
+		return "success";
+	}
+	
+	public String load(){
+
+		if (logger.isInfoEnabled()) {
+			logger.info("Calling PartnerExceptionAction load...");
+		}
+
+		try {
+			int start = Integer.parseInt(request.getParameter("start"));
+			int end = Integer.parseInt(request.getParameter("end"));
+			int pageSize = Integer.parseInt(request.getParameter("pagesize"));
+
+			List<PartnerException> partnerExceptions = getApasService().getAllPExceptions(start, end, pageSize);
+			int totalRecords = getApasService().getPartnerExceptionCount();
+
+			JSONObject jsonResponse = new JSONObject();
+			jsonResponse.put("totalRows", totalRecords);
+
+			JSONArray jsonRowsArray = new JSONArray();
+			JSONObject jsonRow = null;
+
+			for (PartnerException pexception : partnerExceptions) {
+				jsonRow = new JSONObject();
+				jsonRow.put("pdbGeoId", pexception.getId().getPdbGeoId());
+				jsonRow.put("pgtmvBeId", pexception.getPgtmvBeId());
+				jsonRow.put("nodeId", pexception.getId().getNodeId());
+				jsonRow.put("nodeName", pexception.getNodeName());
+				jsonRow.put("partnerName", pexception.getPartnerName());
+				jsonRow.put("partnerDescription", pexception.getPartnerDescription());
+				jsonRow.put("partnerStartDate", DateUtils.formatDate(pexception.getStartDate()));
+				jsonRow.put("partnerEndDate", DateUtils.formatDate(pexception.getEndDate()));
+				jsonRow.put("exceptionstatus",pexception.getStatus());
+				updateAuditableFields(jsonRow, pexception);
+				jsonRowsArray.put(jsonRow);
+			}
+			jsonResponse.put("rows", jsonRowsArray);
+
+			sendJSONObject(jsonResponse);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
+	public String create() {
+		logger.info("Calling PartnerExceptionAction create...");
+		String[] nodeIds = allNodeIds.split(",");
+		String[] nodeNames = allNodeNames.split(",");
+		int numOfNodes = nodeIds.length;
+		nodeList = new Node[numOfNodes];
+		for(int i=0; i < numOfNodes; i++) {
+			Node node = new Node();
+			node.setId(Long.parseLong(nodeIds[i]));
+			node.setName(nodeNames[i]);
+			nodeList[i] = node;
+		}
+		//setAllExceptions(getApasService().getAllPartnerExceptions());
+		return "create";
+	}
+	
+	public String save(){
+		
+		String nodes = request.getParameter("nodes");
+		String nodeName = request.getParameter("nodeName");
+	
+		String userId = request.getRemoteUser();
+		String exceptionDesc = null;
+		String partnerId = null;
+		String startDate = null;
+		String endDate = null;
+		String[] items = null;
+		JSONObject jsonResponse = new JSONObject();
+		
+		try {
+			JSONObject jsonObject = new JSONObject(nodes);
+			JSONArray jsonArray;
+			jsonArray = jsonObject.getJSONArray("nodeList");
+			exceptionDesc = jsonObject.getString("description");
+			partnerId =jsonObject.getString("partnerId");
+			startDate = jsonObject.getString("startDate");
+			if(jsonObject.getString("endDate")!=null){
+				endDate = jsonObject.getString("endDate");	
+			}else{
+				endDate = null;
+			}
+			
+			items = new String[jsonArray.length()];
+			for(int i = 0; i < jsonArray.length(); i++) {
+				JSONObject item = (JSONObject)jsonArray.get(i);
+			    items[i] = item.getString("item");
+			    System.out.println("Node id:"+items[i].toString());
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		DateFormat formatter ; 
+		Date effDate = null ;
+		Date end_date = null;
+		try {
+			formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+			effDate = (Date) formatter.parse(startDate);
+			
+			if (endDate != null && !endDate.equalsIgnoreCase("")) {
+				end_date = (Date) formatter.parse(endDate);
+			}
+
+			String msg = getApasService().savePartnerException(userId, partnerId,
+					exceptionDesc, null, effDate, end_date, items);
+			
+			if (msg != null && msg.equalsIgnoreCase("success")) {
+				jsonResponse.put("status", "success");
+			} else {
+				jsonResponse.put("status", "failure");
+			}
+
+			System.out.println(msg);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sendJSONObject(jsonResponse);
+		return null;
+	}
+	
+	
+	public String delete() {
+		try {
+			String exceptions = request.getParameter("exceptions");
+
+			JSONObject jsonObject = new JSONObject(exceptions);
+			JSONArray nodeIdList;
+			JSONArray pdbIdList;
+			
+			nodeIdList = jsonObject.getJSONArray("nodeIds");
+			pdbIdList = jsonObject.getJSONArray("pdbIds");
+			
+			String[] nodeIds = null;
+			String[] pdbIds = null;
+			
+			nodeIds = new String[nodeIdList.length()];
+			pdbIds = new String[pdbIdList.length()];
+			for(int i = 0; i < nodeIdList.length(); i++) {
+				JSONObject nodeId = (JSONObject)nodeIdList.get(i);
+				nodeIds[i] = nodeId.getString("item");
+				JSONObject pdbId = (JSONObject)pdbIdList.get(i);
+				pdbIds[i] = pdbId.getString("item");
+			}
+			
+			JSONObject jsonResponse = new JSONObject();
+			boolean success = getApasService().deletePartnerException(nodeIds,pdbIds);
+			if (success) {
+				jsonResponse.put("status", "success");
+			} else {
+				jsonResponse.put("status", "failure");
+			}
+
+			response.setStatus(200);			
+			PrintWriter out = response.getWriter();	
+			out.print(jsonResponse.toString());	
+			out.flush();
+			response.flushBuffer();
+			out.close();
+		} catch (Exception e) {
+			System.out.println("Error in Partner Exception delete operation");
+			e.printStackTrace();
+			
+		}
+		
+		return null;
+	}
+
+	
+	public String edit() {
+
+		if(logger.isInfoEnabled()) {
+			logger.info("Calling PartnerExceptionAction edit...");
+		}
+
+		try{
+
+			long pdbBeId = request.getParameter("pdbBeId")!=null ? Long.parseLong(request.getParameter("pdbBeId")) : 0;
+			long nodeId = request.getParameter("nodeId")!=null ? Long.parseLong(request.getParameter("nodeId")) : 0;
+			
+			logger.info("pdbBeId : " + pdbBeId + "  | nodeId : " + nodeId);
+			
+			PartnerException pExceptions = getApasService().getPartnerException(pdbBeId, nodeId);
+			
+			logger.info("PartnerName : " + pExceptions.getPartnerName());
+			
+			request.setAttribute("PartnerException",pExceptions);
+
+		}catch(Exception e){
+			e.printStackTrace();
+			return APASConstants.ERROR;
+		}
+		return APASConstants.EDIT;
+		
+	}
+	
+
+	public String update() {
+
+		if(logger.isInfoEnabled()) {
+			logger.info("Calling PartnerExceptionAction update...");
+		}
+
+		JSONObject jsonResponse = new JSONObject();
+		
+		try{
+
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+			long pdbGeoId = request.getParameter("pdbGeoId")!=null ? Long.parseLong(request.getParameter("pdbGeoId")) : 0;
+			long nodeId = request.getParameter("nodeId")!=null ? Long.parseLong(request.getParameter("nodeId")) : 0;
+			String partnerName = request.getParameter("partnerName");
+			if (partnerName != null && partnerName.lastIndexOf("(") > 0) {
+				partnerName = partnerName.substring(0, partnerName.lastIndexOf("("));
+			}
+			
+			String stDt = request.getParameter("startDate");
+			Date startDate = (stDt!=null && stDt.trim().length()>0) ? dateFormat.parse(stDt) : null;
+			
+			String edDt = request.getParameter("endDate");
+			Date endDate = (edDt!=null && edDt.trim().length() > 0) ? dateFormat.parse(edDt) : null;
+			
+			String description = request.getParameter("description");
+			String userId = request.getRemoteUser();
+		    
+		  	logger.info("pdbGeoId : " + pdbGeoId + "  | nodeId : " + nodeId  + "  | startDate : " + startDate  + "  | endDate : " + endDate  + "  | description : " + description);
+			
+			
+			partnerExceptionId pId = new partnerExceptionId();
+			pId.setPdbGeoId( pdbGeoId );
+			pId.setNodeId( nodeId );
+			PartnerException pExcep = new PartnerException(); 
+			pExcep.setId(pId);
+			pExcep.setPartnerName(partnerName);
+			pExcep.setStartDate(startDate);
+			pExcep.setEndDate(endDate);
+			pExcep.setPartnerDescription(description);
+			pExcep.setUpdatedBy(userId);
+			
+			int i = getApasService().updatePartnerException(pExcep);
+			
+			logger.info("PartnerException Count : " + i);
+
+			if (i>0) {
+				jsonResponse.put("status", "success");
+			} else {
+				jsonResponse.put("status", "failure");
+			}
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		sendJSONObject(jsonResponse);
+		return null;
+
+		
+	}
+	
+	public String searchPartnerName() {
+		
+		String searchTerm = request.getParameter("term");
+
+		JSONArray jsonPartnersArray = new JSONArray();
+		
+		if (!StringUtils.isEmpty(searchTerm)) {
+			List<Partner> partners = getApasService().getPartners(searchTerm.trim());
+
+			if (partners != null && partners.size() > 0) {
+				for (Partner partner : partners) {
+					jsonPartnersArray.put(partner.getName() + " (" + partner.getId() + ")");
+				}
+			} else {
+				jsonPartnersArray.put("No matching result found.");
+			}
+		} else {
+			jsonPartnersArray.put("Please enter a valid input.");
+		}
+			
+		sendJSONObject(jsonPartnersArray);
+		
+		return null;
+	}
+	
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
+	}
+
+	public APASService getApasService() {
+		return apasService;
+	}
+
+	public void setApasService(APASService apasService) {
+		this.apasService = apasService;
+	}
+
+	public String getNodeName() {
+		return nodeName;
+	}
+
+	public void setNodeName(String nodeName) {
+		this.nodeName = nodeName;
+	}
+
+	public Node[] getNodeList() {
+		return nodeList;
+	}
+
+	public void setNodeList(Node[] nodeList) {
+		this.nodeList = nodeList;
+	}
+
+	public int getCountPException() {
+		return countPException;
+	}
+
+	public void setCountPException(int countPException) {
+		this.countPException = countPException;
+	}
+
+	public List<PartnerException> getAllPExceptions() {
+		return allPExceptions;
+	}
+
+	public void setAllPExceptions(List<PartnerException> allPExceptions) {
+		this.allPExceptions = allPExceptions;
+	}
+
+	public String getAllNodeIds() {
+		return allNodeIds;
+	}
+
+	public void setAllNodeIds(String allNodeIds) {
+		this.allNodeIds = allNodeIds;
+	}
+
+	public String getAllNodeNames() {
+		return allNodeNames;
+	}
+
+	public void setAllNodeNames(String allNodeNames) {
+		this.allNodeNames = allNodeNames;
+	}
+
+}

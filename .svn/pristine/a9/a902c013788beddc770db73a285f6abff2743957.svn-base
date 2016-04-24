@@ -1,0 +1,42 @@
+/**
+ * 
+ */
+package com.cisco.apas.entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LeafExpressionValidator implements ExpressionValidator {
+
+	public boolean validate(List<Token> tokens) {
+		
+		//validate individual tokens
+		/*StartToken start = new StartToken();
+		EndToken end = new EndToken();
+		AndCondition and = new AndCondition();
+		OrCondition or = new OrCondition();
+				
+		Boolean isValid= true;
+		List<String> validTokens = new ArrayList<String>();
+		validTokens.add(start.getTokenValue());
+		validTokens.add(end.getTokenValue());
+		validTokens.add(and.getTokenValue());
+		validTokens.add(or.getTokenValue());
+		
+		
+		for(Token tk:tokens){
+		 if(!validTokens.contains(tk) && (getQualification(tk.getTokenValue()).equals(null))){
+			 isValid=false;
+		 }
+		}*/
+		//validate order of tokens
+		
+		
+		
+		//validate subexpression
+		
+		
+		return false;
+	}
+
+}

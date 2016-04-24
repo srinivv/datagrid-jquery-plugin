@@ -1,0 +1,46 @@
+package com.cisco.apas.entity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class SKU {
+	
+	private String partNo;
+	private String description;
+	private Double unitPrice;
+	
+	public String getPartNo() {
+		return partNo;
+	}
+	public void setPartNo(String partNo) {
+		this.partNo = partNo;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Double getUnitPrice() {
+		return unitPrice;
+	}
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+	@Override
+	public String toString() {
+		return "SKU [partNo=" + partNo + "]";
+	}	
+	
+	public JSONObject toJSON() {
+		JSONObject jo = new JSONObject();
+		try {
+			jo.put("item", partNo);
+			jo.put("itemType", description);
+		} catch(JSONException e){
+			System.out.println(this.toString());
+			e.printStackTrace();
+		}
+		return jo;
+	}
+}

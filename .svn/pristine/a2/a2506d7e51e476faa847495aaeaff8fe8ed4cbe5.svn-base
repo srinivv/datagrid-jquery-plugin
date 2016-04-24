@@ -1,0 +1,57 @@
+package com.cisco.apas;
+
+public class BaseException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
+	
+	private Object additionalInfo = null;
+	private Object[] replacementValues = null;
+
+	public BaseException() {
+		super();
+	}
+
+	public BaseException(String message) {
+		super(message);
+	}
+
+	public BaseException(Throwable cuase) {
+		super(cuase);
+	}
+
+	public BaseException(String message, Throwable cuase) {
+		super(message, cuase);
+	}
+
+	public BaseException(String message, Object additionalInfo) {
+		super(message);
+		this.additionalInfo = additionalInfo;
+	}
+
+	public BaseException(Throwable cuase, Object additionalInfo) {
+		super(cuase);
+		this.additionalInfo = additionalInfo;
+	}
+
+	public BaseException(String message, Throwable cuase, Object additionalInfo) {
+		super(message, cuase);
+		this.additionalInfo = additionalInfo;
+	}
+
+	public Object getAdditionalInfo() {
+		return additionalInfo;
+	}
+
+	public void setAdditionalInfo(Object additionalInfo) {
+		this.additionalInfo = additionalInfo;
+	}
+
+	public Object[] getReplacementValues() {
+		return replacementValues;
+	}
+
+	public void setReplacementValues(Object[] replacementValues) {
+		this.replacementValues = replacementValues;
+	}
+
+}

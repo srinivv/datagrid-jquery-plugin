@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Authorized Product Admin System (APAS)</title>
+		
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/pagination.css" />
+	</head>
+	<body>
+	<div class="wrapper">
+		<div class="mainTitle">
+			Authorized Product Admin System 
+			<div class="clear"></div>
+		</div>
+		<div>
+			<center><red>You do not have access to this tool</red></center>
+		</div>		 
+	</div>
+	<!--wrapper-->
+</body>
+</html>

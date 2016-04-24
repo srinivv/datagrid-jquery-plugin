@@ -1,0 +1,28 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ include file="common/exception-templates.jsp" %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/exception.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	dealGrid = $("#alldealexception").datagrid({
+		source : 'dealException_load.do',
+		template : 'all-deal-exceptions-template',
+		pagination : true
+	});
+});
+toggleLeftNavigationMenus('dealexception');
+</script>
+
+<%@ include file="common/exception-templates.jsp" %>
+
+<div class="subHeading">
+	<h1>View/Edit Deal Exceptions</h1>
+</div>
+<div id="nodeErrorMsg">
+	<div class="messageSuccess" style="display:none;">You have successfully deleted Deal Exception. </div>
+	<div class="messageError unknowError" style="display:none;">An error occurred. Please see the log for more details</div>
+</div>
+<div id="alldealexception"></div>
+
+<div class="clear"></div>
+
+<form id="dealException" name="dealException" method="POST"></form>

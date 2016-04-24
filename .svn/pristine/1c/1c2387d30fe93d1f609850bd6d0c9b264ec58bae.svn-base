@@ -1,0 +1,83 @@
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="contentLayout" template="/jsp/common/content.jsp">
+		<put-attribute name="mainPage" value=""/>	
+	</definition>
+	
+	<definition name="baseLayout" template="/jsp/layout.jsp">
+		<put-attribute name="header" value="/jsp/common/header.jsp" />
+		<put-attribute name="menu" value="/jsp/common/menu.jsp" />
+		<put-attribute name="mainPage" value=""/>	
+	</definition>
+	
+	<definition name="errorLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/common/error.jsp"/>
+	</definition>
+
+	<definition name="homeLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/node.jsp"/>
+	</definition>
+	
+	<definition name="nodeLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/node.jsp"/>
+	</definition>
+
+	<definition name="createNodeLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/create-node.jsp"/>
+	</definition>
+
+	<definition name="editNodeLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/edit-node.jsp"/>
+	</definition>
+
+	<definition name="viewRulesLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/view-rules.jsp"/>
+	</definition>
+
+	<definition name="viewSKUsLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/view-skus.jsp"/>
+	</definition>
+
+	<definition name="ruleLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/rule.jsp"/>
+	</definition>
+	
+	<definition name="createRuleLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/createRule.jsp"/>
+	</definition>
+	
+	<definition name="editRuleLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/editRule.jsp"/>
+	</definition>
+		
+	<definition name="partnerExceptionLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/partner-exception.jsp"/>
+	</definition>
+	
+	<definition name="createPExceptionLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/createPException.jsp"/>
+	</definition>
+	
+	<definition name="editPExceptionLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/editPException.jsp"/>
+	</definition>
+
+	<definition name="createDExceptionLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/createDException.jsp"/>
+	</definition>
+	
+	<definition name="editDExceptionLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/editDException.jsp"/>
+	</definition>
+	
+	<definition name="dealExceptionLayout" extends="baseLayout">
+		<put-attribute name="mainPage" value="/jsp/deal-exception.jsp"/>
+	</definition>
+
+	<definition name="customerLayout" template="/jsp/customerLayout.jsp">
+		<put-attribute name="mainPage" value="/jsp/customerSearch.jsp"/>	
+	</definition>
+	
+</tiles-definitions>

@@ -1,0 +1,46 @@
+package com.cisco.apas;
+
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+
+import com.cisco.apas.dao.APASDao;
+
+public class AuthenticationFilter implements Filter {
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		if (request instanceof HttpServletRequest) {
+			HttpServletRequest req = (HttpServletRequest) request;
+			if (!"Y".equals(req.getSession().getAttribute("authenticated"))) {
+				WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
+				APASDao apasDao = wac.getBean("apasDao", APASDao.class);
+				if (apasDao.isUserAuthorized(req.getRemoteUser())) {
+					req.getSession().setAttribute("authenticated", "Y");
+				} else {
+					req.getSession().setAttribute("authenticated", "N");
+					RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/common/noAccess.jsp");
+					dispatcher.forward(request, response);
+					return;
+				}
+			}
+		}
+		chain.doFilter(request, response);
+	}
+
+	public void init(FilterConfig arg0) throws ServletException {
+		// TODO Auto-generated method stub
+	}
+}

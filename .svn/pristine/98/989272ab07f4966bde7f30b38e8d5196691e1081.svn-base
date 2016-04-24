@@ -1,0 +1,16 @@
+package com.cisco.apas.entity;
+
+public class EndToken implements ParenthesisToken {
+
+	
+	 
+	public String getTokenValue() {
+		return ")";
+	}
+
+	public void setTokenValue(String tokenValue) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

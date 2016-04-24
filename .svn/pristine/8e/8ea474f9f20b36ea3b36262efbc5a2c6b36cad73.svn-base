@@ -1,0 +1,971 @@
+body {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+/*left sidebar css=======================================*/
+.siedbarLeft {
+	width:200px;
+	float:left;
+	position:relative;
+	padding-top:5px;
+}
+.selectConditions {
+	font-size:14px;
+	color:#000;
+	font-weight:bold;
+	background:url(../images/bottomSep.png) no-repeat right bottom;
+	margin-bottom:10px;
+}
+.selectConditions span {
+	background:url(../images/selectConditionIcon.png) no-repeat 0px 0px;
+	padding:0px 0px 12px 30px;
+	display:block;
+}
+.singleBox {
+	margin-bottom: 11px;
+	padding-bottom: 6px;
+	background:url(../images/bottomSep.png) no-repeat right bottom;
+}
+.singleBox:last-child {
+	background:none;
+}
+.singleBox h6 {
+	position:relative;
+	overflow:hidden;
+}
+.singleBox h6 a {
+	font-size:13px;
+	font-weight:bold;
+	color:#a7a7a7;
+	margin-bottom:5px;
+	padding-bottom:2px;
+	display:inline-block;
+}
+.singleBox h6 a:hover {
+	font-size:13px;
+	font-weight:bold;
+	color:#333333;
+	text-decoration:none;
+}
+.subItems {
+	margin-top:10px;
+	display:none;
+}
+.subItems .radioBtn {
+	color:#333333;
+	display:block;
+	padding:2px 5px;
+	margin-bottom:2px;
+	margin-left:10px;
+	font-size:11px;
+}
+.subItems .radioBtn:hover {
+	background:#dff3fd;
+	color:#2371b3;
+}
+.countryIcon, .partnerIcon, .qualifIcon, .extraIcon, .selectIcon {
+	background:url(../images/sidebaricons.png) no-repeat left top;
+	padding-left:21px;
+}
+.required {
+	color:#ff0000;
+	font-size:11px;
+}
+.countryIcon {
+	background-position:0 0;
+}
+.partnerIcon {
+	background-position:0 -34px;
+}
+.qualifIcon {
+	background-position:0 -77px;
+}
+.extraIcon {
+	background-position:0 -119px;
+}
+.selectIcon {
+	background-position:0 -166px;
+}
+.countryIcon:hover, .countSelect {
+	background-position:-182px top;
+	color:#333333 !important;
+}
+.partnerIcon:hover, .partnserselect {
+	background-position:-182px -34px;
+	color:#333333 !important;
+}
+.qualifIcon:hover, .qualiselect {
+	background-position:-183px -77px;
+	color:#333333 !important;
+}
+.extraIcon:hover, .extraselecct {
+	background-position:-182px -119px;
+	color:#333333 !important;
+}
+.selectIcon:hover, .seclselect {
+	background-position:-182px -166px;
+	color:#333333 !important;
+}
+.closearrow {
+	width:13px;
+	height:8px;
+	display:block;
+	text-indent:-9999em;
+	position:absolute;
+	right:10px;
+	top:5px;
+}
+.closenav {
+	background:url(../images/topArrow.png) no-repeat;
+}
+.subchildTitle {
+	color:#a7a7a7;
+	cursor:pointer;
+	background:url(../images/subicons.png) no-repeat 0 0;
+	padding:0 0 5px 21px;
+	vertical-align:middle;
+	margin-left:12px;
+	display:block;
+	margin-top:15px;
+}
+.subchildTitle:hover {
+	color:#333333;
+}
+.certifIcon {
+	background-position:0 0;
+}
+.specIcon {
+	background-position:0 -36px;
+}
+.authrIcon {
+	background-position:0px -72px;
+}
+.certifIcon:hover, .certifIconselect {
+	background-position:-230px 0;
+	color:#333;
+}
+.specIcon:hover, .specIconselect {
+	background-position:-229px -36px;
+	color:#333;
+}
+.authrIcon:hover, .authrIconselect {
+	background-position:-230px -72px;
+	color:#333333;
+}
+.listValues {
+	margin:5px 10px 0 34px;
+	width:155px !important;
+	display:none;
+}
+.subValues {
+	margin:0px 10px 0 22px;
+}
+.listValues a, .subValues a {
+	font-size:11px;
+	color:#333333;
+	display:block;
+	padding:4px;
+}
+.listValues a:hover, .subValues a:hover {
+	color:#000000;
+	text-decoration:none;
+}
+.partnervalues ul li a:hover {
+	background:#fef1f1;
+}
+.certivalue ul li a:hover {
+	background:#dff3fd;
+}
+.specialvalues ul li a:hover {
+	background:#fdf9ed;
+}
+.authvalue ul li a:hover {
+	background:#f0fce3;
+}
+.operatorsvalues ul li a:hover {
+	background:#cbf3ff;
+}
+.operatorsvalues ul li a {
+	font-weight:bold;
+}
+.operatorsvalues ul li a.green, a.green {
+	color:#158c01 !important
+}
+.operatorsvalues ul li a.blue, a.blue {
+	color:#3b84bb !important
+}
+.operatorsvalues ul li a.orange, a.orange {
+	color:#ff3300 !important
+}
+.operatorsvalues ul li a.gray, a.gray {
+	color:#999;
+!important
+}
+#certificationscroll {
+	height:0px;
+}
+.slideLeftMenuArrow {
+	background:url(../images/slideLeftMenuArrow.png) no-repeat 0px 0px;
+	width:15px;
+	height:18px;
+	float:right;
+	position:absolute;
+	top:-1px;
+	right:-4px;
+}
+.extraValidationForm {
+	padding:0px 10px 0px 0px;
+}
+.extraValidationForm label {
+	display:block;
+	font-size:12px;
+	padding:15px 0px 5px 0px;
+}
+.extraValidationForm input[type="text"] {
+	width:175px;
+}
+.buttonsArea {
+	margin:10px 0px;
+}
+.buttonsArea .button {
+	background:#1884c6;
+	color:#fff;
+	font-size:13px;
+	padding:5px 10px;
+	border:none;
+	border-radius: 3px;
+	cursor:pointer;
+}
+/*left sidebar css=======================================*/
+
+
+/* Selectbox with LI
+=======================================================*/
+.sbHolder {
+	height: 30px!important;
+	width:99%!important;
+	margin:0px 0 0 0!important;
+	background: url(../images/inputBG.jpg) repeat-x scroll left top #FFFFFF!important;
+	border-color: #979797 #D2D2D2 #F4F4F4 #D5D5D5!important;
+	border-radius: 3px 3px 3px 3px!important;
+	border-style: solid!important;
+	border-width: 0 1px 1px!important;
+	color: #999999!important;
+	font-size: 16px!important;
+	position:relative!important;
+	-webkit-border-radius:3px!important;
+	-moz-border-radius:3px!important;
+	border-radius:3px!important;
+}
+.sbSelector {
+	display: block;
+	height: 30px;
+	left: -3px;
+	line-height: 32px;
+	outline: none;
+	overflow: hidden;
+	position: absolute;
+	text-indent: 8px;
+	top: 0;
+	width: 100%;
+}
+.sbSelector:link, .sbSelector:visited, .sbSelector:hover {
+	color: #999!important;
+	outline: none;
+	text-decoration: none;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+}
+.sbToggle {
+	background:url(../images/selectArrow.jpg) no-repeat;
+	display: block;
+	height: 30px;
+	outline: none;
+	position: absolute;
+	right: -1px;
+	top: 1px;
+	width: 29px;
+}
+.sbToggle:hover {
+}
+.sbOptions {
+	border:1px solid #afafaf;
+	background: #FFF;
+	list-style: none;
+	left: -1px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 30px;
+	width: 100%;
+	z-index: 1;
+	overflow-y: auto;
+}
+.sbOptions li {
+	display:block;
+	float: none;
+	width: auto;
+	padding:0px;
+	font-size:12px;
+	border-top:1px solid #e1e0e0;
+	border-bottom:1px solid #d2d1d1;
+}
+.sbOptions li:hover {
+	background:#e4e2e2;
+}
+.sbOptions li:first-child {
+	border-top:0px solid #e1e0e0;
+}
+.sbOptions li:last-child {
+	border-bottom:0px solid #d2d1d1;
+}
+.sbOptions a {
+	display: block;
+	outline: none;
+	color:#999 !important;
+	padding:6px 8px;
+	display:block;
+	text-decoration:none;
+	font-size:12px;
+	font-weight:bold;
+}
+.moreCategories {
+	float:left;
+	margin:3px 0 0 0;
+	border:1px solid #afafaf;
+	background: #eeeeee;
+	background: -moz-linear-gradient(top, #eeeeee 0%, #d9d9d9 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #d9d9d9));
+	background: -webkit-linear-gradient(top, #eeeeee 0%, #d9d9d9 100%);
+	background: -o-linear-gradient(top, #eeeeee 0%, #d9d9d9 100%);
+	background: -ms-linear-gradient(top, #eeeeee 0%, #d9d9d9 100%);
+	background: linear-gradient(top, #eeeeee 0%, #d9d9d9 100%);
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#d9d9d9', GradientType=0 );
+	position:relative;
+}
+.moreCategories .categoryarrow {
+	background:url(../images/category_arrow.png) no-repeat right 1px;
+	text-shadow: 0px 1px #e3e4e0;
+	padding:0px 26px 0 10px;
+	font-size:13px;
+	float:left;
+	line-height:23px;
+	height:23px;
+	width:130px;
+}
+.moreCategories .down {
+	background-position:right -23px;
+}
+.moreCategories a:hover.categoryarrow {
+	text-decoration:none;
+}
+.subcategory {
+	position:absolute;
+	border:1px solid #afafaf;
+	background: #dadada;
+	padding:4px;
+	top:22px;
+	left:-1px;
+	display:none;
+	width:158px;
+	-webkit-border-radius:0 0 3px 3px;
+	-moz-border-radius:0 0 3px 3px;
+	border-radius:0 0 3px 3px;
+	border-top:none;
+	z-index:999;
+}
+.subcategory li {
+	display:block;
+	padding:6px 8px;
+	font-size:12px;
+	text-shadow: 0 1px #E3E4E0;
+}
+/*Pre condition css=============================*/
+.preCondition {
+	padding:0px 0px 30px 0px;
+}
+.preCondition input[type="radio"]{
+	vertical-align:text-bottom;
+}
+.preCondition input[type="checkbox"]{
+	vertical-align:sub;
+}
+.preCondition h6 {
+	color:#666666;
+	border-bottom:1px solid #c3c3c3;
+	font-size:14px;
+	font-weight:bold;
+	padding-bottom:10px;
+	margin-bottom:15px;
+}
+.preCondition big {
+	display:block;
+	font-size:12px;
+	color:#333;
+	padding-bottom:5px;
+	font-weight:bold;
+}
+.preConditionBox1 {
+	float:left;
+	width:400px;
+}
+.preConditionBox1 .checkboxoption {
+	width:170px;
+	float:left;
+	margin-bottom:6px;
+	font-size:11px;
+	color:#666666;
+}
+.preConditionBox1 .lab {
+	float:left;
+	margin-bottom:6px;
+	font-size:11px;
+	color:#666666;
+}
+.preConditionBox2 {
+	width:120px;
+	float:left;
+	padding:0px 10px 0px 10px;
+	border-left:1px solid #e4e4e4;
+	border-right:1px solid #e4e4e4;
+	min-height:98px;
+}
+.preConditionBox2 a {
+	font-size:11px;
+	color:#2177c4;
+	display:block;
+	margin:5px 0px;
+}
+.preConditionBox3{ float:left; width:230px; border-right:1px solid #E4E4E4; padding:0px 20px;}
+.preConditionBox3 span{ float:left;  font-size:11px; color:#666; margin-bottom:5px;}
+.preConditionBox4 {
+	float:right;
+	width:160px;
+}
+.preConditionBox4 input {
+	width:140px;
+}
+.preConditionBox4 .enddate {
+	margin-top:10px;
+}
+/*Pre condition css=============================*/
+/*Create rule preNodeArea=============================*/
+
+.preNodeArea {
+	padding-bottom:15px;
+}
+.preNodeArea label {
+	display:block;
+	font-size:12px;
+	color:#333;
+	padding:0px 0px 3px 0px;
+	font-weight:bold;
+}
+.preNodebox1 {
+	width:260px;
+	float:left;
+	padding:10px 0px;
+}
+.preNodebox2 {
+	border-left:1px solid #e6e6e6;
+	border-right:1px solid #e6e6e6;
+	padding:10px 30px;
+	width:260px;
+	float:left;
+	margin:0px 0px 0px 50px;
+}
+.preNodebox3 {
+	padding:10px 0px 0px 0px;
+	width:260px;
+	float:left;
+	margin:0px 0px 0px 30px;
+}
+.preNodebox2 input, .preNodebox3 input {
+	width:95%;
+}
+/*Create rule preNodeArea=============================*/
+/*Business Rule Menu Tab==============================*/
+.topTab {
+	height:26px;
+	background:#ececec;
+	-moz-border-radius:5px 5px 0px 0px;
+	border-radius:5px 5px 0px 0px;
+	-webkit-border-radius:5px 5px 0px 0px;
+	overflow: hidden;
+	margin:0px 0px 0px 10px;
+}
+.topTab a {
+	height:26px;
+	float:left;
+	padding:0px 26px 0px 15px;
+	font-size:11px;
+	color:#999898;
+	font-weight:bold;
+	line-height:26px;
+	position:relative;
+}
+.topTab a:hover, .topTab a.selectTab {
+	height:25px;
+	padding:0px 25px 0px 14px;
+	line-height:25px;
+	background:#f6f6f6;
+	-moz-border-radius:5px 5px 0px 0px;
+	border-radius:5px 5px 0px 0px;
+	-webkit-border-radius:5px 5px 0px 0px;
+	border:1px solid #dadada;
+	border-bottom:none;
+	color:#000;
+	text-decoration:none;
+}
+.topTab a span {
+	float:right;
+	background:url(../images/tabcross.png) no-repeat 0px 0px;
+	width:9px;
+	height:8px;
+	position:absolute;
+	right:10px;
+	top:8px;
+	display:none;
+	text-indent:-9999em;
+	font-size:0px;
+}
+.topTab a span:hover{
+	background-position:0 -20px;
+}
+.topTab a:hover span, .topTab a.selectTab span {
+	display:block;
+}
+a#addMoretab {
+	padding:0px;
+	margin:0px;
+	background:url(../images/addMoreTabbtn.png) no-repeat 0px 0px;
+	width:8px;
+	height:8px;
+	margin:10px 0px 0px 8px;
+	border:none;
+}
+a#addMoretab:hover{
+	background-position:0 -9px;
+}
+a:hover#addMoretab {
+	margin:0px;
+	padding:0px;
+	width:9px;
+	height:9px;
+	margin:10px 0px 0px 8px;
+	border:none;
+}
+/*Business Rule Menu Tab==============================*/
+
+/*summary  Tab==============================*/
+.summaryTab {
+	height:37px;
+	border-bottom:1px solid #d8d8d8;
+	border-left:1px solid #d8d8d8;
+	line-height:37px;
+	background:#f6f6f6;
+	font-size:12px;
+}
+.summaryTab a, .bottomTab a {
+	color:#000;
+	float:left;
+}
+.summaryTab a.disabletxt {
+	color:#cccccc;
+}
+.summarytxt {
+	float:left;
+	margin:0px 0px 0px 24px;
+	width:355px;
+}
+a.addAnotherSenario {
+	background:url(../images/addAnotherSenarioBg.jpg) no-repeat 0px center;
+	height:37px;
+	padding:0px 10px 0px 15px;
+	float:left;
+}
+.tabbox {
+	height:37px;
+	border-left:1px solid #d8d8d8;
+	float:left;
+	padding:0px 8px;
+}
+.savoption a {
+	margin:0px 6px;
+	height:37px;
+	display:inline-block;
+}
+.editoption a {
+	margin:0px 10px;
+}
+.editoption a, .zoomoption a {
+	height:37px;
+	width:32px;
+	background:url(../images/editIcon.png) no-repeat;
+}
+.editoption a.lock {
+	background-position:8px 8px;
+}
+.editoption a:hover.lock {
+/*background-position:8px -51px;*/
+}
+.editoption a.edit {
+	background-position:-70px 8px;
+}
+.zoomoption span {
+	float:left;
+	margin:0px 20px 0px 10px;
+}
+.zoomoption a.zoomin {
+	background-position:-127px 8px;
+}
+.zoomoption a:hover.zoomin {
+	background-position:-127px -51px;
+}
+.zoomoption a.zoomout {
+	background-position:-178px 8px;
+}
+.zoomoption a:hover.zoomout {
+	background-position:-178px -51px;
+}
+.zoomoption a.fullscreen {
+	background-position:-238px 9px;
+}
+.zoomoption a:hover.fullscreen {
+	background-position:-238px -51px;
+}
+.zoomoption a.smallscreen {
+	background-position:-300px 9px;
+	display:none;
+}
+.zoomoption a:hover.smallscreen {
+	background-position:-300px -51px;
+}
+/*summary  Tab==============================*/
+/*Toogle Button ==============================*/
+.tooglebutton {
+	position:absolute;
+	right:0px;
+	top:11px;
+	z-index:1;
+}
+.tooglebutton a {
+	font-size:0px;
+	margin:0px 2px;
+	width:34px;
+	height:35px;
+	background:url(../images/toggletab.png) no-repeat 0px 0px;
+	float:left;
+}
+.tooglebutton a:hover.designViewTab {
+	background-position:0 -36px;
+}
+.tooglebutton a.designViewselect {
+	background-position:0 -72px;
+}
+.tooglebutton a.codeViewTab {
+	background-position:-40px 0px;
+}
+.tooglebutton a:hover.codeViewTab {
+	background-position:-40px -36px;
+}
+.tooglebutton a.codeViewselect {
+	background-position:-40px -72px;
+}
+.tooglebutton a.splitViewTab {
+	background-position:-77px 0px;
+}
+.tooglebutton a:hover.splitViewTab {
+	background-position:-77px -36px;
+}
+.tooglebutton a.splitViewselect {
+	background-position:-77px -72px;
+}
+/*Toogle Button ==============================*/
+
+
+/*addOparaterNode ==============================*/
+.addOparaterNode {
+	background:#fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	position:relative;
+	border:1px solid #d4d4d4;
+	box-shadow: 0px 0px 5px #d4d4d4;
+	width:246px;
+}
+.addOparaterNode h6 {
+	font-size:11px;
+	font-weight:bold;
+	border-bottom:1px solid #e4e8eb;
+	padding:8px 0px 8px 8px;
+	font-size:13px;
+}
+.addOparaterNode .opClose {
+	background:url(../images/opClose.jpg) no-repeat 0px 0px;
+	width:8px;
+	height:8px;
+	position:absolute;
+	right:10px;
+	top:13px;
+	font-size:0px;
+	text-indent:-9999em;
+	float:right;
+}
+.addOparaterNode .opClose:hover{
+	background-position:0 -9px;
+}
+.addExpressionNode{
+	width:164px;
+}
+.exArea {
+	overflow:hidden;
+}
+.exArea li {
+	display:block;
+	border-bottom:1px solid #e4e8eb;
+}
+.exArea a {
+	padding:5px 0px 5px 5px;
+ 	position:relative;
+	font-size:11px;
+	color:#999;
+	display:block;
+	font-weight:bold;
+}
+.exArea a:hover {
+	text-decoration:none;
+	color:#333;
+}
+.addOparaterNode .oparaterArrow {
+	background:url(../images/tooltipimgArrow.png) no-repeat 0px 0px;
+	width:12px;
+	height:9px;
+	position:absolute;
+	bottom:-8px;
+	left:20px;
+}
+.addOparaterNode .oparaterArrowUp {
+	background:url(../images/tooltipimgArrowUp.png) no-repeat 0px 0px;
+	top:-8px;
+}
+.addOparaterNode .oparaterOptions {
+	overflow:hidden;
+}
+.addOparaterNode .oparaterOptions a {
+	float:left;
+	width:40px;
+	height:22px;
+	text-align:center;
+	line-height:22px;
+	border-right:1px solid #e4e8eb;
+	border-bottom:1px solid #e4e8eb;
+	text-transform:uppercase;
+	color:#afafaf;
+	font-weight:bold;
+	font-size:12px;
+}
+.addOparaterNode .oparaterOptions a:hover {
+	background:#d6f1ff;
+	color:#2f96d0;
+	text-decoration:none;
+}
+.addOparaterNode .oparaterOptionsType {
+	overflow:hidden;
+	display:block;
+}
+.addOparaterNode .oparaterOptionsType a {
+	float:left;
+	padding-left:9px;
+	text-align:left;
+	line-height:22px;
+	border-bottom:1px solid #e4e8eb;
+	text-transform:uppercase;
+	color:#afafaf;
+	font-weight:bold;
+	font-size:11px;
+	width:235px;
+}
+.addOparaterNode .deleteICon img {
+	margin-top:5px;
+}
+/*addOparaterNode ==============================*/
+
+/*node Css ==============================*/
+
+.node {
+	width:190px;
+	border-top: 1px solid #cccccc;
+	position:relative;
+}
+.node .nodeTitle {
+	padding:4px 8px 6px 8px;
+	font-size:12px;
+	color:#000;
+	font-weight:bold;
+	position:relative;
+	border-bottom: 1px solid #cccccc;
+	height:18px;
+	line-height:18px;
+}
+.node .nodeSubTitle {
+	padding:4px 8px 4px 0px;
+	font-size:11px;
+	color:#000;
+	position:relative;
+	margin-left:15px;
+}
+.node .nodeTitle sup {
+	color:#ff0000;
+}
+.node .collaspe {
+	background:url(../images/collaspeBg.png) no-repeat -4px -4px;
+	width:10px;
+	height:7px;
+	position:absolute;
+	right:10px;
+	top:10px;
+	font-size:0px;
+	text-indent:-9999em;
+	float:right;
+}
+.node .collaspeMinus {
+	background-position: -4px -22px;
+}
+.node .nodelayer {
+	border-bottom:1px solid #cccccc;
+	padding:4px 8px;
+	font-size:11px;
+	color:#000;
+	overflow:hidden;
+	min-height:15px;
+}
+.nodeyellow .nodelayer, .nodeyellow .nodeTitle, .nodeyellow .nodeSubTitle {
+}
+.node .bracket {
+	background:url(../images/bracketimage.png) no-repeat 0px 0px;
+	width:18px;
+	height:16px;
+	display:inline-block;
+	margin:0px;
+}
+.node .openBlueBracket {
+	float:left;
+	background-position: 0px 0px;
+}
+.node .closeBlueBracket {
+	float:right;
+	background-position: 0px -16px;
+}
+.node .openYellowBracket {
+	float:left;
+	background-position:0px -32px;
+}
+.node .closeYellowBracket {
+	float:right;
+	background-position:0px -48px;
+}
+.node .blankLeft {
+	float:left;
+	background-position:-200px -200px;
+}
+.node .blankRight {
+	float:right;
+	background-position:-200px -200px;
+}
+.node .or {
+	background:url(../images/bracketimage.png) no-repeat 0px -97px;
+	width:20px;
+	height:16px;
+	display:inline-block;
+	margin:0px 0px 0px -1px;
+	float:left;
+}
+.node .in {
+	background:url(../images/bracketimage.png) no-repeat 0px -114px;
+	width:22px;
+	height:16px;
+	display:inline-block;
+	margin:0px 3px 0px 3px;
+	float:left;
+}
+.node .nodeText {
+	width:190px;
+	text-align:center;
+}
+.nodeblue {
+	background:#dbeffe;
+}
+.nodeyellow {
+	background:#fffdd9;
+	border-top: 1px solid #bbb66b;
+	width:270px;
+}
+.nodegreen {
+	background:#fff;
+}
+.nodegreen .nodeTitle {
+	background:#dffce2;
+}
+.subpnode {
+	margin-left:15px;
+}
+.nodeEditBoxEdit {
+	width:39px;
+	height:36px;
+	float:right;
+	position:absolute;
+	background:url(../images/editBoxedit.png) no-repeat 0px 0px;
+	bottom:-28px;
+	right:0px;
+	cursor:pointer;
+}
+.nodeEditBoxSave {
+	width:39px;
+	height:36px;
+	float:right;
+	position:absolute;
+	background:url(../images/saveBoxsave.png) no-repeat 0px 0px;
+	bottom:-28px;
+	right:-8px;
+	display:none;
+	cursor:pointer;
+}
+/*node Css ==============================*/
+
+/*brackets*/
+.sadd1 {
+	background: url(../images/bracketimage.png) no-repeat scroll 0 -148px transparent;
+	display: block;
+	height: 14px;
+	width: 28px;
+}
+.orOp {
+	background-position: 0px -97px;
+}
+.notOp {
+	background-position: 0px -130px;
+}
+.inOp {
+	background-position: 0px -113px;
+}
+.sqLeft {
+	background-position: 5px -64px;
+}
+.sqRight {
+	background-position: 5px -82px;
+}
+.quLeft {
+	background-position: 5px 0px;
+}
+.quRight {
+	background-position: 5px -16px;
+}
+.brLeft {
+	background-position: 5px -32px;
+}
+.brRight {
+	background-position: 5px -48px;
+}

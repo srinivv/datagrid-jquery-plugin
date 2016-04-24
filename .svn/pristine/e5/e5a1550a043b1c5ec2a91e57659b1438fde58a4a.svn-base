@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<import resource="datasources-config.xml" />
+	<bean id="systemProperties" class="java.util.HashMap" />
+	<bean id="systemEnvironment" class="java.util.HashMap" />
+
+	<bean id="apasJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="apasDataSource" />
+		</property>
+		<property name="nativeJdbcExtractor">
+			<ref bean="nativeJdbcExtractor" />
+		</property>
+	</bean>
+	
+	<bean name="auditInterceptor" class="com.cisco.apas.interceptor.AuditInterceptor"></bean>
+
+	<bean name="baseExceptionHandler" class="com.cisco.apas.BaseExceptionHandler" />
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="apasDataSource" />
+		</property>
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler"
+		abstract="false" singleton="true" lazy-init="true" autowire="default"
+		dependency-check="default">
+		<property name="nativeJdbcExtractor">
+			<ref bean="nativeJdbcExtractor" />
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		abstract="false" singleton="true" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="dataSource">
+			<ref bean="apasDataSource" />
+		</property>
+	</bean>
+
+	<bean id="apasApplicationContext" class="com.cisco.apas.APASApplicationContext"
+		abstract="false" singleton="true" lazy-init="default" autowire="default"
+		dependency-check="default" init-method="loadApplicationContext">
+		<property name="nodeDao">
+			<ref bean="nodeDao"/>
+		</property>
+	</bean>
+
+	<bean id="baseDao" class="com.cisco.apas.dao.BaseDao"  abstract="true"  singleton="true" lazy-init="default" autowire="default" >
+		<property name="apasJdbcTemplate">
+			<ref bean="apasJdbcTemplate"/>
+		</property>
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+
+	<bean name="apasDao" parent="baseDao" class="com.cisco.apas.dao.APASDao" abstract="false"  singleton="true" lazy-init="default" autowire="default"/>
+	<bean name="nodeDao" parent="baseDao" class="com.cisco.apas.dao.NodeDao" abstract="false"  singleton="true" lazy-init="default" autowire="default"/>
+	<bean name="ruleDao" parent="baseDao" class="com.cisco.apas.dao.RuleDao" abstract="false"  singleton="true" lazy-init="default" autowire="default"/>
+	<bean name="partnerExceptionDao" parent="baseDao" class="com.cisco.apas.dao.PartnerExceptionDao" abstract="false"  singleton="true" lazy-init="default" autowire="default"/>
+	<bean name="dealExceptionDao" parent="baseDao" class="com.cisco.apas.dao.DealExceptionDao" abstract="false"  singleton="true" lazy-init="default" autowire="default"/>
+
+	<bean id="baseService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+		<property name="transactionManager">
+			<ref bean="transactionManager"/>
+		</property>
+	</bean>
+	
+	<bean id="apasServiceImpl" class="com.cisco.apas.service.APASServiceImpl" abstract="false" singleton="true" lazy-init="default" autowire="default" >
+		<property name="apasDao">
+			<ref bean="apasDao"/>
+		</property>
+		<property name="nodeDao">
+			<ref bean="nodeDao"/>
+		</property>
+		<property name="ruleDao">
+			<ref bean="ruleDao"/>
+		</property>
+		<property name="partnerExceptionDao">
+			<ref bean="partnerExceptionDao"/>
+		</property>
+		<property name="dealExceptionDao">
+			<ref bean="dealExceptionDao"/>
+		</property>
+	</bean>
+	
+	<bean name="apasService" parent="baseService">
+		<property name="target" ref="apasServiceImpl"/>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="home" class="com.cisco.apas.actions.HomeAction">
+		<property name="apasApplicationContext">
+			<ref bean="apasApplicationContext"/>
+		</property>	
+	
+	</bean>
+
+	<bean id="node" class="com.cisco.apas.actions.NodeAction">
+		<property name="apasService">
+			<ref bean="apasService"/>
+		</property>
+		
+		<property name="apasApplicationContext">
+			<ref bean="apasApplicationContext"/>
+		</property>	
+	
+	</bean>
+
+	<bean id="rule" class="com.cisco.apas.actions.RuleAction">
+		<property name="apasService">
+			<ref bean="apasService"/>
+		</property>
+		
+		<property name="apasApplicationContext">
+			<ref bean="apasApplicationContext"/>
+		</property>	
+	
+	</bean>
+
+	<bean id="partnerException" class="com.cisco.apas.actions.PartnerExceptionAction">
+		<property name="apasService">
+			<ref bean="apasService"/>
+		</property>
+		
+		<property name="apasApplicationContext">
+			<ref bean="apasApplicationContext"/>
+		</property>	
+	
+	</bean>
+
+	<bean id="dealException" class="com.cisco.apas.actions.DealExceptionAction">
+		<property name="apasService">
+			<ref bean="apasService"/>
+		</property>
+		
+		<property name="apasApplicationContext">
+			<ref bean="apasApplicationContext"/>
+		</property>	
+	
+	</bean>
+
+	<bean id="customer" class="com.cisco.apas.actions.CustomerAction">
+		<property name="apasApplicationContext">
+			<ref bean="apasApplicationContext"/>
+		</property>	
+	</bean>
+
+</beans>

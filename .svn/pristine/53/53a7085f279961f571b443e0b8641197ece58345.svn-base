@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ServiceRegistry
+	xmlns="http://www.cisco.com/serviceframework/serviceregistry"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cisco.com/serviceframework/serviceregistry/serviceregistry.xsd">
+
+   <!--THIS FILE IS FOR Service JVM sds  -->
+  
+	<ServiceMeta serviceName="APServiceProxy"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgx-dev-ermo.cisco.com:443/icw/sdsws/services/APServiceExt"/>
+		<!--Parameter name="endpointUrl" value="https://wsgx-lt-ermo.cisco.com:443/icw/sdsws/services/APServiceExt"/-->
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		<!--Parameter name="userName" value="icwpdr.gen" />
+		<Parameter name="password" value="icwp4ss" /--> 
+		<Parameter name="doclitBare" value="true" />
+	</ServiceMeta>
+	
+	
+	
+	<!--  this entry is for accessing the service via wsgi currently not in use -->
+	<ServiceMeta serviceName="APServiceProxyI"	domainName="RemoteWSService" type="wsProxy"  messageType="soap"  enableSLA="true">
+		<ClassName>com.cisco.sd.service.APService</ClassName>
+		<Parameter name="endpointUrl" value="https://wsgi-dev.cisco.com/icw/sdsws/services/APService"/>
+		<Parameter name="doclitBare" value="true" />
+    	<Parameter name="HTTP_CONNECTION_TIMEOUT" value="60000" />
+		<Parameter name="HTTP_SO_TIMEOUT" value="60000" />
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" /> 
+		
+		<!--Parameter name="userName" value="sdsappid.gen" />
+		<Parameter name="password" value="sds123" /--> 
+	</ServiceMeta>
+	
+		
+	<ServiceMeta serviceName="AtAServiceProxy" domainName="RemoteWSService" type="wsProxy">
+		<Parameter name="endpointUrl" value="https://wsgx-stage-ermo.cisco.com/eiam/ataws/AtAService"/>
+		<Parameter name="userName" value="ICW_SELL_PDR.gen" />
+		<Parameter name="password" value="cisco123" />
+		<Parameter name="doclitBare" value="true" />
+		<Parameter name="HTTP_CONNECTION_TIMEOUT" value="100000" />
+        <Parameter name="HTTP_SO_TIMEOUT" value="100000" />
+	</ServiceMeta>
+
+	<ResourceDef name="FWK_PROPERTIES_RES">
+	    	<Parameter name="SET_KEY_STORE" value="true"></Parameter>
+	</ResourceDef>
+
+</ServiceRegistry>

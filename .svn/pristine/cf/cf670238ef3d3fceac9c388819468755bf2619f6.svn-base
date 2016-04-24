@@ -1,0 +1,29 @@
+#########################################################
+# THIS FILES CONTAINS THE PDBSOA RELATED
+# PARAMETER FOR DEV/STAGE/PROD /LT 
+#PDBSOA NEEDS CCOID ,PASSWORD AND APPLICATION NAME 
+# ALSO THAT NEEDS TO BE INFORMED TO PDBSOA TEAM SO THA THEY 
+# CAN PROVISION THE CONSUMING APPLICATION
+#########################################################
+
+pdbsoa_user=ICWAPASDS
+
+#Local 
+pdbsoa_pwd=Cisco123
+pdbsoa_wsURL=http://tools-dev.cisco.com/WWChannels/services/pdbsoa/services/PartnerProfileWS
+
+#dev
+devpdbsoa_pwd=Cisco123
+devpdbsoa_wsURL=http://tools-dev.cisco.com/WWChannels/services/pdbsoa/services/PartnerProfileWS
+
+#stage
+stagepdbsoa_pwd=Cisco123
+stagepdbsoa_wsURL=http://tools-stage.cisco.com/WWChannels/services/pdbsoa/services/PartnerProfileWS
+
+#lt
+ltpdbsoa_pwd=Cisco123
+ltpdbsoa_wsURL=http://tools-stage.cisco.com/WWChannels/services/pdbsoa/services/PartnerProfileWS
+
+#prod
+prodpdbsoa_pwd=Cisco123
+prodpdbsoa_wsURL=http://tools.cisco.com/WWChannels/services/pdbsoa/services/PartnerProfileWS

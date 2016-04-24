@@ -1,0 +1,6038 @@
+var hierarchyDetails = [
+		{
+			"id" : 1,
+			"text" : "Product",
+			"children" : [
+					{
+						"id" : "A",
+						"text" : "A",
+						"families" : [
+								{
+									"id" : "APPLICATION CONTROL ENGINE (ACE)",
+									"text" : "APPLICATION CONTROL ENGINE (ACE)"
+								},
+								{
+									"id" : "APPTIO TOTAL COST OF OWNERSHIP",
+									"text" : "APPTIO TOTAL COST OF OWNERSHIP"
+								},
+								{
+									"id" : "ATHOC UNIFIED NOTIFICATION SERVER, CISCO ED. (SOLUTIONSPLUS)",
+									"text" : "ATHOC UNIFIED NOTIFICATION SERVER, CISCO ED. (SOLUTIONSPLUS)"
+								} ]
+					},
+					{
+						"id" : "B",
+						"text" : "B",
+						"families" : []
+					},
+					{
+						"id" : "C",
+						"text" : "C",
+						"families" : [
+								{
+									"id" : "CA: SERVICES SOFTWARE",
+									"text" : "CA: SERVICES SOFTWARE"
+								},
+								{
+									"id" : "CA: THIRD PARTY MATERIAL",
+									"text" : "CA: THIRD PARTY MATERIAL"
+								},
+								{
+									"id" : "CA: THIRD PARTY MATERIALS",
+									"text" : "CA: THIRD PARTY MATERIALS"
+								},
+								{
+									"id" : "CABLE HFC ACCESSORIES",
+									"text" : "CABLE HFC ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC COMMERCIAL SERVICES",
+									"text" : "CABLE HFC COMMERCIAL SERVICES"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-CABLE HFC SPARE PARTS",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-CABLE HFC SPARE PARTS"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-GAASFET AMPLIFIERS",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-GAASFET AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-GAASFET MICRO AMPLIFIERS",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-GAASFET MICRO AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-GAASFET MINI AMPLIFIERS",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-GAASFET MINI AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-HMS PROTOCOL TRANSPONDERS",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-HMS PROTOCOL TRANSPONDERS"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-PLUG-IN UNITS",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-PLUG-IN UNITS"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-PROGRAM UNITS,ACCESSORIES",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-PROGRAM UNITS,ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-REVERSE AMPLIFIER MODULES",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-REVERSE AMPLIFIER MODULES"
+								},
+								{
+									"id" : "CABLE HFC COMPACT RF ELECTRONICS-TRANSPONDER,ACCESSORIES",
+									"text" : "CABLE HFC COMPACT RF ELECTRONICS-TRANSPONDER,ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC DIGISTAR DIGITAL TRANSPORT",
+									"text" : "CABLE HFC DIGISTAR DIGITAL TRANSPORT"
+								},
+								{
+									"id" : "CABLE HFC DIGITAL RETURN REVERSE MULTIPLEXING SYSTEM",
+									"text" : "CABLE HFC DIGITAL RETURN REVERSE MULTIPLEXING SYSTEM"
+								},
+								{
+									"id" : "CABLE HFC FIBER MANAGEMENT",
+									"text" : "CABLE HFC FIBER MANAGEMENT"
+								},
+								{
+									"id" : "CABLE HFC LASER LINK MODULAR PRODUCTS",
+									"text" : "CABLE HFC LASER LINK MODULAR PRODUCTS"
+								},
+								{
+									"id" : "CABLE HFC LUMIN PLATFORM PRODUCTS",
+									"text" : "CABLE HFC LUMIN PLATFORM PRODUCTS"
+								},
+								{
+									"id" : "CABLE HFC NODE/COMPACT RF ELECTRONICS-PLUG-IN UNITS,ACCESS",
+									"text" : "CABLE HFC NODE/COMPACT RF ELECTRONICS-PLUG-IN UNITS,ACCESS"
+								},
+								{
+									"id" : "CABLE HFC NODES/OPTOELECTRONICS PLUG-IN REVERSE TRANSMITTER",
+									"text" : "CABLE HFC NODES/OPTOELECTRONICS PLUG-IN REVERSE TRANSMITTER"
+								},
+								{
+									"id" : "CABLE HFC NODES/OPTOELECTRONICS-COMPACT EGC OPT NODES W/AGC",
+									"text" : "CABLE HFC NODES/OPTOELECTRONICS-COMPACT EGC OPT NODES W/AGC"
+								},
+								{
+									"id" : "CABLE HFC NODES/OPTOELECTRONICS-COMPACT NODE ACCESSORIES",
+									"text" : "CABLE HFC NODES/OPTOELECTRONICS-COMPACT NODE ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC NODES/OPTOELECTRONICS-COMPACT OPTICAL NODES",
+									"text" : "CABLE HFC NODES/OPTOELECTRONICS-COMPACT OPTICAL NODES"
+								},
+								{
+									"id" : "CABLE HFC NODES/OPTOELECTRONICS-COMPACT PLUG-IN RECEIVER",
+									"text" : "CABLE HFC NODES/OPTOELECTRONICS-COMPACT PLUG-IN RECEIVER"
+								},
+								{
+									"id" : "CABLE HFC NODES/OPTOELECTRONICS-COMPATIBLE MUX/DEMUX",
+									"text" : "CABLE HFC NODES/OPTOELECTRONICS-COMPATIBLE MUX/DEMUX"
+								},
+								{
+									"id" : "CABLE HFC NODES/OPTOELECTRONICS-LOW/HIGH BAND SPLITTER",
+									"text" : "CABLE HFC NODES/OPTOELECTRONICS-LOW/HIGH BAND SPLITTER"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-6940 870MHZ BDR NODES",
+									"text" : "CABLE HFC OPTICAL NODES-6940 870MHZ BDR NODES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-6940 EQUALIZERS",
+									"text" : "CABLE HFC OPTICAL NODES-6940 EQUALIZERS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-6940/6942/6944 GAINMAKER NODE FWD RX",
+									"text" : "CABLE HFC OPTICAL NODES-6940/6942/6944 GAINMAKER NODE FWD RX"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-6940/6942/6944 GAINMAKER NODE REV TX",
+									"text" : "CABLE HFC OPTICAL NODES-6940/6942/6944 GAINMAKER NODE REV TX"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-6940/6942/6944 LAUNCH AMPLIFIER KITS",
+									"text" : "CABLE HFC OPTICAL NODES-6940/6942/6944 LAUNCH AMPLIFIER KITS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-6940/6942/6944 PLATFORM ACCESSORIES",
+									"text" : "CABLE HFC OPTICAL NODES-6940/6942/6944 PLATFORM ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GAINMAKER 1GHZ CONFIGURED NODES",
+									"text" : "CABLE HFC OPTICAL NODES-GAINMAKER 1GHZ CONFIGURED NODES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GAINMAKER NODE PLATFORM ACCESSORIES",
+									"text" : "CABLE HFC OPTICAL NODES-GAINMAKER NODE PLATFORM ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GAINMAKER REV SEG NODE BDR MODULES",
+									"text" : "CABLE HFC OPTICAL NODES-GAINMAKER REV SEG NODE BDR MODULES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GAINMAKER REVERSE SEGMENTABLE NODES",
+									"text" : "CABLE HFC OPTICAL NODES-GAINMAKER REVERSE SEGMENTABLE NODES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GAINSTAR NODES",
+									"text" : "CABLE HFC OPTICAL NODES-GAINSTAR NODES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 1GHZ CONFIGURED NODES",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 1GHZ CONFIGURED NODES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 BDR CONFIGURED NODES",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 BDR CONFIGURED NODES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 FORWARD LAUNCH AMPLIFIERS",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 FORWARD LAUNCH AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 FORWARD LINEAR EQUALIZERS",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 FORWARD LINEAR EQUALIZERS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 FORWARD OPTICAL RECEIVERS",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 FORWARD OPTICAL RECEIVERS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 NODE BDR MODULES",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 NODE BDR MODULES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 NODE PLATFORM ACCESSORIES",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 NODE PLATFORM ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 NODE REVERSE TRANSMITTERS",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 NODE REVERSE TRANSMITTERS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-GS7000 OPTICAL HUB",
+									"text" : "CABLE HFC OPTICAL NODES-GS7000 OPTICAL HUB"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL NODES-LEGACY NODE PRODUCTS",
+									"text" : "CABLE HFC OPTICAL NODES-LEGACY NODE PRODUCTS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL PASSIVES GS7000 OPTICAL PASSIVE MODULES",
+									"text" : "CABLE HFC OPTICAL PASSIVES GS7000 OPTICAL PASSIVE MODULES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL PASSIVES MULTI-WAVE O-BAND PASSIVES",
+									"text" : "CABLE HFC OPTICAL PASSIVES MULTI-WAVE O-BAND PASSIVES"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL PASSIVES MULTIPLEXERS/DEMULTIPLEXERS",
+									"text" : "CABLE HFC OPTICAL PASSIVES MULTIPLEXERS/DEMULTIPLEXERS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL PASSIVES PRISMA OPTICAL ATTENUATORS",
+									"text" : "CABLE HFC OPTICAL PASSIVES PRISMA OPTICAL ATTENUATORS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL PASSIVES PRISMA OPTICAL COUPLERS",
+									"text" : "CABLE HFC OPTICAL PASSIVES PRISMA OPTICAL COUPLERS"
+								},
+								{
+									"id" : "CABLE HFC OPTICAL PASSIVES PRISMA OPTICAL SERVICE CABLES",
+									"text" : "CABLE HFC OPTICAL PASSIVES PRISMA OPTICAL SERVICE CABLES"
+								},
+								{
+									"id" : "CABLE HFC OPTOSTAR OPTICAL TRANSMISSION",
+									"text" : "CABLE HFC OPTOSTAR OPTICAL TRANSMISSION"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II 1550NM AMPLIFIERS",
+									"text" : "CABLE HFC PRISMA II 1550NM AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II 1550NM EXTERNALLY MODULATED TX",
+									"text" : "CABLE HFC PRISMA II 1550NM EXTERNALLY MODULATED TX"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II 1550NM NARROWCAST",
+									"text" : "CABLE HFC PRISMA II 1550NM NARROWCAST"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II DISPERSION COMPENSATION MODULE",
+									"text" : "CABLE HFC PRISMA II DISPERSION COMPENSATION MODULE"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II ENHANCED NMS PLATFORM",
+									"text" : "CABLE HFC PRISMA II ENHANCED NMS PLATFORM"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II HIGH DENSITY 1310 TRANSMITTERS",
+									"text" : "CABLE HFC PRISMA II HIGH DENSITY 1310 TRANSMITTERS"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II PLATFORM",
+									"text" : "CABLE HFC PRISMA II PLATFORM"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II RECEIVERS",
+									"text" : "CABLE HFC PRISMA II RECEIVERS"
+								},
+								{
+									"id" : "CABLE HFC PRISMA II XD PLATFORM",
+									"text" : "CABLE HFC PRISMA II XD PLATFORM"
+								},
+								{
+									"id" : "CABLE HFC PRISMA IP INTELLIGENT PACKET TRANSPORT COMPONENTS",
+									"text" : "CABLE HFC PRISMA IP INTELLIGENT PACKET TRANSPORT COMPONENTS"
+								},
+								{
+									"id" : "CABLE HFC PRISMA MEDIA CONVERTERS",
+									"text" : "CABLE HFC PRISMA MEDIA CONVERTERS"
+								},
+								{
+									"id" : "CABLE HFC RACKS AND CABINETS",
+									"text" : "CABLE HFC RACKS AND CABINETS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-DIGITAL SERVICE ACCESS",
+									"text" : "CABLE HFC RF ELECTRONICS-DIGITAL SERVICE ACCESS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-GAINMAKER ACCESSORIES",
+									"text" : "CABLE HFC RF ELECTRONICS-GAINMAKER ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-GAINMAKER AMPLIFIERS",
+									"text" : "CABLE HFC RF ELECTRONICS-GAINMAKER AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-GAINMAKER AUTO CONTROL MODULES(AGC)",
+									"text" : "CABLE HFC RF ELECTRONICS-GAINMAKER AUTO CONTROL MODULES(AGC)"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-GAINMAKER EQUALIZERS AND PADS",
+									"text" : "CABLE HFC RF ELECTRONICS-GAINMAKER EQUALIZERS AND PADS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-GAINMAKER LINE EXTENDERS",
+									"text" : "CABLE HFC RF ELECTRONICS-GAINMAKER LINE EXTENDERS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-GAINSTAR AMPLIFIERS",
+									"text" : "CABLE HFC RF ELECTRONICS-GAINSTAR AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-LEGACY EQUALIZERS AND PADS",
+									"text" : "CABLE HFC RF ELECTRONICS-LEGACY EQUALIZERS AND PADS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-LEGACY OPTIONAL ACCESSORIES",
+									"text" : "CABLE HFC RF ELECTRONICS-LEGACY OPTIONAL ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-LEGACY SYSTEM AMPLIFIERS",
+									"text" : "CABLE HFC RF ELECTRONICS-LEGACY SYSTEM AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-LEGACY TRIM NETWORKS",
+									"text" : "CABLE HFC RF ELECTRONICS-LEGACY TRIM NETWORKS"
+								},
+								{
+									"id" : "CABLE HFC RF ELECTRONICS-PADS AND EQUALIZERS",
+									"text" : "CABLE HFC RF ELECTRONICS-PADS AND EQUALIZERS"
+								},
+								{
+									"id" : "CABLE HFC RF GATEWAY 1",
+									"text" : "CABLE HFC RF GATEWAY 1"
+								},
+								{
+									"id" : "CABLE HFC RF INTEGRATOR PRODUCTS",
+									"text" : "CABLE HFC RF INTEGRATOR PRODUCTS"
+								},
+								{
+									"id" : "CABLE HFC RF SIGNAL MANAGER",
+									"text" : "CABLE HFC RF SIGNAL MANAGER"
+								},
+								{
+									"id" : "CABLE HFC SWITCHED DIGITAL VIDEO",
+									"text" : "CABLE HFC SWITCHED DIGITAL VIDEO"
+								},
+								{
+									"id" : "CABLE HFC TAPS AND PASSIVES-DIRECTIONAL COUPLERS",
+									"text" : "CABLE HFC TAPS AND PASSIVES-DIRECTIONAL COUPLERS"
+								},
+								{
+									"id" : "CABLE HFC TAPS AND PASSIVES-DPON OPTICAL NETWORK",
+									"text" : "CABLE HFC TAPS AND PASSIVES-DPON OPTICAL NETWORK"
+								},
+								{
+									"id" : "CABLE HFC TAPS AND PASSIVES-DROP AMPLIFIERS",
+									"text" : "CABLE HFC TAPS AND PASSIVES-DROP AMPLIFIERS"
+								},
+								{
+									"id" : "CABLE HFC TAPS AND PASSIVES-PASSIVES",
+									"text" : "CABLE HFC TAPS AND PASSIVES-PASSIVES"
+								},
+								{
+									"id" : "CABLE HFC TAPS AND PASSIVES-TAP ACCESSORIES",
+									"text" : "CABLE HFC TAPS AND PASSIVES-TAP ACCESSORIES"
+								},
+								{
+									"id" : "CABLE HFC TAPS AND PASSIVES-TAPS AND FACEPLATES",
+									"text" : "CABLE HFC TAPS AND PASSIVES-TAPS AND FACEPLATES"
+								},
+								{
+									"id" : "CABLE HFC VIRTUAL PRIVATE NETWORKS",
+									"text" : "CABLE HFC VIRTUAL PRIVATE NETWORKS"
+								},
+								{
+									"id" : "CABLE HFC XDQA",
+									"text" : "CABLE HFC XDQA"
+								},
+								{
+									"id" : "CABLES AND ACCESSORIES FOR ALL ROUTER AND SECURITY PLATFORMS",
+									"text" : "CABLES AND ACCESSORIES FOR ALL ROUTER AND SECURITY PLATFORMS"
+								},
+								{
+									"id" : "CABLES FOR IGX 8400, BPX 8600, MGX 8220 AND INS PRODUCTS",
+									"text" : "CABLES FOR IGX 8400, BPX 8600, MGX 8220 AND INS PRODUCTS"
+								},
+								{
+									"id" : "CARRIER PACKET TRANSPORT - CPT",
+									"text" : "CARRIER PACKET TRANSPORT - CPT"
+								},
+								{
+									"id" : "CATALYST 1900",
+									"text" : "CATALYST 1900"
+								},
+								{
+									"id" : "CATALYST 1900 SERIES",
+									"text" : "CATALYST 1900 SERIES"
+								},
+								{
+									"id" : "CATALYST 2350 SERIES",
+									"text" : "CATALYST 2350 SERIES"
+								},
+								{
+									"id" : "CATALYST 2360 SERIES",
+									"text" : "CATALYST 2360 SERIES"
+								},
+								{
+									"id" : "CATALYST 2900",
+									"text" : "CATALYST 2900"
+								},
+								{
+									"id" : "CATALYST 2900 LRE",
+									"text" : "CATALYST 2900 LRE"
+								},
+								{
+									"id" : "CATALYST 2900 SERIES",
+									"text" : "CATALYST 2900 SERIES"
+								},
+								{
+									"id" : "CATALYST 2900 XL SERIES",
+									"text" : "CATALYST 2900 XL SERIES"
+								},
+								{
+									"id" : "CATALYST 2918 SERIES",
+									"text" : "CATALYST 2918 SERIES"
+								},
+								{
+									"id" : "CATALYST 2928 SERIES",
+									"text" : "CATALYST 2928 SERIES"
+								},
+								{
+									"id" : "CATALYST 2940 SERIES",
+									"text" : "CATALYST 2940 SERIES"
+								},
+								{
+									"id" : "CATALYST 2940 SERIES PRODUCTS",
+									"text" : "CATALYST 2940 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CATALYST 2950",
+									"text" : "CATALYST 2950"
+								},
+								{
+									"id" : "CATALYST 2950  LRE",
+									"text" : "CATALYST 2950  LRE"
+								},
+								{
+									"id" : "CATALYST 2950 LRE",
+									"text" : "CATALYST 2950 LRE"
+								},
+								{
+									"id" : "CATALYST 2950 SERIES",
+									"text" : "CATALYST 2950 SERIES"
+								},
+								{
+									"id" : "CATALYST 2960 SERIES",
+									"text" : "CATALYST 2960 SERIES"
+								},
+								{
+									"id" : "CATALYST 2960-C",
+									"text" : "CATALYST 2960-C"
+								},
+								{
+									"id" : "CATALYST 2960-S SERIES",
+									"text" : "CATALYST 2960-S SERIES"
+								},
+								{
+									"id" : "CATALYST 2970 SERIES",
+									"text" : "CATALYST 2970 SERIES"
+								},
+								{
+									"id" : "CATALYST 2970 SERIES PRODUCTS",
+									"text" : "CATALYST 2970 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CATALYST 2975 SERIES",
+									"text" : "CATALYST 2975 SERIES"
+								},
+								{
+									"id" : "CATALYST 3500 SERIES",
+									"text" : "CATALYST 3500 SERIES"
+								},
+								{
+									"id" : "CATALYST 3500 XL SERIES",
+									"text" : "CATALYST 3500 XL SERIES"
+								},
+								{
+									"id" : "CATALYST 3550 SERIES",
+									"text" : "CATALYST 3550 SERIES"
+								},
+								{
+									"id" : "CATALYST 3560 SERIES",
+									"text" : "CATALYST 3560 SERIES"
+								},
+								{
+									"id" : "CATALYST 3560-C",
+									"text" : "CATALYST 3560-C"
+								},
+								{
+									"id" : "CATALYST 3560-E SERIES",
+									"text" : "CATALYST 3560-E SERIES"
+								},
+								{
+									"id" : "CATALYST 3560-X SERIES 10/100/1000 WORKGROUP SWITCH",
+									"text" : "CATALYST 3560-X SERIES 10/100/1000 WORKGROUP SWITCH"
+								},
+								{
+									"id" : "CATALYST 3750 METRO SERIES",
+									"text" : "CATALYST 3750 METRO SERIES"
+								},
+								{
+									"id" : "CATALYST 3750 METRO SERIES PRODUCTS",
+									"text" : "CATALYST 3750 METRO SERIES PRODUCTS"
+								},
+								{
+									"id" : "CATALYST 3750 SERIES",
+									"text" : "CATALYST 3750 SERIES"
+								},
+								{
+									"id" : "CATALYST 3750 SERIES PRODUCTS",
+									"text" : "CATALYST 3750 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CATALYST 3750-E SERIES",
+									"text" : "CATALYST 3750-E SERIES"
+								},
+								{
+									"id" : "CATALYST 3750-X SERIES 10/100/1000 WORKGROUP SWITCH",
+									"text" : "CATALYST 3750-X SERIES 10/100/1000 WORKGROUP SWITCH"
+								},
+								{
+									"id" : "CATALYST 4000 SERIES",
+									"text" : "CATALYST 4000 SERIES"
+								},
+								{
+									"id" : "CATALYST 4500",
+									"text" : "CATALYST 4500"
+								},
+								{
+									"id" : "CATALYST 4500X",
+									"text" : "CATALYST 4500X"
+								},
+								{
+									"id" : "CATALYST 4900",
+									"text" : "CATALYST 4900"
+								},
+								{
+									"id" : "CATALYST 4900 SERIES",
+									"text" : "CATALYST 4900 SERIES"
+								},
+								{
+									"id" : "CATALYST 5000",
+									"text" : "CATALYST 5000"
+								},
+								{
+									"id" : "CATALYST 5000 SERIES",
+									"text" : "CATALYST 5000 SERIES"
+								},
+								{
+									"id" : "CATALYST 6500",
+									"text" : "CATALYST 6500"
+								},
+								{
+									"id" : "CATALYST 6500 SERIES",
+									"text" : "CATALYST 6500 SERIES"
+								},
+								{
+									"id" : "CATALYST 8510 SERIES",
+									"text" : "CATALYST 8510 SERIES"
+								},
+								{
+									"id" : "CATALYST 8540",
+									"text" : "CATALYST 8540"
+								},
+								{
+									"id" : "CATALYST 8540 SERIES",
+									"text" : "CATALYST 8540 SERIES"
+								},
+								{
+									"id" : "CATALYST BLADE SWITCH 3000",
+									"text" : "CATALYST BLADE SWITCH 3000"
+								},
+								{
+									"id" : "CATALYST BLADE SWITCH 3000 SERIES",
+									"text" : "CATALYST BLADE SWITCH 3000 SERIES"
+								},
+								{
+									"id" : "CATALYST EXPRESS 500 SERIES",
+									"text" : "CATALYST EXPRESS 500 SERIES"
+								},
+								{
+									"id" : "CB INCENTIVES",
+									"text" : "CB INCENTIVES"
+								},
+								{
+									"id" : "CB SEEDING",
+									"text" : "CB SEEDING"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS EIGHT",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS EIGHT"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS ELEVEN",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS ELEVEN"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS FIVE",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS FIVE"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS FOUR",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS FOUR"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS NINE",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS NINE"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS ONE",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS ONE"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS SEVEN",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS SEVEN"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS SIX",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS SIX"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS TEN",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS TEN"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS THREE",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS THREE"
+								},
+								{
+									"id" : "CHINA COLLABORATION BREAKAWAY PLUS TWO",
+									"text" : "CHINA COLLABORATION BREAKAWAY PLUS TWO"
+								},
+								{
+									"id" : "CISCO 1000 SERIES CONNECTED GRID ROUTERS",
+									"text" : "CISCO 1000 SERIES CONNECTED GRID ROUTERS"
+								},
+								{
+									"id" : "CISCO 10000 SERIES OF EDGE SERVICES ROUTERS (ESR)",
+									"text" : "CISCO 10000 SERIES OF EDGE SERVICES ROUTERS (ESR)"
+								},
+								{
+									"id" : "CISCO 10000 SERIES OF EDGE SERVICES ROUTERS (ESR) -",
+									"text" : "CISCO 10000 SERIES OF EDGE SERVICES ROUTERS (ESR) -"
+								},
+								{
+									"id" : "CISCO 10700 SERIES OF INTERNET ROUTERS",
+									"text" : "CISCO 10700 SERIES OF INTERNET ROUTERS"
+								},
+								{
+									"id" : "CISCO 11000 SERIES",
+									"text" : "CISCO 11000 SERIES"
+								},
+								{
+									"id" : "CISCO 11000 SERIES PRODUCTS",
+									"text" : "CISCO 11000 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 11500 SERIES OF CONTENT SERVICES SWITCHES (CSS)",
+									"text" : "CISCO 11500 SERIES OF CONTENT SERVICES SWITCHES (CSS)"
+								},
+								{
+									"id" : "CISCO 12000 SERIES GIGABIT SWITCH ROUTERS (GSR)",
+									"text" : "CISCO 12000 SERIES GIGABIT SWITCH ROUTERS (GSR)"
+								},
+								{
+									"id" : "CISCO 12000 SERIES OF GIGABIT SWITCH ROUTERS (GSR)",
+									"text" : "CISCO 12000 SERIES OF GIGABIT SWITCH ROUTERS (GSR)"
+								},
+								{
+									"id" : "CISCO 1400 SERIES PRODUCTS",
+									"text" : "CISCO 1400 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 14XX SERIES",
+									"text" : "CISCO 14XX SERIES"
+								},
+								{
+									"id" : "CISCO 1600 SERIES",
+									"text" : "CISCO 1600 SERIES"
+								},
+								{
+									"id" : "CISCO 1600 SERIES PRODUCTS",
+									"text" : "CISCO 1600 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 1700 SERIES",
+									"text" : "CISCO 1700 SERIES"
+								},
+								{
+									"id" : "CISCO 1700 SERIES MODULAR ACCESS ROUTERS",
+									"text" : "CISCO 1700 SERIES MODULAR ACCESS ROUTERS"
+								},
+								{
+									"id" : "CISCO 1800 SERIES",
+									"text" : "CISCO 1800 SERIES"
+								},
+								{
+									"id" : "CISCO 1800 SERIES (FIXED) INTEGRATED SERVICES ROUTERS",
+									"text" : "CISCO 1800 SERIES (FIXED) INTEGRATED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 1800 SERIES INTEGRATED SERVICES ROUTERS",
+									"text" : "CISCO 1800 SERIES INTEGRATED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 1900 SERIES INTEGRATED SERVICES ROUTERS",
+									"text" : "CISCO 1900 SERIES INTEGRATED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 2000 SERIES CONNECTED GRID ROUTER",
+									"text" : "CISCO 2000 SERIES CONNECTED GRID ROUTER"
+								},
+								{
+									"id" : "CISCO 2500 SERIES",
+									"text" : "CISCO 2500 SERIES"
+								},
+								{
+									"id" : "CISCO 2500 SERIES CONNECTED GRID SWITCH",
+									"text" : "CISCO 2500 SERIES CONNECTED GRID SWITCH"
+								},
+								{
+									"id" : "CISCO 2500 SERIES PRODUCTS",
+									"text" : "CISCO 2500 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 2600 SERIES",
+									"text" : "CISCO 2600 SERIES"
+								},
+								{
+									"id" : "CISCO 2600 SERIES PRODUCTS",
+									"text" : "CISCO 2600 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 2800 SERIES INTEGRATED SERVICES ROUTERS",
+									"text" : "CISCO 2800 SERIES INTEGRATED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 2800 SERIES PRODUCTS",
+									"text" : "CISCO 2800 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 2801 SERIES INTEGRATED SERVICES ROUTERS",
+									"text" : "CISCO 2801 SERIES INTEGRATED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 2900 SERIES INTEGRATED SERVICES ROUTERS",
+									"text" : "CISCO 2900 SERIES INTEGRATED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 3200 SERIES PRODUCTS",
+									"text" : "CISCO 3200 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 3600 SERIES",
+									"text" : "CISCO 3600 SERIES"
+								},
+								{
+									"id" : "CISCO 3700 SERIES PRODUCTS",
+									"text" : "CISCO 3700 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 3800 SERIES INTEGRATED SERVICES ROUTERS",
+									"text" : "CISCO 3800 SERIES INTEGRATED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 3800 SERIES INTEGRATED SERVICES ROUTERS -",
+									"text" : "CISCO 3800 SERIES INTEGRATED SERVICES ROUTERS -"
+								},
+								{
+									"id" : "CISCO 3900 SERIES INTEGRATED SERVICES ROUTERS",
+									"text" : "CISCO 3900 SERIES INTEGRATED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 4000 SERIES",
+									"text" : "CISCO 4000 SERIES"
+								},
+								{
+									"id" : "CISCO 4000 SERIES PRODUCTS",
+									"text" : "CISCO 4000 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 500 SERIES SECURE ROUTERS",
+									"text" : "CISCO 500 SERIES SECURE ROUTERS"
+								},
+								{
+									"id" : "CISCO 5700 SERIES INTEGRATED ENCRYPTION ROUTERS (RESTRICTED)",
+									"text" : "CISCO 5700 SERIES INTEGRATED ENCRYPTION ROUTERS (RESTRICTED)"
+								},
+								{
+									"id" : "CISCO 5900 SERIES EMBEDDED SERVICES ROUTERS",
+									"text" : "CISCO 5900 SERIES EMBEDDED SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO 6400 SERIES",
+									"text" : "CISCO 6400 SERIES"
+								},
+								{
+									"id" : "CISCO 6400 UNIVERSAL ACCESS CONCENTRATOR",
+									"text" : "CISCO 6400 UNIVERSAL ACCESS CONCENTRATOR"
+								},
+								{
+									"id" : "CISCO 7100 SERIES",
+									"text" : "CISCO 7100 SERIES"
+								},
+								{
+									"id" : "CISCO 7200 SERIES",
+									"text" : "CISCO 7200 SERIES"
+								},
+								{
+									"id" : "CISCO 7200 SERIES PRODUCTS",
+									"text" : "CISCO 7200 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 7300 SERIES",
+									"text" : "CISCO 7300 SERIES"
+								},
+								{
+									"id" : "CISCO 7301 SERIES PRODUCTS",
+									"text" : "CISCO 7301 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 7304 SERIES PRODUCTS",
+									"text" : "CISCO 7304 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 7400 SERIES",
+									"text" : "CISCO 7400 SERIES"
+								},
+								{
+									"id" : "CISCO 7500 SERIES",
+									"text" : "CISCO 7500 SERIES"
+								},
+								{
+									"id" : "CISCO 7500 SERIES PRODUCTS",
+									"text" : "CISCO 7500 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 7600 SERIES",
+									"text" : "CISCO 7600 SERIES"
+								},
+								{
+									"id" : "CISCO 7600 SERIES ROUTER",
+									"text" : "CISCO 7600 SERIES ROUTER"
+								},
+								{
+									"id" : "CISCO 7700 SERIES PRODUCTS",
+									"text" : "CISCO 7700 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 800 SERIES",
+									"text" : "CISCO 800 SERIES"
+								},
+								{
+									"id" : "CISCO 800 SERIES PRODUCTS",
+									"text" : "CISCO 800 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO 8100 SERIES PRODUCTS",
+									"text" : "CISCO 8100 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO AC/DC POWER SYSTEM",
+									"text" : "CISCO AC/DC POWER SYSTEM"
+								},
+								{
+									"id" : "CISCO ACCESS SERVER 2500 SERIES PRODUCT",
+									"text" : "CISCO ACCESS SERVER 2500 SERIES PRODUCT"
+								},
+								{
+									"id" : "CISCO ACCESSPATH LS3 PRODUCTS",
+									"text" : "CISCO ACCESSPATH LS3 PRODUCTS"
+								},
+								{
+									"id" : "CISCO ACCESSPRO PC CARD",
+									"text" : "CISCO ACCESSPRO PC CARD"
+								},
+								{
+									"id" : "CISCO ACQUISITION SUITE MEDIA PROCESSOR SERIES",
+									"text" : "CISCO ACQUISITION SUITE MEDIA PROCESSOR SERIES"
+								},
+								{
+									"id" : "CISCO AS5200 SERIES",
+									"text" : "CISCO AS5200 SERIES"
+								},
+								{
+									"id" : "CISCO AS5200 SERIES PRODUCTS",
+									"text" : "CISCO AS5200 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO AS5300 SERIES",
+									"text" : "CISCO AS5300 SERIES"
+								},
+								{
+									"id" : "CISCO AS5300 VOICE GATEWAY",
+									"text" : "CISCO AS5300 VOICE GATEWAY"
+								},
+								{
+									"id" : "CISCO AS5350 UNIVERSAL GATEWAY",
+									"text" : "CISCO AS5350 UNIVERSAL GATEWAY"
+								},
+								{
+									"id" : "CISCO AS5350XM UNIVERSAL GATEWAY",
+									"text" : "CISCO AS5350XM UNIVERSAL GATEWAY"
+								},
+								{
+									"id" : "CISCO AS5400 UNIVERSAL GATEWAY",
+									"text" : "CISCO AS5400 UNIVERSAL GATEWAY"
+								},
+								{
+									"id" : "CISCO AS5400HPX  UNIVERSAL GATEWAY",
+									"text" : "CISCO AS5400HPX  UNIVERSAL GATEWAY"
+								},
+								{
+									"id" : "CISCO AS5400HPX UNIVERSAL GATEWAY",
+									"text" : "CISCO AS5400HPX UNIVERSAL GATEWAY"
+								},
+								{
+									"id" : "CISCO AS5400XM UNIVERSAL GATEWAY",
+									"text" : "CISCO AS5400XM UNIVERSAL GATEWAY"
+								},
+								{
+									"id" : "CISCO AS5800 ACCESS SERVER",
+									"text" : "CISCO AS5800 ACCESS SERVER"
+								},
+								{
+									"id" : "CISCO AS5800 SERIES",
+									"text" : "CISCO AS5800 SERIES"
+								},
+								{
+									"id" : "CISCO AS5850 UNIVERSAL GATEWAY",
+									"text" : "CISCO AS5850 UNIVERSAL GATEWAY"
+								},
+								{
+									"id" : "CISCO ASA 5500 SECURITY APPLIANCE",
+									"text" : "CISCO ASA 5500 SECURITY APPLIANCE"
+								},
+								{
+									"id" : "CISCO ASA 5500 SERIES ADAPTIVE SECURITY APPLIANCES",
+									"text" : "CISCO ASA 5500 SERIES ADAPTIVE SECURITY APPLIANCES"
+								},
+								{
+									"id" : "CISCO ASR 1000 SERIES",
+									"text" : "CISCO ASR 1000 SERIES"
+								},
+								{
+									"id" : "CISCO ASR 14000 SERIES",
+									"text" : "CISCO ASR 14000 SERIES"
+								},
+								{
+									"id" : "CISCO ASR 5000 SERIES",
+									"text" : "CISCO ASR 5000 SERIES"
+								},
+								{
+									"id" : "CISCO ASR 900 SERIES",
+									"text" : "CISCO ASR 900 SERIES"
+								},
+								{
+									"id" : "CISCO ASR 9000 SERIES",
+									"text" : "CISCO ASR 9000 SERIES"
+								},
+								{
+									"id" : "CISCO ASR 901 SERIES AGGREGATION SERVICES ROUTERS",
+									"text" : "CISCO ASR 901 SERIES AGGREGATION SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO ASR 903 SERIES AGGREGATION SERVICES ROUTERS",
+									"text" : "CISCO ASR 903 SERIES AGGREGATION SERVICES ROUTERS"
+								},
+								{
+									"id" : "CISCO ATA SERIES OF ANALOG TELEPHONE ADAPTORS",
+									"text" : "CISCO ATA SERIES OF ANALOG TELEPHONE ADAPTORS"
+								},
+								{
+									"id" : "CISCO BPX 8600 SERIES PRODUCTS",
+									"text" : "CISCO BPX 8600 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO BROADBAND WIRELESS (WIMAX) PRODUCTS",
+									"text" : "CISCO BROADBAND WIRELESS (WIMAX) PRODUCTS"
+								},
+								{
+									"id" : "CISCO BTS 10200 SOFTSWITCH SERIES",
+									"text" : "CISCO BTS 10200 SOFTSWITCH SERIES"
+								},
+								{
+									"id" : "CISCO BUSINESS INTELLIGENCE APPLIANCE FOR SAP NETWEAVER BWA",
+									"text" : "CISCO BUSINESS INTELLIGENCE APPLIANCE FOR SAP NETWEAVER BWA"
+								},
+								{
+									"id" : "CISCO CARRIER ROUTING SYSTEM SERIES",
+									"text" : "CISCO CARRIER ROUTING SYSTEM SERIES"
+								},
+								{
+									"id" : "CISCO CARRIER ROUTING SYSTEM-1 SERIES",
+									"text" : "CISCO CARRIER ROUTING SYSTEM-1 SERIES"
+								},
+								{
+									"id" : "CISCO CIUS",
+									"text" : "CISCO CIUS"
+								},
+								{
+									"id" : "CISCO CLIENT SUPPLICANT SOLUTIONS",
+									"text" : "CISCO CLIENT SUPPLICANT SOLUTIONS"
+								},
+								{
+									"id" : "CISCO COLLABORATION NETWORK MANAGEMENT",
+									"text" : "CISCO COLLABORATION NETWORK MANAGEMENT"
+								},
+								{
+									"id" : "CISCO CONTAINERIZED DATA CENTER (CDC)",
+									"text" : "CISCO CONTAINERIZED DATA CENTER (CDC)"
+								},
+								{
+									"id" : "CISCO CONTENT SWITCHING MODULE CSM",
+									"text" : "CISCO CONTENT SWITCHING MODULE CSM"
+								},
+								{
+									"id" : "CISCO CONVERGED BUILDING SYSTEMS",
+									"text" : "CISCO CONVERGED BUILDING SYSTEMS"
+								},
+								{
+									"id" : "CISCO CVA120 SERIES PRODUCTS",
+									"text" : "CISCO CVA120 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO D9036 MODULAR ENCODING PLATFORM SERIES",
+									"text" : "CISCO D9036 MODULAR ENCODING PLATFORM SERIES"
+								},
+								{
+									"id" : "CISCO DCM MPEG PROCESSOR SERIES",
+									"text" : "CISCO DCM MPEG PROCESSOR SERIES"
+								},
+								{
+									"id" : "CISCO DCM SERIES D9902",
+									"text" : "CISCO DCM SERIES D9902"
+								},
+								{
+									"id" : "CISCO DCM VIDEO ACQUISITION SERIES",
+									"text" : "CISCO DCM VIDEO ACQUISITION SERIES"
+								},
+								{
+									"id" : "CISCO DCM VIDEO GATEWAY SERIES",
+									"text" : "CISCO DCM VIDEO GATEWAY SERIES"
+								},
+								{
+									"id" : "CISCO DCM VIDEO TRANSCODER SERIES",
+									"text" : "CISCO DCM VIDEO TRANSCODER SERIES"
+								},
+								{
+									"id" : "CISCO DIGITAL MEDIA MANAGER SERVER",
+									"text" : "CISCO DIGITAL MEDIA MANAGER SERVER"
+								},
+								{
+									"id" : "CISCO DMS SHOW AND SHARE QUAD BUNDLE PROGRAM",
+									"text" : "CISCO DMS SHOW AND SHARE QUAD BUNDLE PROGRAM"
+								},
+								{
+									"id" : "CISCO DVB/DAVIC SERIES PRODUCTS",
+									"text" : "CISCO DVB/DAVIC SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO EDGE 300 SERIES",
+									"text" : "CISCO EDGE 300 SERIES"
+								},
+								{
+									"id" : "CISCO ENTERPRISE AGREEMENT",
+									"text" : "CISCO ENTERPRISE AGREEMENT"
+								},
+								{
+									"id" : "CISCO ENTERPRISE CONTENT DELIVERY SYSTEM",
+									"text" : "CISCO ENTERPRISE CONTENT DELIVERY SYSTEM"
+								},
+								{
+									"id" : "CISCO HEALTHPRESENCE",
+									"text" : "CISCO HEALTHPRESENCE"
+								},
+								{
+									"id" : "CISCO HOME ENERGY MANAGEMENT",
+									"text" : "CISCO HOME ENERGY MANAGEMENT"
+								},
+								{
+									"id" : "CISCO IAD2400 INTEGRATED ACCESS DEVICES",
+									"text" : "CISCO IAD2400 INTEGRATED ACCESS DEVICES"
+								},
+								{
+									"id" : "CISCO IAD2400, 2800 AND 3800",
+									"text" : "CISCO IAD2400, 2800 AND 3800"
+								},
+								{
+									"id" : "CISCO IAD880 INTEGRATED ACCESS DEVICES",
+									"text" : "CISCO IAD880 INTEGRATED ACCESS DEVICES"
+								},
+								{
+									"id" : "CISCO IDENTITY SERVICES ENGINE",
+									"text" : "CISCO IDENTITY SERVICES ENGINE"
+								},
+								{
+									"id" : "CISCO IE 3000 SERIES",
+									"text" : "CISCO IE 3000 SERIES"
+								},
+								{
+									"id" : "CISCO IE 3010 SERIES",
+									"text" : "CISCO IE 3010 SERIES"
+								},
+								{
+									"id" : "CISCO IGX 8400 SERIES PRODUCTS",
+									"text" : "CISCO IGX 8400 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO INFORMATION CENTER PRODUCTS - CIC",
+									"text" : "CISCO INFORMATION CENTER PRODUCTS - CIC"
+								},
+								{
+									"id" : "CISCO INSIGHT REPORTER FOR SCE1010",
+									"text" : "CISCO INSIGHT REPORTER FOR SCE1010"
+								},
+								{
+									"id" : "CISCO INSIGHT REPORTER FOR SCE2020",
+									"text" : "CISCO INSIGHT REPORTER FOR SCE2020"
+								},
+								{
+									"id" : "CISCO INSIGHT REPORTER FOR SCE8000",
+									"text" : "CISCO INSIGHT REPORTER FOR SCE8000"
+								},
+								{
+									"id" : "CISCO INSIGHT UPGRADE FOR SCE1010",
+									"text" : "CISCO INSIGHT UPGRADE FOR SCE1010"
+								},
+								{
+									"id" : "CISCO INSIGHT UPGRADE REPORTER FOR SCE2020",
+									"text" : "CISCO INSIGHT UPGRADE REPORTER FOR SCE2020"
+								},
+								{
+									"id" : "CISCO INSIGHT UPGRADE REPORTER FOR SCE8000",
+									"text" : "CISCO INSIGHT UPGRADE REPORTER FOR SCE8000"
+								},
+								{
+									"id" : "CISCO INTELLIGENT AUTOMATION CLOUD AUTOMATION",
+									"text" : "CISCO INTELLIGENT AUTOMATION CLOUD AUTOMATION"
+								},
+								{
+									"id" : "CISCO INTELLIGENT AUTOMATION FOR CLOUD",
+									"text" : "CISCO INTELLIGENT AUTOMATION FOR CLOUD"
+								},
+								{
+									"id" : "CISCO INTELLIGENT AUTOMATION FOR WORKPLACE",
+									"text" : "CISCO INTELLIGENT AUTOMATION FOR WORKPLACE"
+								},
+								{
+									"id" : "CISCO INTERACTIVE EXPERIENCE PLATFORM",
+									"text" : "CISCO INTERACTIVE EXPERIENCE PLATFORM"
+								},
+								{
+									"id" : "CISCO IP CAMERA LINE",
+									"text" : "CISCO IP CAMERA LINE"
+								},
+								{
+									"id" : "CISCO IP MOBILITY GATEWAY PRODUCTS",
+									"text" : "CISCO IP MOBILITY GATEWAY PRODUCTS"
+								},
+								{
+									"id" : "CISCO IP TELEPHONY SERVERS",
+									"text" : "CISCO IP TELEPHONY SERVERS"
+								},
+								{
+									"id" : "CISCO IP TELEPHONY SOLUTIONS",
+									"text" : "CISCO IP TELEPHONY SOLUTIONS"
+								},
+								{
+									"id" : "CISCO IP/TV",
+									"text" : "CISCO IP/TV"
+								},
+								{
+									"id" : "CISCO IPICS PRODUCTS",
+									"text" : "CISCO IPICS PRODUCTS"
+								},
+								{
+									"id" : "CISCO JABBER",
+									"text" : "CISCO JABBER"
+								},
+								{
+									"id" : "CISCO LICENSE MANAGEMENT",
+									"text" : "CISCO LICENSE MANAGEMENT"
+								},
+								{
+									"id" : "CISCO LICENSE MANAGER",
+									"text" : "CISCO LICENSE MANAGER"
+								},
+								{
+									"id" : "CISCO MC3810 BUNDLES",
+									"text" : "CISCO MC3810 BUNDLES"
+								},
+								{
+									"id" : "CISCO MDS 9100 SERIES MULTILAYER FABRIC STORAGE SWITCHES",
+									"text" : "CISCO MDS 9100 SERIES MULTILAYER FABRIC STORAGE SWITCHES"
+								},
+								{
+									"id" : "CISCO MDS 9200 SERIES MULTILAYER STORAGE SWITCHES",
+									"text" : "CISCO MDS 9200 SERIES MULTILAYER STORAGE SWITCHES"
+								},
+								{
+									"id" : "CISCO MDS 9200 SERIES STORAGE APPLIANCES",
+									"text" : "CISCO MDS 9200 SERIES STORAGE APPLIANCES"
+								},
+								{
+									"id" : "CISCO MDS 9500 SERIES MULTILAYER DIRECTORS STORAGE SWITCHES",
+									"text" : "CISCO MDS 9500 SERIES MULTILAYER DIRECTORS STORAGE SWITCHES"
+								},
+								{
+									"id" : "CISCO MDS 9500 SERIES MULTILAYER STORAGE SWITCHES",
+									"text" : "CISCO MDS 9500 SERIES MULTILAYER STORAGE SWITCHES"
+								},
+								{
+									"id" : "CISCO ME3600X ETHERNET SWITCH SERIES",
+									"text" : "CISCO ME3600X ETHERNET SWITCH SERIES"
+								},
+								{
+									"id" : "CISCO ME3800X CARRIER ETHERNET SWITCH ROUTER SERIES",
+									"text" : "CISCO ME3800X CARRIER ETHERNET SWITCH ROUTER SERIES"
+								},
+								{
+									"id" : "CISCO MEETINGPLACE",
+									"text" : "CISCO MEETINGPLACE"
+								},
+								{
+									"id" : "CISCO MGX 8220 EDGE CONCENTRATOR",
+									"text" : "CISCO MGX 8220 EDGE CONCENTRATOR"
+								},
+								{
+									"id" : "CISCO MGX 8230 & 8250 IP+ATM EDGE CONCENTRATORS",
+									"text" : "CISCO MGX 8230 & 8250 IP+ATM EDGE CONCENTRATORS"
+								},
+								{
+									"id" : "CISCO MGX 8260 SERIES PRODUCTS",
+									"text" : "CISCO MGX 8260 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO MGX 8800 SERIES PRODUCTS",
+									"text" : "CISCO MGX 8800 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO MGX 8880 MEDIA GATEWAY",
+									"text" : "CISCO MGX 8880 MEDIA GATEWAY"
+								},
+								{
+									"id" : "CISCO MGX 8900 SERIES PRODUCTS",
+									"text" : "CISCO MGX 8900 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO MWR MOBILE WIRELESS ROUTERS",
+									"text" : "CISCO MWR MOBILE WIRELESS ROUTERS"
+								},
+								{
+									"id" : "CISCO NAC APPLIANCE",
+									"text" : "CISCO NAC APPLIANCE"
+								},
+								{
+									"id" : "CISCO NEXUS 1000 SERIES",
+									"text" : "CISCO NEXUS 1000 SERIES"
+								},
+								{
+									"id" : "CISCO NEXUS 2000 SERIES",
+									"text" : "CISCO NEXUS 2000 SERIES"
+								},
+								{
+									"id" : "CISCO NEXUS 3000 SERIES",
+									"text" : "CISCO NEXUS 3000 SERIES"
+								},
+								{
+									"id" : "CISCO NEXUS 4000 SERIES",
+									"text" : "CISCO NEXUS 4000 SERIES"
+								},
+								{
+									"id" : "CISCO NEXUS 5000 SERIES",
+									"text" : "CISCO NEXUS 5000 SERIES"
+								},
+								{
+									"id" : "CISCO NEXUS 5000 SERIES CHASSIS BUNDLE",
+									"text" : "CISCO NEXUS 5000 SERIES CHASSIS BUNDLE"
+								},
+								{
+									"id" : "CISCO NEXUS 7000 SERIES",
+									"text" : "CISCO NEXUS 7000 SERIES"
+								},
+								{
+									"id" : "CISCO ONPLUS SERVICE",
+									"text" : "CISCO ONPLUS SERVICE"
+								},
+								{
+									"id" : "CISCO PGW2200 PRODUCT FAMILY",
+									"text" : "CISCO PGW2200 PRODUCT FAMILY"
+								},
+								{
+									"id" : "CISCO PHYSICAL ACCESS CONTROL",
+									"text" : "CISCO PHYSICAL ACCESS CONTROL"
+								},
+								{
+									"id" : "CISCO PIX 500 SERIES SECURITY APPLIANCES",
+									"text" : "CISCO PIX 500 SERIES SECURITY APPLIANCES"
+								},
+								{
+									"id" : "CISCO POWERVU D9190 CONDITIONAL ACCESS MANAGER",
+									"text" : "CISCO POWERVU D9190 CONDITIONAL ACCESS MANAGER"
+								},
+								{
+									"id" : "CISCO PROCESS ORCHESTRATOR",
+									"text" : "CISCO PROCESS ORCHESTRATOR"
+								},
+								{
+									"id" : "CISCO PROFESSIONAL SERIES LCD",
+									"text" : "CISCO PROFESSIONAL SERIES LCD"
+								},
+								{
+									"id" : "CISCO PROMOTION COLLABORATION ISR ACCESSORIES",
+									"text" : "CISCO PROMOTION COLLABORATION ISR ACCESSORIES"
+								},
+								{
+									"id" : "CISCO PROMOTION ISR COLLABORATION LICENSES",
+									"text" : "CISCO PROMOTION ISR COLLABORATION LICENSES"
+								},
+								{
+									"id" : "CISCO PROMOTION ISR COLLABORATION MODULES",
+									"text" : "CISCO PROMOTION ISR COLLABORATION MODULES"
+								},
+								{
+									"id" : "CISCO PROMOTION ISR COLLABORATION PACKAGES",
+									"text" : "CISCO PROMOTION ISR COLLABORATION PACKAGES"
+								},
+								{
+									"id" : "CISCO PROMOTION SPECIAL OFFER ISR ASR COLLABORATION LICENSES",
+									"text" : "CISCO PROMOTION SPECIAL OFFER ISR ASR COLLABORATION LICENSES"
+								},
+								{
+									"id" : "CISCO PROMOTION STANDALONE COLLABORATION GATEWAYS",
+									"text" : "CISCO PROMOTION STANDALONE COLLABORATION GATEWAYS"
+								},
+								{
+									"id" : "CISCO PROSUMER VIDEO",
+									"text" : "CISCO PROSUMER VIDEO"
+								},
+								{
+									"id" : "CISCO PULSE",
+									"text" : "CISCO PULSE"
+								},
+								{
+									"id" : "CISCO QUAD",
+									"text" : "CISCO QUAD"
+								},
+								{
+									"id" : "CISCO R SERIES RACKS",
+									"text" : "CISCO R SERIES RACKS"
+								},
+								{
+									"id" : "CISCO REGAN AND RPM",
+									"text" : "CISCO REGAN AND RPM"
+								},
+								{
+									"id" : "CISCO RF GATEWAY SERIES",
+									"text" : "CISCO RF GATEWAY SERIES"
+								},
+								{
+									"id" : "CISCO RF SWITCH SERIES PRODUCTS",
+									"text" : "CISCO RF SWITCH SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO ROSA CONTROL SYSTEMS",
+									"text" : "CISCO ROSA CONTROL SYSTEMS"
+								},
+								{
+									"id" : "CISCO RP SERIES POWER DISTRIBUTION UNITS",
+									"text" : "CISCO RP SERIES POWER DISTRIBUTION UNITS"
+								},
+								{
+									"id" : "CISCO SERVER FABRIC SWITCH PRODUCTS",
+									"text" : "CISCO SERVER FABRIC SWITCH PRODUCTS"
+								},
+								{
+									"id" : "CISCO SERVICE CONTROL PRODUCTS",
+									"text" : "CISCO SERVICE CONTROL PRODUCTS"
+								},
+								{
+									"id" : "CISCO SHOW AND SHARE EDUCATION BUNDLE PROGRAM",
+									"text" : "CISCO SHOW AND SHARE EDUCATION BUNDLE PROGRAM"
+								},
+								{
+									"id" : "CISCO SHOW AND SHARE QUAD BUNDLE PROGRAM",
+									"text" : "CISCO SHOW AND SHARE QUAD BUNDLE PROGRAM"
+								},
+								{
+									"id" : "CISCO SITUATION MANAGER",
+									"text" : "CISCO SITUATION MANAGER"
+								},
+								{
+									"id" : "CISCO SMALL BUSINESS",
+									"text" : "CISCO SMALL BUSINESS"
+								},
+								{
+									"id" : "CISCO SMALL BUSINESS PRO",
+									"text" : "CISCO SMALL BUSINESS PRO"
+								},
+								{
+									"id" : "CISCO SOHO SERIES",
+									"text" : "CISCO SOHO SERIES"
+								},
+								{
+									"id" : "CISCO TELEPRESENCE ENDPOINTS",
+									"text" : "CISCO TELEPRESENCE ENDPOINTS"
+								},
+								{
+									"id" : "CISCO TELEPRESENCE SYSTEM ENDPOINTS",
+									"text" : "CISCO TELEPRESENCE SYSTEM ENDPOINTS"
+								},
+								{
+									"id" : "CISCO TELEPRESENCE SYSTEM INFRASTRUCTURE",
+									"text" : "CISCO TELEPRESENCE SYSTEM INFRASTRUCTURE"
+								},
+								{
+									"id" : "CISCO TELEPRESENCE SYSTEMS",
+									"text" : "CISCO TELEPRESENCE SYSTEMS"
+								},
+								{
+									"id" : "CISCO TELEPRESENSE EXCHANGE SYSTEM",
+									"text" : "CISCO TELEPRESENSE EXCHANGE SYSTEM"
+								},
+								{
+									"id" : "CISCO TELEWORKER SOLUTION",
+									"text" : "CISCO TELEWORKER SOLUTION"
+								},
+								{
+									"id" : "CISCO TRANSCODE MANAGER",
+									"text" : "CISCO TRANSCODE MANAGER"
+								},
+								{
+									"id" : "CISCO TRANSPATH SERIES PRODUCTS",
+									"text" : "CISCO TRANSPATH SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO TRANSPORT MANAGER (CTM)",
+									"text" : "CISCO TRANSPORT MANAGER (CTM)"
+								},
+								{
+									"id" : "CISCO UBR10012 SERIES PRODUCTS",
+									"text" : "CISCO UBR10012 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO UBR7100 SERIES PRODUCTS",
+									"text" : "CISCO UBR7100 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO UBR7200 SERIES",
+									"text" : "CISCO UBR7200 SERIES"
+								},
+								{
+									"id" : "CISCO UBR7200 SERIES PRODUCTS",
+									"text" : "CISCO UBR7200 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO UBR900 SERIES PRODUCTS",
+									"text" : "CISCO UBR900 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO UCS 5100 SERIES BLADE SERVER CHASSIS",
+									"text" : "CISCO UCS 5100 SERIES BLADE SERVER CHASSIS"
+								},
+								{
+									"id" : "CISCO UCS 6100 SERIES FABRIC INTERCONNECTS",
+									"text" : "CISCO UCS 6100 SERIES FABRIC INTERCONNECTS"
+								},
+								{
+									"id" : "CISCO UCS B-SERIES BLADE SERVER",
+									"text" : "CISCO UCS B-SERIES BLADE SERVER"
+								},
+								{
+									"id" : "CISCO UCS B-SERIES BLADE SERVERS",
+									"text" : "CISCO UCS B-SERIES BLADE SERVERS"
+								},
+								{
+									"id" : "CISCO UCS C200 M1 RACKMOUNT SERVER",
+									"text" : "CISCO UCS C200 M1 RACKMOUNT SERVER"
+								},
+								{
+									"id" : "CISCO UCS C210 M1 RACKMOUNT SERVER",
+									"text" : "CISCO UCS C210 M1 RACKMOUNT SERVER"
+								},
+								{
+									"id" : "CISCO UCS C250 M1 RACKMOUNT SERVER",
+									"text" : "CISCO UCS C250 M1 RACKMOUNT SERVER"
+								},
+								{
+									"id" : "CISCO UCS FABRIC INTERCONNECTS",
+									"text" : "CISCO UCS FABRIC INTERCONNECTS"
+								},
+								{
+									"id" : "CISCO UCS MANAGER",
+									"text" : "CISCO UCS MANAGER"
+								},
+								{
+									"id" : "CISCO UMG9800 SERIES PRODUCTS",
+									"text" : "CISCO UMG9800 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO UNIFIED COMMUNICATION 500 SERIES",
+									"text" : "CISCO UNIFIED COMMUNICATION 500 SERIES"
+								},
+								{
+									"id" : "CISCO UNIFIED CONTACT CENTER SOLUTIONS",
+									"text" : "CISCO UNIFIED CONTACT CENTER SOLUTIONS"
+								},
+								{
+									"id" : "CISCO UNIFIED MEETINGPLACE",
+									"text" : "CISCO UNIFIED MEETINGPLACE"
+								},
+								{
+									"id" : "CISCO UNIFIED VIDEOCONFERENCING PRODUCTS",
+									"text" : "CISCO UNIFIED VIDEOCONFERENCING PRODUCTS"
+								},
+								{
+									"id" : "CISCO UNIFIED WORKSPACE LICENSING",
+									"text" : "CISCO UNIFIED WORKSPACE LICENSING"
+								},
+								{
+									"id" : "CISCO VCO/4K SERIES OF PROGRAMMABLE SWITCHES",
+									"text" : "CISCO VCO/4K SERIES OF PROGRAMMABLE SWITCHES"
+								},
+								{
+									"id" : "CISCO VG204 AND VG202 SERIES ANALOG VOICE GATEWAYS",
+									"text" : "CISCO VG204 AND VG202 SERIES ANALOG VOICE GATEWAYS"
+								},
+								{
+									"id" : "CISCO VG224, VG204 AND VG202 SERIES ANALOG VOICE GATEWAYS",
+									"text" : "CISCO VG224, VG204 AND VG202 SERIES ANALOG VOICE GATEWAYS"
+								},
+								{
+									"id" : "CISCO VGD-1T3 VOICE GATEWAY",
+									"text" : "CISCO VGD-1T3 VOICE GATEWAY"
+								},
+								{
+									"id" : "CISCO VIDEO CONTENT BUNDLE SOLUTION",
+									"text" : "CISCO VIDEO CONTENT BUNDLE SOLUTION"
+								},
+								{
+									"id" : "CISCO VIDEO SURVEILLANCE PRODUCTS",
+									"text" : "CISCO VIDEO SURVEILLANCE PRODUCTS"
+								},
+								{
+									"id" : "CISCO VPN 3000 SERIES PRODUCTS",
+									"text" : "CISCO VPN 3000 SERIES PRODUCTS"
+								},
+								{
+									"id" : "CISCO WEBEX",
+									"text" : "CISCO WEBEX"
+								},
+								{
+									"id" : "CISCO WIDE AREA APP ENGINE SERVER",
+									"text" : "CISCO WIDE AREA APP ENGINE SERVER"
+								},
+								{
+									"id" : "CISCO WIDE AREA APPLICATION ENGINE (WAE)",
+									"text" : "CISCO WIDE AREA APPLICATION ENGINE (WAE)"
+								},
+								{
+									"id" : "CISCO WIRELESS LAN PRODUCTS",
+									"text" : "CISCO WIRELESS LAN PRODUCTS"
+								},
+								{
+									"id" : "CISCO WIRELESS LAN PRODUCTS-",
+									"text" : "CISCO WIRELESS LAN PRODUCTS-"
+								},
+								{
+									"id" : "CISCO WIRELESS LAN SERIES",
+									"text" : "CISCO WIRELESS LAN SERIES"
+								},
+								{
+									"id" : "CISCO WT2700 FIXED WIRELESS ACCESS",
+									"text" : "CISCO WT2700 FIXED WIRELESS ACCESS"
+								},
+								{
+									"id" : "CISCO XR 12000 SERIES",
+									"text" : "CISCO XR 12000 SERIES"
+								},
+								{
+									"id" : "CISCOSECURE ACCESS CONTROL SERVER",
+									"text" : "CISCOSECURE ACCESS CONTROL SERVER"
+								},
+								{
+									"id" : "CONTACT CENTER SOLUTIONS",
+									"text" : "CONTACT CENTER SOLUTIONS"
+								},
+								{
+									"id" : "CONTENT DELIVERY NETWORKS (PRODUCTS)",
+									"text" : "CONTENT DELIVERY NETWORKS (PRODUCTS)"
+								},
+								{
+									"id" : "CONTENT DELIVERY SYSTEMS",
+									"text" : "CONTENT DELIVERY SYSTEMS"
+								},
+								{
+									"id" : "CONVERGED BUILDING SYSTEMS",
+									"text" : "CONVERGED BUILDING SYSTEMS"
+								},
+								{
+									"id" : "CONVERTER MODULES",
+									"text" : "CONVERTER MODULES"
+								},
+								{
+									"id" : "CPE CABLE HOME NETWORKS",
+									"text" : "CPE CABLE HOME NETWORKS"
+								},
+								{
+									"id" : "CPE CABLE MODEM SPARES AND REPLACEMENT PARTS",
+									"text" : "CPE CABLE MODEM SPARES AND REPLACEMENT PARTS"
+								},
+								{
+									"id" : "CPE DIGITAL SUBSCRIBER HEADEND EQUIPMENT",
+									"text" : "CPE DIGITAL SUBSCRIBER HEADEND EQUIPMENT"
+								},
+								{
+									"id" : "CPE DIGITAL SUBSCRIBER INTERNATIONAL SETTOPS",
+									"text" : "CPE DIGITAL SUBSCRIBER INTERNATIONAL SETTOPS"
+								},
+								{
+									"id" : "CPE DIGITAL SUBSCRIBER SETTOPS AND REMOTES",
+									"text" : "CPE DIGITAL SUBSCRIBER SETTOPS AND REMOTES"
+								},
+								{
+									"id" : "CPE DIGITAL SUBSCRIBER SETTOPS AND REMOTES SPARE PARTS",
+									"text" : "CPE DIGITAL SUBSCRIBER SETTOPS AND REMOTES SPARE PARTS"
+								},
+								{
+									"id" : "CPE INTERNATIONAL CABLE LICENSES",
+									"text" : "CPE INTERNATIONAL CABLE LICENSES"
+								},
+								{
+									"id" : "CPE INTERNATIONAL SETTOP ACCESSORIES",
+									"text" : "CPE INTERNATIONAL SETTOP ACCESSORIES"
+								},
+								{
+									"id" : "CPE INTERNATIONAL SETTOPS",
+									"text" : "CPE INTERNATIONAL SETTOPS"
+								},
+								{
+									"id" : "CPE IP CABLE MODEM ACCESSORIES",
+									"text" : "CPE IP CABLE MODEM ACCESSORIES"
+								},
+								{
+									"id" : "CPE IP GATEWAY MODEMS",
+									"text" : "CPE IP GATEWAY MODEMS"
+								},
+								{
+									"id" : "CPE IP VOICE MODEM BATTERIES",
+									"text" : "CPE IP VOICE MODEM BATTERIES"
+								},
+								{
+									"id" : "CPE IP VOICE MODEMS",
+									"text" : "CPE IP VOICE MODEMS"
+								},
+								{
+									"id" : "CPE IP WIRELESS ACCESSORIES",
+									"text" : "CPE IP WIRELESS ACCESSORIES"
+								},
+								{
+									"id" : "CPE IPTV DATA MODEMS",
+									"text" : "CPE IPTV DATA MODEMS"
+								},
+								{
+									"id" : "CPE IPTV SETTOPS AND ACCESSORIES",
+									"text" : "CPE IPTV SETTOPS AND ACCESSORIES"
+								},
+								{
+									"id" : "CPE ISDP PRODUCTS",
+									"text" : "CPE ISDP PRODUCTS"
+								},
+								{
+									"id" : "CPE ISDP SOFTWARE LICENSES",
+									"text" : "CPE ISDP SOFTWARE LICENSES"
+								},
+								{
+									"id" : "CPE QAM MODULATOR",
+									"text" : "CPE QAM MODULATOR"
+								},
+								{
+									"id" : "CPE QAM MODULATORS",
+									"text" : "CPE QAM MODULATORS"
+								},
+								{
+									"id" : "CPE SETTOPS,REMOTES,DIGITAL HEADEND SPARE PARTS",
+									"text" : "CPE SETTOPS,REMOTES,DIGITAL HEADEND SPARE PARTS"
+								}, {
+									"id" : "CPE SWITCHED DIGITAL VIDEO",
+									"text" : "CPE SWITCHED DIGITAL VIDEO"
+								}, {
+									"id" : "CPE TELCO HOME NETWORKS",
+									"text" : "CPE TELCO HOME NETWORKS"
+								}, {
+									"id" : "CROSS-PLATFORM COMPONENTS",
+									"text" : "CROSS-PLATFORM COMPONENTS"
+								}, {
+									"id" : "CSSP ESSENTIAL SW",
+									"text" : "CSSP ESSENTIAL SW"
+								}, {
+									"id" : "CUSTOMER INTERACTION CLOUD",
+									"text" : "CUSTOMER INTERACTION CLOUD"
+								}, {
+									"id" : "CUWL MIGRATION",
+									"text" : "CUWL MIGRATION"
+								}, {
+									"id" : "CUWL SLED",
+									"text" : "CUWL SLED"
+								} ]
+					},
+					{
+						"id" : "D",
+						"text" : "D",
+						"families" : [
+								{
+									"id" : "D9032 MPEG-2 SD ENCODERS",
+									"text" : "D9032 MPEG-2 SD ENCODERS"
+								},
+								{
+									"id" : "D9036 MODULAR ENCODING PLATFORM SERIES",
+									"text" : "D9036 MODULAR ENCODING PLATFORM SERIES"
+								},
+								{
+									"id" : "DESKTOP VIRTUALIZATION",
+									"text" : "DESKTOP VIRTUALIZATION"
+								},
+								{
+									"id" : "DEVICE MANAGEMENT TOOL",
+									"text" : "DEVICE MANAGEMENT TOOL"
+								},
+								{
+									"id" : "DEVTESTMAJOR",
+									"text" : "DEVTESTMAJOR"
+								},
+								{
+									"id" : "DIGITAL MEDIA SYSTEM",
+									"text" : "DIGITAL MEDIA SYSTEM"
+								},
+								{
+									"id" : "DMN ANALOG HEADEND CETUS, CYGNUS MODULATORS",
+									"text" : "DMN ANALOG HEADEND CETUS, CYGNUS MODULATORS"
+								},
+								{
+									"id" : "DMN ANALOG HEADEND SATELLITE MODULATORS",
+									"text" : "DMN ANALOG HEADEND SATELLITE MODULATORS"
+								},
+								{
+									"id" : "DMN CONTROL SYSTEMS ROSA EM ELEMENT MANAGER",
+									"text" : "DMN CONTROL SYSTEMS ROSA EM ELEMENT MANAGER"
+								},
+								{
+									"id" : "DMN CONTROL SYSTEMS ROSA NMS NETWORK MANAGEMENT SYSTEM",
+									"text" : "DMN CONTROL SYSTEMS ROSA NMS NETWORK MANAGEMENT SYSTEM"
+								},
+								{
+									"id" : "DMN CONTROL SYSTEMS ROSA RF CHANNEL MONITOR",
+									"text" : "DMN CONTROL SYSTEMS ROSA RF CHANNEL MONITOR"
+								},
+								{
+									"id" : "DMN CONTROL SYSTEMS ROSA SI MGR (SIM) SOFTWARE AND LICENSES",
+									"text" : "DMN CONTROL SYSTEMS ROSA SI MGR (SIM) SOFTWARE AND LICENSES"
+								},
+								{
+									"id" : "DMN CONTROL SYSTEMS ROSA SI SERVER",
+									"text" : "DMN CONTROL SYSTEMS ROSA SI SERVER"
+								},
+								{
+									"id" : "DMN CONTROL SYSTEMS ROSA SIM-SERVICE INFORMATION MGMT SYSTEM",
+									"text" : "DMN CONTROL SYSTEMS ROSA SIM-SERVICE INFORMATION MGMT SYSTEM"
+								},
+								{
+									"id" : "DMN CONTROL SYSTEMS ROSA VSM SUITE",
+									"text" : "DMN CONTROL SYSTEMS ROSA VSM SUITE"
+								},
+								{
+									"id" : "DMN D9036 MODULAR ENCODING PLATFORM SERIES",
+									"text" : "DMN D9036 MODULAR ENCODING PLATFORM SERIES"
+								},
+								{
+									"id" : "DMN DECODER D9894 HD/SD MPEG-4 CONTRIBUTION DECODERS",
+									"text" : "DMN DECODER D9894 HD/SD MPEG-4 CONTRIBUTION DECODERS"
+								},
+								{
+									"id" : "DMN DECODER DVB-CI CAM CARDS",
+									"text" : "DMN DECODER DVB-CI CAM CARDS"
+								},
+								{
+									"id" : "DMN DECODER GALAXY MODULAR RECEIVER SYSTEM",
+									"text" : "DMN DECODER GALAXY MODULAR RECEIVER SYSTEM"
+								},
+								{
+									"id" : "DMN DECODER PROFESSIONAL DECODERS AND RECEIVERS",
+									"text" : "DMN DECODER PROFESSIONAL DECODERS AND RECEIVERS"
+								},
+								{
+									"id" : "DMN ENCODERS D9023 MPEG-2 SD DENSE ENCODER",
+									"text" : "DMN ENCODERS D9023 MPEG-2 SD DENSE ENCODER"
+								},
+								{
+									"id" : "DMN ENCODERS D9032 MPEG-2 SD",
+									"text" : "DMN ENCODERS D9032 MPEG-2 SD"
+								},
+								{
+									"id" : "DMN ENCODERS D9034 MPEG-4",
+									"text" : "DMN ENCODERS D9034 MPEG-4"
+								},
+								{
+									"id" : "DMN ENCODERS D9040 SD POWERVU ENCODER",
+									"text" : "DMN ENCODERS D9040 SD POWERVU ENCODER"
+								},
+								{
+									"id" : "DMN ENCODERS D9054 MPEG-4 HD",
+									"text" : "DMN ENCODERS D9054 MPEG-4 HD"
+								},
+								{
+									"id" : "DMN ENCODERS D9094 MPEG-4 HD/SD CONTRIBUTION CODECS",
+									"text" : "DMN ENCODERS D9094 MPEG-4 HD/SD CONTRIBUTION CODECS"
+								},
+								{
+									"id" : "DMN ENCODERS D9094/D9094SE AND D9093 AVC",
+									"text" : "DMN ENCODERS D9094/D9094SE AND D9093 AVC"
+								},
+								{
+									"id" : "DMN ENCODERS GENERAL",
+									"text" : "DMN ENCODERS GENERAL"
+								},
+								{
+									"id" : "DMN ENCODERS MISCELLANEOUS PARTS",
+									"text" : "DMN ENCODERS MISCELLANEOUS PARTS"
+								},
+								{
+									"id" : "DMN ENCODERS-D9093 MPEG-4 SD CONTRIBUTION CODECS",
+									"text" : "DMN ENCODERS-D9093 MPEG-4 SD CONTRIBUTION CODECS"
+								},
+								{
+									"id" : "DMN MPEG PROCESSING DCM DIGITAL CONTENT MGR SERIES",
+									"text" : "DMN MPEG PROCESSING DCM DIGITAL CONTENT MGR SERIES"
+								},
+								{
+									"id" : "DMN MPEG PROCESSING-D9140 POWERVU MULTIPLEXER SERIES",
+									"text" : "DMN MPEG PROCESSING-D9140 POWERVU MULTIPLEXER SERIES"
+								},
+								{
+									"id" : "DMN POWERVU (PNC) SYSTEM",
+									"text" : "DMN POWERVU (PNC) SYSTEM"
+								},
+								{
+									"id" : "DMN VIDEO GATEWAY-D9402 ASI TO IP GATEWAY-2 ASI PORTS",
+									"text" : "DMN VIDEO GATEWAY-D9402 ASI TO IP GATEWAY-2 ASI PORTS"
+								},
+								{
+									"id" : "DMN VIDEO GATEWAY-D9408 ADVANCED ATM ADAPTER",
+									"text" : "DMN VIDEO GATEWAY-D9408 ADVANCED ATM ADAPTER"
+								},
+								{
+									"id" : "DMN VIDEO GATEWAY-NEON NETWORK ADAPTER",
+									"text" : "DMN VIDEO GATEWAY-NEON NETWORK ADAPTER"
+								} ]
+					},
+					{
+						"id" : "E",
+						"text" : "E",
+						"families" : []
+					},
+					{
+						"id" : "F",
+						"text" : "F",
+						"families" : []
+					},
+					{
+						"id" : "G",
+						"text" : "G",
+						"families" : [ {
+							"id" : "GS7000 REVERSE CONFIGURATION MODULES",
+							"text" : "GS7000 REVERSE CONFIGURATION MODULES"
+						} ]
+					},
+					{
+						"id" : "H",
+						"text" : "H",
+						"families" : [
+								{
+									"id" : "HCS LARGE ENTERPRISE",
+									"text" : "HCS LARGE ENTERPRISE"
+								},
+								{
+									"id" : "HCS SERVICE PROVIDER",
+									"text" : "HCS SERVICE PROVIDER"
+								},
+								{
+									"id" : "HOSTED COLLABORATION SOLUTION",
+									"text" : "HOSTED COLLABORATION SOLUTION"
+								},
+								{
+									"id" : "HOSTED COLLABORATION SOLUTION SERVICE MANAGEMENT",
+									"text" : "HOSTED COLLABORATION SOLUTION SERVICE MANAGEMENT"
+								}, {
+									"id" : "HOSTED EDUCATION SOLUTION",
+									"text" : "HOSTED EDUCATION SOLUTION"
+								} ]
+					},
+					{
+						"id" : "I",
+						"text" : "I",
+						"families" : [ {
+							"id" : "INTELLIGENT CONCIERGE",
+							"text" : "INTELLIGENT CONCIERGE"
+						}, {
+							"id" : "INTERNET & SECURITY PRODUCTS",
+							"text" : "INTERNET & SECURITY PRODUCTS"
+						}, {
+							"id" : "IP TELEPHONY",
+							"text" : "IP TELEPHONY"
+						}, {
+							"id" : "IP TELEPHONY MID MARKET - PROMOTION",
+							"text" : "IP TELEPHONY MID MARKET - PROMOTION"
+						}, {
+							"id" : "IPS SIGNATURE MANAGEMENT",
+							"text" : "IPS SIGNATURE MANAGEMENT"
+						} ]
+					},
+					{
+						"id" : "J",
+						"text" : "J",
+						"families" : []
+					},
+					{
+						"id" : "K",
+						"text" : "K",
+						"families" : [ {
+							"id" : "KNOWLEDGE TRANSFER",
+							"text" : "KNOWLEDGE TRANSFER"
+						} ]
+					},
+					{
+						"id" : "L",
+						"text" : "L",
+						"families" : [ {
+							"id" : "LANCOPE SECURITY PRODUCTS",
+							"text" : "LANCOPE SECURITY PRODUCTS"
+						}, {
+							"id" : "LINKSYS METRO ETHERNET SWITCHES",
+							"text" : "LINKSYS METRO ETHERNET SWITCHES"
+						}, {
+							"id" : "LINKSYS VOIP PRODUCTS",
+							"text" : "LINKSYS VOIP PRODUCTS"
+						} ]
+					},
+					{
+						"id" : "M",
+						"text" : "M",
+						"families" : [ {
+							"id" : "ME 2400 SERIES",
+							"text" : "ME 2400 SERIES"
+						}, {
+							"id" : "ME 3400 SERIES",
+							"text" : "ME 3400 SERIES"
+						}, {
+							"id" : "ME 3400E SERIES",
+							"text" : "ME 3400E SERIES"
+						}, {
+							"id" : "ME 4900 SERIES",
+							"text" : "ME 4900 SERIES"
+						}, {
+							"id" : "ME 6500 SERIES",
+							"text" : "ME 6500 SERIES"
+						}, {
+							"id" : "ME 6500 SERIES POWER SUPPLY OPTIONS",
+							"text" : "ME 6500 SERIES POWER SUPPLY OPTIONS"
+						}, {
+							"id" : "MISCELLANEOUS CABLES AND ACCESSORIES",
+							"text" : "MISCELLANEOUS CABLES AND ACCESSORIES"
+						}, {
+							"id" : "MOBILE WIRELESS DATA PRODUCTS",
+							"text" : "MOBILE WIRELESS DATA PRODUCTS"
+						}, {
+							"id" : "MODERRO THIN CLIENT",
+							"text" : "MODERRO THIN CLIENT"
+						}, {
+							"id" : "MXE 3500 MEDIA EXPERIENCE ENGINE",
+							"text" : "MXE 3500 MEDIA EXPERIENCE ENGINE"
+						}, {
+							"id" : "MXE 5600 MEDIA EXPERIENCE ENGINE",
+							"text" : "MXE 5600 MEDIA EXPERIENCE ENGINE"
+						} ]
+					},
+					{
+						"id" : "N",
+						"text" : "N",
+						"families" : [ {
+							"id" : "NETWORK MANAGEMENT",
+							"text" : "NETWORK MANAGEMENT"
+						}, {
+							"id" : "NEXUS 5000 = MAJOR",
+							"text" : "NEXUS 5000 = MAJOR"
+						} ]
+					},
+					{
+						"id" : "O",
+						"text" : "O",
+						"families" : [ {
+							"id" : "ONS 15190 SERIES PRODUCTS",
+							"text" : "ONS 15190 SERIES PRODUCTS"
+						}, {
+							"id" : "ONS 15216",
+							"text" : "ONS 15216"
+						}, {
+							"id" : "ONS 15305",
+							"text" : "ONS 15305"
+						}, {
+							"id" : "ONS 15310",
+							"text" : "ONS 15310"
+						}, {
+							"id" : "ONS 15310E",
+							"text" : "ONS 15310E"
+						}, {
+							"id" : "ONS 15454",
+							"text" : "ONS 15454"
+						}, {
+							"id" : "ONS 15454E",
+							"text" : "ONS 15454E"
+						}, {
+							"id" : "ONS 15600",
+							"text" : "ONS 15600"
+						}, {
+							"id" : "ONS PLUGGABLE OPTICS SERIES",
+							"text" : "ONS PLUGGABLE OPTICS SERIES"
+						}, {
+							"id" : "OPERATING SYSTEMS",
+							"text" : "OPERATING SYSTEMS"
+						} ]
+					},
+					{
+						"id" : "P",
+						"text" : "P",
+						"families" : [ {
+							"id" : "PACSTAR IP TELEPHONY (SOLUTIONSPLUS)",
+							"text" : "PACSTAR IP TELEPHONY (SOLUTIONSPLUS)"
+						}, {
+							"id" : "PIX FIREWALL SERIES",
+							"text" : "PIX FIREWALL SERIES"
+						} ]
+					},
+					{
+						"id" : "Q",
+						"text" : "Q",
+						"families" : []
+					},
+					{
+						"id" : "R",
+						"text" : "R",
+						"families" : [ {
+							"id" : "RACKS AND CABINETS",
+							"text" : "RACKS AND CABINETS"
+						}, {
+							"id" : "REDUNDANT POWER SYSTEM & MISC CABLES",
+							"text" : "REDUNDANT POWER SYSTEM & MISC CABLES"
+						}, {
+							"id" : "RTUS/SUBSCRIBER LICENSES",
+							"text" : "RTUS/SUBSCRIBER LICENSES"
+						} ]
+					},
+					{
+						"id" : "S",
+						"text" : "S",
+						"families" : [
+								{
+									"id" : "S+CC SDP SOLUTIONS",
+									"text" : "S+CC SDP SOLUTIONS"
+								},
+								{
+									"id" : "SAP BWA",
+									"text" : "SAP BWA"
+								},
+								{
+									"id" : "SECURITY",
+									"text" : "SECURITY"
+								},
+								{
+									"id" : "SERVICE DELIVERY PLATFORM (SDP)",
+									"text" : "SERVICE DELIVERY PLATFORM (SDP)"
+								},
+								{
+									"id" : "SERVICE EXPANSION SHELF (SES) PRODUCTS",
+									"text" : "SERVICE EXPANSION SHELF (SES) PRODUCTS"
+								},
+								{
+									"id" : "SMALL BUSINESS PRO",
+									"text" : "SMALL BUSINESS PRO"
+								},
+								{
+									"id" : "SOFTWARE APPLICATION SUPPORT",
+									"text" : "SOFTWARE APPLICATION SUPPORT"
+								},
+								{
+									"id" : "SOFTWARE APPLICATION SUPPORT PLUS UPGRADES",
+									"text" : "SOFTWARE APPLICATION SUPPORT PLUS UPGRADES"
+								},
+								{
+									"id" : "SOLUTIONS PLUS (CITRIX)",
+									"text" : "SOLUTIONS PLUS (CITRIX)"
+								},
+								{
+									"id" : "SP BASE + H/W 10 DAY RTF - (SP-RR-XXX)",
+									"text" : "SP BASE + H/W 10 DAY RTF - (SP-RR-XXX)"
+								},
+								{
+									"id" : "SP BASE + H/W ADVANCE REPLACEMENT 24X7X4 - (SP-AR3-XXX)",
+									"text" : "SP BASE + H/W ADVANCE REPLACEMENT 24X7X4 - (SP-AR3-XXX)"
+								},
+								{
+									"id" : "SP BASE + H/W ADVANCE REPLACEMENT 8X5X4 - (SP-AR2-XXX)",
+									"text" : "SP BASE + H/W ADVANCE REPLACEMENT 8X5X4 - (SP-AR2-XXX)"
+								},
+								{
+									"id" : "SP BASE + H/W ONSITE 8X5X4 - (SP-OS2-XXX)",
+									"text" : "SP BASE + H/W ONSITE 8X5X4 - (SP-OS2-XXX)"
+								},
+								{
+									"id" : "SP BASE SUPPORT - (SP-SW-XXX)",
+									"text" : "SP BASE SUPPORT - (SP-SW-XXX)"
+								},
+								{
+									"id" : "SP ESSENTIAL SW - (SP-ESW-XXX)",
+									"text" : "SP ESSENTIAL SW - (SP-ESW-XXX)"
+								},
+								{
+									"id" : "SP SOFTWARE APPLICATION SUPPORT - (SP-SAS-XXX)",
+									"text" : "SP SOFTWARE APPLICATION SUPPORT - (SP-SAS-XXX)"
+								}, {
+									"id" : "STADIUMVISION",
+									"text" : "STADIUMVISION"
+								}, {
+									"id" : "STORAGE NETWORKING",
+									"text" : "STORAGE NETWORKING"
+								}, {
+									"id" : "SV",
+									"text" : "SV"
+								}, {
+									"id" : "SYSTEM SOFTWARE OPTIONS",
+									"text" : "SYSTEM SOFTWARE OPTIONS"
+								} ]
+					}, {
+						"id" : "T",
+						"text" : "T",
+						"families" : [ {
+							"id" : "TAA FAMILY",
+							"text" : "TAA FAMILY"
+						}, {
+							"id" : "TELEPRESENCE SYSTEM ENDPOINTS",
+							"text" : "TELEPRESENCE SYSTEM ENDPOINTS"
+						}, {
+							"id" : "TIDAL ENTERPRISE ORCHESTRATOR",
+							"text" : "TIDAL ENTERPRISE ORCHESTRATOR"
+						}, {
+							"id" : "TIDAL ENTERPRISE SCHEDULER",
+							"text" : "TIDAL ENTERPRISE SCHEDULER"
+						}, {
+							"id" : "TRAINING",
+							"text" : "TRAINING"
+						}, {
+							"id" : "TRANSACTION ANALYZER",
+							"text" : "TRANSACTION ANALYZER"
+						}, {
+							"id" : "TRANSCEIVER MODULES",
+							"text" : "TRANSCEIVER MODULES"
+						}, {
+							"id" : "TRIPLE V PHONES & UWL",
+							"text" : "TRIPLE V PHONES & UWL"
+						}, {
+							"id" : "TTG CISCO TELEPRESENCE",
+							"text" : "TTG CISCO TELEPRESENCE"
+						}, {
+							"id" : "TTG LEGACY",
+							"text" : "TTG LEGACY"
+						} ]
+					}, {
+						"id" : "U",
+						"text" : "U",
+						"families" : [ {
+							"id" : "UC APPLICATIONS",
+							"text" : "UC APPLICATIONS"
+						}, {
+							"id" : "UCS C200 M2 RACK SERVER",
+							"text" : "UCS C200 M2 RACK SERVER"
+						}, {
+							"id" : "UCS C210 M2 RACK SERVER",
+							"text" : "UCS C210 M2 RACK SERVER"
+						}, {
+							"id" : "UCS C22 M3 RACK SERVER",
+							"text" : "UCS C22 M3 RACK SERVER"
+						}, {
+							"id" : "UCS C220 M3 RACK SERVER",
+							"text" : "UCS C220 M3 RACK SERVER"
+						}, {
+							"id" : "UCS C240 M3 RACK SERVER",
+							"text" : "UCS C240 M3 RACK SERVER"
+						}, {
+							"id" : "UCS C250 M1 RACK SERVER",
+							"text" : "UCS C250 M1 RACK SERVER"
+						}, {
+							"id" : "UCS C250 M2 RACK SERVER",
+							"text" : "UCS C250 M2 RACK SERVER"
+						}, {
+							"id" : "UCS C260 M2 RACK SERVER",
+							"text" : "UCS C260 M2 RACK SERVER"
+						}, {
+							"id" : "UCS C460 M1 RACK SERVER",
+							"text" : "UCS C460 M1 RACK SERVER"
+						}, {
+							"id" : "UCS C460 M2 RACK SERVER",
+							"text" : "UCS C460 M2 RACK SERVER"
+						}, {
+							"id" : "UCS EZ SOLUTION PAKS",
+							"text" : "UCS EZ SOLUTION PAKS"
+						}, {
+							"id" : "UCS SOLUTION PROMOTIONS",
+							"text" : "UCS SOLUTION PROMOTIONS"
+						}, {
+							"id" : "UCS VXI BUNDLES",
+							"text" : "UCS VXI BUNDLES"
+						}, {
+							"id" : "UNIFIED COMMUNICATIONS MANAGEMENT SUITE",
+							"text" : "UNIFIED COMMUNICATIONS MANAGEMENT SUITE"
+						}, {
+							"id" : "UNIFIED CONTACT CENTER",
+							"text" : "UNIFIED CONTACT CENTER"
+						} ]
+					}, {
+						"id" : "V",
+						"text" : "V",
+						"families" : [ {
+							"id" : "VIDEOSCAPE",
+							"text" : "VIDEOSCAPE"
+						} ]
+					}, {
+						"id" : "W",
+						"text" : "W",
+						"families" : [ {
+							"id" : "WORKGROUP PRODUCTS",
+							"text" : "WORKGROUP PRODUCTS"
+						} ]
+					}, {
+						"id" : "X",
+						"text" : "X",
+						"families" : []
+					}, {
+						"id" : "Y",
+						"text" : "Y",
+						"families" : []
+					}, {
+						"id" : "Z",
+						"text" : "Z",
+						"families" : []
+					} ]
+		}, {
+			"id" : 2,
+			"text" : "Service",
+			"children" : [ {
+				"id" : "A",
+				"text" : "A",
+				"categories" : [ {
+					"id" : "AS-Fixed",
+					"programs" : [ {
+						"id" : "BV AS FIXED",
+						"text" : "BV AS FIXED",
+						"levels" : [ {
+							"id" : "CEI",
+							"text" : "CEI"
+						} ]
+					}, {
+						"id" : "CORE ASFIXED",
+						"text" : "CORE ASFIXED",
+						"levels" : [ {
+							"id" : "BNAT",
+							"text" : "BNAT"
+						}, {
+							"id" : "CORE",
+							"text" : "CORE"
+						} ]
+					}, {
+						"id" : "CPS AS FIXED",
+						"text" : "CPS AS FIXED",
+						"levels" : [ {
+							"id" : "CPS2",
+							"text" : "CPS2"
+						}, {
+							"id" : "CPSA",
+							"text" : "CPSA"
+						}, {
+							"id" : "CPSB",
+							"text" : "CPSB"
+						}, {
+							"id" : "CPSC",
+							"text" : "CPSC"
+						}, {
+							"id" : "CPSD",
+							"text" : "CPSD"
+						}, {
+							"id" : "CPSF",
+							"text" : "CPSF"
+						}, {
+							"id" : "CPSG",
+							"text" : "CPSG"
+						}, {
+							"id" : "CPSN",
+							"text" : "CPSN"
+						}, {
+							"id" : "CPSO",
+							"text" : "CPSO"
+						}, {
+							"id" : "CPSP",
+							"text" : "CPSP"
+						}, {
+							"id" : "CPSR",
+							"text" : "CPSR"
+						}, {
+							"id" : "CPSS",
+							"text" : "CPSS"
+						}, {
+							"id" : "CPST",
+							"text" : "CPST"
+						}, {
+							"id" : "CPSU",
+							"text" : "CPSU"
+						}, {
+							"id" : "CPSV",
+							"text" : "CPSV"
+						}, {
+							"id" : "CPSW",
+							"text" : "CPSW"
+						}, {
+							"id" : "CPSX",
+							"text" : "CPSX"
+						} ]
+					}, {
+						"id" : "DCV AS-FIXED",
+						"text" : "DCV AS-FIXED",
+						"levels" : [ {
+							"id" : "DCV1",
+							"text" : "DCV1"
+						}, {
+							"id" : "DCV2",
+							"text" : "DCV2"
+						} ]
+					}, {
+						"id" : "NS AS FIXED",
+						"text" : "NS AS FIXED",
+						"levels" : [ {
+							"id" : "IAS",
+							"text" : "IAS"
+						} ]
+					}, {
+						"id" : "SP AS FIXED",
+						"text" : "SP AS FIXED",
+						"levels" : [ {
+							"id" : "SP0",
+							"text" : "SP0"
+						} ]
+					}, {
+						"id" : "UCS AS FIXED",
+						"text" : "UCS AS FIXED",
+						"levels" : [ {
+							"id" : "ULT1",
+							"text" : "ULT1"
+						}, {
+							"id" : "ULT2",
+							"text" : "ULT2"
+						} ]
+					}, {
+						"id" : "WBX AS FIXED",
+						"text" : "WBX AS FIXED",
+						"levels" : [ {
+							"id" : "WBX",
+							"text" : "WBX"
+						}, {
+							"id" : "WBXS",
+							"text" : "WBXS"
+						} ]
+					} ],
+					"text" : "AS-Fixed"
+				}, {
+					"id" : "AS-Subscription",
+					"programs" : [ {
+						"id" : "ACS",
+						"text" : "ACS",
+						"levels" : [ {
+							"id" : "SPACS",
+							"text" : "SPACS"
+						} ]
+					}, {
+						"id" : "ANSPP",
+						"text" : "ANSPP",
+						"levels" : [ {
+							"id" : "STAR",
+							"text" : "STAR"
+						}, {
+							"id" : "STNU",
+							"text" : "STNU"
+						}, {
+							"id" : "STNUA",
+							"text" : "STNUA"
+						}, {
+							"id" : "STNUE",
+							"text" : "STNUE"
+						} ]
+					}, {
+						"id" : "AS-CDN",
+						"text" : "AS-CDN",
+						"levels" : [ {
+							"id" : "CDN",
+							"text" : "CDN"
+						} ]
+					}, {
+						"id" : "AS-DVSUP",
+						"text" : "AS-DVSUP",
+						"levels" : [ {
+							"id" : "DVAO",
+							"text" : "DVAO"
+						}, {
+							"id" : "DVCC",
+							"text" : "DVCC"
+						}, {
+							"id" : "DVCM",
+							"text" : "DVCM"
+						}, {
+							"id" : "DVGW",
+							"text" : "DVGW"
+						}, {
+							"id" : "DVSE",
+							"text" : "DVSE"
+						}, {
+							"id" : "DVSUP",
+							"text" : "DVSUP"
+						} ]
+					}, {
+						"id" : "BCS",
+						"text" : "BCS",
+						"levels" : [ {
+							"id" : "BCS",
+							"text" : "BCS"
+						}, {
+							"id" : "BCS0",
+							"text" : "BCS0"
+						}, {
+							"id" : "BCS1",
+							"text" : "BCS1"
+						}, {
+							"id" : "BCS10",
+							"text" : "BCS10"
+						}, {
+							"id" : "BCS2",
+							"text" : "BCS2"
+						}, {
+							"id" : "BCS3",
+							"text" : "BCS3"
+						}, {
+							"id" : "BCS4",
+							"text" : "BCS4"
+						}, {
+							"id" : "BCS5",
+							"text" : "BCS5"
+						}, {
+							"id" : "BCS6",
+							"text" : "BCS6"
+						}, {
+							"id" : "BCS7",
+							"text" : "BCS7"
+						}, {
+							"id" : "BCS8",
+							"text" : "BCS8"
+						}, {
+							"id" : "BCS9",
+							"text" : "BCS9"
+						} ]
+					}, {
+						"id" : "BES",
+						"text" : "BES",
+						"levels" : [ {
+							"id" : "BES",
+							"text" : "BES"
+						}, {
+							"id" : "BES0",
+							"text" : "BES0"
+						}, {
+							"id" : "BES1",
+							"text" : "BES1"
+						}, {
+							"id" : "BES10",
+							"text" : "BES10"
+						}, {
+							"id" : "BES2",
+							"text" : "BES2"
+						}, {
+							"id" : "BES3",
+							"text" : "BES3"
+						}, {
+							"id" : "BES4",
+							"text" : "BES4"
+						}, {
+							"id" : "BES5",
+							"text" : "BES5"
+						}, {
+							"id" : "BES6",
+							"text" : "BES6"
+						}, {
+							"id" : "BES7",
+							"text" : "BES7"
+						}, {
+							"id" : "BES8",
+							"text" : "BES8"
+						}, {
+							"id" : "BES9",
+							"text" : "BES9"
+						} ]
+					}, {
+						"id" : "FTS",
+						"text" : "FTS",
+						"levels" : [ {
+							"id" : "EFT2A",
+							"text" : "EFT2A"
+						}, {
+							"id" : "EFT3A",
+							"text" : "EFT3A"
+						}, {
+							"id" : "EFTS1",
+							"text" : "EFTS1"
+						}, {
+							"id" : "EFTS2",
+							"text" : "EFTS2"
+						}, {
+							"id" : "EFTS3",
+							"text" : "EFTS3"
+						}, {
+							"id" : "FSO2",
+							"text" : "FSO2"
+						}, {
+							"id" : "FSOE",
+							"text" : "FSOE"
+						}, {
+							"id" : "FSOP",
+							"text" : "FSOP"
+						}, {
+							"id" : "FSOS",
+							"text" : "FSOS"
+						}, {
+							"id" : "FSRTF",
+							"text" : "FSRTF"
+						}, {
+							"id" : "FSS2",
+							"text" : "FSS2"
+						}, {
+							"id" : "FSSE",
+							"text" : "FSSE"
+						}, {
+							"id" : "FSSP",
+							"text" : "FSSP"
+						}, {
+							"id" : "FSST",
+							"text" : "FSST"
+						}, {
+							"id" : "FSSW",
+							"text" : "FSSW"
+						}, {
+							"id" : "FTS",
+							"text" : "FTS"
+						}, {
+							"id" : "FTS1",
+							"text" : "FTS1"
+						}, {
+							"id" : "FTS2",
+							"text" : "FTS2"
+						}, {
+							"id" : "FTS2A",
+							"text" : "FTS2A"
+						}, {
+							"id" : "FTSC",
+							"text" : "FTSC"
+						} ]
+					}, {
+						"id" : "HAS",
+						"text" : "HAS",
+						"levels" : [ {
+							"id" : "HAS",
+							"text" : "HAS"
+						} ]
+					}, {
+						"id" : "KTSA",
+						"text" : "KTSA",
+						"levels" : [ {
+							"id" : "KTSA",
+							"text" : "KTSA"
+						}, {
+							"id" : "SA001",
+							"text" : "SA001"
+						}, {
+							"id" : "SA005",
+							"text" : "SA005"
+						}, {
+							"id" : "SA010",
+							"text" : "SA010"
+						}, {
+							"id" : "SA025",
+							"text" : "SA025"
+						}, {
+							"id" : "SA050",
+							"text" : "SA050"
+						}, {
+							"id" : "SA100",
+							"text" : "SA100"
+						} ]
+					}, {
+						"id" : "NAIS",
+						"text" : "NAIS",
+						"levels" : [ {
+							"id" : "NAIS",
+							"text" : "NAIS"
+						} ]
+					}, {
+						"id" : "NC (AS-TS)",
+						"text" : "NC (AS-TS)",
+						"levels" : [ {
+							"id" : "NCC2",
+							"text" : "NCC2"
+						}, {
+							"id" : "NCC2P",
+							"text" : "NCC2P"
+						}, {
+							"id" : "NCC4P",
+							"text" : "NCC4P"
+						}, {
+							"id" : "NCC4S",
+							"text" : "NCC4S"
+						}, {
+							"id" : "NCCAS",
+							"text" : "NCCAS"
+						}, {
+							"id" : "NCCAU",
+							"text" : "NCCAU"
+						}, {
+							"id" : "NCCCS",
+							"text" : "NCCCS"
+						}, {
+							"id" : "NCCE",
+							"text" : "NCCE"
+						}, {
+							"id" : "NCCP",
+							"text" : "NCCP"
+						}, {
+							"id" : "NCCSW",
+							"text" : "NCCSW"
+						}, {
+							"id" : "NCCT",
+							"text" : "NCCT"
+						}, {
+							"id" : "NCCW",
+							"text" : "NCCW"
+						}, {
+							"id" : "NCD2",
+							"text" : "NCD2"
+						}, {
+							"id" : "NCD2P",
+							"text" : "NCD2P"
+						}, {
+							"id" : "NCD4P",
+							"text" : "NCD4P"
+						}, {
+							"id" : "NCD4S",
+							"text" : "NCD4S"
+						}, {
+							"id" : "NCDAS",
+							"text" : "NCDAS"
+						}, {
+							"id" : "NCDAU",
+							"text" : "NCDAU"
+						}, {
+							"id" : "NCDCS",
+							"text" : "NCDCS"
+						}, {
+							"id" : "NCDDN",
+							"text" : "NCDDN"
+						}, {
+							"id" : "NCDDO",
+							"text" : "NCDDO"
+						}, {
+							"id" : "NCDE",
+							"text" : "NCDE"
+						}, {
+							"id" : "NCDMU",
+							"text" : "NCDMU"
+						}, {
+							"id" : "NCDP",
+							"text" : "NCDP"
+						}, {
+							"id" : "NCDS1",
+							"text" : "NCDS1"
+						}, {
+							"id" : "NCDS3",
+							"text" : "NCDS3"
+						}, {
+							"id" : "NCDSO",
+							"text" : "NCDSO"
+						}, {
+							"id" : "NCDSW",
+							"text" : "NCDSW"
+						}, {
+							"id" : "NCDT",
+							"text" : "NCDT"
+						}, {
+							"id" : "NCDW",
+							"text" : "NCDW"
+						}, {
+							"id" : "NCE2",
+							"text" : "NCE2"
+						}, {
+							"id" : "NCE2P",
+							"text" : "NCE2P"
+						}, {
+							"id" : "NCE4P",
+							"text" : "NCE4P"
+						}, {
+							"id" : "NCE4S",
+							"text" : "NCE4S"
+						}, {
+							"id" : "NCEAS",
+							"text" : "NCEAS"
+						}, {
+							"id" : "NCEAU",
+							"text" : "NCEAU"
+						}, {
+							"id" : "NCECS",
+							"text" : "NCECS"
+						}, {
+							"id" : "NCEDN",
+							"text" : "NCEDN"
+						}, {
+							"id" : "NCEDO",
+							"text" : "NCEDO"
+						}, {
+							"id" : "NCEE",
+							"text" : "NCEE"
+						}, {
+							"id" : "NCEMU",
+							"text" : "NCEMU"
+						}, {
+							"id" : "NCEP",
+							"text" : "NCEP"
+						}, {
+							"id" : "NCES1",
+							"text" : "NCES1"
+						}, {
+							"id" : "NCES3",
+							"text" : "NCES3"
+						}, {
+							"id" : "NCESO",
+							"text" : "NCESO"
+						}, {
+							"id" : "NCESW",
+							"text" : "NCESW"
+						}, {
+							"id" : "NCET",
+							"text" : "NCET"
+						}, {
+							"id" : "NCEW",
+							"text" : "NCEW"
+						}, {
+							"id" : "NCF2",
+							"text" : "NCF2"
+						}, {
+							"id" : "NCF2P",
+							"text" : "NCF2P"
+						}, {
+							"id" : "NCF4P",
+							"text" : "NCF4P"
+						}, {
+							"id" : "NCF4S",
+							"text" : "NCF4S"
+						}, {
+							"id" : "NCFAS",
+							"text" : "NCFAS"
+						}, {
+							"id" : "NCFAU",
+							"text" : "NCFAU"
+						}, {
+							"id" : "NCFCS",
+							"text" : "NCFCS"
+						}, {
+							"id" : "NCFE",
+							"text" : "NCFE"
+						}, {
+							"id" : "NCFP",
+							"text" : "NCFP"
+						}, {
+							"id" : "NCFT",
+							"text" : "NCFT"
+						}, {
+							"id" : "NCFW",
+							"text" : "NCFW"
+						}, {
+							"id" : "NCG2",
+							"text" : "NCG2"
+						}, {
+							"id" : "NCG2P",
+							"text" : "NCG2P"
+						}, {
+							"id" : "NCG4P",
+							"text" : "NCG4P"
+						}, {
+							"id" : "NCG4S",
+							"text" : "NCG4S"
+						}, {
+							"id" : "NCGAS",
+							"text" : "NCGAS"
+						}, {
+							"id" : "NCGAU",
+							"text" : "NCGAU"
+						}, {
+							"id" : "NCGCS",
+							"text" : "NCGCS"
+						}, {
+							"id" : "NCGE",
+							"text" : "NCGE"
+						}, {
+							"id" : "NCGP",
+							"text" : "NCGP"
+						}, {
+							"id" : "NCGSW",
+							"text" : "NCGSW"
+						}, {
+							"id" : "NCGT",
+							"text" : "NCGT"
+						}, {
+							"id" : "NCGW",
+							"text" : "NCGW"
+						}, {
+							"id" : "NCH2",
+							"text" : "NCH2"
+						}, {
+							"id" : "NCH2P",
+							"text" : "NCH2P"
+						}, {
+							"id" : "NCH4P",
+							"text" : "NCH4P"
+						}, {
+							"id" : "NCH4S",
+							"text" : "NCH4S"
+						}, {
+							"id" : "NCHAS",
+							"text" : "NCHAS"
+						}, {
+							"id" : "NCHAU",
+							"text" : "NCHAU"
+						}, {
+							"id" : "NCHCS",
+							"text" : "NCHCS"
+						}, {
+							"id" : "NCHE",
+							"text" : "NCHE"
+						}, {
+							"id" : "NCHP",
+							"text" : "NCHP"
+						}, {
+							"id" : "NCHSW",
+							"text" : "NCHSW"
+						}, {
+							"id" : "NCHT",
+							"text" : "NCHT"
+						}, {
+							"id" : "NCHW",
+							"text" : "NCHW"
+						}, {
+							"id" : "NCI2",
+							"text" : "NCI2"
+						}, {
+							"id" : "NCI2P",
+							"text" : "NCI2P"
+						}, {
+							"id" : "NCI4P",
+							"text" : "NCI4P"
+						}, {
+							"id" : "NCI4S",
+							"text" : "NCI4S"
+						}, {
+							"id" : "NCIAS",
+							"text" : "NCIAS"
+						}, {
+							"id" : "NCIAU",
+							"text" : "NCIAU"
+						}, {
+							"id" : "NCICS",
+							"text" : "NCICS"
+						}, {
+							"id" : "NCIE",
+							"text" : "NCIE"
+						}, {
+							"id" : "NCIP",
+							"text" : "NCIP"
+						}, {
+							"id" : "NCISW",
+							"text" : "NCISW"
+						}, {
+							"id" : "NCIT",
+							"text" : "NCIT"
+						}, {
+							"id" : "NCIW",
+							"text" : "NCIW"
+						}, {
+							"id" : "NCJ2",
+							"text" : "NCJ2"
+						}, {
+							"id" : "NCJ2P",
+							"text" : "NCJ2P"
+						}, {
+							"id" : "NCJ4P",
+							"text" : "NCJ4P"
+						}, {
+							"id" : "NCJ4S",
+							"text" : "NCJ4S"
+						}, {
+							"id" : "NCJAS",
+							"text" : "NCJAS"
+						}, {
+							"id" : "NCJAU",
+							"text" : "NCJAU"
+						}, {
+							"id" : "NCJCS",
+							"text" : "NCJCS"
+						}, {
+							"id" : "NCJE",
+							"text" : "NCJE"
+						}, {
+							"id" : "NCJP",
+							"text" : "NCJP"
+						}, {
+							"id" : "NCJSW",
+							"text" : "NCJSW"
+						}, {
+							"id" : "NCJT",
+							"text" : "NCJT"
+						}, {
+							"id" : "NCJW",
+							"text" : "NCJW"
+						}, {
+							"id" : "NCMB",
+							"text" : "NCMB"
+						} ]
+					}, {
+						"id" : "NC(AS-TS)2",
+						"text" : "NC(AS-TS)2",
+						"levels" : [ {
+							"id" : "NCFSW",
+							"text" : "NCFSW"
+						} ]
+					}, {
+						"id" : "NC(AS-TS)3",
+						"text" : "NC(AS-TS)3",
+						"levels" : [ {
+							"id" : "NCFDN",
+							"text" : "NCFDN"
+						}, {
+							"id" : "NCFDO",
+							"text" : "NCFDO"
+						}, {
+							"id" : "NCFMU",
+							"text" : "NCFMU"
+						} ]
+					}, {
+						"id" : "NC(AS-TS)4",
+						"text" : "NC(AS-TS)4",
+						"levels" : [ {
+							"id" : "NCFS1",
+							"text" : "NCFS1"
+						}, {
+							"id" : "NCFS3",
+							"text" : "NCFS3"
+						}, {
+							"id" : "NCFSO",
+							"text" : "NCFSO"
+						} ]
+					}, {
+						"id" : "NOS",
+						"text" : "NOS",
+						"levels" : [ {
+							"id" : "ENOS",
+							"text" : "ENOS"
+						}, {
+							"id" : "NOS",
+							"text" : "NOS"
+						}, {
+							"id" : "NOS1",
+							"text" : "NOS1"
+						}, {
+							"id" : "NOS1A",
+							"text" : "NOS1A"
+						}, {
+							"id" : "NOSS",
+							"text" : "NOSS"
+						} ]
+					}, {
+						"id" : "NOS COSS",
+						"text" : "NOS COSS",
+						"levels" : [ {
+							"id" : "NSC4",
+							"text" : "NSC4"
+						}, {
+							"id" : "NSCD",
+							"text" : "NSCD"
+						}, {
+							"id" : "NSCE",
+							"text" : "NSCE"
+						}, {
+							"id" : "NSCP",
+							"text" : "NSCP"
+						} ]
+					}, {
+						"id" : "NOSC",
+						"text" : "NOSC",
+						"levels" : [ {
+							"id" : "NEC4",
+							"text" : "NEC4"
+						}, {
+							"id" : "NECD",
+							"text" : "NECD"
+						}, {
+							"id" : "NECE",
+							"text" : "NECE"
+						}, {
+							"id" : "NECP",
+							"text" : "NECP"
+						}, {
+							"id" : "NESW",
+							"text" : "NESW"
+						}, {
+							"id" : "NOSC",
+							"text" : "NOSC"
+						}, {
+							"id" : "NSAS",
+							"text" : "NSAS"
+						}, {
+							"id" : "NSAU",
+							"text" : "NSAU"
+						}, {
+							"id" : "NSO2",
+							"text" : "NSO2"
+						}, {
+							"id" : "NSOE",
+							"text" : "NSOE"
+						}, {
+							"id" : "NSOP",
+							"text" : "NSOP"
+						}, {
+							"id" : "NSOS",
+							"text" : "NSOS"
+						}, {
+							"id" : "NSS2",
+							"text" : "NSS2"
+						}, {
+							"id" : "NSSE",
+							"text" : "NSSE"
+						}, {
+							"id" : "NSSP",
+							"text" : "NSSP"
+						}, {
+							"id" : "NSST",
+							"text" : "NSST"
+						}, {
+							"id" : "NSSW",
+							"text" : "NSSW"
+						} ]
+					}, {
+						"id" : "NSA",
+						"text" : "NSA",
+						"levels" : [ {
+							"id" : "NSA",
+							"text" : "NSA"
+						}, {
+							"id" : "PMNSA",
+							"text" : "PMNSA"
+						} ]
+					}, {
+						"id" : "ONE",
+						"text" : "ONE",
+						"levels" : [ {
+							"id" : "ONE",
+							"text" : "ONE"
+						} ]
+					}, {
+						"id" : "OPTIMIZE",
+						"text" : "OPTIMIZE",
+						"levels" : [ {
+							"id" : "KCPS",
+							"text" : "KCPS"
+						}, {
+							"id" : "OPT",
+							"text" : "OPT"
+						} ]
+					}, {
+						"id" : "OTHER-AS",
+						"text" : "OTHER-AS",
+						"levels" : [ {
+							"id" : "CIM",
+							"text" : "CIM"
+						}, {
+							"id" : "ISPB",
+							"text" : "ISPB"
+						}, {
+							"id" : "ISPET",
+							"text" : "ISPET"
+						}, {
+							"id" : "NUC2P",
+							"text" : "NUC2P"
+						}, {
+							"id" : "NUC4P",
+							"text" : "NUC4P"
+						}, {
+							"id" : "NVS",
+							"text" : "NVS"
+						}, {
+							"id" : "NVSSP",
+							"text" : "NVSSP"
+						}, {
+							"id" : "OSSPT",
+							"text" : "OSSPT"
+						} ]
+					}, {
+						"id" : "SCICARE AS SUB",
+						"text" : "SCICARE AS SUB",
+						"levels" : [ {
+							"id" : "SAASS",
+							"text" : "SAASS"
+						} ]
+					}, {
+						"id" : "STARENT AS SUB",
+						"text" : "STARENT AS SUB",
+						"levels" : [ {
+							"id" : "STASS",
+							"text" : "STASS"
+						} ]
+					}, {
+						"id" : "TAS",
+						"text" : "TAS",
+						"levels" : [ {
+							"id" : "ETAS",
+							"text" : "ETAS"
+						}, {
+							"id" : "TAS",
+							"text" : "TAS"
+						}, {
+							"id" : "TAS1",
+							"text" : "TAS1"
+						}, {
+							"id" : "TAS1A",
+							"text" : "TAS1A"
+						}, {
+							"id" : "TASI",
+							"text" : "TASI"
+						}, {
+							"id" : "TASS",
+							"text" : "TASS"
+						} ]
+					} ],
+					"text" : "AS-Subscription"
+				}, {
+					"id" : "AS-Transaction",
+					"programs" : [ {
+						"id" : "ADVISORY SERVICES",
+						"text" : "ADVISORY SERVICES",
+						"levels" : [ {
+							"id" : "BTAG",
+							"text" : "BTAG"
+						} ]
+					}, {
+						"id" : "AS ACQUISITION",
+						"text" : "AS ACQUISITION",
+						"levels" : [ {
+							"id" : "NAS",
+							"text" : "NAS"
+						}, {
+							"id" : "SAAST",
+							"text" : "SAAST"
+						}, {
+							"id" : "STAS",
+							"text" : "STAS"
+						}, {
+							"id" : "TBAS",
+							"text" : "TBAS"
+						}, {
+							"id" : "TLAS",
+							"text" : "TLAS"
+						} ]
+					}, {
+						"id" : "KT",
+						"text" : "KT",
+						"levels" : [ {
+							"id" : "KT",
+							"text" : "KT"
+						} ]
+					}, {
+						"id" : "OTHER-TRANSACTION",
+						"text" : "OTHER-TRANSACTION",
+						"levels" : [ {
+							"id" : "CLAS",
+							"text" : "CLAS"
+						}, {
+							"id" : "MISCAS",
+							"text" : "MISCAS"
+						} ]
+					}, {
+						"id" : "PDI",
+						"text" : "PDI",
+						"levels" : [ {
+							"id" : "PDI",
+							"text" : "PDI"
+						} ]
+					}, {
+						"id" : "PS TRANSACTION",
+						"text" : "PS TRANSACTION",
+						"levels" : [ {
+							"id" : "PRSRV",
+							"text" : "PRSRV"
+						}, {
+							"id" : "UTL",
+							"text" : "UTL"
+						} ]
+					}, {
+						"id" : "SCICARE AS",
+						"text" : "SCICARE AS",
+						"levels" : [ {
+							"id" : "SVPDI",
+							"text" : "SVPDI"
+						} ]
+					}, {
+						"id" : "TIS",
+						"text" : "TIS",
+						"levels" : [ {
+							"id" : "TIS1",
+							"text" : "TIS1"
+						}, {
+							"id" : "TIS2",
+							"text" : "TIS2"
+						}, {
+							"id" : "TIS3",
+							"text" : "TIS3"
+						} ]
+					} ],
+					"text" : "AS-Transaction"
+				} ]
+			}, {
+				"id" : "B",
+				"text" : "B",
+				"categories" : []
+			}, {
+				"id" : "C",
+				"text" : "C",
+				"categories" : []
+			}, {
+				"id" : "D",
+				"text" : "D",
+				"categories" : []
+			}, {
+				"id" : "E",
+				"text" : "E",
+				"categories" : []
+			}, {
+				"id" : "F",
+				"text" : "F",
+				"categories" : []
+			}, {
+				"id" : "G",
+				"text" : "G",
+				"categories" : []
+			}, {
+				"id" : "H",
+				"text" : "H",
+				"categories" : []
+			}, {
+				"id" : "I",
+				"text" : "I",
+				"categories" : []
+			}, {
+				"id" : "J",
+				"text" : "J",
+				"categories" : []
+			}, {
+				"id" : "K",
+				"text" : "K",
+				"categories" : []
+			}, {
+				"id" : "L",
+				"text" : "L",
+				"categories" : []
+			}, {
+				"id" : "M",
+				"text" : "M",
+				"categories" : []
+			}, {
+				"id" : "N",
+				"text" : "N",
+				"categories" : []
+			}, {
+				"id" : "O",
+				"text" : "O",
+				"categories" : []
+			}, {
+				"id" : "P",
+				"text" : "P",
+				"categories" : []
+			}, {
+				"id" : "Q",
+				"text" : "Q",
+				"categories" : []
+			}, {
+				"id" : "R",
+				"text" : "R",
+				"categories" : []
+			}, {
+				"id" : "S",
+				"text" : "S",
+				"categories" : []
+			}, {
+				"id" : "T",
+				"text" : "T",
+				"categories" : [ {
+					"id" : "TSS/Core",
+					"programs" : [ {
+						"id" : "2T-PGMS",
+						"text" : "2T-PGMS",
+						"levels" : [ {
+							"id" : "AR",
+							"text" : "AR"
+						}, {
+							"id" : "ARIND",
+							"text" : "ARIND"
+						}, {
+							"id" : "DSA",
+							"text" : "DSA"
+						}, {
+							"id" : "DSA2K",
+							"text" : "DSA2K"
+						}, {
+							"id" : "DSAP",
+							"text" : "DSAP"
+						}, {
+							"id" : "DSP",
+							"text" : "DSP"
+						}, {
+							"id" : "ESP",
+							"text" : "ESP"
+						}, {
+							"id" : "EWAR",
+							"text" : "EWAR"
+						}, {
+							"id" : "EXTWA",
+							"text" : "EXTWA"
+						}, {
+							"id" : "MYSNT",
+							"text" : "MYSNT"
+						}, {
+							"id" : "RSA",
+							"text" : "RSA"
+						}, {
+							"id" : "RSA98",
+							"text" : "RSA98"
+						}, {
+							"id" : "RSARR",
+							"text" : "RSARR"
+						}, {
+							"id" : "SMBN",
+							"text" : "SMBN"
+						}, {
+							"id" : "UTAS",
+							"text" : "UTAS"
+						}, {
+							"id" : "VAD98",
+							"text" : "VAD98"
+						}, {
+							"id" : "VADLT",
+							"text" : "VADLT"
+						} ]
+					}, {
+						"id" : "3P L0",
+						"text" : "3P L0",
+						"levels" : [ {
+							"id" : "3PH0",
+							"text" : "3PH0"
+						}, {
+							"id" : "3PS0",
+							"text" : "3PS0"
+						} ]
+					}, {
+						"id" : "ALLIED SVCS",
+						"text" : "ALLIED SVCS",
+						"levels" : [ {
+							"id" : "USS1",
+							"text" : "USS1"
+						} ]
+					}, {
+						"id" : "BMS",
+						"text" : "BMS",
+						"levels" : [ {
+							"id" : "BMS",
+							"text" : "BMS"
+						} ]
+					}, {
+						"id" : "CAM",
+						"text" : "CAM",
+						"levels" : [ {
+							"id" : "CAM",
+							"text" : "CAM"
+						} ]
+					}, {
+						"id" : "CIPS",
+						"text" : "CIPS",
+						"levels" : [ {
+							"id" : "SU1",
+							"text" : "SU1"
+						}, {
+							"id" : "SU2",
+							"text" : "SU2"
+						}, {
+							"id" : "SU3",
+							"text" : "SU3"
+						}, {
+							"id" : "SU4",
+							"text" : "SU4"
+						}, {
+							"id" : "SUO1",
+							"text" : "SUO1"
+						}, {
+							"id" : "SUO2",
+							"text" : "SUO2"
+						}, {
+							"id" : "SUO3",
+							"text" : "SUO3"
+						}, {
+							"id" : "SUO4",
+							"text" : "SUO4"
+						}, {
+							"id" : "SUSW",
+							"text" : "SUSW"
+						} ]
+					}, {
+						"id" : "CIPS-SIG",
+						"text" : "CIPS-SIG",
+						"levels" : [ {
+							"id" : "SUSA",
+							"text" : "SUSA"
+						} ]
+					}, {
+						"id" : "CIPS-SP",
+						"text" : "CIPS-SP",
+						"levels" : [ {
+							"id" : "SBFA1",
+							"text" : "SBFA1"
+						}, {
+							"id" : "SBFA2",
+							"text" : "SBFA2"
+						}, {
+							"id" : "SBFA3",
+							"text" : "SBFA3"
+						}, {
+							"id" : "SBFA4",
+							"text" : "SBFA4"
+						}, {
+							"id" : "SBFC1",
+							"text" : "SBFC1"
+						}, {
+							"id" : "SBFC2",
+							"text" : "SBFC2"
+						}, {
+							"id" : "SBFC3",
+							"text" : "SBFC3"
+						}, {
+							"id" : "SBFC4",
+							"text" : "SBFC4"
+						}, {
+							"id" : "SBFRF",
+							"text" : "SBFRF"
+						}, {
+							"id" : "SBFSW",
+							"text" : "SBFSW"
+						}, {
+							"id" : "SFA1",
+							"text" : "SFA1"
+						}, {
+							"id" : "SFA2",
+							"text" : "SFA2"
+						}, {
+							"id" : "SFA3",
+							"text" : "SFA3"
+						}, {
+							"id" : "SFA4",
+							"text" : "SFA4"
+						}, {
+							"id" : "SFC1",
+							"text" : "SFC1"
+						}, {
+							"id" : "SFC2",
+							"text" : "SFC2"
+						}, {
+							"id" : "SFC3",
+							"text" : "SFC3"
+						}, {
+							"id" : "SFC4",
+							"text" : "SFC4"
+						}, {
+							"id" : "SFRF",
+							"text" : "SFRF"
+						}, {
+							"id" : "SFSW",
+							"text" : "SFSW"
+						} ]
+					}, {
+						"id" : "CISCO BLOCKER",
+						"text" : "CISCO BLOCKER",
+						"levels" : [ {
+							"id" : "BLK",
+							"text" : "BLK"
+						}, {
+							"id" : "BLK1",
+							"text" : "BLK1"
+						}, {
+							"id" : "BLK2",
+							"text" : "BLK2"
+						}, {
+							"id" : "BLK3",
+							"text" : "BLK3"
+						} ]
+					}, {
+						"id" : "CMS",
+						"text" : "CMS",
+						"levels" : [ {
+							"id" : "CMSN1",
+							"text" : "CMSN1"
+						}, {
+							"id" : "CMSR1",
+							"text" : "CMSR1"
+						}, {
+							"id" : "CMSS1",
+							"text" : "CMSS1"
+						} ]
+					}, {
+						"id" : "CMS 3YR",
+						"text" : "CMS 3YR",
+						"levels" : [ {
+							"id" : "CMSN3",
+							"text" : "CMSN3"
+						}, {
+							"id" : "CMSR3",
+							"text" : "CMSR3"
+						}, {
+							"id" : "CMSS3",
+							"text" : "CMSS3"
+						} ]
+					}, {
+						"id" : "CNL",
+						"text" : "CNL",
+						"levels" : [ {
+							"id" : "CNL1",
+							"text" : "CNL1"
+						}, {
+							"id" : "CNL2",
+							"text" : "CNL2"
+						}, {
+							"id" : "CNL3",
+							"text" : "CNL3"
+						}, {
+							"id" : "CNL4",
+							"text" : "CNL4"
+						}, {
+							"id" : "CNLA",
+							"text" : "CNLA"
+						}, {
+							"id" : "CNLB",
+							"text" : "CNLB"
+						}, {
+							"id" : "CNLC",
+							"text" : "CNLC"
+						}, {
+							"id" : "CNLP",
+							"text" : "CNLP"
+						} ]
+					}, {
+						"id" : "COBRAND",
+						"text" : "COBRAND",
+						"levels" : [ {
+							"id" : "RCBT",
+							"text" : "RCBT"
+						} ]
+					}, {
+						"id" : "COLL ROS C",
+						"text" : "COLL ROS C",
+						"levels" : [ {
+							"id" : "CBRC",
+							"text" : "CBRC"
+						} ]
+					}, {
+						"id" : "COLL ROS M",
+						"text" : "COLL ROS M",
+						"levels" : [ {
+							"id" : "CBRM",
+							"text" : "CBRM"
+						} ]
+					}, {
+						"id" : "COLL-CIPS-SIG",
+						"text" : "COLL-CIPS-SIG",
+						"levels" : [ {
+							"id" : "CBSU",
+							"text" : "CBSU"
+						} ]
+					}, {
+						"id" : "COLL-COSE",
+						"text" : "COLL-COSE",
+						"levels" : [ {
+							"id" : "CBC4",
+							"text" : "CBC4"
+						}, {
+							"id" : "CBCD",
+							"text" : "CBCD"
+						}, {
+							"id" : "CBCE",
+							"text" : "CBCE"
+						}, {
+							"id" : "CBCP",
+							"text" : "CBCP"
+						}, {
+							"id" : "CBSW",
+							"text" : "CBSW"
+						} ]
+					}, {
+						"id" : "COLL-TS INT",
+						"text" : "COLL-TS INT",
+						"levels" : [ {
+							"id" : "CBAS",
+							"text" : "CBAS"
+						}, {
+							"id" : "CBAU",
+							"text" : "CBAU"
+						}, {
+							"id" : "CBNE",
+							"text" : "CBNE"
+						}, {
+							"id" : "CBNP",
+							"text" : "CBNP"
+						}, {
+							"id" : "CBNT",
+							"text" : "CBNT"
+						}, {
+							"id" : "CS2P",
+							"text" : "CS2P"
+						} ]
+					}, {
+						"id" : "COLL-TS NA",
+						"text" : "COLL-TS NA",
+						"levels" : [ {
+							"id" : "CBUE",
+							"text" : "CBUE"
+						}, {
+							"id" : "CBUP",
+							"text" : "CBUP"
+						}, {
+							"id" : "CBUS",
+							"text" : "CBUS"
+						}, {
+							"id" : "CBUT",
+							"text" : "CBUT"
+						}, {
+							"id" : "CBUU",
+							"text" : "CBUU"
+						}, {
+							"id" : "CU2P",
+							"text" : "CU2P"
+						} ]
+					}, {
+						"id" : "COLL-TS-ONSITE",
+						"text" : "COLL-TS-ONSITE",
+						"levels" : [ {
+							"id" : "CBO2",
+							"text" : "CBO2"
+						}, {
+							"id" : "CBOE",
+							"text" : "CBOE"
+						}, {
+							"id" : "CBOP",
+							"text" : "CBOP"
+						}, {
+							"id" : "CBOT",
+							"text" : "CBOT"
+						} ]
+					}, {
+						"id" : "COLL-TS-TP",
+						"text" : "COLL-TS-TP",
+						"levels" : [ {
+							"id" : "CB4N",
+							"text" : "CB4N"
+						}, {
+							"id" : "CB4T",
+							"text" : "CB4T"
+						}, {
+							"id" : "CBDN",
+							"text" : "CBDN"
+						}, {
+							"id" : "CBDO",
+							"text" : "CBDO"
+						}, {
+							"id" : "CBEN",
+							"text" : "CBEN"
+						}, {
+							"id" : "CBEO",
+							"text" : "CBEO"
+						}, {
+							"id" : "CBMU",
+							"text" : "CBMU"
+						} ]
+					}, {
+						"id" : "COS SP",
+						"text" : "COS SP",
+						"levels" : [ {
+							"id" : "SBESW",
+							"text" : "SBESW"
+						}, {
+							"id" : "SPESW",
+							"text" : "SPESW"
+						} ]
+					}, {
+						"id" : "COS-TP-2TIER",
+						"text" : "COS-TP-2TIER",
+						"levels" : [ {
+							"id" : "CC4N",
+							"text" : "CC4N"
+						}, {
+							"id" : "CC4T",
+							"text" : "CC4T"
+						}, {
+							"id" : "CCDN",
+							"text" : "CCDN"
+						}, {
+							"id" : "CCDO",
+							"text" : "CCDO"
+						}, {
+							"id" : "CCEN",
+							"text" : "CCEN"
+						}, {
+							"id" : "CCEO",
+							"text" : "CCEO"
+						} ]
+					}, {
+						"id" : "COSE-CBR",
+						"text" : "COSE-CBR",
+						"levels" : [ {
+							"id" : "EC4P",
+							"text" : "EC4P"
+						}, {
+							"id" : "ECD",
+							"text" : "ECD"
+						}, {
+							"id" : "ECE",
+							"text" : "ECE"
+						}, {
+							"id" : "ECPM",
+							"text" : "ECPM"
+						}, {
+							"id" : "ESW",
+							"text" : "ESW"
+						} ]
+					}, {
+						"id" : "COSE-PESSENTIAL",
+						"text" : "COSE-PESSENTIAL",
+						"levels" : [ {
+							"id" : "PSED",
+							"text" : "PSED"
+						}, {
+							"id" : "PSEE",
+							"text" : "PSEE"
+						}, {
+							"id" : "PSEP",
+							"text" : "PSEP"
+						}, {
+							"id" : "PSES",
+							"text" : "PSES"
+						} ]
+					}, {
+						"id" : "COSE-PVSO",
+						"text" : "COSE-PVSO",
+						"levels" : [ {
+							"id" : "PECD",
+							"text" : "PECD"
+						}, {
+							"id" : "PECE",
+							"text" : "PECE"
+						}, {
+							"id" : "PECP",
+							"text" : "PECP"
+						}, {
+							"id" : "PESW",
+							"text" : "PESW"
+						} ]
+					}, {
+						"id" : "COSE-SS",
+						"text" : "COSE-SS",
+						"levels" : [ {
+							"id" : "SECD",
+							"text" : "SECD"
+						}, {
+							"id" : "SECE",
+							"text" : "SECE"
+						}, {
+							"id" : "SECP",
+							"text" : "SECP"
+						}, {
+							"id" : "SESW",
+							"text" : "SESW"
+						} ]
+					}, {
+						"id" : "COSE-TELPRES",
+						"text" : "COSE-TELPRES",
+						"levels" : [ {
+							"id" : "EC4N",
+							"text" : "EC4N"
+						}, {
+							"id" : "EC4T",
+							"text" : "EC4T"
+						}, {
+							"id" : "ECDN",
+							"text" : "ECDN"
+						}, {
+							"id" : "ECDO",
+							"text" : "ECDO"
+						}, {
+							"id" : "ECEN",
+							"text" : "ECEN"
+						}, {
+							"id" : "ECEO",
+							"text" : "ECEO"
+						}, {
+							"id" : "ECMU",
+							"text" : "ECMU"
+						}, {
+							"id" : "TPBS",
+							"text" : "TPBS"
+						} ]
+					}, {
+						"id" : "COSS-CBR ROS",
+						"text" : "COSS-CBR ROS",
+						"levels" : [ {
+							"id" : "SC4P",
+							"text" : "SC4P"
+						}, {
+							"id" : "SCD",
+							"text" : "SCD"
+						}, {
+							"id" : "SCE",
+							"text" : "SCE"
+						}, {
+							"id" : "SCPM",
+							"text" : "SCPM"
+						} ]
+					}, {
+						"id" : "COSS-PVSO ROS",
+						"text" : "COSS-PVSO ROS",
+						"levels" : [ {
+							"id" : "PSCD",
+							"text" : "PSCD"
+						}, {
+							"id" : "PSCE",
+							"text" : "PSCE"
+						}, {
+							"id" : "PSCP",
+							"text" : "PSCP"
+						} ]
+					}, {
+						"id" : "CSC",
+						"text" : "CSC",
+						"levels" : [ {
+							"id" : "CSC2",
+							"text" : "CSC2"
+						}, {
+							"id" : "CSCD",
+							"text" : "CSCD"
+						}, {
+							"id" : "CSCE",
+							"text" : "CSCE"
+						}, {
+							"id" : "CSCP",
+							"text" : "CSCP"
+						} ]
+					}, {
+						"id" : "CSSP",
+						"text" : "CSSP",
+						"levels" : [ {
+							"id" : "CSSP2",
+							"text" : "CSSP2"
+						}, {
+							"id" : "CSSPD",
+							"text" : "CSSPD"
+						}, {
+							"id" : "CSSPE",
+							"text" : "CSSPE"
+						}, {
+							"id" : "CSSPP",
+							"text" : "CSSPP"
+						}, {
+							"id" : "CSSPS",
+							"text" : "CSSPS"
+						}, {
+							"id" : "CSSPU",
+							"text" : "CSSPU"
+						} ]
+					}, {
+						"id" : "CSSP UCS SUP",
+						"text" : "CSSP UCS SUP",
+						"levels" : [ {
+							"id" : "CSEB1",
+							"text" : "CSEB1"
+						}, {
+							"id" : "CSEB2",
+							"text" : "CSEB2"
+						}, {
+							"id" : "CSEB3",
+							"text" : "CSEB3"
+						}, {
+							"id" : "CSEB4",
+							"text" : "CSEB4"
+						} ]
+					}, {
+						"id" : "CSSP UCS WP",
+						"text" : "CSSP UCS WP",
+						"levels" : [ {
+							"id" : "CSWB2",
+							"text" : "CSWB2"
+						}, {
+							"id" : "CSWB3",
+							"text" : "CSWB3"
+						}, {
+							"id" : "CSWB4",
+							"text" : "CSWB4"
+						} ]
+					}, {
+						"id" : "CSSP-TS-TP",
+						"text" : "CSSP-TS-TP",
+						"levels" : [ {
+							"id" : "CS4N",
+							"text" : "CS4N"
+						}, {
+							"id" : "CSDN",
+							"text" : "CSDN"
+						}, {
+							"id" : "CSEN",
+							"text" : "CSEN"
+						}, {
+							"id" : "CSMU",
+							"text" : "CSMU"
+						} ]
+					}, {
+						"id" : "CTS UCS SUPP",
+						"text" : "CTS UCS SUPP",
+						"levels" : [ {
+							"id" : "CBH1",
+							"text" : "CBH1"
+						}, {
+							"id" : "CBH2",
+							"text" : "CBH2"
+						}, {
+							"id" : "CBH3",
+							"text" : "CBH3"
+						}, {
+							"id" : "CBH4",
+							"text" : "CBH4"
+						} ]
+					}, {
+						"id" : "CTS UCS WP",
+						"text" : "CTS UCS WP",
+						"levels" : [ {
+							"id" : "CBB2",
+							"text" : "CBB2"
+						}, {
+							"id" : "CBB3",
+							"text" : "CBB3"
+						}, {
+							"id" : "CBB4",
+							"text" : "CBB4"
+						} ]
+					}, {
+						"id" : "DEVSPT",
+						"text" : "DEVSPT",
+						"levels" : [ {
+							"id" : "DTA5",
+							"text" : "DTA5"
+						}, {
+							"id" : "DV01",
+							"text" : "DV01"
+						}, {
+							"id" : "DV05",
+							"text" : "DV05"
+						}, {
+							"id" : "DV10",
+							"text" : "DV10"
+						}, {
+							"id" : "DV20",
+							"text" : "DV20"
+						}, {
+							"id" : "DVA12",
+							"text" : "DVA12"
+						}, {
+							"id" : "DVA4",
+							"text" : "DVA4"
+						}, {
+							"id" : "DVA6",
+							"text" : "DVA6"
+						}, {
+							"id" : "DVCSR",
+							"text" : "DVCSR"
+						}, {
+							"id" : "DVECO",
+							"text" : "DVECO"
+						}, {
+							"id" : "DVP12",
+							"text" : "DVP12"
+						}, {
+							"id" : "DVP6",
+							"text" : "DVP6"
+						}, {
+							"id" : "DVPLT",
+							"text" : "DVPLT"
+						}, {
+							"id" : "DVTAC",
+							"text" : "DVTAC"
+						} ]
+					}, {
+						"id" : "ELA",
+						"text" : "ELA",
+						"levels" : [ {
+							"id" : "ELSU",
+							"text" : "ELSU"
+						}, {
+							"id" : "ELSW",
+							"text" : "ELSW"
+						} ]
+					}, {
+						"id" : "ERN",
+						"text" : "ERN",
+						"levels" : [ {
+							"id" : "ERN0",
+							"text" : "ERN0"
+						} ]
+					}, {
+						"id" : "ETSP",
+						"text" : "ETSP",
+						"levels" : [ {
+							"id" : "ETS2P",
+							"text" : "ETS2P"
+						}, {
+							"id" : "ETSPB",
+							"text" : "ETSPB"
+						}, {
+							"id" : "ETSPE",
+							"text" : "ETSPE"
+						}, {
+							"id" : "ETSPN",
+							"text" : "ETSPN"
+						}, {
+							"id" : "ETSPP",
+							"text" : "ETSPP"
+						}, {
+							"id" : "ETSPR",
+							"text" : "ETSPR"
+						}, {
+							"id" : "ETSSA",
+							"text" : "ETSSA"
+						}, {
+							"id" : "ETSSU",
+							"text" : "ETSSU"
+						} ]
+					}, {
+						"id" : "ETW",
+						"text" : "ETW",
+						"levels" : [ {
+							"id" : "ETWN",
+							"text" : "ETWN"
+						}, {
+							"id" : "ETWOE",
+							"text" : "ETWOE"
+						}, {
+							"id" : "ETWOP",
+							"text" : "ETWOP"
+						}, {
+							"id" : "ETWOS",
+							"text" : "ETWOS"
+						}, {
+							"id" : "ETWP",
+							"text" : "ETWP"
+						}, {
+							"id" : "ETWSA",
+							"text" : "ETWSA"
+						}, {
+							"id" : "ETWSU",
+							"text" : "ETWSU"
+						} ]
+					}, {
+						"id" : "EXT WARRANTY",
+						"text" : "EXT WARRANTY",
+						"levels" : [ {
+							"id" : "XHW",
+							"text" : "XHW"
+						} ]
+					}, {
+						"id" : "EXT WTY 1",
+						"text" : "EXT WTY 1",
+						"levels" : [ {
+							"id" : "XHW1",
+							"text" : "XHW1"
+						} ]
+					}, {
+						"id" : "EXT WTY 2",
+						"text" : "EXT WTY 2",
+						"levels" : [ {
+							"id" : "XHW2",
+							"text" : "XHW2"
+						} ]
+					}, {
+						"id" : "EXT WTY 3",
+						"text" : "EXT WTY 3",
+						"levels" : [ {
+							"id" : "XHW3",
+							"text" : "XHW3"
+						} ]
+					}, {
+						"id" : "EXT WTY 4",
+						"text" : "EXT WTY 4",
+						"levels" : [ {
+							"id" : "XHW4",
+							"text" : "XHW4"
+						} ]
+					}, {
+						"id" : "FB-SMARTNET",
+						"text" : "FB-SMARTNET",
+						"levels" : [ {
+							"id" : "FC4P",
+							"text" : "FC4P"
+						}, {
+							"id" : "FCS",
+							"text" : "FCS"
+						}, {
+							"id" : "FSNP",
+							"text" : "FSNP"
+						}, {
+							"id" : "FSNT",
+							"text" : "FSNT"
+						}, {
+							"id" : "FSW",
+							"text" : "FSW"
+						} ]
+					}, {
+						"id" : "FB-SWAPPS",
+						"text" : "FB-SWAPPS",
+						"levels" : [ {
+							"id" : "FSAS",
+							"text" : "FSAS"
+						} ]
+					}, {
+						"id" : "HAS-CBR",
+						"text" : "HAS-CBR",
+						"levels" : [ {
+							"id" : "HA4P",
+							"text" : "HA4P"
+						}, {
+							"id" : "HA4S",
+							"text" : "HA4S"
+						}, {
+							"id" : "HACS",
+							"text" : "HACS"
+						}, {
+							"id" : "HASC",
+							"text" : "HASC"
+						}, {
+							"id" : "HASE",
+							"text" : "HASE"
+						}, {
+							"id" : "HASP",
+							"text" : "HASP"
+						}, {
+							"id" : "HASW",
+							"text" : "HASW"
+						} ]
+					}, {
+						"id" : "HAS-SS",
+						"text" : "HAS-SS",
+						"levels" : [ {
+							"id" : "SHAD",
+							"text" : "SHAD"
+						}, {
+							"id" : "SHAE",
+							"text" : "SHAE"
+						}, {
+							"id" : "SHAP",
+							"text" : "SHAP"
+						} ]
+					}, {
+						"id" : "IAM",
+						"text" : "IAM",
+						"levels" : [ {
+							"id" : "IAM",
+							"text" : "IAM"
+						} ]
+					}, {
+						"id" : "INTERNAL",
+						"text" : "INTERNAL",
+						"levels" : [ {
+							"id" : "DEFLT",
+							"text" : "DEFLT"
+						}, {
+							"id" : "NONE",
+							"text" : "NONE"
+						}, {
+							"id" : "WXYZ",
+							"text" : "WXYZ"
+						} ]
+					}, {
+						"id" : "MISSION CRIT",
+						"text" : "MISSION CRIT",
+						"levels" : [ {
+							"id" : "MCSS",
+							"text" : "MCSS"
+						} ]
+					}, {
+						"id" : "NACA",
+						"text" : "NACA",
+						"levels" : [ {
+							"id" : "NAC",
+							"text" : "NAC"
+						} ]
+					}, {
+						"id" : "NAEP",
+						"text" : "NAEP",
+						"levels" : [ {
+							"id" : "NAE15",
+							"text" : "NAE15"
+						}, {
+							"id" : "NAEE1",
+							"text" : "NAEE1"
+						}, {
+							"id" : "NAEN1",
+							"text" : "NAEN1"
+						}, {
+							"id" : "NAEN3",
+							"text" : "NAEN3"
+						}, {
+							"id" : "NAEP1",
+							"text" : "NAEP1"
+						}, {
+							"id" : "NAEP3",
+							"text" : "NAEP3"
+						}, {
+							"id" : "NAER1",
+							"text" : "NAER1"
+						}, {
+							"id" : "NAER3",
+							"text" : "NAER3"
+						}, {
+							"id" : "NAES1",
+							"text" : "NAES1"
+						}, {
+							"id" : "NAES3",
+							"text" : "NAES3"
+						} ]
+					}, {
+						"id" : "NLS",
+						"text" : "NLS",
+						"levels" : [ {
+							"id" : "NC2P",
+							"text" : "NC2P"
+						}, {
+							"id" : "NC4P",
+							"text" : "NC4P"
+						}, {
+							"id" : "NC4S",
+							"text" : "NC4S"
+						}, {
+							"id" : "NCS",
+							"text" : "NCS"
+						}, {
+							"id" : "NIAM",
+							"text" : "NIAM"
+						}, {
+							"id" : "NLAS",
+							"text" : "NLAS"
+						}, {
+							"id" : "NLAU",
+							"text" : "NLAU"
+						}, {
+							"id" : "NLS1",
+							"text" : "NLS1"
+						}, {
+							"id" : "NLS2",
+							"text" : "NLS2"
+						}, {
+							"id" : "NLS3",
+							"text" : "NLS3"
+						}, {
+							"id" : "NLS4",
+							"text" : "NLS4"
+						}, {
+							"id" : "NLSB",
+							"text" : "NLSB"
+						}, {
+							"id" : "NLSW",
+							"text" : "NLSW"
+						}, {
+							"id" : "NS2P",
+							"text" : "NS2P"
+						}, {
+							"id" : "NSNT",
+							"text" : "NSNT"
+						}, {
+							"id" : "NSP1",
+							"text" : "NSP1"
+						}, {
+							"id" : "NSP2",
+							"text" : "NSP2"
+						}, {
+							"id" : "NSP3",
+							"text" : "NSP3"
+						}, {
+							"id" : "NSP4",
+							"text" : "NSP4"
+						}, {
+							"id" : "NSPB",
+							"text" : "NSPB"
+						}, {
+							"id" : "NSTE",
+							"text" : "NSTE"
+						}, {
+							"id" : "NSTP",
+							"text" : "NSTP"
+						}, {
+							"id" : "NSU1",
+							"text" : "NSU1"
+						}, {
+							"id" : "NSU2",
+							"text" : "NSU2"
+						}, {
+							"id" : "NSU3",
+							"text" : "NSU3"
+						}, {
+							"id" : "NSU4",
+							"text" : "NSU4"
+						}, {
+							"id" : "NSUA",
+							"text" : "NSUA"
+						}, {
+							"id" : "NSUW",
+							"text" : "NSUW"
+						}, {
+							"id" : "NUO1",
+							"text" : "NUO1"
+						}, {
+							"id" : "NUO2",
+							"text" : "NUO2"
+						}, {
+							"id" : "NUO3",
+							"text" : "NUO3"
+						}, {
+							"id" : "NUO4",
+							"text" : "NUO4"
+						} ]
+					}, {
+						"id" : "NLS SP",
+						"text" : "NLS SP",
+						"levels" : [ {
+							"id" : "SFNA1",
+							"text" : "SFNA1"
+						}, {
+							"id" : "SFNA2",
+							"text" : "SFNA2"
+						}, {
+							"id" : "SFNA3",
+							"text" : "SFNA3"
+						}, {
+							"id" : "SFNA4",
+							"text" : "SFNA4"
+						}, {
+							"id" : "SFNC2",
+							"text" : "SFNC2"
+						}, {
+							"id" : "SFNC3",
+							"text" : "SFNC3"
+						}, {
+							"id" : "SFNC4",
+							"text" : "SFNC4"
+						}, {
+							"id" : "SFNSW",
+							"text" : "SFNSW"
+						}, {
+							"id" : "SPNAR1",
+							"text" : "SPNAR1"
+						}, {
+							"id" : "SPNAR2",
+							"text" : "SPNAR2"
+						}, {
+							"id" : "SPNAR3",
+							"text" : "SPNAR3"
+						}, {
+							"id" : "SPNAR4",
+							"text" : "SPNAR4"
+						}, {
+							"id" : "SPNB",
+							"text" : "SPNB"
+						}, {
+							"id" : "SPNC2P",
+							"text" : "SPNC2P"
+						}, {
+							"id" : "SPNC4P",
+							"text" : "SPNC4P"
+						}, {
+							"id" : "SPNC4S",
+							"text" : "SPNC4S"
+						}, {
+							"id" : "SPNESW",
+							"text" : "SPNESW"
+						}, {
+							"id" : "SPNRTF",
+							"text" : "SPNRTF"
+						}, {
+							"id" : "SPNSAS",
+							"text" : "SPNSAS"
+						}, {
+							"id" : "SPNSAU",
+							"text" : "SPNSAU"
+						} ]
+					}, {
+						"id" : "NOT_MAPPED_TSS_CORE",
+						"text" : "NOT_MAPPED_TSS_CORE",
+						"levels" : [ {
+							"id" : "NOT_MAPPED_TSS_CORE",
+							"text" : "NOT_MAPPED_TSS_CORE"
+						} ]
+					}, {
+						"id" : "OEM SUPPORT",
+						"text" : "OEM SUPPORT",
+						"levels" : [ {
+							"id" : "L3AR1",
+							"text" : "L3AR1"
+						}, {
+							"id" : "L3TAC",
+							"text" : "L3TAC"
+						}, {
+							"id" : "L3TRR",
+							"text" : "L3TRR"
+						}, {
+							"id" : "OEM3",
+							"text" : "OEM3"
+						} ]
+					}, {
+						"id" : "OPSPT",
+						"text" : "OPSPT",
+						"levels" : [ {
+							"id" : "OPSP",
+							"text" : "OPSP"
+						}, {
+							"id" : "OPSPW",
+							"text" : "OPSPW"
+						} ]
+					}, {
+						"id" : "OS GEN UPG",
+						"text" : "OS GEN UPG",
+						"levels" : [ {
+							"id" : "OSSW",
+							"text" : "OSSW"
+						} ]
+					}, {
+						"id" : "OTHER",
+						"text" : "OTHER",
+						"levels" : [ {
+							"id" : "1STP",
+							"text" : "1STP"
+						}, {
+							"id" : "APLG",
+							"text" : "APLG"
+						}, {
+							"id" : "AQWR",
+							"text" : "AQWR"
+						}, {
+							"id" : "ATS",
+							"text" : "ATS"
+						}, {
+							"id" : "C42",
+							"text" : "C42"
+						}, {
+							"id" : "C4PNT",
+							"text" : "C4PNT"
+						}, {
+							"id" : "C4PRO",
+							"text" : "C4PRO"
+						}, {
+							"id" : "CAS",
+							"text" : "CAS"
+						}, {
+							"id" : "CCAS",
+							"text" : "CCAS"
+						}, {
+							"id" : "CCAS1",
+							"text" : "CCAS1"
+						}, {
+							"id" : "CENS",
+							"text" : "CENS"
+						}, {
+							"id" : "CIO",
+							"text" : "CIO"
+						}, {
+							"id" : "CLTS",
+							"text" : "CLTS"
+						}, {
+							"id" : "CPE",
+							"text" : "CPE"
+						}, {
+							"id" : "CPNBD",
+							"text" : "CPNBD"
+						}, {
+							"id" : "CPNTD",
+							"text" : "CPNTD"
+						}, {
+							"id" : "CPNTR",
+							"text" : "CPNTR"
+						}, {
+							"id" : "CPR",
+							"text" : "CPR"
+						}, {
+							"id" : "CRC",
+							"text" : "CRC"
+						}, {
+							"id" : "CSLT",
+							"text" : "CSLT"
+						}, {
+							"id" : "CV0S1",
+							"text" : "CV0S1"
+						}, {
+							"id" : "CVAR1",
+							"text" : "CVAR1"
+						}, {
+							"id" : "CVAR3",
+							"text" : "CVAR3"
+						}, {
+							"id" : "CVS4",
+							"text" : "CVS4"
+						}, {
+							"id" : "CVSND",
+							"text" : "CVSND"
+						}, {
+							"id" : "DECOM",
+							"text" : "DECOM"
+						}, {
+							"id" : "DEMO",
+							"text" : "DEMO"
+						}, {
+							"id" : "DIS",
+							"text" : "DIS"
+						}, {
+							"id" : "DISXW",
+							"text" : "DISXW"
+						}, {
+							"id" : "DTA10",
+							"text" : "DTA10"
+						}, {
+							"id" : "DTA20",
+							"text" : "DTA20"
+						}, {
+							"id" : "DTA40",
+							"text" : "DTA40"
+						}, {
+							"id" : "DTB10",
+							"text" : "DTB10"
+						}, {
+							"id" : "DTB20",
+							"text" : "DTB20"
+						}, {
+							"id" : "DTB40",
+							"text" : "DTB40"
+						}, {
+							"id" : "DTB5",
+							"text" : "DTB5"
+						}, {
+							"id" : "ES",
+							"text" : "ES"
+						}, {
+							"id" : "EVAL",
+							"text" : "EVAL"
+						}, {
+							"id" : "IC4P",
+							"text" : "IC4P"
+						}, {
+							"id" : "IC4S",
+							"text" : "IC4S"
+						}, {
+							"id" : "ICS",
+							"text" : "ICS"
+						}, {
+							"id" : "IP9",
+							"text" : "IP9"
+						}, {
+							"id" : "ISNT",
+							"text" : "ISNT"
+						}, {
+							"id" : "ISNTE",
+							"text" : "ISNTE"
+						}, {
+							"id" : "ISNTP",
+							"text" : "ISNTP"
+						}, {
+							"id" : "ISW",
+							"text" : "ISW"
+						}, {
+							"id" : "IVAR",
+							"text" : "IVAR"
+						}, {
+							"id" : "LED",
+							"text" : "LED"
+						}, {
+							"id" : "MISCTSS",
+							"text" : "MISCTSS"
+						}, {
+							"id" : "NDR",
+							"text" : "NDR"
+						}, {
+							"id" : "NEW",
+							"text" : "NEW"
+						}, {
+							"id" : "NMS",
+							"text" : "NMS"
+						}, {
+							"id" : "NPT",
+							"text" : "NPT"
+						}, {
+							"id" : "ONB",
+							"text" : "ONB"
+						}, {
+							"id" : "OSAL",
+							"text" : "OSAL"
+						}, {
+							"id" : "OSLAB",
+							"text" : "OSLAB"
+						}, {
+							"id" : "OSS",
+							"text" : "OSS"
+						}, {
+							"id" : "OSTAC",
+							"text" : "OSTAC"
+						}, {
+							"id" : "PART1",
+							"text" : "PART1"
+						}, {
+							"id" : "PART2",
+							"text" : "PART2"
+						}, {
+							"id" : "PSA1",
+							"text" : "PSA1"
+						}, {
+							"id" : "QPTST3",
+							"text" : "QPTST3"
+						}, {
+							"id" : "RAR13",
+							"text" : "RAR13"
+						}, {
+							"id" : "RAR15",
+							"text" : "RAR15"
+						}, {
+							"id" : "RAR1W",
+							"text" : "RAR1W"
+						}, {
+							"id" : "RAR33",
+							"text" : "RAR33"
+						}, {
+							"id" : "RAR35",
+							"text" : "RAR35"
+						}, {
+							"id" : "RAR3W",
+							"text" : "RAR3W"
+						}, {
+							"id" : "REP",
+							"text" : "REP"
+						}, {
+							"id" : "RMGR",
+							"text" : "RMGR"
+						}, {
+							"id" : "RNOSS",
+							"text" : "RNOSS"
+						}, {
+							"id" : "ROAR1",
+							"text" : "ROAR1"
+						}, {
+							"id" : "ROAR3",
+							"text" : "ROAR3"
+						}, {
+							"id" : "ROOS1",
+							"text" : "ROOS1"
+						}, {
+							"id" : "ROOS3",
+							"text" : "ROOS3"
+						}, {
+							"id" : "RORTF",
+							"text" : "RORTF"
+						}, {
+							"id" : "ROS13",
+							"text" : "ROS13"
+						}, {
+							"id" : "ROS15",
+							"text" : "ROS15"
+						}, {
+							"id" : "ROS1W",
+							"text" : "ROS1W"
+						}, {
+							"id" : "ROS33",
+							"text" : "ROS33"
+						}, {
+							"id" : "ROS35",
+							"text" : "ROS35"
+						}, {
+							"id" : "ROS3W",
+							"text" : "ROS3W"
+						}, {
+							"id" : "RR98",
+							"text" : "RR98"
+						}, {
+							"id" : "SAL",
+							"text" : "SAL"
+						}, {
+							"id" : "SDE",
+							"text" : "SDE"
+						}, {
+							"id" : "SDM",
+							"text" : "SDM"
+						}, {
+							"id" : "SHA",
+							"text" : "SHA"
+						}, {
+							"id" : "SLA",
+							"text" : "SLA"
+						}, {
+							"id" : "SNE",
+							"text" : "SNE"
+						}, {
+							"id" : "SNTG",
+							"text" : "SNTG"
+						}, {
+							"id" : "SOS4",
+							"text" : "SOS4"
+						}, {
+							"id" : "SOSNT",
+							"text" : "SOSNT"
+						}, {
+							"id" : "SPC",
+							"text" : "SPC"
+						}, {
+							"id" : "SPCP",
+							"text" : "SPCP"
+						}, {
+							"id" : "SPRND",
+							"text" : "SPRND"
+						}, {
+							"id" : "SPT",
+							"text" : "SPT"
+						}, {
+							"id" : "SPTAC",
+							"text" : "SPTAC"
+						}, {
+							"id" : "STAH",
+							"text" : "STAH"
+						}, {
+							"id" : "STAHA",
+							"text" : "STAHA"
+						}, {
+							"id" : "STAHE",
+							"text" : "STAHE"
+						}, {
+							"id" : "STRP",
+							"text" : "STRP"
+						}, {
+							"id" : "STRPR",
+							"text" : "STRPR"
+						}, {
+							"id" : "STRSE",
+							"text" : "STRSE"
+						}, {
+							"id" : "T2T",
+							"text" : "T2T"
+						}, {
+							"id" : "TACES",
+							"text" : "TACES"
+						}, {
+							"id" : "TIS",
+							"text" : "TIS"
+						}, {
+							"id" : "TM",
+							"text" : "TM"
+						}, {
+							"id" : "TPE",
+							"text" : "TPE"
+						}, {
+							"id" : "UNI",
+							"text" : "UNI"
+						}, {
+							"id" : "VMS",
+							"text" : "VMS"
+						}, {
+							"id" : "VRMS",
+							"text" : "VRMS"
+						}, {
+							"id" : "WEB",
+							"text" : "WEB"
+						}, {
+							"id" : "WRNT",
+							"text" : "WRNT"
+						} ]
+					}, {
+						"id" : "OTHER-PARTNER",
+						"text" : "OTHER-PARTNER",
+						"levels" : [ {
+							"id" : "ACSP",
+							"text" : "ACSP"
+						}, {
+							"id" : "CBR",
+							"text" : "CBR"
+						}, {
+							"id" : "OEMSA",
+							"text" : "OEMSA"
+						}, {
+							"id" : "PARTN",
+							"text" : "PARTN"
+						}, {
+							"id" : "PDISS",
+							"text" : "PDISS"
+						}, {
+							"id" : "PSAU",
+							"text" : "PSAU"
+						}, {
+							"id" : "RVE",
+							"text" : "RVE"
+						}, {
+							"id" : "VPSP",
+							"text" : "VPSP"
+						}, {
+							"id" : "VSAS",
+							"text" : "VSAS"
+						} ]
+					}, {
+						"id" : "PKG SERVICES",
+						"text" : "PKG SERVICES",
+						"levels" : [ {
+							"id" : "EXTEND",
+							"text" : "EXTEND"
+						}, {
+							"id" : "PKGDSA2K",
+							"text" : "PKGDSA2K"
+						}, {
+							"id" : "PKGMULTIYEAR",
+							"text" : "PKGMULTIYEAR"
+						}, {
+							"id" : "PKGOS",
+							"text" : "PKGOS"
+						}, {
+							"id" : "PKGOSE",
+							"text" : "PKGOSE"
+						}, {
+							"id" : "PKGOSP",
+							"text" : "PKGOSP"
+						}, {
+							"id" : "PKGS2P",
+							"text" : "PKGS2P"
+						}, {
+							"id" : "PKGSAU",
+							"text" : "PKGSAU"
+						}, {
+							"id" : "PKGSNT",
+							"text" : "PKGSNT"
+						}, {
+							"id" : "PKGSNTE",
+							"text" : "PKGSNTE"
+						}, {
+							"id" : "PKGSNTP",
+							"text" : "PKGSNTP"
+						}, {
+							"id" : "PKGUTAS",
+							"text" : "PKGUTAS"
+						} ]
+					}, {
+						"id" : "PM1",
+						"text" : "PM1",
+						"levels" : [ {
+							"id" : "PM1OE",
+							"text" : "PM1OE"
+						}, {
+							"id" : "PM1OP",
+							"text" : "PM1OP"
+						}, {
+							"id" : "PM1OS",
+							"text" : "PM1OS"
+						}, {
+							"id" : "PM1S",
+							"text" : "PM1S"
+						}, {
+							"id" : "PM1SE",
+							"text" : "PM1SE"
+						}, {
+							"id" : "PM1SP",
+							"text" : "PM1SP"
+						}, {
+							"id" : "PM1ST",
+							"text" : "PM1ST"
+						}, {
+							"id" : "PM1U",
+							"text" : "PM1U"
+						} ]
+					}, {
+						"id" : "PM2",
+						"text" : "PM2",
+						"levels" : [ {
+							"id" : "PM2OE",
+							"text" : "PM2OE"
+						}, {
+							"id" : "PM2OP",
+							"text" : "PM2OP"
+						}, {
+							"id" : "PM2OS",
+							"text" : "PM2OS"
+						}, {
+							"id" : "PM2S",
+							"text" : "PM2S"
+						}, {
+							"id" : "PM2S2",
+							"text" : "PM2S2"
+						}, {
+							"id" : "PM2SE",
+							"text" : "PM2SE"
+						}, {
+							"id" : "PM2SP",
+							"text" : "PM2SP"
+						}, {
+							"id" : "PM2ST",
+							"text" : "PM2ST"
+						}, {
+							"id" : "PM2U",
+							"text" : "PM2U"
+						} ]
+					}, {
+						"id" : "PMOTHER",
+						"text" : "PMOTHER",
+						"levels" : [ {
+							"id" : "PMTAC",
+							"text" : "PMTAC"
+						}, {
+							"id" : "PO",
+							"text" : "PO"
+						}, {
+							"id" : "POS",
+							"text" : "POS"
+						}, {
+							"id" : "POU",
+							"text" : "POU"
+						} ]
+					}, {
+						"id" : "PPS",
+						"text" : "PPS",
+						"levels" : [ {
+							"id" : "PPSH4",
+							"text" : "PPSH4"
+						}, {
+							"id" : "PPSHW",
+							"text" : "PPSHW"
+						}, {
+							"id" : "PPSNB",
+							"text" : "PPSNB"
+						}, {
+							"id" : "PPSRR",
+							"text" : "PPSRR"
+						}, {
+							"id" : "PPSSW",
+							"text" : "PPSSW"
+						} ]
+					}, {
+						"id" : "PRTNR SS",
+						"text" : "PRTNR SS",
+						"levels" : [ {
+							"id" : "PS2P",
+							"text" : "PS2P"
+						}, {
+							"id" : "PSAS",
+							"text" : "PSAS"
+						}, {
+							"id" : "PSNE",
+							"text" : "PSNE"
+						}, {
+							"id" : "PSNP",
+							"text" : "PSNP"
+						}, {
+							"id" : "PSNT",
+							"text" : "PSNT"
+						}, {
+							"id" : "PSSU",
+							"text" : "PSSU"
+						} ]
+					}, {
+						"id" : "PRTNR SS ESS",
+						"text" : "PRTNR SS ESS",
+						"levels" : [ {
+							"id" : "PSSD",
+							"text" : "PSSD"
+						}, {
+							"id" : "PSSE",
+							"text" : "PSSE"
+						}, {
+							"id" : "PSSP",
+							"text" : "PSSP"
+						}, {
+							"id" : "PSSW",
+							"text" : "PSSW"
+						} ]
+					}, {
+						"id" : "PRTNR SS IPS",
+						"text" : "PRTNR SS IPS",
+						"levels" : [ {
+							"id" : "PSSS",
+							"text" : "PSSS"
+						} ]
+					}, {
+						"id" : "PRTNR SS PS",
+						"text" : "PRTNR SS PS",
+						"levels" : [ {
+							"id" : "PSPN",
+							"text" : "PSPN"
+						}, {
+							"id" : "PSPS",
+							"text" : "PSPS"
+						} ]
+					}, {
+						"id" : "PRTNR SS ROW",
+						"text" : "PRTNR SS ROW",
+						"levels" : [ {
+							"id" : "PSRT",
+							"text" : "PSRT"
+						} ]
+					}, {
+						"id" : "PRTNR SS SBS",
+						"text" : "PRTNR SS SBS",
+						"levels" : [ {
+							"id" : "PSB14",
+							"text" : "PSB14"
+						}, {
+							"id" : "PSB1N",
+							"text" : "PSB1N"
+						}, {
+							"id" : "PSB34",
+							"text" : "PSB34"
+						}, {
+							"id" : "PSB3N",
+							"text" : "PSB3N"
+						} ]
+					}, {
+						"id" : "PRTNR SS TP",
+						"text" : "PRTNR SS TP",
+						"levels" : [ {
+							"id" : "PS4N",
+							"text" : "PS4N"
+						}, {
+							"id" : "PSDN",
+							"text" : "PSDN"
+						}, {
+							"id" : "PSEN",
+							"text" : "PSEN"
+						} ]
+					}, {
+						"id" : "PRTNR SS USC",
+						"text" : "PRTNR SS USC",
+						"levels" : [ {
+							"id" : "PSUT",
+							"text" : "PSUT"
+						} ]
+					}, {
+						"id" : "PRTNR SUP",
+						"text" : "PRTNR SUP",
+						"levels" : [ {
+							"id" : "PSO2",
+							"text" : "PSO2"
+						}, {
+							"id" : "PSOE",
+							"text" : "PSOE"
+						}, {
+							"id" : "PSOP",
+							"text" : "PSOP"
+						}, {
+							"id" : "PSUE",
+							"text" : "PSUE"
+						}, {
+							"id" : "PSUP",
+							"text" : "PSUP"
+						}, {
+							"id" : "PSUS",
+							"text" : "PSUS"
+						}, {
+							"id" : "PSUU",
+							"text" : "PSUU"
+						}, {
+							"id" : "PU2P",
+							"text" : "PU2P"
+						} ]
+					}, {
+						"id" : "PSAT",
+						"text" : "PSAT",
+						"levels" : [ {
+							"id" : "PSE",
+							"text" : "PSE"
+						}, {
+							"id" : "PSP",
+							"text" : "PSP"
+						}, {
+							"id" : "PSS",
+							"text" : "PSS"
+						}, {
+							"id" : "PST",
+							"text" : "PST"
+						}, {
+							"id" : "PSU",
+							"text" : "PSU"
+						} ]
+					}, {
+						"id" : "PSP",
+						"text" : "PSP",
+						"levels" : [ {
+							"id" : "PSP01",
+							"text" : "PSP01"
+						}, {
+							"id" : "PSP02",
+							"text" : "PSP02"
+						}, {
+							"id" : "PSP03",
+							"text" : "PSP03"
+						} ]
+					}, {
+						"id" : "PSS UCS SUPP",
+						"text" : "PSS UCS SUPP",
+						"levels" : [ {
+							"id" : "PSJ1",
+							"text" : "PSJ1"
+						}, {
+							"id" : "PSJ2",
+							"text" : "PSJ2"
+						}, {
+							"id" : "PSJ3",
+							"text" : "PSJ3"
+						}, {
+							"id" : "PSJ4",
+							"text" : "PSJ4"
+						} ]
+					}, {
+						"id" : "PSS UCS WP",
+						"text" : "PSS UCS WP",
+						"levels" : [ {
+							"id" : "PSW2",
+							"text" : "PSW2"
+						}, {
+							"id" : "PSW3",
+							"text" : "PSW3"
+						}, {
+							"id" : "PSW4",
+							"text" : "PSW4"
+						} ]
+					}, {
+						"id" : "PTRCR TP AD",
+						"text" : "PTRCR TP AD",
+						"levels" : [ {
+							"id" : "PADN",
+							"text" : "PADN"
+						}, {
+							"id" : "PAMU",
+							"text" : "PAMU"
+						} ]
+					}, {
+						"id" : "PTRCR TP AP",
+						"text" : "PTRCR TP AP",
+						"levels" : [ {
+							"id" : "PPDN",
+							"text" : "PPDN"
+						}, {
+							"id" : "PPMU",
+							"text" : "PPMU"
+						} ]
+					}, {
+						"id" : "PTRCR TP EX",
+						"text" : "PTRCR TP EX",
+						"levels" : [ {
+							"id" : "PEDN",
+							"text" : "PEDN"
+						}, {
+							"id" : "PEMU",
+							"text" : "PEMU"
+						} ]
+					}, {
+						"id" : "PTRCR TP MS",
+						"text" : "PTRCR TP MS",
+						"levels" : [ {
+							"id" : "PMDN",
+							"text" : "PMDN"
+						}, {
+							"id" : "PMMU",
+							"text" : "PMMU"
+						} ]
+					}, {
+						"id" : "REF",
+						"text" : "REF",
+						"levels" : [ {
+							"id" : "REF",
+							"text" : "REF"
+						} ]
+					}, {
+						"id" : "RMA RECOVERY",
+						"text" : "RMA RECOVERY",
+						"levels" : [ {
+							"id" : "RMA",
+							"text" : "RMA"
+						} ]
+					}, {
+						"id" : "RMS IPS MGMT",
+						"text" : "RMS IPS MGMT",
+						"levels" : [ {
+							"id" : "SUM1",
+							"text" : "SUM1"
+						} ]
+					}, {
+						"id" : "RMS IPS MON",
+						"text" : "RMS IPS MON",
+						"levels" : [ {
+							"id" : "SUR1",
+							"text" : "SUR1"
+						} ]
+					}, {
+						"id" : "ROS RMS A",
+						"text" : "ROS RMS A",
+						"levels" : [ {
+							"id" : "ROSA",
+							"text" : "ROSA"
+						} ]
+					}, {
+						"id" : "ROS RMS F",
+						"text" : "ROS RMS F",
+						"levels" : [ {
+							"id" : "ROSF",
+							"text" : "ROSF"
+						} ]
+					}, {
+						"id" : "ROS RMS T",
+						"text" : "ROS RMS T",
+						"levels" : [ {
+							"id" : "ROST",
+							"text" : "ROST"
+						} ]
+					}, {
+						"id" : "ROS TEXAS",
+						"text" : "ROS TEXAS",
+						"levels" : [ {
+							"id" : "RTEX",
+							"text" : "RTEX"
+						} ]
+					}, {
+						"id" : "SC ADV SUP",
+						"text" : "SC ADV SUP",
+						"levels" : [ {
+							"id" : "SCAN",
+							"text" : "SCAN"
+						}, {
+							"id" : "SCAO",
+							"text" : "SCAO"
+						}, {
+							"id" : "SCAP",
+							"text" : "SCAP"
+						}, {
+							"id" : "SCS4",
+							"text" : "SCS4"
+						}, {
+							"id" : "SCU4",
+							"text" : "SCU4"
+						} ]
+					}, {
+						"id" : "SC CORE SUP",
+						"text" : "SC CORE SUP",
+						"levels" : [ {
+							"id" : "SCN",
+							"text" : "SCN"
+						}, {
+							"id" : "SCO",
+							"text" : "SCO"
+						}, {
+							"id" : "SCP",
+							"text" : "SCP"
+						}, {
+							"id" : "SCS1",
+							"text" : "SCS1"
+						}, {
+							"id" : "SCU1",
+							"text" : "SCU1"
+						} ]
+					}, {
+						"id" : "SC ESS ADV",
+						"text" : "SC ESS ADV",
+						"levels" : [ {
+							"id" : "SBN4",
+							"text" : "SBN4"
+						}, {
+							"id" : "SBO4",
+							"text" : "SBO4"
+						}, {
+							"id" : "SBP4",
+							"text" : "SBP4"
+						}, {
+							"id" : "SES4",
+							"text" : "SES4"
+						} ]
+					}, {
+						"id" : "SC ESS SUP",
+						"text" : "SC ESS SUP",
+						"levels" : [ {
+							"id" : "SES1",
+							"text" : "SES1"
+						}, {
+							"id" : "SESN",
+							"text" : "SESN"
+						}, {
+							"id" : "SESO",
+							"text" : "SESO"
+						}, {
+							"id" : "SESP",
+							"text" : "SESP"
+						} ]
+					}, {
+						"id" : "SC IPS SUP",
+						"text" : "SC IPS SUP",
+						"levels" : [ {
+							"id" : "SCIN",
+							"text" : "SCIN"
+						}, {
+							"id" : "SCIO",
+							"text" : "SCIO"
+						}, {
+							"id" : "SCIP",
+							"text" : "SCIP"
+						} ]
+					}, {
+						"id" : "SERVICE ADMINISTRATION FEES",
+						"text" : "SERVICE ADMINISTRATION FEES",
+						"levels" : [ {
+							"id" : "FEE",
+							"text" : "FEE"
+						} ]
+					}, {
+						"id" : "SISPGMS",
+						"text" : "SISPGMS",
+						"levels" : [ {
+							"id" : "SIN",
+							"text" : "SIN"
+						}, {
+							"id" : "SIS",
+							"text" : "SIS"
+						}, {
+							"id" : "SIS2T",
+							"text" : "SIS2T"
+						}, {
+							"id" : "SIS98",
+							"text" : "SIS98"
+						}, {
+							"id" : "SISAN",
+							"text" : "SISAN"
+						}, {
+							"id" : "SISAT",
+							"text" : "SISAT"
+						}, {
+							"id" : "SISND",
+							"text" : "SISND"
+						}, {
+							"id" : "SISRR",
+							"text" : "SISRR"
+						}, {
+							"id" : "SISSD",
+							"text" : "SISSD"
+						}, {
+							"id" : "SISST",
+							"text" : "SISST"
+						}, {
+							"id" : "SUB",
+							"text" : "SUB"
+						} ]
+					}, {
+						"id" : "SMALL PRODUCT SERVICES",
+						"text" : "SMALL PRODUCT SERVICES",
+						"levels" : [ {
+							"id" : "SBS",
+							"text" : "SBS"
+						}, {
+							"id" : "SBS4",
+							"text" : "SBS4"
+						} ]
+					}, {
+						"id" : "SMARTNET",
+						"text" : "SMARTNET",
+						"levels" : [ {
+							"id" : "C2E",
+							"text" : "C2E"
+						}, {
+							"id" : "C2P",
+							"text" : "C2P"
+						}, {
+							"id" : "C2S",
+							"text" : "C2S"
+						}, {
+							"id" : "C4E",
+							"text" : "C4E"
+						}, {
+							"id" : "C4P",
+							"text" : "C4P"
+						}, {
+							"id" : "C4P3",
+							"text" : "C4P3"
+						}, {
+							"id" : "C4S",
+							"text" : "C4S"
+						}, {
+							"id" : "CP",
+							"text" : "CP"
+						}, {
+							"id" : "CS",
+							"text" : "CS"
+						}, {
+							"id" : "CSDS",
+							"text" : "CSDS"
+						}, {
+							"id" : "RCBR",
+							"text" : "RCBR"
+						}, {
+							"id" : "RFR",
+							"text" : "RFR"
+						}, {
+							"id" : "S2P",
+							"text" : "S2P"
+						}, {
+							"id" : "SNT",
+							"text" : "SNT"
+						}, {
+							"id" : "SNT3",
+							"text" : "SNT3"
+						}, {
+							"id" : "SNTC",
+							"text" : "SNTC"
+						}, {
+							"id" : "SNTE",
+							"text" : "SNTE"
+						}, {
+							"id" : "SNTP",
+							"text" : "SNTP"
+						}, {
+							"id" : "SNTP3",
+							"text" : "SNTP3"
+						}, {
+							"id" : "SW",
+							"text" : "SW"
+						}, {
+							"id" : "SW12",
+							"text" : "SW12"
+						}, {
+							"id" : "SW9",
+							"text" : "SW9"
+						} ]
+					}, {
+						"id" : "SMARTNET-ADP",
+						"text" : "SMARTNET-ADP",
+						"levels" : [ {
+							"id" : "EWC",
+							"text" : "EWC"
+						} ]
+					}, {
+						"id" : "SMB SA",
+						"text" : "SMB SA",
+						"levels" : [ {
+							"id" : "SMB3",
+							"text" : "SMB3"
+						}, {
+							"id" : "SMB5",
+							"text" : "SMB5"
+						}, {
+							"id" : "SMBS",
+							"text" : "SMBS"
+						}, {
+							"id" : "STRN",
+							"text" : "STRN"
+						} ]
+					}, {
+						"id" : "SNT SA PROMO",
+						"text" : "SNT SA PROMO",
+						"levels" : [ {
+							"id" : "NBDP",
+							"text" : "NBDP"
+						} ]
+					}, {
+						"id" : "SOS-SMARTNET",
+						"text" : "SOS-SMARTNET",
+						"levels" : [ {
+							"id" : "SOS",
+							"text" : "SOS"
+						} ]
+					}, {
+						"id" : "SP EXT WAR",
+						"text" : "SP EXT WAR",
+						"levels" : [ {
+							"id" : "SPEXWR",
+							"text" : "SPEXWR"
+						} ]
+					}, {
+						"id" : "SPAPPS",
+						"text" : "SPAPPS",
+						"levels" : [ {
+							"id" : "SBSAS",
+							"text" : "SBSAS"
+						}, {
+							"id" : "SBSAU",
+							"text" : "SBSAU"
+						}, {
+							"id" : "SPSAS",
+							"text" : "SPSAS"
+						}, {
+							"id" : "SPSAU",
+							"text" : "SPSAU"
+						}, {
+							"id" : "SPVSS",
+							"text" : "SPVSS"
+						} ]
+					}, {
+						"id" : "SPBASE",
+						"text" : "SPBASE",
+						"levels" : [ {
+							"id" : "SBAR1",
+							"text" : "SBAR1"
+						}, {
+							"id" : "SBAR2",
+							"text" : "SBAR2"
+						}, {
+							"id" : "SBAR3",
+							"text" : "SBAR3"
+						}, {
+							"id" : "SBAR4",
+							"text" : "SBAR4"
+						}, {
+							"id" : "SBASE",
+							"text" : "SBASE"
+						}, {
+							"id" : "SBC2P",
+							"text" : "SBC2P"
+						}, {
+							"id" : "SBC4P",
+							"text" : "SBC4P"
+						}, {
+							"id" : "SBC4S",
+							"text" : "SBC4S"
+						}, {
+							"id" : "SBCS",
+							"text" : "SBCS"
+						}, {
+							"id" : "SBRTF",
+							"text" : "SBRTF"
+						}, {
+							"id" : "SPAR1",
+							"text" : "SPAR1"
+						}, {
+							"id" : "SPAR2",
+							"text" : "SPAR2"
+						}, {
+							"id" : "SPAR3",
+							"text" : "SPAR3"
+						}, {
+							"id" : "SPAR4",
+							"text" : "SPAR4"
+						}, {
+							"id" : "SPB",
+							"text" : "SPB"
+						}, {
+							"id" : "SPBAR",
+							"text" : "SPBAR"
+						}, {
+							"id" : "SPC2P",
+							"text" : "SPC2P"
+						}, {
+							"id" : "SPC4P",
+							"text" : "SPC4P"
+						}, {
+							"id" : "SPC4S",
+							"text" : "SPC4S"
+						}, {
+							"id" : "SPCPE",
+							"text" : "SPCPE"
+						}, {
+							"id" : "SPCS",
+							"text" : "SPCS"
+						}, {
+							"id" : "SPCSDS",
+							"text" : "SPCSDS"
+						}, {
+							"id" : "SPRFR",
+							"text" : "SPRFR"
+						}, {
+							"id" : "SPRTF",
+							"text" : "SPRTF"
+						}, {
+							"id" : "SPSG",
+							"text" : "SPSG"
+						} ]
+					}, {
+						"id" : "SPOTHER",
+						"text" : "SPOTHER",
+						"levels" : [ {
+							"id" : "CRAR1",
+							"text" : "CRAR1"
+						}, {
+							"id" : "CRAR2",
+							"text" : "CRAR2"
+						}, {
+							"id" : "CRAR3",
+							"text" : "CRAR3"
+						}, {
+							"id" : "CRAR4",
+							"text" : "CRAR4"
+						}, {
+							"id" : "CRC2P",
+							"text" : "CRC2P"
+						}, {
+							"id" : "CRC4P",
+							"text" : "CRC4P"
+						}, {
+							"id" : "CRC4S",
+							"text" : "CRC4S"
+						}, {
+							"id" : "CRCS",
+							"text" : "CRCS"
+						}, {
+							"id" : "CRRTF",
+							"text" : "CRRTF"
+						}, {
+							"id" : "CRSAS",
+							"text" : "CRSAS"
+						}, {
+							"id" : "CRSAU",
+							"text" : "CRSAU"
+						}, {
+							"id" : "CRSPB",
+							"text" : "CRSPB"
+						}, {
+							"id" : "PRI",
+							"text" : "PRI"
+						} ]
+					}, {
+						"id" : "SPS",
+						"text" : "SPS",
+						"levels" : [ {
+							"id" : "SPS2P",
+							"text" : "SPS2P"
+						}, {
+							"id" : "SPSPE",
+							"text" : "SPSPE"
+						}, {
+							"id" : "SPSPN",
+							"text" : "SPSPN"
+						}, {
+							"id" : "SPSPP",
+							"text" : "SPSPP"
+						}, {
+							"id" : "SPSPR",
+							"text" : "SPSPR"
+						} ]
+					}, {
+						"id" : "SSP",
+						"text" : "SSP",
+						"levels" : [ {
+							"id" : "SS",
+							"text" : "SS"
+						}, {
+							"id" : "SSP0",
+							"text" : "SSP0"
+						}, {
+							"id" : "SSP2",
+							"text" : "SSP2"
+						}, {
+							"id" : "SSP8",
+							"text" : "SSP8"
+						}, {
+							"id" : "SSPN",
+							"text" : "SSPN"
+						} ]
+					}, {
+						"id" : "SWAPPS",
+						"text" : "SWAPPS",
+						"levels" : [ {
+							"id" : "LINK",
+							"text" : "LINK"
+						}, {
+							"id" : "SAS",
+							"text" : "SAS"
+						}, {
+							"id" : "SAU",
+							"text" : "SAU"
+						}, {
+							"id" : "VSS",
+							"text" : "VSS"
+						} ]
+					}, {
+						"id" : "TS ACQUISITION",
+						"text" : "TS ACQUISITION",
+						"levels" : [ {
+							"id" : "DVTS",
+							"text" : "DVTS"
+						}, {
+							"id" : "NTS",
+							"text" : "NTS"
+						}, {
+							"id" : "SATS",
+							"text" : "SATS"
+						}, {
+							"id" : "STTS",
+							"text" : "STTS"
+						}, {
+							"id" : "TBTS",
+							"text" : "TBTS"
+						}, {
+							"id" : "TLTS",
+							"text" : "TLTS"
+						}, {
+							"id" : "W57",
+							"text" : "W57"
+						}, {
+							"id" : "W58",
+							"text" : "W58"
+						}, {
+							"id" : "W60",
+							"text" : "W60"
+						}, {
+							"id" : "W61",
+							"text" : "W61"
+						}, {
+							"id" : "WSA",
+							"text" : "WSA"
+						} ]
+					}, {
+						"id" : "TS MKT TRIAL",
+						"text" : "TS MKT TRIAL",
+						"levels" : [ {
+							"id" : "TSMT",
+							"text" : "TSMT"
+						} ]
+					}, {
+						"id" : "TS TEC EDU",
+						"text" : "TS TEC EDU",
+						"levels" : [ {
+							"id" : "TRN",
+							"text" : "TRN"
+						} ]
+					}, {
+						"id" : "UC CRIT DR",
+						"text" : "UC CRIT DR",
+						"levels" : [ {
+							"id" : "UCMD7",
+							"text" : "UCMD7"
+						}, {
+							"id" : "UCMD8",
+							"text" : "UCMD8"
+						} ]
+					}, {
+						"id" : "UC CRITICAL",
+						"text" : "UC CRITICAL",
+						"levels" : [ {
+							"id" : "UCM7",
+							"text" : "UCM7"
+						}, {
+							"id" : "UCM8",
+							"text" : "UCM8"
+						} ]
+					}, {
+						"id" : "UC ISV",
+						"text" : "UC ISV",
+						"levels" : [ {
+							"id" : "ISV1",
+							"text" : "ISV1"
+						} ]
+					}, {
+						"id" : "UC PLUS DR",
+						"text" : "UC PLUS DR",
+						"levels" : [ {
+							"id" : "UCWD2",
+							"text" : "UCWD2"
+						}, {
+							"id" : "UCWD3",
+							"text" : "UCWD3"
+						}, {
+							"id" : "UCWD4",
+							"text" : "UCWD4"
+						}, {
+							"id" : "UCWD5",
+							"text" : "UCWD5"
+						}, {
+							"id" : "UCWD6",
+							"text" : "UCWD6"
+						}, {
+							"id" : "UCWD7",
+							"text" : "UCWD7"
+						}, {
+							"id" : "UCWD8",
+							"text" : "UCWD8"
+						} ]
+					}, {
+						"id" : "UC SMB RMS",
+						"text" : "UC SMB RMS",
+						"levels" : [ {
+							"id" : "RUCC",
+							"text" : "RUCC"
+						} ]
+					}, {
+						"id" : "UC SUP 3YR",
+						"text" : "UC SUP 3YR",
+						"levels" : [ {
+							"id" : "US53",
+							"text" : "US53"
+						}, {
+							"id" : "US73",
+							"text" : "US73"
+						} ]
+					}, {
+						"id" : "UC SUP DR 3Y",
+						"text" : "UC SUP DR 3Y",
+						"levels" : [ {
+							"id" : "USD53",
+							"text" : "USD53"
+						}, {
+							"id" : "USD73",
+							"text" : "USD73"
+						} ]
+					}, {
+						"id" : "UC SUPP DR",
+						"text" : "UC SUPP DR",
+						"levels" : [ {
+							"id" : "UCSD1",
+							"text" : "UCSD1"
+						}, {
+							"id" : "UCSD2",
+							"text" : "UCSD2"
+						}, {
+							"id" : "UCSD3",
+							"text" : "UCSD3"
+						}, {
+							"id" : "UCSD4",
+							"text" : "UCSD4"
+						}, {
+							"id" : "UCSD5",
+							"text" : "UCSD5"
+						}, {
+							"id" : "UCSD6",
+							"text" : "UCSD6"
+						}, {
+							"id" : "UCSD7",
+							"text" : "UCSD7"
+						}, {
+							"id" : "UCSD8",
+							"text" : "UCSD8"
+						} ]
+					}, {
+						"id" : "UC SUPPORT",
+						"text" : "UC SUPPORT",
+						"levels" : [ {
+							"id" : "UCS1",
+							"text" : "UCS1"
+						}, {
+							"id" : "UCS2",
+							"text" : "UCS2"
+						}, {
+							"id" : "UCS3",
+							"text" : "UCS3"
+						}, {
+							"id" : "UCS4",
+							"text" : "UCS4"
+						}, {
+							"id" : "UCS5",
+							"text" : "UCS5"
+						}, {
+							"id" : "UCS6",
+							"text" : "UCS6"
+						}, {
+							"id" : "UCS7",
+							"text" : "UCS7"
+						}, {
+							"id" : "UCS8",
+							"text" : "UCS8"
+						} ]
+					}, {
+						"id" : "UC WARR PLUS",
+						"text" : "UC WARR PLUS",
+						"levels" : [ {
+							"id" : "UCW2",
+							"text" : "UCW2"
+						}, {
+							"id" : "UCW3",
+							"text" : "UCW3"
+						}, {
+							"id" : "UCW4",
+							"text" : "UCW4"
+						}, {
+							"id" : "UCW5",
+							"text" : "UCW5"
+						}, {
+							"id" : "UCW6",
+							"text" : "UCW6"
+						}, {
+							"id" : "UCW7",
+							"text" : "UCW7"
+						}, {
+							"id" : "UCW8",
+							"text" : "UCW8"
+						} ]
+					}, {
+						"id" : "VOICE SRVCS",
+						"text" : "VOICE SRVCS",
+						"levels" : [ {
+							"id" : "SCVS",
+							"text" : "SCVS"
+						} ]
+					}, {
+						"id" : "WTYPGMS",
+						"text" : "WTYPGMS",
+						"levels" : [ {
+							"id" : "AR1W1",
+							"text" : "AR1W1"
+						}, {
+							"id" : "AR1W3",
+							"text" : "AR1W3"
+						}, {
+							"id" : "AR1W5",
+							"text" : "AR1W5"
+						}, {
+							"id" : "AR3W1",
+							"text" : "AR3W1"
+						}, {
+							"id" : "AR3W3",
+							"text" : "AR3W3"
+						}, {
+							"id" : "AR3W5",
+							"text" : "AR3W5"
+						}, {
+							"id" : "CLWTY",
+							"text" : "CLWTY"
+						}, {
+							"id" : "ONW24",
+							"text" : "ONW24"
+						}, {
+							"id" : "ONW60",
+							"text" : "ONW60"
+						}, {
+							"id" : "ONW62",
+							"text" : "ONW62"
+						}, {
+							"id" : "ONWTY",
+							"text" : "ONWTY"
+						}, {
+							"id" : "OS1W1",
+							"text" : "OS1W1"
+						}, {
+							"id" : "OS1W3",
+							"text" : "OS1W3"
+						}, {
+							"id" : "OS1W5",
+							"text" : "OS1W5"
+						}, {
+							"id" : "OS3W1",
+							"text" : "OS3W1"
+						}, {
+							"id" : "OS3W3",
+							"text" : "OS3W3"
+						}, {
+							"id" : "OS3W5",
+							"text" : "OS3W5"
+						}, {
+							"id" : "WRTYE",
+							"text" : "WRTYE"
+						} ]
+					} ],
+					"text" : "TSS/Core"
+				} ]
+			}, {
+				"id" : "U",
+				"text" : "U",
+				"categories" : []
+			}, {
+				"id" : "V",
+				"text" : "V",
+				"categories" : []
+			}, {
+				"id" : "W",
+				"text" : "W",
+				"categories" : []
+			}, {
+				"id" : "X",
+				"text" : "X",
+				"categories" : []
+			}, {
+				"id" : "Y",
+				"text" : "Y",
+				"categories" : []
+			}, {
+				"id" : "Z",
+				"text" : "Z",
+				"categories" : []
+			} ]
+		} ];

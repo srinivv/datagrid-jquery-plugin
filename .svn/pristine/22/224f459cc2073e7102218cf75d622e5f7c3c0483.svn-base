@@ -1,0 +1,41 @@
+/*
+ * Name    :       DAOException.java 
+ * Version :       Sep 05, 2012
+ *                                              
+ * Author  :       garamini
+ * 
+ * -------------------------------------------------------------
+ * Copyright (c) 2007 Cisco Systems, Inc.
+ * All Rights Reserved
+ *
+ * THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE.
+ * The copyright notice above does not evidence any actual or
+ * intended publication of such source code.
+ * --------------------------------------------------------------
+ */
+
+package com.cisco.apas.dao;
+
+import com.cisco.apas.BaseException;
+
+public class DAOException extends BaseException {
+
+	private static final long serialVersionUID = 1L;
+
+	public DAOException(String msg, Throwable th) {
+		super(msg, th);
+	}
+
+	public DAOException(Throwable th) {
+		super(th);
+	}
+
+	public DAOException() {
+		super();
+	}
+
+	public DAOException(String msg) {
+		super(msg);
+	}
+
+}

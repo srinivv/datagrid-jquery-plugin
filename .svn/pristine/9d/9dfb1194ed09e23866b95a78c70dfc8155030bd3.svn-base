@@ -1,0 +1,24 @@
+package com.cisco.apas.entity;
+
+import java.util.List;
+
+@Deprecated
+public class IntentedUse {
+
+	private List<String> intendedUse;
+	private String ruleID;
+	
+	public List<String> getIntendedUse() {
+		return intendedUse;
+	}
+	public void setIntendedUse(List<String> intendedUse) {
+		this.intendedUse = intendedUse;
+	}
+	public String getRuleID() {
+		return ruleID;
+	}
+	public void setRuleID(String ruleID) {
+		this.ruleID = ruleID;
+	}
+
+}

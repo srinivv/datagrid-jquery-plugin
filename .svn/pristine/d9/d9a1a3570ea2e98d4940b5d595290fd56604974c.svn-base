@@ -1,0 +1,248 @@
+$(document).ready(function() {
+
+	//Global variable(s)
+	var myNodesGrid;
+	var allNodesGrid;
+	
+	// Select box 
+	$(".moreCategoriesSelect").selectbox();
+
+    // Auto complete event for SKU search in "Add New Node" page - main page
+    $( "#searchProd" ).autocomplete({
+        minLength: 3,
+        search: function(event, ui) { 
+        	$('.loader').hide();
+            $(this).addClass('loading');
+        },
+        open: function(event, ui) {
+        	$('.loader').hide();
+            $(this).removeClass('loading');
+        },
+        source:   function (request, response) {
+            $.getJSON("node_skus.do", { term: $( "#searchProd" ).val(), searchType: $("#selectSKU option:selected").val() }, response);
+        },
+        select: function( event, ui ) {
+        	 $( "#searchProd" ).val(ui.item.value);
+            return false;
+        }
+    });
+    
+    // Click event for create node main page search
+	$("#searchbutton").click(function() {
+		
+    	$("#nodesearch").datagrid({
+    		source : 'node_searchresult.do',
+    		template : 'node-search-results-template',
+    		pagination : true,
+    		params : {	searchString: $("#searchProd").val(), searchType: $("#selectSKU").val() }
+    	});
+    	
+    	$('.myNodeRuleArea').slideUp();
+    	$('.addnodestepArea').slideUp();
+    	$('.existingRulesArea').slideUp();
+    	$('.searchRulesArea').slideDown();
+    	$('.searchFilterOption').slideDown();
+    	$('.skuSearchResult').slideDown();
+	});
+
+	// Click event for my nodes link
+	/*
+	$("#myNodeArea").live("click", function(){
+		my_node_area();
+	});
+		  
+	// Click event for my nodes link
+	$("#addMyNode").live("click", function(){
+		all_node_area();
+	});
+	*/
+
+	$(".nodesIcon").live("click", function(){
+		$('.nodesHeading').text('Nodes');
+	});
+
+	// Check all boxes
+	$('.allmynodes').live("click", function () {
+		$("input[type='checkbox']").attr('checked', $('.allmynodes').is(':checked')); 
+		toggleNodeLinks();
+	});
+	
+	$('.checkall').live("click", function () {
+		$("input[type='checkbox']").attr('checked', $('.checkall').is(':checked'));
+		toggleNodeLinks();
+	});
+	
+	$('.selectall').live("click", function () {
+		$("input[type='checkbox']").attr('checked', $('.selectall').is(':checked'));
+		toggleNodeLinks();
+	});
+	
+	// On select of any one check boxes in view nodes - enable delete all / partner and deal exception buttons
+	$('.nodeSelector').live("change", function () {
+		toggleNodeLinks();
+	});
+	
+	
+});
+
+function my_node_area() {
+	  
+	myNodesGrid = $("#mynodes").datagrid({
+		source : 'node_load.do',
+		template : 'nodes-template',
+		pagination : true,
+		pagesize: 10, // It's a default pagesize - no need to override
+		params : { show : 'mine' }
+	});
+
+	$('#addMyNode').removeClass('selectedState');
+	$('#addNodeArea').removeClass('selected');
+	$('.searchRulesArea').slideUp();
+	$('.searchFilterOption').slideUp();
+	$('.addnodestepArea').slideUp();
+	$('.existingRulesArea').slideUp();
+	$('#myNodeArea').addClass('selectedState');
+	$('.nodesIcon').addClass('selected');
+	$('.myNodeRuleArea').slideDown();
+}
+
+function all_node_area() {
+	  
+	allNodesGrid = $("#allnodes").datagrid({
+		source : 'node_load.do',
+		template : 'nodes-template',
+		pagination : true,
+		params : { show : 'all' }
+	});
+
+	$('#myNodeArea').removeClass('selectedState');
+	$('#addNodeArea').removeClass('selected');
+	$('.searchRulesArea').slideUp();
+	$('.searchFilterOption').slideUp();
+	$('.myNodeRuleArea').slideUp();
+	$('.addnodestepArea').slideUp();
+	$('#addMyNode').addClass('selectedState');
+	$('.nodesIcon').addClass('selected');
+	$('.existingRulesArea').slideDown();
+	
+}
+
+function addNodeToPartnerException(nodeId, nodeName) {
+	document.getElementById("allNodeIds").value = nodeId;
+	document.getElementById("allNodeNames").value = nodeName;
+	document.partnerException.action='partnerException_create.do';
+	document.partnerException.submit();
+}
+
+function addSelNodesToPartnerException() {
+	setSelectedNodes();
+	document.partnerException.action='partnerException_create.do';
+	document.partnerException.submit();
+}
+
+function setSelectedNodes() {
+	$("#allNodeIds").empty();
+	$("#allNodeNames").empty();
+	var selNodeIds = new Array();
+	var selNodeNames = new Array();
+	$("#allNodesList :checked").each(function() {
+		var selNodeId = $(this).val();
+		var selNodeIdName = $(this).data('name');
+		selNodeIds.push(selNodeId);
+		selNodeNames.push(selNodeIdName);
+	});
+	$("#allNodeIds").val(selNodeIds.toString());
+	$("#allNodeNames").val(selNodeNames.toString());
+}
+
+function addNodeToDealException(nodeId, nodeName) {
+	document.getElementById("allNodeIds").value = nodeId;
+	document.getElementById("allNodeNames").value = nodeName;
+	document.partnerException.action="dealException_create.do";
+	document.partnerException.submit();
+}
+
+function addSelNodesToDealException() {
+	setSelectedNodes();
+	document.partnerException.action="dealException_create.do";
+	document.partnerException.submit();
+}
+
+function deleteNode(id) {
+	var nodeIds = new Array();
+	nodeIds.push(id);
+	
+	fancyConfirm("Are you sure you want to delete the Node?", function(confirmed) {
+		
+		if (confirmed) {
+			$.getJSON("node_delete.do", { nodeId: JSON.stringify(nodeIds)  }, function(response) {
+				if (response.status === "success") {
+					$(".messageSuccess").show();
+					$(".messageSuccess").fadeOut(2000);
+					$("#nodeErrorMsg").focus();
+				} else {
+					$(".unknowError").show();
+					$(".unknowError").fadeOut(2000);
+					$("#nodeErrorMsg").focus();
+				}
+				
+				//Reload data grid
+				reloadNodGrids();
+			});
+		}
+		
+	});
+	
+}
+
+function deleteAllNodes() {
+	var nodeIds = new Array();
+	
+    $.each($("input[name='nodeSelector']:checked"), function() {            	
+    	nodeIds.push($(this).val());
+    });       
+	
+	fancyConfirm("Are you sure you want to delete the selected Node(s)?", function(confirmed) {
+		
+		if (confirmed) {
+			$.getJSON("node_delete.do", { nodeId: JSON.stringify(nodeIds)  }, function(response) {
+				if (response.status === "success") {
+					$(".messageSuccess").show();
+					$(".messageSuccess").fadeOut(2000);
+					$("#nodeErrorMsg").focus();
+				} else {
+					$(".unknowError").show();
+					$(".unknowError").fadeOut(2000);
+					$("#nodeErrorMsg").focus();
+				}
+				
+				//Reload data grid
+				reloadNodGrids();
+			});
+		}
+		
+	});
+	
+}
+
+function reloadNodGrids() {
+	if (typeof(myNodesGrid) != "undefined") {
+		myNodesGrid.datagrid('reload');
+	}
+	
+	if (typeof(allNodesGrid) != "undefined") {
+		allNodesGrid.datagrid('reload');
+	}
+}
+
+function toggleNodeLinks() {
+	if ($('input[type="checkbox"]:checked').length > 0) {
+		$("#deleteAllNodes").attr('href', 'javascript:deleteAllNodes();').removeClass('disableButton'); 
+		$("#allNodePartnerException").attr('href', 'javascript:addSelNodesToPartnerException();').removeClass('disableButton'); 
+		$("#allNodeDealException").attr('href', 'javascript:addSelNodesToDealException();').removeClass('disableButton'); 
+	} else {
+		$("#deleteAllNodes").removeAttr('href').addClass('disableButton'); 
+		$("#allNodePartnerException").removeAttr('href').addClass('disableButton'); 
+		$("#allNodeDealException").removeAttr('href').addClass('disableButton'); 
+	}
+}

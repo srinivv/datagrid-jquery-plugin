@@ -1,0 +1,141 @@
+package com.cisco.apas.actions;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.cisco.apas.APASApplicationContext;
+import com.cisco.apas.APASConstants;
+import com.cisco.apas.entity.DealException;
+import com.cisco.apas.entity.Node;
+import com.cisco.apas.entity.PartnerException;
+import com.cisco.apas.entity.Rule;
+import com.cisco.apas.util.DateUtils;
+import com.opensymphony.xwork2.ActionSupport;
+
+public abstract class BaseAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
+
+	private static final long serialVersionUID = 121651133339399874L;
+	protected HttpServletRequest request;
+	protected HttpServletResponse response;
+	public static final String JSON_FORMAT= "text/json;charset=utf-8";
+	public static final String TEXT_FORMAT= "text/plain;charset=utf-8";
+	private static final Logger logger = Logger.getLogger(BaseAction.class);
+
+	protected APASApplicationContext apasApplicationContext = null;
+
+	public APASApplicationContext getApasApplicationContext() {
+		return apasApplicationContext;
+	}
+
+	public void setApasApplicationContext(APASApplicationContext apasApplicationContext) {
+		this.apasApplicationContext = apasApplicationContext;
+	}
+
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public void setServletResponse(HttpServletResponse response) {
+		this.response = response;
+	}
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	protected void sendText(String responseString) {
+		PrintWriter out = null;
+		try {
+			response.setContentType(TEXT_FORMAT);
+			response.setStatus(200);			
+			out = response.getWriter();	
+			out.print(responseString);	
+			out.flush();
+			response.flushBuffer();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			out.close();
+		}
+		
+	}
+	
+	protected void sendJSONObject(JSONObject jo) {
+		try {
+			response.setContentType(JSON_FORMAT);
+			response.setStatus(200);
+			jo.write(response.getWriter());
+		}catch(Exception e) {
+			logger.error("Error sending JSON Object as response "+jo.toString());
+		}
+	}
+
+	protected void sendJSONObject(JSONArray jo) {
+		try {
+			response.setContentType(JSON_FORMAT);
+			jo.write(response.getWriter());
+		}catch(Exception e) {
+			logger.error("Error sending JSON Object as response "+jo.toString());
+		}
+	}
+	
+	protected void updateAuditableFields(JSONObject jo, Node node) throws JSONException {
+		jo.put("createdOn", DateUtils.formatDate(node.getCreatedOn()));
+		jo.put("createdBy", node.getCreatedBy());
+		jo.put("updatedOn", DateUtils.formatDate(node.getUpdatedOn()));
+		jo.put("updatedBy", node.getUpdatedBy());
+	}
+	
+	protected void updateAuditableFields(JSONObject jo, Rule rule) throws JSONException {
+		jo.put("createdOn", DateUtils.formatDate(rule.getCreatedOn()));
+		jo.put("createdBy", rule.getCreatedBy());
+		jo.put("updatedOn", DateUtils.formatDate(rule.getUpdatedOn()));
+		jo.put("updatedBy", rule.getUpdatedBy());
+	}
+
+	protected void updateAuditableFields(JSONObject jo, PartnerException partnerException) throws JSONException {
+		jo.put("createdOn", DateUtils.formatDate(partnerException.getCreatedOn()));
+		jo.put("createdBy", partnerException.getCreatedBy());
+		jo.put("updatedOn", DateUtils.formatDate(partnerException.getUpdatedOn()));
+		jo.put("updatedBy", partnerException.getUpdatedBy());
+	}
+
+	protected void updateAuditableFields(JSONObject jo, DealException dealException) throws JSONException {
+		jo.put("createdOn", DateUtils.formatDate(dealException.getCreatedOn()));
+		jo.put("createdBy", dealException.getCreatedBy());
+		jo.put("updatedOn", DateUtils.formatDate(dealException.getUpdatedOn()));
+		jo.put("updatedBy", dealException.getUpdatedBy());
+	}
+
+	protected String handleException(Exception e) {
+		e.printStackTrace();
+		addActionError("Unable to process your request, please contact admini");
+		return APASConstants.ERROR;
+	}
+
+	public String handleNullData(Object obj) {
+		String returnStr = "&nbsp;";
+		if (obj != null) {
+			returnStr = obj.toString();
+		}
+		return returnStr;
+	}
+
+	public String execute() {
+		return null;
+	}
+
+}

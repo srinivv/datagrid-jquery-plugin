@@ -1,0 +1,15 @@
+package com.cisco.apas.entity;
+
+public class ExpressionType {
+	
+	ExpressionValidator validator;
+
+	public ExpressionValidator getValidator() {
+		return validator;
+	}
+
+	public void setValidator(ExpressionValidator validator) {
+		this.validator = validator;
+	}
+	
+}

@@ -1,0 +1,85 @@
+package com.cisco.apas.entity;
+
+public class APASUser {
+
+	private String firstName;
+
+	private String lastName;
+
+	private String roleName;
+	
+	private String roleId;
+
+	private String cecId;
+
+	private String ccoId;
+	
+	private String email;
+	
+	private boolean canEdit;
+
+	public boolean canEdit() {
+		return canEdit;
+	}
+
+	public void setCanEdit(boolean canEdit) {
+		this.canEdit = canEdit;
+	}
+
+	public String getCcoId() {
+		return ccoId;
+	}
+
+	public void setCcoId(String ccoId) {
+		this.ccoId = ccoId;
+	}
+
+	public String getCecId() {
+		return cecId;
+	}
+
+	public void setCecId(String cecId) {
+		this.cecId = cecId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+}

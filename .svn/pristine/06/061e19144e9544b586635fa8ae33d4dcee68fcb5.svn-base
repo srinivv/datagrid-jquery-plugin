@@ -1,0 +1,24 @@
+package com.cisco.apas.actions;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.InitializingBean;
+
+public class HomeAction extends BaseAction implements InitializingBean {
+	
+	private static final long serialVersionUID = 7857102823337807558L;
+	
+	private static final Logger logger = Logger.getLogger(HomeAction.class);
+
+	public String execute() {
+
+		if(logger.isInfoEnabled()) {
+			logger.info("Calling HomeAction execute...");
+		}
+
+		return "load";
+	}
+
+	public void afterPropertiesSet() throws Exception {
+	}
+
+}

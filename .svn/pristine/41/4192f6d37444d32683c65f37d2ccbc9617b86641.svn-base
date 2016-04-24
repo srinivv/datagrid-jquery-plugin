@@ -1,0 +1,892 @@
+package com.cisco.apas.dao;
+
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import oracle.jdbc.driver.OracleTypes;
+import oracle.sql.ARRAY;
+import oracle.sql.ArrayDescriptor;
+
+import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.jdbc.core.support.AbstractSqlTypeValue;
+import org.springframework.jdbc.object.StoredProcedure;
+import org.springframework.util.StopWatch;
+
+import com.cisco.apas.entity.Authorization;
+import com.cisco.apas.entity.Certification;
+import com.cisco.apas.entity.Country;
+import com.cisco.apas.entity.Node;
+import com.cisco.apas.entity.NodeCreation;
+import com.cisco.apas.entity.NodeItem;
+import com.cisco.apas.entity.ProductHierarchyVO;
+import com.cisco.apas.entity.Qualification;
+import com.cisco.apas.entity.Rule;
+import com.cisco.apas.entity.SKU;
+import com.cisco.apas.entity.ServiceHierarchyVO;
+import com.cisco.apas.entity.Specialization;
+
+public class NodeDao extends BaseDao implements DataAccessQueries {
+	private static final Logger logger = Logger.getLogger(NodeDao.class);
+	public static int searchCount = 0;
+	public static int allnodesCount = 0;
+	public static int mynodesCount = 0;
+
+	public Node getNode(Integer nodeId) {
+		List<Node> nodes = null;
+		try {
+			Object[] params = new Object[1];
+			params[0] = (long)nodeId;
+			System.out.println("Searching for node Id:"+nodeId);
+			nodes = getHibernateTemplate().findByNamedQuery("get.Node", params);
+		} catch (org.hibernate.HibernateException ex) {
+			throw super.convertHibernateAccessException(ex);
+		}
+		return nodes.get(0);
+			
+	}
+
+	public List<Node> getNodesForSKU(String searchString, String type, int start, int end) {
+		List<Node> listOfNodes = null;
+		Map input = new HashMap();
+		Map output = null;
+		input.put(GetNodesForSKU.I_SKU, searchString);
+		input.put(GetNodesForSKU.I_TYPE, type);
+		input.put(GetNodesForSKU.I_START_RECORD, start);
+		input.put(GetNodesForSKU.I_END_RECORD, end);
+		try {
+			GetNodesForSKU gnObject = new GetNodesForSKU(apasJdbcTemplate);
+			System.out.println("Executing Proc: " + GetNodesForSKU.PROC_NAME + " with Input Params: " + input);
+			StopWatch sw = new StopWatch();
+			sw.start(GetNodesForSKU.PROC_NAME);
+			output = gnObject.execute(input);
+			sw.stop();
+			System.out.println("Executed Proc in " + sw.getTotalTimeSeconds() + " seconds");
+			listOfNodes = (List<Node>) output.get(GetNodesForSKU.O_NODE_ID);
+			searchCount = Integer.parseInt(output.get(GetNodesForSKU.O_CNT).toString());
+			System.out.println("Record Count:" +output.get(GetNodesForSKU.O_CNT).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listOfNodes;
+	}
+
+	private class GetNodesForSKU extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.GET_NODE_ID_PR";
+		private static final String I_SKU = "I_SKU";
+		private static final String I_TYPE = "I_TYPE";
+		private static final String I_START_RECORD = "I_START_RECORD";
+		private static final String I_END_RECORD = "I_END_RECORD";
+		private static final String O_NODE_ID = "O_NODE_ID";
+		private static final String O_CNT = "O_CNT";
+		private static final String O_ERROR_CODE = "O_ERROR_CODE";
+		private static final String O_ERROR_MSG = "O_ERROR_MSG";
+
+		public GetNodesForSKU(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(GetNodesForSKU.I_SKU, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetNodesForSKU.I_TYPE, OracleTypes.VARCHAR));
+			declareParameter(new SqlOutParameter(GetNodesForSKU.O_NODE_ID, OracleTypes.CURSOR, new GetNodesForSKUMapper()));
+			declareParameter(new SqlOutParameter(GetNodesForSKU.O_CNT, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetNodesForSKU.O_ERROR_CODE, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetNodesForSKU.O_ERROR_MSG, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetNodesForSKU.I_START_RECORD, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetNodesForSKU.I_END_RECORD, OracleTypes.NUMBER));
+			compile();
+		}
+
+		private class GetNodesForSKUMapper implements RowMapper {
+			Node node = null;
+			private static final String node_id = "node_id";
+			private static final String node_name = "node_name";
+			private static final String sku_count = "sku_cnt";
+			private static final String rule_count = "rule_cnt";
+			private static final String created_by = "created_by";
+			private static final String created_on = "created_on";
+			private static final String updated_on = "updated_on";
+			private static final String updated_by = "updated_by";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				node = new Node();
+				node.setId(rs.getLong(GetNodesForSKUMapper.node_id));
+				node.setName(rs.getString(GetNodesForSKUMapper.node_name));
+				node.setSkuCount(rs.getInt(GetNodesForSKUMapper.sku_count));
+				node.setRuleCount(rs.getInt(GetNodesForSKUMapper.rule_count));
+				node.setCreatedOn(rs.getDate(GetNodesForSKUMapper.created_on));
+				node.setCreatedBy(rs.getString(GetNodesForSKUMapper.created_by));
+				node.setUpdatedOn(rs.getDate(GetNodesForSKUMapper.updated_on));
+				node.setUpdatedBy(rs.getString(GetNodesForSKUMapper.updated_by));
+				return node;
+			}
+		}
+	}
+
+	// Method to get Skus For A Node
+	public List<SKU> getSkusForNode(Integer nodeId, Integer start, Integer end) {
+		List<SKU> listOfSkus = null;
+		Map input = new HashMap();
+		Map output = null;
+		input.put(GetSkusForNode.I_NODE_ID, nodeId);
+		input.put(GetNodesForSKU.I_START_RECORD, start);
+		input.put(GetNodesForSKU.I_END_RECORD, end);
+		try {
+			GetSkusForNode gsObject = new GetSkusForNode(apasJdbcTemplate);
+			System.out.println("Executing Proc: " + GetSkusForNode.PROC_NAME + " with Input Params: " + input);
+			StopWatch sw = new StopWatch();
+			sw.start(GetNodesForSKU.PROC_NAME);
+			output = gsObject.execute(input);
+			sw.stop();
+			System.out.println("Executed Proc in " + sw.getTotalTimeSeconds() + " seconds");
+			listOfSkus = (List<SKU>) output.get(GetSkusForNode.O_SKU_LIST);
+			System.out.println("Record Count:" + searchCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listOfSkus;
+	}
+
+	private class GetSkusForNode extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.GET_SKU_LIST_PR";
+		private static final String I_NODE_ID = "I_NODE_ID";
+		private static final String O_SKU_LIST = "O_SKU_LIST";
+		private static final String O_RC = "O_RC";
+		private static final String O_MSG = "O_MSG";
+
+		public GetSkusForNode(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(GetSkusForNode.I_NODE_ID, OracleTypes.VARCHAR));
+			declareParameter(new SqlOutParameter(GetSkusForNode.O_SKU_LIST, OracleTypes.CURSOR, new GetSkusForNodeMapper()));
+			declareParameter(new SqlOutParameter(GetSkusForNode.O_RC, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetSkusForNode.O_MSG, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetNodesForSKU.I_START_RECORD, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetNodesForSKU.I_END_RECORD, OracleTypes.NUMBER));
+			compile();
+		}
+
+		private class GetSkusForNodeMapper implements RowMapper {
+			SKU sku = null;
+			private static final String SKU = "sku";
+			private static final String Description = "description";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				sku = new SKU();
+				sku.setPartNo(rs.getString(GetSkusForNodeMapper.SKU));
+				sku.setDescription(rs.getString(GetSkusForNodeMapper.Description));
+				return sku;
+			}
+		}
+	}
+
+	public List<Rule> getRulesForNode(Integer nodeId, Integer start, Integer end) {
+		List<Rule> rules = null;
+		Map<String, Integer> input = new HashMap<String, Integer>();
+		input.put(GetRulesForNode.I_NODE_ID, nodeId);
+		input.put(GetRulesForNode.I_START_RECORD, start);
+		input.put(GetRulesForNode.I_END_RECORD, end);
+		try {
+			GetRulesForNode getRulesForNode = new GetRulesForNode(apasJdbcTemplate);
+			System.out.println("Executing Proc: " + GetRulesForNode.PROC_NAME + " with Input Params: " + input);
+			StopWatch sw = new StopWatch();
+			sw.start(GetRulesForNode.PROC_NAME);
+			Map output = getRulesForNode.execute(input);
+			sw.stop();
+			System.out.println("Executed Proc in " + sw.getTotalTimeSeconds() + " seconds");
+			if (output.get(GetRulesForNode.O_RC) != null && Integer.parseInt((String) output.get(GetRulesForNode.O_RC)) == -1) {
+				System.out.println("GetRulesForNode returned with error message:" + output.get(GetRulesForNode.O_MSG));
+			} else {
+				rules = (List<Rule>) output.get(GetRulesForNode.O_RULE_LIST);
+			}
+		} catch (Exception e) {
+			System.out.println("Exception occured in GetRulesForNode:" + e.getLocalizedMessage());
+		}
+		return rules;
+	}
+
+	private static final class GetRulesForNode extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.GET_RULE_LIST_PR";
+		private static final String I_NODE_ID = "I_NODE_ID";
+		private static final String I_START_RECORD = "I_START_RECORD";
+		private static final String I_END_RECORD = "I_END_RECORD";
+		private static final String O_RULE_LIST = "O_RULE_LIST";
+		private static final String O_RC = "O_RC";
+		private static final String O_MSG = "O_MSG";
+
+		public GetRulesForNode(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(GetRulesForNode.I_NODE_ID, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetRulesForNode.I_START_RECORD, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetRulesForNode.I_END_RECORD, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetRulesForNode.O_RULE_LIST, OracleTypes.CURSOR, new GetRulesForNodeMapper()));
+			declareParameter(new SqlOutParameter(GetRulesForNode.O_RC, OracleTypes.VARCHAR));
+			declareParameter(new SqlOutParameter(GetRulesForNode.O_MSG, OracleTypes.VARCHAR));
+			compile();
+		}
+
+		private class GetRulesForNodeMapper implements RowMapper {
+			private static final String RULE_ID = "RULE_ID";
+			private static final String RULE_NAME = "RULE_NAME";
+			private static final String RULE_STATUS = "RULE_STATUS";
+			private static final String CREATED_BY = "CREATED_BY";
+			private static final String CREATED_ON = "CREATED_ON";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				Rule rule = new Rule();
+				rule.setId(rs.getLong(GetRulesForNodeMapper.RULE_ID));
+				rule.setRuleName(rs.getString(GetRulesForNodeMapper.RULE_NAME));
+				rule.setRuleStatus("A".equals(rs.getString(GetRulesForNodeMapper.RULE_STATUS)) ? "ACTIVE" : "INACTIVE");
+				rule.setCreatedBy(rs.getString(GetRulesForNodeMapper.CREATED_BY));
+				rule.setCreatedOn(rs.getDate(GetRulesForNodeMapper.CREATED_ON));
+				return rule;
+			}
+		}
+	}
+
+	public List<Node> getAllNodes(int start, int end, String userId) {
+		List<Node> nodeList = null;
+		Map input = new HashMap();
+		Map output = null;
+		input.put(GetAllNodes.I_USER_ID, userId);
+		input.put(GetAllNodes.I_START_RECORD, start);
+		input.put(GetAllNodes.I_END_RECORD, end);
+		try {
+			GetAllNodes gnObject = new GetAllNodes(apasJdbcTemplate);
+			System.out.println("Executing Proc: " + GetAllNodes.PROC_NAME + " with Input Params: " + input);
+			StopWatch sw = new StopWatch();
+			sw.start(GetAllNodes.PROC_NAME);
+			output = gnObject.execute(input);
+			sw.stop();
+			System.out.println("Executed Proc in " + sw.getTotalTimeSeconds() + " seconds");
+			nodeList = (List<Node>) output.get(GetAllNodes.O_NODE_ID);
+			if (userId != null) {
+				mynodesCount = Integer.parseInt(output.get(GetAllNodes.O_CNT).toString());
+			} else {
+				allnodesCount = Integer.parseInt(output.get(GetAllNodes.O_CNT).toString());
+			}
+			System.out.println("Record Count:" + output.get(GetAllNodes.O_CNT).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return nodeList;
+	}
+
+	private class GetAllNodes extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.GET_NODE_DETAIL_PR";
+		private static final String I_USER_ID = "I_USER_ID";
+		private static final String O_CNT = "O_CNT";
+		private static final String O_NODE_ID = "O_NODE_ID";
+		private static final String O_ERROR_CODE = "O_ERROR_CODE";
+		private static final String O_ERROR_MSG = "O_ERROR_MSG";
+		private static final String I_START_RECORD = "I_START_RECORD";
+		private static final String I_END_RECORD = "I_END_RECORD";
+
+		public GetAllNodes(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(GetAllNodes.I_USER_ID, OracleTypes.VARCHAR));
+			declareParameter(new SqlOutParameter(GetAllNodes.O_CNT, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetAllNodes.O_NODE_ID, OracleTypes.CURSOR, new GetAllNodesMapper()));
+			declareParameter(new SqlOutParameter(GetAllNodes.O_ERROR_CODE, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetAllNodes.O_ERROR_MSG, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetAllNodes.I_START_RECORD, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetAllNodes.I_END_RECORD, OracleTypes.NUMBER));
+			compile();
+		}
+
+		private class GetAllNodesMapper implements RowMapper {
+			Node node = null;
+			private static final String NODE_ID = "NODE_ID";
+			private static final String NODE_NAME = "NODE_NAME";
+			private static final String CREATED_ON = "CREATED_ON";
+			private static final String UPDATED_ON = "UPDATED_ON";
+			private static final String CREATED_BY = "CREATED_BY";
+			private static final String UPDATED_BY = "UPDATED_BY";
+			private static final String RULE_CNT = "RULE_CNT";
+			private static final String SKU_CNT = "SKU_CNT";
+			private static final String STATUS = "STATUS";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				node = new Node();
+				node.setId(rs.getLong(GetAllNodesMapper.NODE_ID));
+				node.setName(rs.getString(GetAllNodesMapper.NODE_NAME));
+				node.setCreatedOn(rs.getDate(GetAllNodesMapper.CREATED_ON));
+				node.setUpdatedOn(rs.getDate(GetAllNodesMapper.UPDATED_ON));
+				node.setCreatedBy(rs.getString(GetAllNodesMapper.CREATED_BY));
+				node.setUpdatedBy(rs.getString(GetAllNodesMapper.UPDATED_BY));
+				node.setRuleCount(rs.getInt(GetAllNodesMapper.RULE_CNT));
+				node.setSkuCount(rs.getInt(GetAllNodesMapper.SKU_CNT));
+				node.setStatus(rs.getString(GetAllNodesMapper.STATUS));
+				return node;
+			}
+		}
+	}
+
+	public NodeCreation getProductDetails(String inputProductIntial, String inputProductFamily, String inputPageNo) {
+		NodeCreation nC = new NodeCreation();
+		Map input = new HashMap();
+		Map output = new HashMap();
+		input.put(GetProductDetails.I_PRODUCT_INITIAL, inputProductIntial);
+		input.put(GetProductDetails.I_PRODUCT_FAMILY, inputProductFamily);
+		input.put(GetProductDetails.I_PAGE_NO, inputPageNo);
+		try {
+			GetProductDetails gnObject = new GetProductDetails(apasJdbcTemplate);
+			System.out.println("Executing Proc: " + GetProductDetails.PROC_NAME + " with Input Params: " + input);
+			StopWatch sw = new StopWatch();
+			sw.start(GetProductDetails.PROC_NAME);
+			output = gnObject.execute(input);
+			sw.stop();
+			System.out.println("Executed Proc in " + sw.getTotalTimeSeconds() + " seconds");
+			nC.setProductFamilies((List<String>) output.get(GetProductDetails.O_GET_PRODUCT_FAMILY));
+			nC.setSkus((List<SKU>) output.get(GetProductDetails.O_GET_PRODUCT));
+			nC.setNoOfSkus((output.get(GetProductDetails.O_NUMBER_OF_LINES)) == null ? 0 : new Double(output.get(GetProductDetails.O_NUMBER_OF_LINES).toString()));
+		} catch (Exception e) {
+			logger.error("Error executing proc:" + GetProductDetails.PROC_NAME + " with input params : " + input);
+			e.printStackTrace();
+		}
+		return nC;
+	}
+
+	private class GetProductDetails extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.GET_PRODUCT_DETAILS";
+		private static final String I_PRODUCT_INITIAL = "I_PRODUCT_INITIAL";
+		private static final String I_PRODUCT_FAMILY = "I_PRODUCT_FAMILY";
+		private static final String I_PAGE_NO = "I_PAGE_NO";
+		private static final String O_NUMBER_OF_LINES = "O_NUMBER_OF_LINES";
+		private static final String O_GET_PRODUCT_FAMILY = "O_GET_PRODUCT_FAMILY";
+		private static final String O_GET_PRODUCT = "O_GET_PRODUCT";
+		private static final String O_ERROR_CODE = "O_ERROR_CODE";
+		private static final String O_ERROR_MSG = "O_ERROR_MSG";
+
+		/*
+		 * PROCEDURE GET_PRODUCT_DETAILS(I_PRODUCT_INITIAL IN VARCHAR2, I_PRODUCT_FAMILY IN VARCHAR2, I_PAGE_NO IN NUMBER, O_NUMBER_OF_LINES OUT NUMBER,
+		 * O_GET_PRODUCT_FAMILY OUT REFCURSORTYPE, O_GET_PRODUCT OUT REFCURSORTYPE, O_ERROR_CODE OUT NUMBER, O_ERROR_MSG OUT VARCHAR2)
+		 */
+		public GetProductDetails(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(GetProductDetails.I_PRODUCT_INITIAL, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetProductDetails.I_PRODUCT_FAMILY, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetProductDetails.I_PAGE_NO, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetProductDetails.O_NUMBER_OF_LINES, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetProductDetails.O_GET_PRODUCT_FAMILY, OracleTypes.CURSOR, new GetProductFamily()));
+			declareParameter(new SqlOutParameter(GetProductDetails.O_GET_PRODUCT, OracleTypes.CURSOR, new GetProductSKUs()));
+			declareParameter(new SqlOutParameter(GetProductDetails.O_ERROR_CODE, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetProductDetails.O_ERROR_MSG, OracleTypes.VARCHAR));
+			compile();
+		}
+
+		private class GetProductFamily implements RowMapper {
+			private static final String PRODUCT_FAMILY_NAME = "PRODUCT_FAMILY_NAME";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				return rs.getString(GetProductFamily.PRODUCT_FAMILY_NAME);
+			}
+		}
+
+		private class GetProductSKUs implements RowMapper {
+			SKU sku = null;
+			private static final String PRODUCT_NUMBER = "PRODUCT_NUMBER";
+			private static final String DESCRIPTION = "DESCRIPTION";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				sku = new SKU();
+				sku.setPartNo(rs.getString(GetProductSKUs.PRODUCT_NUMBER));
+				sku.setDescription(rs.getString(GetProductSKUs.DESCRIPTION));
+				return sku;
+			}
+		}
+	}
+
+	public NodeCreation getServiceHierarchy(String inputServiceCategory, String inputServiceProgram, String inputServiceLevel, String inputPageNo) {
+		NodeCreation nC = new NodeCreation();
+		Map input = new HashMap();
+		Map output = new HashMap();
+		input.put(GetNodeCreationObject.I_SERVICE_CAT, inputServiceCategory);
+		input.put(GetNodeCreationObject.I_SERVICE_PROG, inputServiceProgram);
+		input.put(GetNodeCreationObject.I_SERVICE_LVL, inputServiceLevel);
+		input.put(GetNodeCreationObject.I_PAGE_NO, inputPageNo);
+		try {
+			GetNodeCreationObject gnObject = new GetNodeCreationObject(apasJdbcTemplate);
+			System.out.println("Executing Proc: " + GetNodeCreationObject.PROC_NAME + " with Input Params: " + input);
+			StopWatch sw = new StopWatch();
+			sw.start(GetNodeCreationObject.PROC_NAME);
+			output = gnObject.execute(input);
+			sw.stop();
+			System.out.println("Executed Proc in " + sw.getTotalTimeSeconds() + " seconds");
+			nC.setNoOfSkus((output.get(GetNodeCreationObject.O_NUMBER_OF_SKUS)) == null ? 0 : new Double(output.get(GetNodeCreationObject.O_NUMBER_OF_SKUS).toString()));
+			nC.setServiceCategory((List) output.get(GetNodeCreationObject.O_GET_SERVICE_CAT));
+			nC.setServiceProgram((List) output.get(GetNodeCreationObject.O_GET_SERVICE_PROG));
+			nC.setServiceLevel((List) output.get(GetNodeCreationObject.O_GET_SERVICE_LVL));
+			nC.setSkus((List<SKU>) output.get(GetNodeCreationObject.O_GET_SERVICE_SKU));
+		} catch (Exception e) {
+			logger.error("Error executing proc:" + GetNodeCreationObject.PROC_NAME + " with input params : " + input);
+			e.printStackTrace();
+		}
+		return nC;
+	}
+
+	private class GetNodeCreationObject extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.GET_SERVICE_DETAILS";
+		private static final String I_SERVICE_CAT = "I_SERVICE_CAT";
+		private static final String I_SERVICE_PROG = "I_SERVICE_PROG";
+		private static final String I_SERVICE_LVL = "I_SERVICE_LVL";
+		private static final String I_PAGE_NO = "I_PAGE_NO";
+		private static final String O_NUMBER_OF_SKUS = "O_NUMBER_OF_LINES";
+		private static final String O_GET_SERVICE_CAT = "O_GET_SERVICE_CAT";
+		private static final String O_GET_SERVICE_PROG = "O_GET_SERVICE_PROG";
+		private static final String O_GET_SERVICE_LVL = "O_GET_SERVICE_LVL";
+		private static final String O_GET_SERVICE_SKU = "O_GET_SERVICE_SKU";
+		private static final String O_ERROR_CODE = "O_ERROR_CODE";
+		private static final String O_ERROR_MSG = "O_ERROR_MSG";
+
+		public GetNodeCreationObject(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(GetNodeCreationObject.I_SERVICE_CAT, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetNodeCreationObject.I_SERVICE_PROG, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetNodeCreationObject.I_SERVICE_LVL, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetNodeCreationObject.I_PAGE_NO, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetNodeCreationObject.O_NUMBER_OF_SKUS, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetNodeCreationObject.O_GET_SERVICE_CAT, OracleTypes.CURSOR, new ServiceCategoryMapper()));
+			declareParameter(new SqlOutParameter(GetNodeCreationObject.O_GET_SERVICE_PROG, OracleTypes.CURSOR, new ServiceProgramMapper()));
+			declareParameter(new SqlOutParameter(GetNodeCreationObject.O_GET_SERVICE_LVL, OracleTypes.CURSOR, new ServiceLevelMapper()));
+			declareParameter(new SqlOutParameter(GetNodeCreationObject.O_GET_SERVICE_SKU, OracleTypes.CURSOR, new ServiceSKUMapper()));
+			declareParameter(new SqlOutParameter(GetNodeCreationObject.O_ERROR_CODE, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetNodeCreationObject.O_ERROR_MSG, OracleTypes.VARCHAR));
+			compile();
+		}
+
+		private class ServiceCategoryMapper implements RowMapper {
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				return rs.getString(1);
+			}
+		}
+
+		private class ServiceProgramMapper implements RowMapper {
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				return rs.getString(1);
+			}
+		}
+
+		private class ServiceLevelMapper implements RowMapper {
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				return rs.getString(1);
+			}
+		}
+
+		private class ServiceSKUMapper implements RowMapper {
+			SKU sku = null;
+			private static final String SERVICE_SKU = "SERVICE_SKU";
+			private static final String DESCRIPTION = "DESCRIPTION";
+			private static final String LIST_PRICE = "LIST_PRICE";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				sku = new SKU();
+				sku.setPartNo(rs.getString(ServiceSKUMapper.SERVICE_SKU));
+				sku.setDescription(rs.getString(ServiceSKUMapper.DESCRIPTION));
+				// sku.setUnitPrice(new Double(rs.getString(ServiceSKUMapper.LIST_PRICE)));
+				return sku;
+			}
+		}
+	}
+
+	public List<ProductHierarchyVO> getListOfSkusForProduct(String productFamily, String searchString) {
+		List<ProductHierarchyVO> listOfSkus = null;
+		Map input = new HashMap();
+		Map output = null;
+		input.put(GetProductSKUs.I_PRODUCT_FAMILY, productFamily);
+		input.put(GetProductSKUs.I_PRODUCT_SKU, searchString);
+		input.put(GetProductSKUs.I_START_RECORD, null);
+		input.put(GetProductSKUs.I_END_RECORD, null);
+		try {
+			GetProductSKUs gnObject = new GetProductSKUs(apasJdbcTemplate);
+			System.out.println("Executing Proc: " + GetProductSKUs.PROC_NAME + " with Input Params: " + input);
+			StopWatch sw = new StopWatch();
+			sw.start(GetProductSKUs.PROC_NAME);
+			output = gnObject.execute(input);
+			sw.stop();
+			System.out.println("Executed Proc in " + sw.getTotalTimeSeconds() + " seconds");
+			listOfSkus = (List<ProductHierarchyVO>) output.get(GetProductSKUs.O_GET_PRODUCT_SKU);
+			System.out.println("product sku size :" + listOfSkus.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listOfSkus;
+	}
+
+	private class GetProductSKUs extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.GET_PRODUCT_SKU";
+		private static final String I_PRODUCT_SKU = "I_PRODUCT_SKU";
+		private static final String I_PRODUCT_FAMILY = "I_PRODUCT_FAMILY";
+		private static final String O_GET_PRODUCT_SKU = "O_GET_PRODUCT_SKU";
+		private static final String O_RC = "O_RC";
+		private static final String O_MSG = "O_MSG";
+		private static final String O_RECORD_CNT = "O_RECORD_CNT";
+		private static final String I_START_RECORD = "I_START_RECORD";
+		private static final String I_END_RECORD = "I_END_RECORD";
+
+		/*
+		 * PROCEDURE GET_PRODUCT_SKU(I_PRODUCT_SKU IN VARCHAR2, I_PRODUCT_FAMILY IN VARCHAR2, O_GET_PRODUCT_SKU OUT REFCURSORTYPE, O_RC OUT NUMBER, O_MSG OUT VARCHAR2,
+		 * O_RECORD_CNT OUT NUMBER, I_START_RECORD NUMBER, I_END_RECORD NUMBER)
+		 */
+		public GetProductSKUs(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(GetProductSKUs.I_PRODUCT_SKU, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetProductSKUs.I_PRODUCT_FAMILY, OracleTypes.VARCHAR));
+			declareParameter(new SqlOutParameter(GetProductSKUs.O_GET_PRODUCT_SKU, OracleTypes.CURSOR, new GetProductSKUMapper()));
+			declareParameter(new SqlOutParameter(GetProductSKUs.O_RC, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetProductSKUs.O_MSG, OracleTypes.VARCHAR));
+			declareParameter(new SqlOutParameter(GetProductSKUs.O_RECORD_CNT, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetProductSKUs.I_START_RECORD, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetProductSKUs.I_END_RECORD, OracleTypes.NUMBER));
+			compile();
+		}
+
+		private class GetProductSKUMapper implements RowMapper {
+			ProductHierarchyVO sku = null;
+			private static final String PRODUCT_NUMBER = "PRODUCT_NUMBER";
+			private static final String PRODUCT_DESCRIPTION = "DESCRIPTION";
+			private static final String UPPER_MAJOR_FAMILY_NAME = "UPPER_MAJOR_FAMILY_NAME";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				sku = new ProductHierarchyVO();
+				sku.setSkuNo(rs.getString(GetProductSKUMapper.PRODUCT_NUMBER));
+				sku.setDescription(rs.getString(GetProductSKUMapper.PRODUCT_DESCRIPTION));
+				sku.setProductFamily(rs.getString(GetProductSKUMapper.UPPER_MAJOR_FAMILY_NAME));
+				return sku;
+			}
+		}
+	}
+
+	public List<ServiceHierarchyVO> getListOfSkusForService(String serviceLvl, String searchString) {
+		List<ServiceHierarchyVO> listOfSkus = null;
+		Map input = new HashMap();
+		Map output = null;
+		input.put(GetSKUs.I_SERVICE_LVL, serviceLvl);
+		input.put(GetSKUs.I_SERVICE_SKU, searchString);
+		input.put(GetSKUs.I_START_RECORD, null);
+		input.put(GetSKUs.I_END_RECORD, null);
+		try {
+			GetSKUs getSkus = new GetSKUs(apasJdbcTemplate);
+			StopWatch st = new StopWatch();
+			System.out.println("Executing Proc:" + GetSKUs.PROC_NAME + " with Input Params: " + input);
+			st.start(GetSKUs.PROC_NAME);
+			output = getSkus.execute(input);
+			st.stop();
+			System.out.println("Proc: " + GetSKUs.PROC_NAME + " executed in " + st.getTotalTimeSeconds() + " seconds");
+			listOfSkus = (List<ServiceHierarchyVO>) output.get(GetSKUs.O_GET_SERVICE_SKU);
+			searchCount = Integer.parseInt(output.get(GetSKUs.O_RC).toString());
+			System.out.println("No of records:" + listOfSkus.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listOfSkus;
+	}
+
+	private class GetSKUs extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.GET_SERVICE_SKU";
+		private static final String I_SERVICE_SKU = "I_SERVICE_SKU";
+		private static final String I_SERVICE_LVL = "I_SERVICE_LVL";
+		private static final String O_GET_SERVICE_SKU = "O_GET_SERVICE_SKU";
+		private static final String O_RC = "O_RC";
+		private static final String O_MSG = "O_MSG";
+		private static final String O_RECORD_CNT = "O_RECORD_CNT";
+		private static final String I_START_RECORD = "I_START_RECORD";
+		private static final String I_END_RECORD = "I_END_RECORD";
+
+		/*
+		 * PROCEDURE GET_SERVICE_SKU(I_SERVICE_SKU IN VARCHAR2, I_SERVICE_LVL IN VARCHAR2, O_GET_SERVICE_SKU OUT REFCURSORTYPE, O_RC OUT NUMBER, O_MSG OUT VARCHAR2,
+		 * O_RECORD_CNT OUT NUMBER, I_START_RECORD NUMBER, I_END_RECORD NUMBER)
+		 */
+		public GetSKUs(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(GetSKUs.I_SERVICE_SKU, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(GetSKUs.I_SERVICE_LVL, OracleTypes.VARCHAR));
+			declareParameter(new SqlOutParameter(GetSKUs.O_GET_SERVICE_SKU, OracleTypes.CURSOR, new GetSkuDetails()));
+			declareParameter(new SqlOutParameter(GetSKUs.O_RC, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(GetSKUs.O_MSG, OracleTypes.VARCHAR));
+			declareParameter(new SqlOutParameter(GetSKUs.O_RECORD_CNT, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetSKUs.I_START_RECORD, OracleTypes.NUMBER));
+			declareParameter(new SqlParameter(GetSKUs.I_END_RECORD, OracleTypes.NUMBER));
+			compile();
+		}
+
+		private class GetSkuDetails implements RowMapper {
+			ServiceHierarchyVO sku = null;
+			private static final String SERVICE_CATEGORY = "DM_SERVICE_CATEGORY";
+			private static final String SERVICE_PROGRAM = "SERVICE_PROGRAM";
+			private static final String SERVICE_LEVEL = "SERVICE_LEVEL";
+			private static final String SERVICE_SKU = "SERVICE_SKU";
+			private static final String SERVICE_DESCRIPTION = "DESCRIPTION";
+
+			public Object mapRow(ResultSet rs, int arg1) throws SQLException {
+				sku = new ServiceHierarchyVO();
+				sku.setSkuNo(rs.getString(GetSkuDetails.SERVICE_SKU));
+				sku.setDescription(rs.getString(GetSkuDetails.SERVICE_DESCRIPTION));
+				sku.setServiceCategory(rs.getString(GetSkuDetails.SERVICE_CATEGORY));
+				sku.setServiceProgram(rs.getString(GetSkuDetails.SERVICE_PROGRAM));
+				sku.setServiceLevel(rs.getString(GetSkuDetails.SERVICE_LEVEL));
+				return sku;
+			}
+		}
+	}
+
+	public String createNode(Node node) {
+		Map input = new HashMap();
+		Map output = new HashMap();
+		String respString = null;
+		input.put(SaveNodeDetails.I_USER_ID, node.getCreatedBy());
+		input.put(SaveNodeDetails.I_NODE_NAME, node.getName());
+		input.put(SaveNodeDetails.I_NODE_TYPE, node.getType());
+		input.put(SaveNodeDetails.I_NODE_LEVEL, node.getLevel());
+		String[] items = new String[node.getItems().size()];
+		for (int i = 0; i < node.getItems().size(); i++) {
+			NodeItem item = (NodeItem) node.getItems().get(i);
+			if(node.getType().equalsIgnoreCase("PRODUCT")){
+				items[i] = item.getItemProduct();
+			}else{
+				items[i] = item.getItemService();
+			}
+		}
+		input.put(UpdateNodeDetails.I_ITEM_TBL, new JavaToOracleArrayConverter(items, "PSE_ITEM_TYPE"));
+		SaveNodeDetails save = new SaveNodeDetails(apasJdbcTemplate);
+		System.out.println("Executing PROC:" + SaveNodeDetails.PROC_NAME + " with Input Params:" + input);
+		StopWatch sw = new StopWatch();
+		sw.start(SaveNodeDetails.PROC_NAME);
+		output = save.execute(input);
+		sw.stop();
+		System.out.println("Proc executed in " + sw.getTotalTimeSeconds() + "seconds");
+		System.out.println("Output: " + output);
+		respString = (((String) output.get(SaveNodeDetails.O_ERROR_MSG)));
+		return respString;
+	}
+
+	private class SaveNodeDetails extends StoredProcedure {
+		public static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.CR_NEW_NODE_PR";
+		public static final String I_USER_ID = "I_USER_ID";
+		public static final String I_NODE_NAME = "I_NODE_NAME";
+		public static final String I_NODE_TYPE = "I_NODE_TPE";
+		public static final String I_NODE_LEVEL = "I_NODE_LEVEL";
+		public static final String I_ITEM_TBL = "I_ITEM_TBL";
+		public static final String O_ERROR_CODE = "O_ERROR_CODE";
+		public static final String O_ERROR_MSG = "O_ERROR_MSG";
+
+		public SaveNodeDetails(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			// Declare parameters;
+			declareParameter(new SqlParameter(I_USER_ID, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_NODE_NAME, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_NODE_TYPE, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_NODE_LEVEL, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_ITEM_TBL, OracleTypes.ARRAY, "PSE_ITEM_TYPE"));
+			declareParameter(new SqlOutParameter(O_ERROR_CODE, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(O_ERROR_MSG, OracleTypes.VARCHAR));
+			compile();
+		}
+	}
+
+	private class JavaToOracleArrayConverter extends AbstractSqlTypeValue {
+		String[] itemsArray = null;
+		String columnDescriptor = null;
+
+		public JavaToOracleArrayConverter(String[] items, String descriptor) {
+			this.itemsArray = items;
+			this.columnDescriptor = descriptor;
+		}
+
+		public Object createTypeValue(Connection underlyingConn, int type, String typeName) throws SQLException {
+			ARRAY dbArray = null;
+			try {
+				Connection ocon = getApasJdbcTemplate().getNativeJdbcExtractor().getNativeConnection(underlyingConn);
+				ArrayDescriptor arrayDesc = ArrayDescriptor.createDescriptor(columnDescriptor, ocon);
+				dbArray = new ARRAY(arrayDesc, ocon, itemsArray);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return dbArray;
+		}
+	}
+
+	public boolean deleteNode(Integer[] nodeIds) {
+		try {
+			DeleteNode notificationRemoved = new DeleteNode(apasJdbcTemplate);
+			Map inputParams = new HashMap();
+			inputParams.put(DeleteNode.I_NODE_TBL, new JavaIntArrayToOracleArrayConverter(nodeIds, "SD_NODE_TYPE"));
+			Map outputParams = notificationRemoved.execute(inputParams);
+			String errorMsg = (String) outputParams.get(DeleteNode.O_ERROR_MSG);
+			BigDecimal errorCode = (BigDecimal) outputParams.get(DeleteNode.O_ERROR_CODE);
+			if (errorCode.intValue() == -1) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			if (e instanceof DAOException) {
+				logger.error("Encountered DAOException :: " + e + " in Delete Node");
+				e.printStackTrace();
+				throw (DAOException) e;
+			} else {
+				logger.error("Encountered exception: " + e + " in Delete Node.");
+				e.printStackTrace();
+				throw new DAOSystemException(ERROR_ADMIN, e);
+			}
+		}
+	}
+
+	private class DeleteNode extends StoredProcedure {
+		private static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.DELETE_NODE_PR";
+		public static final String I_NODE_TBL = "I_NODE_TBL";
+		public static final String O_ERROR_CODE = "O_ERROR_CODE";
+		public static final String O_ERROR_MSG = "O_ERROR_MSG";
+
+		public DeleteNode(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			declareParameter(new SqlParameter(I_NODE_TBL, OracleTypes.ARRAY, "SD_NODE_TYPE"));
+			declareParameter(new SqlOutParameter(O_ERROR_CODE, OracleTypes.NUMERIC));
+			declareParameter(new SqlOutParameter(O_ERROR_MSG, OracleTypes.VARCHAR));
+			compile();
+		}
+	}
+
+	private class JavaIntArrayToOracleArrayConverter extends AbstractSqlTypeValue {
+		Integer[] itemsArray = null;
+		String columnDescriptor = null;
+
+		public JavaIntArrayToOracleArrayConverter(Integer[] items, String descriptor) {
+			this.itemsArray = items;
+			this.columnDescriptor = descriptor;
+		}
+
+		public Object createTypeValue(Connection underlyingConn, int type, String typeName) throws SQLException {
+			ARRAY dbArray = null;
+			try {
+				Connection ocon = getApasJdbcTemplate().getNativeJdbcExtractor().getNativeConnection(underlyingConn);
+				ArrayDescriptor arrayDesc = ArrayDescriptor.createDescriptor(columnDescriptor, ocon);
+				dbArray = new ARRAY(arrayDesc, ocon, itemsArray);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return dbArray;
+		}
+	}
+
+	public String updateNode(Node node) {
+		Map input = new HashMap();
+		Map output = new HashMap();
+		String respString = null;
+		input.put(UpdateNodeDetails.I_NODE_ID, node.getId());
+		input.put(UpdateNodeDetails.I_USER_ID, node.getUpdatedBy());
+		input.put(UpdateNodeDetails.I_NODE_NAME, node.getName());
+		input.put(UpdateNodeDetails.I_NODE_TYPE, node.getType());
+		input.put(UpdateNodeDetails.I_NODE_LEVEL, node.getLevel());
+		String[] items = new String[node.getItems().size()];
+		for (int i = 0; i < node.getItems().size(); i++) {
+			NodeItem item = (NodeItem) node.getItems().get(i);
+			if(node.getType().equalsIgnoreCase("PRODUCT")){
+				items[i] = item.getItemProduct();
+			}else{
+				System.out.println("Service is type");
+				items[i] = item.getItemService();
+			}
+			
+		}
+		input.put(UpdateNodeDetails.I_ITEM_TBL, new JavaToOracleArrayConverter(items, "PSE_ITEM_TYPE"));
+		UpdateNodeDetails save = new UpdateNodeDetails(apasJdbcTemplate);
+		System.out.println("Executing PROC:" + UpdateNodeDetails.PROC_NAME + " with Input Params:" + input);
+		StopWatch sw = new StopWatch();
+		sw.start(UpdateNodeDetails.PROC_NAME);
+		output = save.execute(input);
+		sw.stop();
+		System.out.println("Proc executed in " + sw.getTotalTimeSeconds() + "seconds");
+		System.out.println("Output: " + output);
+		respString = (((String) output.get(UpdateNodeDetails.O_ERROR_MSG)));
+		return respString;
+	}
+
+	private class UpdateNodeDetails extends StoredProcedure {
+		public static final String PROC_NAME = "PSE_BUSINESS_RULE_PKG.UPDATE_NODE_PR";
+		public static final String I_NODE_ID = "I_NODE_ID";
+		public static final String I_USER_ID = "I_USER_ID";
+		public static final String I_NODE_NAME = "I_NODE_NAME";
+		public static final String I_NODE_TYPE = "I_NODE_TPE";
+		public static final String I_NODE_LEVEL = "I_NODE_LEVEL";
+		public static final String I_ITEM_TBL = "I_ITEM_TBL";
+		public static final String O_ERROR_CODE = "O_ERROR_CODE";
+		public static final String O_ERROR_MSG = "O_ERROR_MSG";
+
+		public UpdateNodeDetails(JdbcTemplate jdbcTemplate) {
+			super(jdbcTemplate, PROC_NAME);
+			setFunction(false);
+			// Declare parameters;
+			declareParameter(new SqlParameter(I_NODE_ID, OracleTypes.INTEGER));
+			declareParameter(new SqlParameter(I_USER_ID, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_NODE_NAME, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_NODE_TYPE, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_NODE_LEVEL, OracleTypes.VARCHAR));
+			declareParameter(new SqlParameter(I_ITEM_TBL, OracleTypes.ARRAY, "PSE_ITEM_TYPE"));
+			declareParameter(new SqlOutParameter(O_ERROR_CODE, OracleTypes.NUMBER));
+			declareParameter(new SqlOutParameter(O_ERROR_MSG, OracleTypes.VARCHAR));
+			compile();
+		}
+	}
+
+	public Map<String, Qualification> getQualifications() {
+		return getApasJdbcTemplate().query("select qual_code, qual_type, qual_name  from sd_partner_qualification where status = 'A'",
+				new ResultSetExtractor<Map<String, Qualification>>() {
+					public Map<String, Qualification> extractData(ResultSet rs) throws SQLException, DataAccessException {
+						Map<String, Qualification> oMap = new HashMap<String, Qualification>();
+						while (rs.next()) {
+							String qualType = rs.getString("qual_type");
+							Qualification qualification;
+							if ("CERT".equals(qualType)) {
+								qualification = new Certification();
+							} else if ("AUTH".equals(qualType)) {
+								qualification = new Authorization();
+							} else if ("SPECIAL".equals(qualType)) {
+								qualification = new Specialization();
+							} else {
+								continue;
+							}
+							qualification.setCode(rs.getString("qual_code"));
+							qualification.setDesc(rs.getString("qual_name"));
+							oMap.put(qualification.getCode(), qualification);
+						}
+						return oMap;
+					}
+				});
+	}
+	
+	public List<Country> getCountries() {
+		return getApasJdbcTemplate().query("SELECT code_desc, theater_cd, iso_country_cd, eea_flag FROM country_vw WHERE active_flag = 'Y' order by code_desc asc",
+				new ResultSetExtractor<List<Country>>() {
+					public List<Country> extractData(ResultSet rs) throws SQLException, DataAccessException {
+						List<Country> countries = new ArrayList<Country>();
+						while (rs.next()) {
+							Country country = new Country();
+							country.setDescription(rs.getString("code_desc"));
+							country.setTheater(rs.getString("theater_cd"));
+							country.setIsoCountryCode(rs.getString("iso_country_cd"));
+							country.setEeaFlag("Y".equals(rs.getString("eea_flag")));
+							countries.add(country);
+						}
+						return countries;
+					}
+				});
+	}
+}
